@@ -1,28 +1,24 @@
-import {Box, Fade, Popper} from "@mui/material";
-import React from "react";
+import {useState} from "react";
 import style from './Category.module.scss'
 import {AiOutlineArrowDown, AiOutlineArrowUp} from "react-icons/ai";
 import {NavLink} from "react-router-dom";
-import LeftProperWindow from "./ProperWindow/Left/LeftProperWindow.tsx";
-import RightProperWindow from "./ProperWindow/Right/RightProperWindow.tsx";
 import {CategoryData} from "./CategoryData.tsx";
+import PopperWindow from "./ProperWindow/Left/PopperWindow.tsx";
+import {QueryClient, QueryClientProvider} from "react-query";
 
 function Category() {
+    const [open , setOpen] = useState(false);
+    const queryClient = new QueryClient();
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(anchorEl ? null : event.currentTarget);
-    };
-
-    const open: boolean = Boolean(anchorEl);
-    const id = open ? 'simple-popper' : undefined;
+    function handleClick() {
+        setOpen((prev) => !prev)
+    }
 
     return (
         <div className={style.container}>
             <div className={style.block}>
                 <div className={style.popper}>
-                    <button className={`${style.btn} ${open ? style.active : null}`} aria-describedby={id} type="button"
+                    <button className={`${style.btn} ${open ? style.active : null}`}  type="button"
                             onClick={handleClick}>
                         All Category
                         {open ? <AiOutlineArrowUp size={15} color={'white'}/> :
@@ -41,35 +37,16 @@ function Category() {
                         </NavLink>
                     })}
                 </div>
-                <div className={style.popperBlock}>
-                    <Popper id={id} open={open} anchorEl={anchorEl} transition>
-                        {({TransitionProps}) => (
-                            <div className={style.boxBlock}>
-                                <Fade {...TransitionProps} timeout={350}>
-                                    <Box sx={{
-                                        border: '1px solid rgba(0, 0, 0, 0.24)',
-                                        borderRadius: '5px',
-                                        p: 1,
-                                        bgcolor: 'background.paper'
-                                    }}>
-                                        <LeftProperWindow/>
-                                    </Box>
-                                </Fade>
-                                <Fade {...TransitionProps} timeout={350}>
-                                    <Box sx={{
-                                        border: '1px solid rgba(0, 0, 0, 0.24)',
-                                        borderRadius: '5px',
-                                        p: 1,
-                                        bgcolor: 'background.paper'
-                                    }}>
-                                        <RightProperWindow/>
-                                    </Box>
-                                </Fade>
-                            </div>
-                        )}
-                    </Popper>
+            </div>
+            <div className={style.popperBlock}>
+                <div className={style.boxBlock}>
+                    {open ? <QueryClientProvider client={queryClient}>
+                        <PopperWindow/></QueryClientProvider>: null}
                 </div>
             </div>
+            <div>        sdsda sd <br/>
+                sad asd as</div>
+
         </div>
     )
 }
