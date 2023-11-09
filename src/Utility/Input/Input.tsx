@@ -7,19 +7,20 @@ interface IInput {
     typeBtn? : string,
     type : string
     value : string,
-    callback : (value: any) => void
+    callbackInput : (value: any) => void;
+    callbackBtn? : () => void;
 }
 
 
 
-function Input ({placeholder , typeBtn , type , value , callback} : IInput) {
+function Input ({placeholder , typeBtn , type , value , callbackInput , callbackBtn} : IInput) {
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        callback(event.target.value);
+        callbackInput(event.target.value);
     }
     const showBtn = () => {
 
             if ( typeBtn === 'search') {
-                return <button className={style.btn}>
+                return <button onClick={() => callbackBtn ? callbackBtn() :null} className={style.btn}>
                     <FiSearch size={15}/>
                 </button>
             }

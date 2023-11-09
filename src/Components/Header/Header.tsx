@@ -8,6 +8,7 @@ import {Badge, IconButton} from "@mui/material";
 import {PiBasket} from "react-icons/pi";
 import {MdFavoriteBorder} from "react-icons/md";
 
+
 function Header() {
     function notificationsLabel(count: number) {
         if (count === 0) {
@@ -47,7 +48,8 @@ function Header() {
                         <div className={style.inputBlock}>
                             <Input
                                 value={inputValue}
-                                callback={setValue}
+                                callbackInput={setValue}
+                                callbackBtn={() => console.log('click')}
                                 type={'text'}
                                 placeholder={'Search for anything...'}
                                 typeBtn={'search'}/>
@@ -59,7 +61,7 @@ function Header() {
                                 </Badge>
                             </IconButton>
                             <IconButton onClick={() => console.log('f')}>
-                                 <MdFavoriteBorder color={'white'}/>
+                                <MdFavoriteBorder color={'white'}/>
                             </IconButton>
                             <IconButton onClick={() => console.log('p')}>
                                 <AiOutlineUser color={'white'}/>
@@ -70,7 +72,7 @@ function Header() {
             </div>
         </div>
 
-    )
+    );
 }
 
 export default Header

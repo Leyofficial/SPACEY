@@ -1,0 +1,32 @@
+.container {
+  width: 80%;
+  margin: 16px auto;
+}
+.block {
+  display: flex;
+}
+.btn {
+  transition: .4s ease;
+  display: flex;
+  padding: 14px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 2px;
+  background-color: #F2F4F5;
+  margin: 0 10px;
+  color: #5F6C72;
+  text-decoration: none;
+  &:hover {
+    scale: 1.05;
+  }
+}
+.active {
+  color: white;
+  border-radius: 2px;
+  background: var(--primary-500, #FA8232);
+}
+.navItems {
+  display: flex;
+}
