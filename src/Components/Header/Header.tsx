@@ -4,22 +4,12 @@ import {AiOutlineInstagram, AiOutlineUser, AiOutlineYoutube} from "react-icons/a
 import logo from './../../assets/icons/logo.svg'
 import Input from "../../Utility/Input/Input.tsx";
 import {useState} from "react";
-import {Badge, IconButton} from "@mui/material";
 import {PiBasket} from "react-icons/pi";
 import {MdFavoriteBorder} from "react-icons/md";
-
+import {CustomIcon} from "../../Utility/CustomIcon/CustomIcon.tsx";
 
 function Header() {
-    function notificationsLabel(count: number) {
-        if (count === 0) {
-            return 'no notifications';
-        }
-        if (count > 99) {
-            return 'more than 99 notifications';
-        }
-        return `${count} notifications`;
-    }
-    const [inputValue  , setValue ] = useState<string>('')
+    const [inputValue, setValue] = useState<string>('')
     return (
         <div className={style.container}>
             <div className={style.wrapper}>
@@ -55,17 +45,9 @@ function Header() {
                                 typeBtn={'search'}/>
                         </div>
                         <div className={style.actionBlock}>
-                            <IconButton onClick={() => console.log('b')} aria-label={notificationsLabel(100)}>
-                                <Badge badgeContent={1} color="info">
-                                    <PiBasket color={'white'}/>
-                                </Badge>
-                            </IconButton>
-                            <IconButton onClick={() => console.log('f')}>
-                                <MdFavoriteBorder color={'white'}/>
-                            </IconButton>
-                            <IconButton onClick={() => console.log('p')}>
-                                <AiOutlineUser color={'white'}/>
-                            </IconButton>
+                            <CustomIcon valueMultiply={10} isMultiply={true} icon={<PiBasket color={'white'}/>}/>
+                            <CustomIcon icon={<MdFavoriteBorder color={'white'}/>}/>
+                            <CustomIcon icon={<AiOutlineUser color={'white'}/>}/>
                         </div>
                     </nav>
                 </div>
