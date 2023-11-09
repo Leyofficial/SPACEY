@@ -8,11 +8,26 @@ $containerWidth : 80%;
 }
 .wrapper {
   margin: 0 auto;
-  width:  $containerWidth;
 }
 .topBlock {
-  padding: 15px 0;
+  padding: 8px 10%;
   color: $textColor;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+.bottomBlock {
+  padding: 15px 10%;
+}
+.listSocial {
+  display: flex;
+  gap: 10px;
+}
+.title {
+  color: $textColor;
+}
+.titleBlock {
+  gap: 10px;
+  align-items: center;
+  display: flex;
 }
 .nav {
   align-items: center;
