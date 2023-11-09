@@ -1,0 +1,29 @@
+$headerColor : #1B6392;
+$textColor : #FFFFFF;
+$containerWidth : 80%;
+
+
+.container {
+  background-color: $headerColor;
+}
+.wrapper {
+  margin: 0 auto;
+  width:  $containerWidth;
+}
+.topBlock {
+  padding: 15px 0;
+  color: $textColor;
+}
+.nav {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.socialMedia {
+  align-items: center;
+  gap: 15px;
+  display: flex;
+}
+.listSocial {
+  cursor: pointer;
+}
