@@ -1,5 +1,4 @@
 import {Badge, IconButton} from "@mui/material";
-import {PiBasket} from "react-icons/pi";
 import React from "react";
 
 
@@ -9,13 +8,13 @@ interface ICustomIcon {
     isMultiply? : boolean,
     valueMultiply? : number
 }
-export function CustomIcon ({callback  , icon , isMultiply = false , valueMultiply} : ICustomIcon) {
+// callback
+export function CustomIcon ({ icon , isMultiply = false , valueMultiply} : ICustomIcon) {
     return (
         <IconButton onClick={() => console.log('b')} >
             {isMultiply ? <Badge badgeContent={valueMultiply} color="info">
                 {icon}
             </Badge> : icon}
-
         </IconButton>
     )
 }
