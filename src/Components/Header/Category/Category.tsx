@@ -4,11 +4,9 @@ import {AiOutlineArrowDown, AiOutlineArrowUp} from "react-icons/ai";
 import {NavLink} from "react-router-dom";
 import {CategoryData} from "./CategoryData.tsx";
 import PopperWindow from "./ProperWindow/Left/PopperWindow.tsx";
-import {QueryClient, QueryClientProvider} from "react-query";
 
 function Category() {
     const [open , setOpen] = useState(false);
-    const queryClient = new QueryClient();
 
     function handleClick() {
         setOpen((prev) => !prev)
@@ -40,13 +38,9 @@ function Category() {
             </div>
             <div className={style.popperBlock}>
                 <div className={style.boxBlock}>
-                    {open ? <QueryClientProvider client={queryClient}>
-                        <PopperWindow/></QueryClientProvider>: null}
+                    {open ? <PopperWindow/> : null}
                 </div>
             </div>
-            <div>        sdsda sd <br/>
-                sad asd as</div>
-
         </div>
     )
 }
