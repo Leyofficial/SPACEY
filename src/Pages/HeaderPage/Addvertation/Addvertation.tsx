@@ -5,18 +5,10 @@ import BigAdd from "./BigAdd/BigAdd.tsx";
 
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Autoplay} from 'swiper/modules';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import {CircularProgress} from "@mui/material";
 import {SpinnerLoading} from "../../../Utility/Loading/SpinnerLoading.tsx";
 import SmallAdd from "./SmallAdd/SmallAdd.tsx";
-
-interface IGetItems {
-    data: {
-        categories: []
-    }
-}
 
 function Addvertation() {
     const [items, setItems] = useState([]);
