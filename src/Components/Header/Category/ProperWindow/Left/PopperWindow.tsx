@@ -1,7 +1,7 @@
 import style from './PopperWindow.module.scss'
 import {useQuery} from "react-query";
 import {CircularProgress} from "@mui/material";
-import {useEffect, useRef, useState} from "react";
+import {useEffect,  useState} from "react";
 import {IoIosArrowForward} from "react-icons/io";
 import {useNavigate} from "react-router-dom";
 
@@ -9,7 +9,7 @@ function PopperWindow() {
     const navigate = useNavigate()
     const [filteredDate, setFiltered] = useState([]);
     const [hover,setHover] = useState<string | null>(null)
-    const {isLoading, error, data} = useQuery('repoData', () =>
+    const {isLoading,  data} = useQuery('repoData', () =>
         fetch('https://spacey-server-1qkt.vercel.app').then(res =>
             res.json()
         )
