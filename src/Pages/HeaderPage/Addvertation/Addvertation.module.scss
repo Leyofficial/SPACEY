@@ -1,4 +1,11 @@
 
+.blockWrapper {
+  display: flex;
+}
+.rightBlock {
+  display: flex;
+  flex-direction: column;
+}
 .loading {
   width: 100%;
   height: 100%;

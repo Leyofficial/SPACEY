@@ -28,23 +28,23 @@ function Addvertation() {
             {isLoading ? <SpinnerLoading/> : null}
             {items.length > 0 &&
                 <div className={style.blockWrapper}>
-                    <div className={style.leftBlock}>
-                        <Swiper spaceBetween={30}
-                                centeredSlides={true}
-                                autoplay={{
-                                    delay: 7500,
-                                    disableOnInteraction: false,
-                                }}
-                                modules={[Autoplay]}
-                                className={style.mySwiper}
-                        >
+                    <Swiper spaceBetween={30}
+                            centeredSlides={true}
+                            autoplay={{
+                                delay: 7500,
+                                disableOnInteraction: false,
+                            }}
+                            modules={[Autoplay]}
+                            className={style.mySwiper}
+                    >
 
-                            <SwiperSlide><BigAdd item={items[0]}/></SwiperSlide>
-                            <SwiperSlide><BigAdd item={items[22]}/></SwiperSlide>
-                        </Swiper>
+                        <SwiperSlide><BigAdd item={items[0]}/></SwiperSlide>
+                        <SwiperSlide><BigAdd item={items[22]}/></SwiperSlide>
+                    </Swiper>
+                    <div className={style.rightBlock}>
+                        <SmallAdd item={items[40]}/>
+                        <SmallAdd item={items[40]}/>
                     </div>
-                            <SmallAdd item={items[40]}/>
-                    <SmallAdd item={items[40]}/>
                 </div>
             }
 

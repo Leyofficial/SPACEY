@@ -1,5 +1,7 @@
 import style from './BigAdd.module.scss'
 import {BsArrowRightShort} from "react-icons/bs";
+import {useEffect, useState} from "react";
+import {getImageFromServer} from "../../../../ApiRequests/uploads/getImage.ts";
 
 export interface IItem {
     item: {
@@ -14,6 +16,12 @@ export interface IItem {
 }
 
 function BigAdd({item}: IItem) {
+    const [image,setImage] = useState<string | null>(null)
+    useEffect(() => {
+        getImageFromServer(item.product.images.mainImage , setImage).then((res) => {
+            console.log(res)
+        })
+    },[])
     return (
         <>
             <div className={style.block}>
@@ -26,7 +34,7 @@ function BigAdd({item}: IItem) {
                     </button>
                 </div>
                 <div className={style.photoBlock}>
-                    <img src={item?.product.photo} alt="photo"/>
+                    <img src={image} alt="photo"/>
                     <div className={style.price}>${item?.product.price}</div>
                 </div>
             </div>
