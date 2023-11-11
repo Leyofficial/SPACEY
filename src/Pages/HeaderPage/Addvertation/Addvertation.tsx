@@ -13,7 +13,7 @@ import SmallAdd from "./SmallAdd/SmallAdd.tsx";
 function Addvertation() {
     const [items, setItems] = useState([]);
     const {isLoading, error, data} = useQuery('repoData', () =>
-        fetch('https://spacey-server-1qkt.vercel.app').then(res =>
+        fetch('https://spacey-server.vercel.app/api').then(res =>
             res.json()
         )
     )
