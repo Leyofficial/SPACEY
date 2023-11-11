@@ -9,6 +9,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import {SpinnerLoading} from "../../../Utility/Loading/SpinnerLoading.tsx";
 import SmallAdd from "./SmallAdd/SmallAdd.tsx";
+import BigAddSkeleton from "./BigAdd/BigAddSkeleton.tsx";
 
 function Addvertation() {
     const [items, setItems] = useState([]);
@@ -25,8 +26,6 @@ function Addvertation() {
     // @ts-ignore
     return (
         <div className={style.block}>
-            {isLoading ? <SpinnerLoading/> : null}
-            {items.length > 0 &&
                 <div className={style.blockWrapper}>
                     <Swiper spaceBetween={30}
                             centeredSlides={true}
@@ -38,16 +37,14 @@ function Addvertation() {
                             className={style.mySwiper}
                     >
 
-                        <SwiperSlide><BigAdd item={items[0]}/></SwiperSlide>
-                        <SwiperSlide><BigAdd item={items[22]}/></SwiperSlide>
+                        <SwiperSlide> {!isLoading ? <BigAdd item={items[0]}/>  : <BigAddSkeleton/> } </SwiperSlide>
+                        <SwiperSlide> {!isLoading ? <BigAdd item={items[22]}/> : <BigAddSkeleton/> } </SwiperSlide>
                     </Swiper>
                     <div className={style.rightBlock}>
                         <SmallAdd item={items[40]}/>
                         <SmallAdd item={items[40]}/>
                     </div>
                 </div>
-            }
-
         </div>
     )
 }

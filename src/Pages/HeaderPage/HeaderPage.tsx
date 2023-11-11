@@ -38,7 +38,9 @@ function HeaderPage() {
     return (
         <div className={style.container}>
             <div className={style.addvertation}>
-                <Addvertation/>
+                <div>
+                    <Addvertation/>
+                </div>
                 <div className={style.subtitleBlock}>
                     {data.map((item) =>
                         <HeaderSubtitle subtitle={item.subtitle} title={item.title} img={item.img}/>

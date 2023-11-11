@@ -25,14 +25,16 @@ function BigAdd({item}: IItem) {
     const [image,setImage] = useState<string | null>(null)
 
     useEffect(() => {
-        getImageFromServer(item.product.images.mainImage,setImage)
+        if (item) {
+            getImageFromServer(item.product.images.mainImage,setImage)
+        }
     },[item])
     return (
         <>
             <div className={style.block}>
                 <div className={style.textBlock}>
                     <h2 className={style.title}>{item?.brand}</h2>
-                    <p className={style.subtitle}>{item?.product.saleDescription}</p>
+                    <p className={style.subtitle}>{item?.product?.saleDescription}</p>
                     <button className={style.btn}>
                         <p className={style.btnText}>Shop Now</p>
                         <BsArrowRightShort color={'white'} size={30}/>

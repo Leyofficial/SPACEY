@@ -7,7 +7,9 @@ import {getImageFromServer} from "../../../../ApiRequests/uploads/getImage.ts";
 function SmallAdd({item}: IItem) {
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
-        getImageFromServer(item.product.images.mainImage, setImage)
+        if (item) {
+            getImageFromServer(item.product.images.mainImage, setImage)
+        }
     }, [])
     return (
         <div className={style.block}>
@@ -15,8 +17,8 @@ function SmallAdd({item}: IItem) {
                 <img src={image} alt="photo"/>
             </div>
             <div className={style.textBlock}>
-                    <p className={style.title}>{item.brand}</p>
-                    <p className={style.price}>${item.product.price} USD</p>
+                    <p className={style.title}>{item?.brand}</p>
+                    <p className={style.price}>${item?.product.price} USD</p>
                 <button className={style.btn}>
                     <p className={style.btnText}>Shop Now</p>
                     <BsArrowRightShort color={'white'} size={30}/>
