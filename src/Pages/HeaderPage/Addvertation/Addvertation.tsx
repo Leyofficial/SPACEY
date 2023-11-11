@@ -7,7 +7,6 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import {Autoplay} from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import {SpinnerLoading} from "../../../Utility/Loading/SpinnerLoading.tsx";
 import SmallAdd from "./SmallAdd/SmallAdd.tsx";
 import BigAddSkeleton from "./BigAdd/BigAddSkeleton.tsx";
 
@@ -41,8 +40,8 @@ function Addvertation() {
                         <SwiperSlide> {!isLoading ? <BigAdd item={items[22]}/> : <BigAddSkeleton/> } </SwiperSlide>
                     </Swiper>
                     <div className={style.rightBlock}>
-                        <SmallAdd item={items[40]}/>
-                        <SmallAdd item={items[40]}/>
+                        <SmallAdd item={items[0]}/>
+                        <SmallAdd item={items[20]}/>
                     </div>
                 </div>
         </div>

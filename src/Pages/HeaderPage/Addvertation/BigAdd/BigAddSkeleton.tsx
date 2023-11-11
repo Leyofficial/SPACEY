@@ -6,8 +6,7 @@ function BigAddSkeleton() {
         <>
             <div className={style.block}>
                 <div className={style.textBlock}>
-                    <Skeleton variant="rectangular" width={200} height={26} className={style.title}></Skeleton>
-                    <Skeleton variant="rectangular" width={250} height={46} className={style.title}></Skeleton>
+                    <Skeleton variant="rectangular" width={125} height={46} className={style.title}></Skeleton>
                     <button className={style.btn}>
                         <p className={style.btnText}>Shop Now</p>
                         <BsArrowRightShort color={'white'} size={30}/>
