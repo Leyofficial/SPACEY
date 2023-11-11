@@ -19,11 +19,10 @@ function BigAdd({item}: IItem) {
             <div className={style.block}>
                 <div className={style.textBlock}>
                     <h2 className={style.title}>{item?.brand}</h2>
-                    <p className={style.subtitle}>{item?.product?.saleDescription}</p>
                     <CustomBtn/>
                 </div>
                 <div className={style.photoBlock}>
-                    {!image ?   <Skeleton  variant="text" width={260} height={400}></Skeleton> : <div><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </div> }
+                    {!image ?   <Skeleton  variant="text" width={260} height={400}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
                 </div>
             </div>
             </>

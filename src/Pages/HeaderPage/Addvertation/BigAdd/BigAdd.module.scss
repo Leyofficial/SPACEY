@@ -25,6 +25,9 @@
   line-height: 56px; /* 116.667% */
 }
 .photoBlock {
+  img {
+    object-fit: cover;
+  }
   display: flex;
   position: relative;
 }

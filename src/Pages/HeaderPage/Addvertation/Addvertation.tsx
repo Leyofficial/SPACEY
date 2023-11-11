@@ -41,7 +41,7 @@ function Addvertation() {
                     </Swiper>
                     <div className={style.rightBlock}>
                         { !isLoading ?  <SmallAdd item={items[0]}/> :  <SmallAddSkeleton/>}
-                        { !isLoading ?  <SmallAdd item={items[20]}/> :  <SmallAddSkeleton/>}
+                        { !isLoading ?  <SmallAdd item={items[12]}/> :  <SmallAddSkeleton/>}
                     </div>
                 </div>
         </div>

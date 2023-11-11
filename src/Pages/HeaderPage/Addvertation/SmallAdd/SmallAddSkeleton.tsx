@@ -10,8 +10,8 @@ function SmallAddSkeleton() {
 
             </div>
             <div className={style.textBlock}>
-                <Skeleton   className={style.title} variant="text" width={60} height={20}></Skeleton>
-                <Skeleton   className={style.price} variant="text" width={60} height={20}></Skeleton>
+                <Skeleton   className={style.title} variant="text" width={60} height={40}></Skeleton>
+                <Skeleton   className={style.title} variant="text" width={100} height={40}></Skeleton>
                 <CustomBtn/>
             </div>
         </div>
