@@ -1,6 +1,6 @@
 import style from './HeaderPage.module.scss'
 import Addvertation from "./Addvertation/Addvertation.tsx";
-import React, {useState} from "react";
+import React from "react";
 import {BsBoxSeam} from "react-icons/bs";
 import {CiCreditCard1, CiTrophy} from "react-icons/ci";
 import {PiHeadphonesThin} from "react-icons/pi";

@@ -8,7 +8,13 @@ export interface IItem {
         brand: string,
         product: {
             saleDescription: string,
-            photo: string,
+            images: {
+                mainImage:string,
+                restImages:{
+                    images:[string],
+                    color:string
+                }
+            },
             percentageOfSale: number,
             price: number
         }
@@ -17,11 +23,10 @@ export interface IItem {
 
 function BigAdd({item}: IItem) {
     const [image,setImage] = useState<string | null>(null)
+
     useEffect(() => {
-        getImageFromServer(item.product.images.mainImage , setImage).then((res) => {
-            console.log(res)
-        })
-    },[])
+        getImageFromServer(item.product.images.mainImage,setImage)
+    },[item])
     return (
         <>
             <div className={style.block}>
@@ -34,7 +39,7 @@ function BigAdd({item}: IItem) {
                     </button>
                 </div>
                 <div className={style.photoBlock}>
-                    <img src={image} alt="photo"/>
+                    <img src={image ? image : ""} alt="photo"/>
                     <div className={style.price}>${item?.product.price}</div>
                 </div>
             </div>

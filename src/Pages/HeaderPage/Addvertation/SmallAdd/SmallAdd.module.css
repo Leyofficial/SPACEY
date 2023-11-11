@@ -1,8 +1,12 @@
 .block {
-  padding: 40px;
+  height: 14.5rem;
   gap: 20px;
   display: flex;
   align-items: center;
+  padding: 40px 40px 40px 32px;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--gray-50, #F2F4F5);
 }
 
 .imgBlock {
@@ -16,7 +20,7 @@
   cursor: pointer;
   border: none;
   display: flex;
-  padding: 0 22px;
+  padding: 10px 22px;
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -35,7 +39,6 @@
   font-size: 14px;
   font-style: normal;
   font-weight: 700;
-  line-height: 56px; /* 350% */
   letter-spacing: 0.192px;
 }
 
@@ -46,7 +49,6 @@
   font-size: 24px;
   font-style: normal;
   font-weight: 600;
-  line-height: 32px; /* 133.333% */
   margin-bottom: 12px;
 }
 
