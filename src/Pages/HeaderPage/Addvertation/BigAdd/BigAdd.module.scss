@@ -24,32 +24,6 @@
   font-weight: 600;
   line-height: 56px; /* 116.667% */
 }
-.btn {
-  width: 10rem;
-  transition: .4s linear;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  padding: 8px ;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  border-radius: 3px;
-  background: var(--primary-500, #FA8232);
-  &:hover {
-    scale: 1.05;
-  }
-}
-.btnText {
-  text-transform: uppercase;
-  color: var(--gray-00, #FFF);
-
-  /* Heading/06 */
-  font-family: Public Sans sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-}
 .photoBlock {
   display: flex;
   position: relative;

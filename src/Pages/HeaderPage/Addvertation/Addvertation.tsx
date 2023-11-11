@@ -9,10 +9,11 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import SmallAdd from "./SmallAdd/SmallAdd.tsx";
 import BigAddSkeleton from "./BigAdd/BigAddSkeleton.tsx";
+import SmallAddSkeleton from "./SmallAdd/SmallAddSkeleton.tsx";
 
 function Addvertation() {
     const [items, setItems] = useState([]);
-    const {isLoading, error, data} = useQuery('repoData', () =>
+    const {isLoading,  data} = useQuery('repoData', () =>
         fetch('https://spacey-server.vercel.app/api').then(res =>
             res.json()
         )
@@ -22,7 +23,6 @@ function Addvertation() {
         if (!data) return
         setItems(data.categories)
     }, [data])
-    // @ts-ignore
     return (
         <div className={style.block}>
                 <div className={style.blockWrapper}>
@@ -40,8 +40,8 @@ function Addvertation() {
                         <SwiperSlide> {!isLoading ? <BigAdd item={items[22]}/> : <BigAddSkeleton/> } </SwiperSlide>
                     </Swiper>
                     <div className={style.rightBlock}>
-                        <SmallAdd item={items[0]}/>
-                        <SmallAdd item={items[20]}/>
+                        { !isLoading ?  <SmallAdd item={items[0]}/> :  <SmallAddSkeleton/>}
+                        { !isLoading ?  <SmallAdd item={items[20]}/> :  <SmallAddSkeleton/>}
                     </div>
                 </div>
         </div>

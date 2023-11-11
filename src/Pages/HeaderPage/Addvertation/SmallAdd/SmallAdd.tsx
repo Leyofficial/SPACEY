@@ -1,8 +1,9 @@
 import style from './SmallAdd.module.scss'
-import {IItem} from "../BigAdd/BigAdd.tsx";
-import {BsArrowRightShort} from "react-icons/bs";
 import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../../../ApiRequests/uploads/getImage.ts";
+import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
+import {IItem} from "../BigAdd/types.ts";
+import {Skeleton} from "@mui/material";
 
 function SmallAdd({item}: IItem) {
     const [image, setImage] = useState<string | null>(null)
@@ -13,18 +14,12 @@ function SmallAdd({item}: IItem) {
     return (
         <div className={style.block}>
             <div className={style.imgBlock}>
-                 <img src={ image ? image : ''} alt="photo"/>
-
+                {!image ? <Skeleton  variant="text" width={124} height={124}></Skeleton> : <img src={ image ? image : ''} alt="photo"/> }
             </div>
             <div className={style.textBlock}>
                     <p className={style.title}>{item?.brand}</p>
                     <p className={style.price}>${item?.product.price} USD</p>
-                <button className={style.btn}>
-                    <p className={style.btnText}>Shop Now</p>
-                    <div>
-                        <BsArrowRightShort color={'white'} size={30}/>
-                    </div>
-                </button>
+                <CustomBtn/>
             </div>
         </div>
     )

@@ -13,32 +13,7 @@
   height: 160px;
   object-fit: fill;
 }
-.btn {
-  width: 10rem;
-  transition: .4s linear;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 10px ;
-  gap: 12px;
-  border-radius: 3px;
-  background: var(--primary-500, #FA8232);
-  &:hover {
-    scale: 1.05;
-  }
-}
-.btnText {
-  text-transform: uppercase;
-  color: var(--gray-00, #FFF);
 
-  /* Heading/06 */
-  font-family: Public Sans sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-}
 .title {
   color: var(--gray-900, #191C1F);
   /* Heading/03 */
