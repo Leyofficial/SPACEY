@@ -1,0 +1,55 @@
+.container {
+  position: relative;
+  width: 80%;
+  margin: 16px auto;
+}
+
+.block {
+  display: flex;
+}
+
+.btn {
+  outline: none;
+  transition: 0.4s ease;
+  display: flex;
+  padding: 14px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #F2F4F5;
+  margin: 0 10px;
+  color: #5F6C72;
+  text-decoration: none;
+}
+.btn:hover {
+  scale: 1.05;
+}
+
+.active {
+  color: white;
+  border-radius: 2px;
+  background: var(--primary-500, #FA8232);
+}
+
+.navItems {
+  display: flex;
+}
+
+.popperBlock {
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.boxBlock {
+  position: absolute;
+  gap: 20px;
+  z-index: 10;
+  width: 99%;
+  margin: 10px auto;
+  justify-content: space-between;
+  display: flex;
+}
+
+/*# sourceMappingURL=Category.module.css.map */

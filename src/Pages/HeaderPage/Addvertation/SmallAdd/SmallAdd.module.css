@@ -1,0 +1,64 @@
+.block {
+  padding: 40px;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.imgBlock {
+  width: 160px;
+  height: 160px;
+  object-fit: fill;
+}
+
+.btn {
+  transition: 0.4s linear;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  padding: 0 22px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 3px;
+  background: var(--primary-500, #FA8232);
+}
+.btn:hover {
+  scale: 1.05;
+}
+
+.btnText {
+  text-transform: uppercase;
+  color: var(--gray-00, #FFF);
+  /* Heading/06 */
+  font-family: Public Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 56px; /* 350% */
+  letter-spacing: 0.192px;
+}
+
+.title {
+  color: var(--gray-900, #191C1F);
+  /* Heading/03 */
+  font-family: Public Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px; /* 133.333% */
+  margin-bottom: 12px;
+}
+
+.price {
+  color: var(--secondary-500, #2DA5F3);
+  /* Body/Large/600 */
+  font-family: Public Sans;
+  font-size: 18px;
+  font-style: normal;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+}
+
+/*# sourceMappingURL=SmallAdd.module.css.map */
