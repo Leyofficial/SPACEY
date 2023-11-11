@@ -1,6 +1,6 @@
 import style from './HeaderPage.module.scss'
 import Addvertation from "./Addvertation/Addvertation.tsx";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {BsBoxSeam} from "react-icons/bs";
 import {CiCreditCard1, CiTrophy} from "react-icons/ci";
 import {PiHeadphonesThin} from "react-icons/pi";
@@ -13,8 +13,6 @@ export interface IData {
 }
 
 function HeaderPage() {
-    const [image, setImage] = useState<string | null>(null)
-
     const data: IData[] = [
         {
             title: 'Fasted Delivery',
