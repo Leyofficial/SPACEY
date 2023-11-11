@@ -21,7 +21,9 @@ function SmallAdd({item}: IItem) {
                     <p className={style.price}>${item?.product.price} USD</p>
                 <button className={style.btn}>
                     <p className={style.btnText}>Shop Now</p>
-                    <BsArrowRightShort color={'white'} size={30}/>
+                    <div>
+                        <BsArrowRightShort color={'white'} size={30}/>
+                    </div>
                 </button>
             </div>
         </div>

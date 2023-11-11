@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-between;
   padding: 56px;
-  width:  70%;
+  width:  81%;
+  gap: 20px;
   height: 22rem;
   border-radius: 6px;
   background: var(--gray-50, #F2F4F5);
@@ -17,18 +18,19 @@
   margin-bottom: 16px;
 
   /* Display/03 */
-  font-family: Public Sans;
+  font-family: Public Sans sans-serif;
   font-size: 48px;
   font-style: normal;
   font-weight: 600;
   line-height: 56px; /* 116.667% */
 }
 .btn {
+  width: 10rem;
   transition: .4s linear;
   cursor: pointer;
   border: none;
   display: flex;
-  padding: 0 32px;
+  padding: 8px ;
   justify-content: center;
   align-items: center;
   gap: 12px;
@@ -43,12 +45,10 @@
   color: var(--gray-00, #FFF);
 
   /* Heading/06 */
-  font-family: Public Sans;
+  font-family: Public Sans sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
-  line-height: 56px; /* 350% */
-  letter-spacing: 0.192px;
 }
 .photoBlock {
   display: flex;
