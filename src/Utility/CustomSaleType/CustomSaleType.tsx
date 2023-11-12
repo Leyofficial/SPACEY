@@ -1,33 +1,37 @@
 import {useEffect, useState} from "react";
 import style from './CustomSaleType.module.scss'
-function CustomSaleType ({typeSale = 'hot'}  : string) {
+interface ICustomSaleType {
+    typeSale : string
+}
+export function CustomSaleType ({typeSale} : ICustomSaleType) {
     const [color , setColor] = useState<string>('')
     useEffect(() => {
         lookToText();
+        console.log(typeSale)
     },[typeSale])
     function lookToText () {
-        switch (typeSale) {
-            case typeSale.toLowerCase() === 'hot' :
+        switch (typeSale.toLowerCase()) {
+            case 'hot' :
                 setColor('#EE5858');
                 break;
-            case typeSale.toLowerCase() === 'best deals' || 'introducing' :
+            case 'best deals' || 'introducing' :
                 setColor('#2DA5F3');
                 break;
-            case typeSale.toLowerCase() === 'sale' :
+            case 'sale' :
                 setColor('#2DB224');
                 break;
-            case typeSale.toLowerCase() === 'sold out' :
+            case 'sold out' :
                 setColor('#929FA5');
                 break;
-            case typeSale.toLowerCase().includes('off') :
+            case 'off' :
                 setColor('#EFD33D');
                 break;
+            default : setColor('#EE5858')
         }
     }
     return (
-        <div className={style.btn}>
+        <div style={{backgroundColor : color}} className={style.btn}>
             <p className={style.typeSale}>{typeSale}</p>
         </div>
     )
 }
-export default CustomSaleType

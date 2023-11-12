@@ -3,6 +3,7 @@ import {ISmallDeal} from "../types.ts";
 import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 import {Skeleton} from "@mui/material";
+import {CustomSaleType} from "../../../Utility/CustomSaleType/CustomSaleType.tsx";
 
 function SmallDealItem({item}: ISmallDeal) {
     const [image, setImage] = useState<string | null>(null)
@@ -21,6 +22,7 @@ function SmallDealItem({item}: ISmallDeal) {
     }, [item])
     return (
         <div className={style.block}>
+            <CustomSaleType typeSale={item.product.saleType} />
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> : <Skeleton className={style.imgSkeleton} variant={"rounded"} width={216} height={188}/>  }
 
             <p className={style.title}>{item?.brand}</p>

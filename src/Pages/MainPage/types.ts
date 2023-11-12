@@ -22,6 +22,7 @@ export interface ISmallDeal {
             sale : boolean,
             percentageOfSale: number,
             price: number,
+            saleType : string
             images: {
                 mainImage: string,
                 restImages: {
