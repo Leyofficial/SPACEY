@@ -1,9 +1,9 @@
 import style from './MainPage.module.scss'
 import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
-import DealItem from "./Deals/SmallDealItem.tsx";
+import DealItem from "./Deals/SmallDeal/SmallDealItem.tsx";
 import {useEffect, useState} from "react";
 import {IBigDeal} from "./types.ts";
-import {Skeleton} from "@mui/material";
+import BigDealItem from "./Deals/BigDeal/BigDealItem.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
@@ -20,6 +20,7 @@ function MainPage() {
             </div>
             <div className={style.block}>
                 <div className={style.leftBlock}>
+                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[28]}/> : null }
 
                 </div>
                 <div className={style.itemsBlock}>
@@ -32,16 +33,7 @@ function MainPage() {
                         <DealItem item={filteredCategories[22]}/>
                         <DealItem item={filteredCategories[82]}/>
                         <DealItem item={filteredCategories[39]}/>
-                    </> : <div className={style.skeleton}>
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                        <Skeleton variant="rounded" width={234} height={320} />
-                    </div> }
+                    </> : null }
 
                 </div>
             </div>

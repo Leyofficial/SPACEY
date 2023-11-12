@@ -1,8 +1,14 @@
+export interface IBigDealItem {
+    item : IBigDeal
+}
 export interface IBigDeal {
         brand: string,
         product: {
+            description : string,
             sale : boolean,
             saleType: string,
+            rating : number,
+            numberOfRatings : number,
             images: {
                 mainImage: string,
                 restImages: {

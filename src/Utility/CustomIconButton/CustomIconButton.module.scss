@@ -1,0 +1,11 @@
+.block {
+  transition: .4s ease;
+  padding: 7.5px;
+  border-radius: 2px;
+  background: var(--primary-100, #FFE7D6);
+  width: 3.4rem;
+  text-align: center;
+  &:hover {
+    background-color: #FA8232;
+  }
+}

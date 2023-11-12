@@ -1,20 +1,13 @@
 import style from './SmallDealItem.module.scss'
-import {ISmallDeal} from "../types.ts";
+import {ISmallDeal} from "../../types.ts";
 import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
+import {getImageFromServer} from "../../../../ApiRequests/uploads/getImage.ts";
 import {Skeleton} from "@mui/material";
-import {CustomSaleType} from "../../../Utility/CustomSaleType/CustomSaleType.tsx";
+import {CustomSaleType} from "../../../../Utility/CustomSaleType/CustomSaleType.tsx";
+import {checkNewPrice} from "../../percentageFuncrion.ts";
 
 function SmallDealItem({item}: ISmallDeal) {
     const [image, setImage] = useState<string | null>(null)
-    function checkNewPrice(price : number , percentage : number){
-        if (price) {
-            const discount = price * (percentage / 100);
-            const newPrice = price - discount;
-            return Math.round(newPrice);
-
-        }
-    }
     useEffect(() => {
         if (item) {
             getImageFromServer(item.product.images.mainImage, setImage)

@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import style from './CustomSaleType.module.scss'
 interface ICustomSaleType {
-    typeSale : string
+    typeSale : string,
+    percentage? : number
 }
 export function CustomSaleType ({typeSale} : ICustomSaleType) {
     const [color , setColor] = useState<string>('')
