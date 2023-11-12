@@ -44,7 +44,6 @@ function MainPage() {
                         <SmallDealSkeleton/>
                         <SmallDealSkeleton/>
                      <SmallDealSkeleton/> </>}
-
                 </div>
             </div>
         </div>
