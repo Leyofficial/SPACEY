@@ -1,4 +1,5 @@
 .block {
+  transition: .8s linear;
   position: relative;
   padding: 16px;
   border: 1px solid #E4E7E9;
@@ -7,6 +8,10 @@
   flex-shrink: 0;
   background: var(--gray-00, #FFF);
   &:hover {
+    z-index: 10;
+    box-shadow: 0 16px 48px #00000014;
+    transform: rotate(-2deg) translate(0);
+    transform-origin: top left;
     .iconsBlock {
       display: block;
     }
