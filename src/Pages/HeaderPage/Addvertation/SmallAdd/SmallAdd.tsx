@@ -8,7 +8,7 @@ import {Skeleton} from "@mui/material";
 function SmallAdd({item}: IItem) {
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
-        if (!item) return
+        if (item)
             getImageFromServer(item.product.images.mainImage, setImage)
     }, [item])
     return (
