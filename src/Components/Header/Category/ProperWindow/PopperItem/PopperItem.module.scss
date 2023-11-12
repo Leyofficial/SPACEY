@@ -1,0 +1,29 @@
+.container{
+  display: flex;
+  //justify-content: space-between;
+  max-width: 400px;
+  align-items: center;
+  height: 100%;
+  border: 1px solid #E4E7E9;
+  margin-bottom: 5px;
+  padding: 15px;
+  .wrapperImage{
+    img{
+     width: 100px !important;
+      height: 100px;
+      object-fit: contain;
+    }
+  }
+  .wrapperText{
+    margin-left: 3vh;
+    .title{
+     margin-bottom: 1vh;
+      max-height: 30px;
+      overflow: hidden;
+      font-size: 14px;
+    }
+    .price{
+      color: #2DA5F3;
+    }
+  }
+}

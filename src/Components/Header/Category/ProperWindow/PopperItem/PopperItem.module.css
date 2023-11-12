@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  max-width: 400px;
+  align-items: center;
+  height: 100%;
+  border: 1px solid #E4E7E9;
+  margin-bottom: 5px;
+  padding: 15px;
+}
+.container .wrapperImage img {
+  width: 100px !important;
+  height: 100px;
+  object-fit: contain;
+}
+.container .wrapperText {
+  margin-left: 3vh;
+}
+.container .wrapperText .title {
+  margin-bottom: 1vh;
+  max-height: 30px;
+  overflow: hidden;
+  font-size: 14px;
+}
+.container .wrapperText .price {
+  color: #2DA5F3;
+}
+
+/*# sourceMappingURL=PopperItem.module.css.map */
