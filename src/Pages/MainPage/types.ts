@@ -1,5 +1,4 @@
 export interface IBigDeal {
-    item: {
         brand: string,
         product: {
             sale : boolean,
@@ -14,7 +13,6 @@ export interface IBigDeal {
             percentageOfSale: number,
             price: number
         }
-    }
 }
 
 export interface ISmallDeal {

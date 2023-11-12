@@ -2,8 +2,7 @@ import style from './MainPage.module.scss'
 import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
 import DealItem from "./Deals/SmallDealItem.tsx";
 import {useEffect, useState} from "react";
-import {IBigDeal, ISmallDeal} from "./types.ts";
-import {SpinnerLoading} from "../../Utility/Loading/SpinnerLoading.tsx";
+import {IBigDeal} from "./types.ts";
 import {Skeleton} from "@mui/material";
 
 function MainPage() {
