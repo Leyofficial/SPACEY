@@ -4,6 +4,8 @@ import DealItem from "./Deals/SmallDeal/SmallDealItem.tsx";
 import {useEffect, useState} from "react";
 import {IBigDeal} from "./types.ts";
 import BigDealItem from "./Deals/BigDeal/BigDealItem.tsx";
+import BigDealSkeleton from "./Deals/BigDeal/BigDealSkeleton.tsx";
+import SmallDealSkeleton from "./Deals/SmallDeal/SmallDealSkeleton.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
@@ -20,7 +22,7 @@ function MainPage() {
             </div>
             <div className={style.block}>
                 <div className={style.leftBlock}>
-                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[28]}/> : null }
+                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[28]}/> : <BigDealSkeleton/> }
 
                 </div>
                 <div className={style.itemsBlock}>
@@ -33,7 +35,15 @@ function MainPage() {
                         <DealItem item={filteredCategories[22]}/>
                         <DealItem item={filteredCategories[82]}/>
                         <DealItem item={filteredCategories[39]}/>
-                    </> : null }
+                    </> : <>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                        <SmallDealSkeleton/>
+                     <SmallDealSkeleton/> </>}
 
                 </div>
             </div>
