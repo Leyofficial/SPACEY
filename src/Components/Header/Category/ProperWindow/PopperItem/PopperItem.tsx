@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../../../../ApiRequests/uploads/getImage.ts";
 import style from './PopperItem.module.scss'
+import {Skeleton} from "@mui/material";
 
 interface IProduct {
     description: string,
@@ -30,20 +31,21 @@ export interface ICategory {
 }
 
 interface IPopperItemProps {
-    item: ICategory
+    item: ICategory,
 }
 
 const PopperItem = ({item}: IPopperItemProps) => {
     const [image, setImage] = useState<string | null>(null)
+    const [isLoadImage,setIsLoad] = useState<boolean>(false)
 
     useEffect(() => {
-        getImageFromServer(item.product.images.mainImage, setImage)
+        getImageFromServer(item.product.images.mainImage, setImage,setIsLoad)
     }, [item])
-    console.log(image)
+
     return (
         <div className={style.container}>
             <section className={style.wrapperImage}>
-                <img src={image ? image : ""} alt={'photo'}/>
+                {isLoadImage ? <Skeleton  variant="text" width={124} height={124}></Skeleton>  : <img src={image ? image : ""} alt={'photo'}/> }
             </section>
             <section className={style.wrapperText}>
                 <p className={style.title}>{item.product.title}</p>
