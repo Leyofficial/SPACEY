@@ -1,0 +1,21 @@
+.container{
+  ul{
+    display: flex;
+    gap: 20px;
+    font-size: 14px;
+    li{
+      cursor: pointer;
+      &:hover{
+        transform: scale(1.1);
+        transition: 0.3s;
+      }
+    }
+    .startLink{
+      font-weight: bold;
+    }
+    .endLink{
+      font-weight: bold;
+      color: #FA8232;
+    }
+  }
+}
