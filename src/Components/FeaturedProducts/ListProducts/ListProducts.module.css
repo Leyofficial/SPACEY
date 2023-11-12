@@ -1,0 +1,21 @@
+.container ul {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+.container ul li {
+  cursor: pointer;
+}
+.container ul li:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+.container ul .startLink {
+  font-weight: bold;
+}
+.container ul .endLink {
+  font-weight: bold;
+  color: #FA8232;
+}
+
+/*# sourceMappingURL=ListProducts.module.css.map */

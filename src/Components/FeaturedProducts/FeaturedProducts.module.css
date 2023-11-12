@@ -1,0 +1,64 @@
+.container {
+  width: 100%;
+}
+.container .wrapper {
+  display: flex;
+  gap: 15px;
+}
+.container .wrapper .rightBlock {
+  width: 100%;
+}
+.container .wrapper .rightBlock header {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+.container .wrapper .rightBlock header h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.container .wrapper section .coverImage {
+  text-align: center;
+  background-color: #F3DE6D;
+}
+.container .wrapper section .coverImage .title {
+  padding-top: 15px;
+}
+.container .wrapper section .coverImage .title h3 {
+  color: #BE4646;
+  font-size: 14px;
+  font-weight: bold;
+}
+.container .wrapper section .coverImage .title h1 {
+  color: #191C1F;
+  font-size: 32px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+.container .wrapper section .coverImage .title p {
+  font-size: 15px;
+  color: #5F6C72;
+  padding: 15px 0;
+  letter-spacing: 1px;
+}
+.container .wrapper section .coverImage .offer {
+  margin: 30px 5px;
+}
+.container .wrapper section .coverImage .offer span {
+  background-color: white;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 14px;
+}
+.container .wrapper section .coverImage .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .wrapper section img {
+  width: 312px;
+  height: 428px;
+  object-fit: cover;
+}
+
+/*# sourceMappingURL=FeaturedProducts.module.css.map */

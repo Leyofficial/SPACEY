@@ -5,6 +5,7 @@ import {BsBoxSeam} from "react-icons/bs";
 import {CiCreditCard1, CiTrophy} from "react-icons/ci";
 import {PiHeadphonesThin} from "react-icons/pi";
 import HeaderSubtitle from "./HeaderSubtitle/HeaderSubtitle.tsx";
+import FeaturedProducts from "../../Components/FeaturedProducts/FeaturedProducts.tsx";
 
 export interface IData {
     title: string,
@@ -47,6 +48,7 @@ function HeaderPage() {
                     )}
                 </div>
             </div>
+            <FeaturedProducts></FeaturedProducts>
         </div>
     )
 }
