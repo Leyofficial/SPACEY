@@ -6,6 +6,25 @@
   height: 296px;
   flex-shrink: 0;
   background: var(--gray-00, #FFF);
+  &:hover {
+    .iconsBlock {
+      display: block;
+    }
+    .cover {
+      display: block;
+    }
+  }
+}
+.cover {
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+  background: rgba(0, 0, 0, 0.39);
+  opacity: 0.6;
 }
 .image {
   flex-shrink: 0;
@@ -33,6 +52,17 @@
   z-index: 11;
   border-radius: 2px;
   padding: 5px 10px;
+}
+.iconsBlock {
+  display: none;
+  left: 18%;
+  top: 40%;
+  position: absolute;
+}
+.wrapperBlock {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 .priceBlock {
   display: flex;

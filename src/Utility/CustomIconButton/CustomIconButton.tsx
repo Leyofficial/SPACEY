@@ -5,12 +5,13 @@ import {NavLink} from "react-router-dom";
 interface ICustomIconButton {
     icon: React.ReactNode,
     callback?: () => void,
-    path?: string
+    path?: string,
+    shaped? : boolean,
 }
 
-export function CustomIconButton({icon , path = '#'}: ICustomIconButton) {
+export function CustomIconButton({icon , path = '#' , shaped}: ICustomIconButton) {
     return (
-        <div className={style.block}>
+        <div className={`${style.block} ${shaped ? style.shaped : null}`}>
             <NavLink to={path}>
                 {icon}
             </NavLink>
