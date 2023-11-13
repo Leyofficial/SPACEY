@@ -1,6 +1,7 @@
 import style from './Carousel.module.scss'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Skeleton} from "@mui/material";
+import {getImageFromServer} from "../../ApiRequests/uploads/getImage.ts";
 interface ICarousel {
     item : {
         brand : string,
@@ -16,14 +17,17 @@ interface ICarousel {
     }
 }
 const ProductCarouselItem = ({item} : ICarousel) => {
+    const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
-        console.log(item)
-    },[item])
+        if (item) {
+            getImageFromServer(item.product.images.mainImage, setImage)
+        }
+    }, [item])
 
     return (
         <div className={style.block}>
             <div className={style.imageBlock}>
-                {item?.product.images.mainImage ? <img src={   item?.product.images.mainImage} alt="photo"/>  : <Skeleton variant="rounded" width={148} height={148} />}
+                {image ? <img className={style.image} src={image ? image : ''} alt="photo"/>  : <Skeleton variant="rounded" width={148} height={148} />}
 
             </div>
             <div className={style.textBlock}>

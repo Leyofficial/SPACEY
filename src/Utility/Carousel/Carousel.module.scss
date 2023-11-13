@@ -1,4 +1,26 @@
-.imagesBlock {
+.block {
+  width: 15rem;
+  display: flex;
+  padding: 24px 12px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.image {
   width: 148px;
   height: 148px;
+}
+.title {
+  margin-top: 16px;
+  color: var(--gray-900, #191C1F);
+  text-align: center;
+  /* Body/Medium/500 */
+  font-family: Public Sans sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
 }

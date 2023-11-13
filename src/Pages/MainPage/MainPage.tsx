@@ -66,7 +66,12 @@ function MainPage() {
                     <div>
                         < ProductCarouselItem item={filteredCategories[0]}/>
                     </div>
-
+                    <div>
+                        < ProductCarouselItem item={filteredCategories[25]}/>
+                    </div>
+                    <div>
+                        < ProductCarouselItem item={filteredCategories[84]}/>
+                    </div>
                 </Slider>
 
             </div>
