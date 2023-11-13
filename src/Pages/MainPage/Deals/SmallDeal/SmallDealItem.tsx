@@ -11,7 +11,6 @@ import {PiBasket} from "react-icons/pi";
 import {AiOutlineEye} from "react-icons/ai";
 
 function SmallDealItem({item}: ISmallDeal) {
-    console.log(item)
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {

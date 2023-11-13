@@ -8,7 +8,6 @@ export function CustomSaleType ({typeSale} : ICustomSaleType) {
     const [color , setColor] = useState<string>('')
     useEffect(() => {
         lookToText();
-        console.log(typeSale)
     },[typeSale])
     function lookToText () {
         switch (typeSale?.toLowerCase()) {

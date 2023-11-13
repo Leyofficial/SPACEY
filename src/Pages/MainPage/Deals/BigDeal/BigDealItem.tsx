@@ -11,7 +11,6 @@ import {CustomBtnCart} from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 import {AiOutlineEye} from "react-icons/ai";
 
 function BigDealItem({item}: IBigDealItem) {
-    debugger
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {

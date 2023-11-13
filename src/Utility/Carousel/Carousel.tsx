@@ -31,7 +31,8 @@ const ProductCarouselItem = ({item} : ICarousel) => {
 
             </div>
             <div className={style.textBlock}>
-                <p className={style.title}>{item?.brand}</p>
+                {item ?  <p className={style.title}>{item?.brand}</p> :  <Skeleton className={style.title} variant="rounded" width={128} height={20} /> }
+
             </div>
         </div>
     )

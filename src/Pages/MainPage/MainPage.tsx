@@ -9,6 +9,8 @@ import SmallDealSkeleton from "./Deals/SmallDeal/SmallDealSkeleton.tsx";
 import Slider from "react-slick";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 import ProductCarouselItem from "../../Utility/Carousel/Carousel.tsx";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
@@ -26,7 +28,7 @@ function MainPage() {
     useEffect(() => {
         const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
         if (filteredSale) {
-            setFiltered(shuffleArray(filteredSale).slice(0 , 8))
+            setFiltered(shuffleArray(filteredSale).slice(0, 8))
         }
 
     }, [data])
@@ -35,10 +37,11 @@ function MainPage() {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000
     };
-
 
     return (
         <div className={style.container}>
@@ -47,33 +50,29 @@ function MainPage() {
             </div>
             <div className={style.block}>
                 <div className={style.leftBlock}>
-                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[0]}/> : <BigDealSkeleton/> }
+                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[0]}/> :
+                        <BigDealSkeleton/>}
 
                 </div>
                 <div className={style.itemsBlock}>
                     {!isLoading && filteredCategories.length > 0 ? <>
-                            {filteredCategories.map((item) =>
-                                <DealItem item={item}/>
-                            )}
+                        {filteredCategories.map((item) =>
+                            <DealItem item={item}/>
+                        )}
                     </> : <>
-                    {Skeleton()}
+                        {Skeleton()}
                     </>}
                 </div>
             </div>
             <div className={style.carousel}>
                 <p className={style.title}>Shop with Categories</p>
-                <Slider className={style.carouselItems} {...settings}>
-                    <div>
-                        < ProductCarouselItem item={filteredCategories[0]}/>
-                    </div>
-                    <div>
-                        < ProductCarouselItem item={filteredCategories[25]}/>
-                    </div>
-                    <div>
-                        < ProductCarouselItem item={filteredCategories[84]}/>
-                    </div>
-                </Slider>
-
+                <div className={style.carouselItems}>
+                    <Slider  {...settings}>
+                        {filteredCategories.map((item) => {
+                            return    <div><ProductCarouselItem item={item}/></div>
+                        })}
+                    </Slider>
+                </div>
             </div>
         </div>
     )
