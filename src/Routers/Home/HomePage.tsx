@@ -1,6 +1,6 @@
 
-import HeaderPage from "../Pages/HeaderPage/HeaderPage.tsx";
-import MainPage from "../Pages/MainPage/MainPage.tsx";
+import HeaderPage from "../../Pages/HeaderPage/HeaderPage.tsx";
+import MainPage from "../../Pages/MainPage/MainPage.tsx";
 
 function HomePage() {
     return (
