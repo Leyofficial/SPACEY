@@ -36,9 +36,9 @@
 .image {
   flex-shrink: 0;
   text-align: center;
-  width: 216px;
-  height: 188px;
-  object-fit: fill;
+  width: 216px !important;
+  height: 188px !important;
+  object-fit: contain !important;
   margin-bottom: 15px;
 }
 

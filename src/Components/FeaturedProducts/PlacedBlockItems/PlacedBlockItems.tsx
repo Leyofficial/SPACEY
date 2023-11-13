@@ -1,11 +1,15 @@
 import style from './PlacedBlockItems.module.scss'
-import BlockItem from "../BlockItem/BlockItem.tsx";
 import {useEffect, useState} from "react";
 import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {ICategory} from "../../Header/Category/ProperWindow/PopperItem/PopperItem.tsx";
 import {shuffleArray} from "../../../Utility/shufflerArray/shufllerArray.ts";
+import SmallDealItem from "../../../Pages/MainPage/Deals/SmallDeal/SmallDealItem.tsx";
 
-const PlacedBlockItems = () => {
+interface IPlacedBlockItemsProps {
+    activeItemProducts: any
+}
+
+const PlacedBlockItems = ({activeItemProducts}: IPlacedBlockItemsProps) => {
     const [items, setItems] = useState<ICategory[] | null>(null)
     const [shuffledArray, setShuffledArray] = useState([])
     useEffect(() => {
@@ -15,11 +19,17 @@ const PlacedBlockItems = () => {
 
     useEffect(() => {
         if (items)
-            setShuffledArray(shuffleArray(items).slice(0,8))
+            setShuffledArray(shuffleArray(items).slice(0, 8))
     }, [items])
     return (
         <div className={style.container}>
-            {shuffledArray?.map((item, index) => <BlockItem key={index} item={item}></BlockItem>)}
+            {activeItemProducts ?
+                activeItemProducts?.map((item, index) => <SmallDealItem key={index}
+                                                                        item={item}></SmallDealItem>)
+                :
+                shuffledArray?.map((item, index) => <SmallDealItem key={index}
+                                                                   item={item}></SmallDealItem>)}
+
         </div>
     );
 };

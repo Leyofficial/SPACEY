@@ -3,8 +3,25 @@ import ListProducts from "./ListProducts/ListProducts.tsx";
 import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
 import backgroundImage from '../../assets/background/featuredProducts.jpg'
 import PlacedBlockItems from "./PlacedBlockItems/PlacedBlockItems.tsx";
+import {useEffect, useState} from "react";
+import {getSingleCategory} from "../../ApiRequests/Items/getSingleCategory.ts";
+import {getAllItems} from "../../ApiRequests/Items/Items.ts";
+import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
+
 
 const FeaturedProducts = () => {
+    const [activeItem,setActiveItem] = useState<string | null>(null)
+    const [activeItemProducts,setActiveItemProducts] = useState<any>(null)
+
+    useEffect(() => {
+        if(activeItem){
+         getSingleCategory(activeItem).then(res => setActiveItemProducts(shuffleArray(res.foundProduct).slice(0,8)))
+        }
+        if(activeItem === 'All Product') {
+            getAllItems().then(res => setActiveItemProducts(shuffleArray(res.data.categories).slice(0, 8)))
+        }
+    },[activeItem])
+
     return (
         <div className={style.container}>
             <div className={style.wrapper}>
@@ -23,13 +40,13 @@ const FeaturedProducts = () => {
                 </section>
 
                 <section className={style.rightBlock}>
-                    <header>
+                    <header className={style.lists}>
                         <h1>Featured Products</h1>
-                        <ListProducts></ListProducts>
+                        <ListProducts activeItem={activeItem} callback={setActiveItem}></ListProducts>
                     </header>
 
                     <main>
-                        <PlacedBlockItems></PlacedBlockItems>
+                        <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems>
                     </main>
                 </section>
 
