@@ -26,6 +26,7 @@ export interface ISmallDeal {
         brand: string
         product: {
             sale : boolean,
+            description : string,
             percentageOfSale: number,
             price: number,
             saleType : string

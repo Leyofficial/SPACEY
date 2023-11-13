@@ -11,6 +11,7 @@ import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 import ProductCarouselItem from "../../Utility/Carousel/Carousel.tsx";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Banner from "../../Components/Banner/Banner.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
@@ -73,6 +74,10 @@ function MainPage() {
                         })}
                     </Slider>
                 </div>
+            </div>
+            <div className={style.banner}>
+                <Banner item={filteredCategories[0]}/>
+                <Banner item={filteredCategories[1]}/>
             </div>
         </div>
     )
