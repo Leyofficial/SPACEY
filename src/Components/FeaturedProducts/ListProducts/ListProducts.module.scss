@@ -1,21 +1,39 @@
-.container{
-  ul{
+.container {
+  ul {
     display: flex;
     gap: 20px;
     font-size: 14px;
-    li{
+    align-items: center;
+
+    li {
       cursor: pointer;
-      &:hover{
+      transition: 0.3s;
+      color: #5F6C72;
+
+      &:hover {
         transform: scale(1.1);
         transition: 0.3s;
+        border-bottom: 2px solid #FA8232;
       }
     }
-    .startLink{
+
+    .startLink {
       font-weight: bold;
+      color: #191C1F;
     }
-    .endLink{
+
+    .endLink {
       font-weight: bold;
       color: #FA8232;
+      display: flex;
+      align-items: center;
+      svg{
+        font-size: 25px;
+      }
     }
+  }
+
+  .activeItem {
+    border-bottom: 2px solid #FA8232;
   }
 }

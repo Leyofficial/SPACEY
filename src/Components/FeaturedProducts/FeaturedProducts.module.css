@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  margin-top: 50px;
 }
 .container .wrapper {
   display: flex;
@@ -11,7 +12,7 @@
 .container .wrapper .rightBlock header {
   display: flex;
   justify-content: space-between;
-  width: 70%;
+  width: 100%;
 }
 .container .wrapper .rightBlock header h1 {
   font-size: 24px;
@@ -59,6 +60,13 @@
   width: 312px;
   height: 428px;
   object-fit: cover;
+}
+.container .lists {
+  margin-bottom: 30px;
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
 }
 
 /*# sourceMappingURL=FeaturedProducts.module.css.map */

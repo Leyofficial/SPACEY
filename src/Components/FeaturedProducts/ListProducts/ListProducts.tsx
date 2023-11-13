@@ -1,8 +1,13 @@
 import style from './ListProducts.module.scss'
 import {useEffect, useState} from "react";
 import {UseCustomQuery} from "../../../ApiRequests/customQuery/customQuery.ts";
+import {BsArrowRightShort} from "react-icons/bs";
 
-const ListProducts = () => {
+interface IListProductsProps{
+    activeItem:string | null,
+    callback:(arg:string) => void
+}
+const ListProducts = ({activeItem,callback} : IListProductsProps) => {
     const [categories, setCategories] = useState([])
     const {data} = UseCustomQuery("https://spacey-server.vercel.app/api")
 
@@ -21,9 +26,9 @@ const ListProducts = () => {
     return (
         <nav className={style.container}>
             <ul>
-                <li className={style.startLink}>All Product</li>
-                {categories.map((category,index:number) => <li key={index}>{category}</li> ) }
-                <li className={style.endLink}>Browse All Product</li>
+                <li onClick={() => callback('All Product')} className={`${style.startLink} ${activeItem === 'All Product' ? style.activeItem : ""}`}>All Product</li>
+                {categories.map((category,index:number) => <li onClick={() => callback(category)} className={activeItem === category ? style.activeItem : ""} key={index}>{category}</li> ) }
+                <li onClick={() => callback('Browse All Product')} className={`${style.endLink} ${activeItem === 'Browse All Product' ? style.activeItem : ""}`}>Browse All Product <BsArrowRightShort></BsArrowRightShort></li>
             </ul>
         </nav>
     );

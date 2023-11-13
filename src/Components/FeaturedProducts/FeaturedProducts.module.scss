@@ -1,5 +1,6 @@
 .container{
   width: 100%;
+  margin-top: 50px;
   .wrapper{
     display: flex;
     gap: 15px;
@@ -8,7 +9,7 @@
       header{
         display: flex;
         justify-content: space-between;
-        width: 70%;
+        width: 100%;
         h1{
           font-size: 24px;
           font-weight: bold;
@@ -64,6 +65,13 @@
         object-fit: cover;
       }
     }
+  }
+  .lists{
+    margin-bottom: 30px;
+    width: 100%;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
   }
 
 }

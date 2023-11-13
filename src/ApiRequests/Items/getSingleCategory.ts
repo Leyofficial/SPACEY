@@ -1,7 +1,7 @@
+export const getSingleCategory = async (item: string) => {
+    const response = await fetch(`https://spacey-server.vercel.app/api/product?category=${item}`)
 
-
-export const getSingleCategory =  (item:string) => {
-    fetch(`https://spacey-server.vercel.app/product?category=${item}`).then(res =>
-        res.json()
-    )
+    const data = await response.json();
+    console.log(data)
+    return data;
 }
