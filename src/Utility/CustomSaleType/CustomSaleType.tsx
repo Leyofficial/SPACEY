@@ -11,7 +11,7 @@ export function CustomSaleType ({typeSale} : ICustomSaleType) {
         console.log(typeSale)
     },[typeSale])
     function lookToText () {
-        switch (typeSale.toLowerCase()) {
+        switch (typeSale?.toLowerCase()) {
             case 'hot' :
                 setColor('#EE5858');
                 break;

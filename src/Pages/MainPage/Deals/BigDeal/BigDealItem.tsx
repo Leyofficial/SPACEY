@@ -11,6 +11,7 @@ import {CustomBtnCart} from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 import {AiOutlineEye} from "react-icons/ai";
 
 function BigDealItem({item}: IBigDealItem) {
+    debugger
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {
@@ -33,7 +34,7 @@ function BigDealItem({item}: IBigDealItem) {
                     <p className={style.newPrice}>${item?.product.price}</p>
                 </div>
                 : null}
-            <p className={style.description}>{item.product.description}</p>
+            <p className={style.description}>{item?.product.description}</p>
             <div className={style.buttons}>
                 <CustomIconButton icon={<MdFavoriteBorder size={24} color={'black'}/>}/>
                 <CustomBtnCart/>

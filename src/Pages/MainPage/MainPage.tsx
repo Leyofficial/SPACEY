@@ -6,14 +6,38 @@ import {IBigDeal} from "./types.ts";
 import BigDealItem from "./Deals/BigDeal/BigDealItem.tsx";
 import BigDealSkeleton from "./Deals/BigDeal/BigDealSkeleton.tsx";
 import SmallDealSkeleton from "./Deals/SmallDeal/SmallDealSkeleton.tsx";
+import Slider from "react-slick";
+import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
-    const [filteredCategories, setFiltered] = useState([])
+    const [filteredCategories, setFiltered] = useState([]);
+    const numSkeleton = useState(8)[0];
+
+    function Skeleton() {
+        return (
+            <>
+                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton/>)}
+            </>
+        )
+    }
+
     useEffect(() => {
         const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
-        setFiltered(filteredSale)
+        if (filteredSale) {
+            setFiltered(shuffleArray(filteredSale).slice(0 , 8))
+        }
+
     }, [data])
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+    };
+
 
     return (
         <div className={style.container}>
@@ -22,28 +46,23 @@ function MainPage() {
             </div>
             <div className={style.block}>
                 <div className={style.leftBlock}>
-                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[28]}/> : <BigDealSkeleton/> }
+                    {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[0]}/> : <BigDealSkeleton/> }
 
                 </div>
                 <div className={style.itemsBlock}>
-                    {!isLoading && filteredCategories ? <>
-                        <DealItem item={filteredCategories[12]}/>
-                        <DealItem item={filteredCategories[1]}/>
-                        <DealItem item={filteredCategories[14]}/>
-                        <DealItem item={filteredCategories[72]}/>
-                        <DealItem item={filteredCategories[48]}/>
-                        <DealItem item={filteredCategories[22]}/>
-                        <DealItem item={filteredCategories[82]}/>
-                        <DealItem item={filteredCategories[39]}/>
+                    {!isLoading && filteredCategories.length > 0 ? <>
+                            {filteredCategories.map((item) =>
+                                <DealItem item={item}/>
+                            )}
                     </> : <>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                        <SmallDealSkeleton/>
-                     <SmallDealSkeleton/> </>}
+                    {Skeleton()}
+                    </>}
+                </div>
+                <div className={style.carousel}>
+                    <Slider {...settings}>
+
+                    </Slider>
+
                 </div>
             </div>
         </div>
