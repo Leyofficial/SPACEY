@@ -8,6 +8,7 @@ import BigDealSkeleton from "./Deals/BigDeal/BigDealSkeleton.tsx";
 import SmallDealSkeleton from "./Deals/SmallDeal/SmallDealSkeleton.tsx";
 import Slider from "react-slick";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
+import ProductCarouselItem from "../../Utility/Carousel/Carousel.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
@@ -58,12 +59,16 @@ function MainPage() {
                     {Skeleton()}
                     </>}
                 </div>
-                <div className={style.carousel}>
-                    <Slider {...settings}>
+            </div>
+            <div className={style.carousel}>
+                <p className={style.title}>Shop with Categories</p>
+                <Slider className={style.carouselItems} {...settings}>
+                    <div>
+                        < ProductCarouselItem item={filteredCategories[0]}/>
+                    </div>
 
-                    </Slider>
+                </Slider>
 
-                </div>
             </div>
         </div>
     )
