@@ -34,4 +34,16 @@
   gap: 10px;
 }
 
+.carouselItems {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 72px;
+}
+
+.banner {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 72px;
+}
+
 /*# sourceMappingURL=MainPage.module.css.map */
