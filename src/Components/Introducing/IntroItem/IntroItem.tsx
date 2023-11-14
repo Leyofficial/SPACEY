@@ -1,8 +1,8 @@
 import style from './IntroItem.module.scss'
-import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
-import {ICategory} from "../../Header/Category/ProperWindow/PopperItem/PopperItem.tsx";
+import CustomBtn from "../../../Utility/CustomBtn/CustomBtn";
+import {ICategory} from "../../Header/Category/ProperWindow/PopperItem/PopperItem";
 import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
+import {getImageFromServer} from "../../../ApiRequests/uploads/getImage";
 import {Skeleton} from "@mui/material";
 
 interface IIntroItemProps {
@@ -28,7 +28,7 @@ const [loadImage,setLoadImage] = useState<boolean>(false)
             <div className={style.coverImage}>
                 {loadImage ? <Skeleton  variant="text" width={240} height={240}></Skeleton> :  <img alt={'product'} src={image ? image : ""}/>}
                 {title !== 'INTRODUCING' ? <div className={style.price}>
-                    {item.product.price} $
+                    {item?.product.price} $
                 </div> : null}
             </div>
         </div>

@@ -7,11 +7,12 @@ import {useEffect, useState} from "react";
 import {getSingleCategory} from "../../ApiRequests/Items/getSingleCategory.ts";
 import {getAllItems} from "../../ApiRequests/Items/Items.ts";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
+import {ICategory} from "../../types.ts";
 
 
 const FeaturedProducts = () => {
     const [activeItem,setActiveItem] = useState<string | null>(null)
-    const [activeItemProducts,setActiveItemProducts] = useState<any>(null)
+    const [activeItemProducts,setActiveItemProducts] = useState<ICategory[] | null>(null)
 
     useEffect(() => {
         if(activeItem){

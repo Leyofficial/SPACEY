@@ -1,7 +1,8 @@
 import style from './BlockItem.module.scss'
-import {ICategory} from "../../Header/Category/ProperWindow/PopperItem/PopperItem.tsx";
+
 import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
+import {ICategory} from "../../../types.ts";
 
 interface IBlockItemProps {
     item: ICategory
