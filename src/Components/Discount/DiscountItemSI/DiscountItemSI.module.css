@@ -1,0 +1,16 @@
+.block {
+  display: flex;
+  padding: 32px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  border-radius: 4px;
+  background: var(--warning-200, #F7E99E);
+}
+
+.textBlock {
+  margin: 24px 0;
+}
+
+/*# sourceMappingURL=DiscountItemSI.module.css.map */
