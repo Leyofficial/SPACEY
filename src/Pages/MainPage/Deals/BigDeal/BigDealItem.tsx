@@ -21,10 +21,8 @@ function BigDealItem({item}: IBigDealItem) {
         <div className={style.block}>
             <CustomSaleType typeSale={item?.product.saleType} />
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> : <Skeleton className={style.imgSkeleton} variant={"rounded"} width={280} height={268}/>  }
-            <div className={style.ratingBlock}>
                     <Rating name="read-only" value={item?.product.rating} readOnly />
                 {item?.product.numberOfRatings ? <p className={style.numRating}>({item?.product.numberOfRatings})</p> : null}
-            </div>
             <p className={style.title}>{item?.brand}</p>
             {item?.product.sale ?
                 <div className={style.priceBlock}>

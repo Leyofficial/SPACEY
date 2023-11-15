@@ -8,11 +8,13 @@ import {shuffleArray} from "../../../Utility/shufflerArray/shufllerArray.ts";
 import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import SmallDealSkeleton from "../Deals/SmallDeal/SmallDealSkeleton.tsx";
 import {computerAcessories} from "./ComputerAcessories.ts";
+import DiscountItemSI from "../../../Components/Discount/DiscountItemSI/DiscountItemSI.tsx";
 
 function Acessories() {
     const numSkeleton = useState(8)[0];
     const [activeItem, setActiveItem] = useState<string | null>('All Product')
     const [activeItemProducts, setActiveItemProducts] = useState<ICategory[] | null>(null)
+    const [discount , setDiscount] = useState();
 
     useEffect(() => {
         if (activeItem && activeItem !== 'All Product' ) {
@@ -24,8 +26,9 @@ function Acessories() {
         if (activeItem === 'All Product') {
             getAllItems().then(res => {
                 const array = shuffleArray(res.data.categories);
-                const filtered = array.filter(item => computerAcessories.includes(item.categoryOfProduct))
+                const filtered = array.filter(item => computerAcessories.includes(item.categoryOfProduct)).slice(0 , 8)
                 setActiveItemProducts(filtered)
+                setDiscount(filtered[0])
             })
         }
     }, [activeItem]);
@@ -40,17 +43,22 @@ function Acessories() {
 
     return (
         <div className={style.block}>
-            <div className={style.items}>
+
                 <header className={style.lists}>
                     <h1 className={style.title}>Computer Accessories </h1>
                     <ListProducts typeCategory={'Computer Accessories'} activeItem={activeItem}
                                   callback={setActiveItem}></ListProducts>
                 </header>
-
+             <div className={style.items}>
                 <main>
-                    <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems>
+                    {activeItemProducts ? <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems> : Skeleton()}
+
                 </main>
-            </div>
+                <section>
+                    {discount ?     <DiscountItemSI idItem={discount?._id}/> : null}
+
+                </section>
+             </div>
         </div>
     )
 }
