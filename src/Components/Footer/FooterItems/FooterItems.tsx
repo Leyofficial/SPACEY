@@ -3,7 +3,7 @@ import {useState} from "react";
 import {NavLink} from "react-router-dom";
 
 interface IFooterItemsProps{
-    items:[string] | [],
+    items:string[] | [],
     title:string,
 }
 const FooterItems = ({items,title}:IFooterItemsProps) => {

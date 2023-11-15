@@ -5,6 +5,7 @@
 .container ul {
   display: flex;
   flex-direction: column;
+  width: 200px;
 }
 .container ul a {
   padding: 5px;

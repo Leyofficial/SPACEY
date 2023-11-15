@@ -8,10 +8,12 @@ import brand4 from '../../assets/img/philips 1.png'
 import brand5 from '../../assets/img/Frame.png'
 import FooterItems from "./FooterItems/FooterItems.tsx";
 import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
+import PopularTag from "./PopularTag/PopularTag.tsx";
+
 
 const Footer = () => {
     const {data} = UseCustomQuery("https://spacey-server.vercel.app/api")
-    const [filteredDate, setFiltered] = useState<[] | [string]>([]);
+    const [filteredDate, setFiltered] = useState<[] | string[]>([]);
     useEffect(() => {
         if (data) {
 
@@ -25,6 +27,9 @@ const Footer = () => {
     }, [data]);
 
     const [email, setEmail] = useState<string>("")
+
+    const quickLinks = ["Track Order","Compare","Customer Support","Need Help"]
+
     return (
         <footer className={style.container}>
             <section className={style.subscribe}>
@@ -51,19 +56,24 @@ const Footer = () => {
                 <div className={style.wrapper}>
                     <div className={style.logo}>
                         <h1>SPACEY</h1>
-                        <ul>
-                            <li>Customer Supports</li>
+                        <ul className={style.supportWrapper}>
+                            <li className={style.titleSupport}>Customer Supports</li>
                             <li>(535)999-6699</li>
                         </ul>
-                        <ul>
+                        <ul className={style.addressWrapper}>
                             <li>30311 London,Kentucky</li>
                             <li>Washington Ave,01355</li>
                         </ul>
-                        <p>info@spacey.com</p>
+                        <p className={style.email}>info@spacey.com</p>
                     </div>
                     <div className={style.topCategory}>
                         <FooterItems items={filteredDate} title={'TOP CATEGORY'}></FooterItems>
-
+                    </div>
+                    <div>
+                        <FooterItems items={quickLinks} title={'QUICK LINKS'}></FooterItems>
+                    </div>
+                    <div className={style.tags}>
+                       <PopularTag></PopularTag>
                     </div>
                 </div>
             </section>

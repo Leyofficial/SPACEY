@@ -64,13 +64,41 @@
 
 .wrapper {
   display: flex;
-  width: 100%;
+  width: 70%;
+  margin: 0 auto;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  padding: 50px 0;
 }
 
 .footer {
   background-color: #191C1F;
+}
+
+.logo h1 {
+  color: white;
+}
+.logo .supportWrapper {
+  margin: 15px 0;
+}
+.logo .supportWrapper .titleSupport {
+  color: #5F6C72;
+  font-size: 14px;
+}
+.logo .supportWrapper li {
+  color: white;
+  font-size: 15px;
+  letter-spacing: 0.7px;
+}
+.logo .addressWrapper {
+  color: #5F6C72;
+  font-size: 14px;
+  letter-spacing: 0.7px;
+  margin: 15px 0;
+}
+.logo .email {
+  color: white;
+  letter-spacing: 0.7px;
 }
 
 /*# sourceMappingURL=Footer.module.css.map */
