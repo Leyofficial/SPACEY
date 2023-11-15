@@ -55,7 +55,7 @@ function Acessories() {
 
                 </main>
                 <section>
-                    {discount ?     <DiscountItemSI idItem={discount?._id}/> : null}
+                    {discount ? <DiscountItemSI idItem={discount?._id}/> : null}
 
                 </section>
              </div>

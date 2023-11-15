@@ -4,6 +4,7 @@ import {UseCustomQuery} from "../../../ApiRequests/customQuery/customQuery.ts";
 import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
+import {Skeleton} from "@mui/material";
 interface IDiscountItem {
     brand : string,
     product : {
@@ -28,7 +29,8 @@ function DiscountItemSI({idItem}: IGetDiscountItemProps) {
         <>
         {discountItem && <div className={style.block}>
             <div className={style.imgBlock}>
-                <img src={image ? image : ''} alt="photo"/>
+                {!isLoadImage ?  <img src={image ? image : ''} alt="photo"/> : <Skeleton width={'200px'} height={'120px'} variant={'rounded'}/>}
+
             </div>
             <div className={style.textBlock}>
                 <h1 className={style.title}>
