@@ -62,4 +62,15 @@
   height: 1px;
 }
 
+.wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer {
+  background-color: #191C1F;
+}
+
 /*# sourceMappingURL=Footer.module.css.map */
