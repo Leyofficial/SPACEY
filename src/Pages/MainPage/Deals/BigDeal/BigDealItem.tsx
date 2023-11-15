@@ -14,7 +14,6 @@ function BigDealItem({item}: IBigDealItem) {
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {
-            console.log(item)
             getImageFromServer(item?.product.images.mainImage, setImage)
         }
     }, [item])
@@ -23,10 +22,7 @@ function BigDealItem({item}: IBigDealItem) {
             <CustomSaleType typeSale={item?.product.saleType} />
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> : <Skeleton className={style.imgSkeleton} variant={"rounded"} width={280} height={268}/>  }
             <div className={style.ratingBlock}>
-                <div>
                     <Rating name="read-only" value={item?.product.rating} readOnly />
-                </div>
-
                 {item?.product.numberOfRatings ? <p className={style.numRating}>({item?.product.numberOfRatings})</p> : null}
             </div>
             <p className={style.title}>{item?.brand}</p>

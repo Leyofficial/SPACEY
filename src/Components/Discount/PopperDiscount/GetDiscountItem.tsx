@@ -1,13 +1,12 @@
-import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
+import {UseCustomQuery} from "../../../ApiRequests/customQuery/customQuery.ts";
 import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../ApiRequests/uploads/getImage.ts";
+import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 import style from './GetDiscount.module.scss'
-import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
+import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import {Skeleton} from "@mui/material";
+import {IGetDiscountItemProps} from "../type.ts";
 
-interface IGetDiscountItemProps {
-    idItem: string
-}
+
 
 const GetDiscountItem = ({idItem}: IGetDiscountItemProps) => {
 

@@ -4,8 +4,9 @@ import {useEffect, useState} from "react";
 import {IoIosArrowForward} from "react-icons/io";
 import {useNavigate} from "react-router-dom";
 import {UseCustomQuery} from "../../../../../ApiRequests/customQuery/customQuery.ts";
-import PopperItem, {ICategory} from "../PopperItem/PopperItem.tsx";
-import GetDiscountItem from "../../../../Discount/GetDiscountItem.tsx";
+import PopperItem from "../PopperItem/PopperItem.tsx";
+import GetDiscountItem from "../../../../Discount/PopperDiscount/GetDiscountItem.tsx";
+import {ICategory} from "../../../../../types.ts";
 
 function PopperWindow() {
     const navigate = useNavigate()
