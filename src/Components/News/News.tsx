@@ -2,34 +2,14 @@ import style from './News.module.scss'
 import NewsItem from "./NewsItem/NewsItem.tsx";
 import {useEffect, useState} from "react";
 import {getNews} from "../../ApiRequests/Items/newsItems.ts";
-
-interface IReviews{
-    dateOfReview:string,
-    review:string,
-    reviewAuthor:string,
-    _id:string
-
-}
-
-export interface INews {
-    author:string,
-    date:string,
-    description:string,
-    image:string,
-    reviews:IReviews[],
-    subtitle:string,
-    title:string,
-    _id:string
+import {INews} from "./newsTypes.ts";
 
 
-
-}
 const News = () => {
 const [news,setNews] = useState<INews[] | null>(null)
     useEffect(() => {
         getNews().then(res => setNews(res?.news))
     }, [])
-
 
     return (
         <div className={style.container}>

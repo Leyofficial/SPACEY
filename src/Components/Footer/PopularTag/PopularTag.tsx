@@ -1,9 +1,8 @@
 import style from './PopularTag.module.scss'
 import {NavLink} from "react-router-dom";
+import {tags} from "../footerItem.ts";
 
 const PopularTag = () => {
-    const tags = ['Iphone','Tablet',"Computer",'Samsung','TV','Watches','Microphone',"Electronics Devices","Headphone"]
-
     return (
         <div className={style.container}>
             <h3>POPULAR TAG</h3>

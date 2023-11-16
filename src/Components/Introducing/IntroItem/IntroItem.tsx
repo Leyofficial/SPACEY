@@ -1,9 +1,8 @@
 import style from './IntroItem.module.scss'
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn";
-import {ICategory} from "../../Header/Category/ProperWindow/PopperItem/PopperItem";
-import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../../ApiRequests/uploads/getImage";
 import {Skeleton} from "@mui/material";
+import {ICategory} from "../../../types.ts";
+import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
 
 interface IIntroItemProps {
     item: ICategory,
@@ -11,12 +10,8 @@ interface IIntroItemProps {
 }
 
 const IntroItem = ({item, title}: IIntroItemProps) => {
-    const [image, setImage] = useState<string | null>(null)
-const [loadImage,setLoadImage] = useState<boolean>(false)
-    useEffect(() => {
-        getImageFromServer(item?.product.images.mainImage, setImage,setLoadImage)
 
-    }, [item])
+    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
     return (
         <div className={`${style.item} ${title === 'INTRODUCING' ? style.whiteBackground : ""}`}>
             <div className={style.info}>
@@ -26,8 +21,9 @@ const [loadImage,setLoadImage] = useState<boolean>(false)
                 <CustomBtn text={'SHOP NOW'}></CustomBtn>
             </div>
             <div className={style.coverImage}>
-                {loadImage ? <Skeleton  variant="text" width={240} height={240}></Skeleton> :  <img alt={'product'} src={image ? image : ""}/>}
-                {title !== 'INTRODUCING' ? <div className={style.price}>
+                {isLoading ? <Skeleton variant="text" width={240} height={240}></Skeleton> :
+                    <img alt={'product'} src={image ? image : ""}/>}
+                {title === 'INTRODUCING NEW' ? <div className={style.price}>
                     {item?.product.price} $
                 </div> : null}
             </div>

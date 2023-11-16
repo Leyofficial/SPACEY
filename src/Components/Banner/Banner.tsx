@@ -1,16 +1,13 @@
 import style from './Banner.module.scss'
 import {ISmallDeal} from "../../Pages/MainPage/types.ts";
-import {useEffect, useState} from "react";
 import {Skeleton} from "@mui/material";
-import {getImageFromServer} from "../../ApiRequests/uploads/getImage.ts";
 import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
 import {CustomSaleType} from "../../Utility/CustomSaleType/CustomSaleType.tsx";
+import {useGetImage} from "../../hooks/getImage/useGetImage.ts";
 
 function Banner({item}: ISmallDeal) {
-    const [image, setImage] = useState<null | string>('');
-    useEffect(() => {
-        getImageFromServer(item?.product.images.mainImage, setImage);
-    }, [item])
+
+    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
     return (
         <div className={style.block}>
             <div className={style.wrapperBlock}>
@@ -27,7 +24,7 @@ function Banner({item}: ISmallDeal) {
                     </div>
                 </div>
                 <div className={style.imgBlock}>
-                    {image ? <img src={image ? image : ''} alt="photo"/> :
+                    {!isLoading ? <img src={image ? image : ''} alt="photo"/> :
                         <Skeleton variant={'rounded'} width={312} height={349}/>}
                 </div>
             </div>

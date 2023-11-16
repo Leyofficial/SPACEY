@@ -8,7 +8,7 @@ import {getSingleCategory} from "../../ApiRequests/Items/getSingleCategory.ts";
 import {getAllItems} from "../../ApiRequests/Items/Items.ts";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 import {ICategory} from "../../types.ts";
-import {featuredProducts} from "./ListProducts/featuredProducts.ts";
+import {featuredProducts} from "./ListProducts/featuredProducts";
 
 
 const FeaturedProducts = () => {

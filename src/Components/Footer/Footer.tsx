@@ -1,6 +1,6 @@
 import style from './Footer.module.scss'
 import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import brand1 from '../../assets/img/google-2015 1.png'
 import brand2 from '../../assets/img/samsung-4 1.png'
 import brand3 from '../../assets/img/toshiba-1 1.png'
@@ -9,26 +9,15 @@ import brand5 from '../../assets/img/Frame.png'
 import FooterItems from "./FooterItems/FooterItems.tsx";
 import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
 import PopularTag from "./PopularTag/PopularTag.tsx";
+import {quickLinks} from "./footerItem.ts";
+import {useUniqueCategory} from "../../hooks/category/useUniqueCategory.ts";
 
 
 const Footer = () => {
     const {data} = UseCustomQuery("https://spacey-server.vercel.app/api")
-    const [filteredDate, setFiltered] = useState<[] | string[]>([]);
-    useEffect(() => {
-        if (data) {
-
-            const category = data.categories.map(((item: { categoryOfProduct: string; }) => item.categoryOfProduct))
-            const uniqueCategories = category.filter((item: string, index: number): boolean => {
-                return category.indexOf(item) === index;
-            });
-            setFiltered(uniqueCategories)
-
-        }
-    }, [data]);
-
+    const {filteredData} = useUniqueCategory(data)
     const [email, setEmail] = useState<string>("")
-
-    const quickLinks = ["Track Order","Compare","Customer Support","Need Help"]
+    const brandImages:string[] = [brand1, brand2, brand3, brand4, brand5]
 
     return (
         <footer className={style.container}>
@@ -45,11 +34,7 @@ const Footer = () => {
                 </form>
                 <span className={style.line}></span>
                 <div className={style.brands}>
-                    <img src={brand1} alt={'brand'}></img>
-                    <img src={brand5} alt={'brand'}></img>
-                    <img src={brand4} alt={'brand'}></img>
-                    <img src={brand3} alt={'brand'}></img>
-                    <img src={brand2} alt={'brand'}></img>
+                    {brandImages.map((brand:string,index:number) =>   <img key={index} src={brand} alt={'brand'}></img>)}
                 </div>
             </section>
             <section className={style.footer}>
@@ -67,13 +52,13 @@ const Footer = () => {
                         <p className={style.email}>info@spacey.com</p>
                     </div>
                     <div className={style.topCategory}>
-                        <FooterItems items={filteredDate} title={'TOP CATEGORY'}></FooterItems>
+                        <FooterItems items={filteredData} title={'TOP CATEGORY'}></FooterItems>
                     </div>
                     <div>
                         <FooterItems items={quickLinks} title={'QUICK LINKS'}></FooterItems>
                     </div>
                     <div className={style.tags}>
-                       <PopularTag></PopularTag>
+                        <PopularTag></PopularTag>
                     </div>
                 </div>
             </section>
