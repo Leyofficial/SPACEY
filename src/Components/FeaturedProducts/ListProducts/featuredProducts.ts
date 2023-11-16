@@ -1,0 +1,1 @@
+export const featuredProducts = ['Phone','Laptop','TV','Headphone']

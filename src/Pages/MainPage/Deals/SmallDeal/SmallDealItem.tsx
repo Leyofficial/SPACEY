@@ -1,7 +1,5 @@
 import style from './SmallDealItem.module.scss'
 import {ISmallDeal} from "../../types.ts";
-import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../../../ApiRequests/uploads/getImage.ts";
 import {Skeleton} from "@mui/material";
 import {CustomSaleType} from "../../../../Utility/CustomSaleType/CustomSaleType.tsx";
 import {checkNewPrice} from "../../percentageFuncrion.ts";
@@ -9,19 +7,18 @@ import {CustomIconButton} from "../../../../Utility/CustomIconButton/CustomIconB
 import {MdFavoriteBorder} from "react-icons/md";
 import {PiBasket} from "react-icons/pi";
 import {AiOutlineEye} from "react-icons/ai";
+import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 
 function SmallDealItem({item}: ISmallDeal) {
-    const [image, setImage] = useState<string | null>(null)
-    useEffect(() => {
-        if (item) {
-            getImageFromServer(item.product.images.mainImage, setImage)
-        }
-    }, [item])
+    const {image, isLoading} = useGetImage(item.product.images.mainImage)
+
+
+
     return (
         <div className={style.block}>
             <div className={style.cover}></div>
             <CustomSaleType typeSale={item?.product.saleType}/>
-            {image ? <img className={style.image} src={image ? image : ''} alt=""/> :
+            {!isLoading ? <img className={style.image} src={image ? image : ''} alt=""/> :
                 <Skeleton className={style.imgSkeleton} variant={"rounded"} width={216} height={188}/>}
 
             <p className={style.title}>{item?.brand}</p>

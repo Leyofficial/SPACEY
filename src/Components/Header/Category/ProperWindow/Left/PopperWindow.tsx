@@ -7,10 +7,10 @@ import {UseCustomQuery} from "../../../../../ApiRequests/customQuery/customQuery
 import PopperItem from "../PopperItem/PopperItem.tsx";
 import GetDiscountItem from "../../../../Discount/PopperDiscount/GetDiscountItem.tsx";
 import {ICategory} from "../../../../../types.ts";
+import {useUniqueCategory} from "../../../../../hooks/category/useUniqueCategory.ts";
 
 function PopperWindow() {
     const navigate = useNavigate()
-    const [filteredDate, setFiltered] = useState([]);
     const [hover, setHover] = useState<string | null>(null)
     const [hoverBrand, setHoverBrand] = useState<string | null>(null)
     const [brands, setBrands] = useState<[] | string[]>([])
@@ -21,21 +21,10 @@ function PopperWindow() {
 
     const {data: dataBrand} = UseCustomQuery(`https://spacey-server.vercel.app/api/product?category=${hover}&brand=${hoverBrand}`)
 
+    const {filteredData} = useUniqueCategory(data)
     function handleClick(call: string): void {
         navigate(call)
     }
-
-    useEffect(() => {
-        if (data) {
-
-            const category = data.categories.map(((item: { categoryOfProduct: string; }) => item.categoryOfProduct))
-            const uniqueCategories = category.filter((item: string, index: number): boolean => {
-                return category.indexOf(item) === index;
-            });
-            setFiltered(uniqueCategories)
-
-        }
-    }, [data]);
 
 
     useEffect(() => {
@@ -52,7 +41,7 @@ function PopperWindow() {
                 <div className={style.leftBlock}>
                     <div className={style.items}>
                         {isLoading ? <div className={style.loading}><CircularProgress/></div> :
-                            filteredDate.map((item: string) => {
+                            filteredData.map((item: string) => {
                                 return <>
                                     {/*<div onMouseEnter={() => setHover(item)} onMouseLeave={() => setHover(null)}*/}
                                     <div onMouseEnter={() => setHover(item)}

@@ -23,7 +23,6 @@ function DiscountItemSI({idItem}: IGetDiscountItemProps) {
     }, [data])
     useEffect(() => {
         setItem(data?.found)
-        console.log(data?.found)
     }, [data]);
     return (
         <>

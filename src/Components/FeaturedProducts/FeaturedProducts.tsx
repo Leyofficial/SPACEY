@@ -8,6 +8,7 @@ import {getSingleCategory} from "../../ApiRequests/Items/getSingleCategory.ts";
 import {getAllItems} from "../../ApiRequests/Items/Items.ts";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 import {ICategory} from "../../types.ts";
+import {featuredProducts} from "./ListProducts/featuredProducts.ts";
 
 
 const FeaturedProducts = () => {
@@ -19,7 +20,11 @@ const FeaturedProducts = () => {
          getSingleCategory(activeItem).then(res => setActiveItemProducts(shuffleArray(res.foundProduct).slice(0,8)))
         }
         if(activeItem === 'All Product') {
-            getAllItems().then(res => setActiveItemProducts(shuffleArray(res.data.categories).slice(0, 8)))
+            getAllItems().then(res => {
+                const array = shuffleArray(res.data.categories)
+                const filtered = array.filter((item:ICategory) => featuredProducts.includes(item.categoryOfProduct)).slice(0,8)
+                setActiveItemProducts(filtered)
+            })
         }
     },[activeItem])
 
@@ -43,7 +48,7 @@ const FeaturedProducts = () => {
                 <section className={style.rightBlock}>
                     <header className={style.lists}>
                         <h1>Featured Products</h1>
-                        <ListProducts activeItem={activeItem} callback={setActiveItem}></ListProducts>
+                        <ListProducts typeCategory={'featured products'} activeItem={activeItem} callback={setActiveItem}></ListProducts>
                     </header>
 
                     <main>

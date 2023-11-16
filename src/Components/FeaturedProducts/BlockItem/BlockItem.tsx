@@ -1,24 +1,19 @@
 import style from './BlockItem.module.scss'
-
-import {useEffect, useState} from "react";
-import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 import {ICategory} from "../../../types.ts";
+import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
+import {Skeleton} from "@mui/material";
 
 interface IBlockItemProps {
     item: ICategory
 }
 
 const BlockItem = ({item}: IBlockItemProps) => {
-    const [image, setImage] = useState<string | null>(null)
+    const {image, isLoading} = useGetImage(item.product.images.mainImage)
 
-
-    useEffect(() => {
-        getImageFromServer(item.product.images.mainImage, setImage)
-    }, [item])
     return (
         <div className={style.item}>
             <section className={style.image}>
-                <img src={image ? image : ""} alt={'product'}/>
+                {isLoading ? <Skeleton width={202} height={172}></Skeleton> : <img src={image ? image : ""} alt={'product'}/>}
             </section>
             <section className={style.info}>
                 <p>{item.product.rating}</p>

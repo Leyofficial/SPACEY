@@ -1,4 +1,4 @@
-export function useTypeCategory(uniqueCategories: any[], categoryArray: string | string[] , callback : any) {
+export function getTypeOfCategory(uniqueCategories: any[], categoryArray: string | string[] , callback : any) {
     const selectType =  uniqueCategories.filter((item : string) => {
         return categoryArray.includes(item)
     })

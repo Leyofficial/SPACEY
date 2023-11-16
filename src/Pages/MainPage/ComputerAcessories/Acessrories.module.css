@@ -2,6 +2,10 @@
   margin-bottom: 100px;
 }
 
+.items {
+  display: flex;
+}
+
 .title {
   color: var(--gray-900, #191C1F);
   /* Heading/03 */
