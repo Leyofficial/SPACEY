@@ -7,7 +7,7 @@ import {useGetImage} from "../../hooks/getImage/useGetImage.ts";
 
 function Banner({item}: ISmallDeal) {
 
-    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
+    const {image} = useGetImage(item?.product.images.mainImage)
     return (
         <div className={style.block}>
             <div className={style.wrapperBlock}>
@@ -24,7 +24,7 @@ function Banner({item}: ISmallDeal) {
                     </div>
                 </div>
                 <div className={style.imgBlock}>
-                    {!isLoading ? <img src={image ? image : ''} alt="photo"/> :
+                    {image ? <img src={image ? image : ''} alt="photo"/> :
                         <Skeleton variant={'rounded'} width={312} height={349}/>}
                 </div>
             </div>

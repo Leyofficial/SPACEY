@@ -9,7 +9,7 @@ import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
 function DiscountItemSI({idItem}: IGetDiscountItemProps) {
     const [discountItem , setItem] = useState<IDiscountItem | null>(null);
     const {data} = UseCustomQuery(`https://spacey-server.vercel.app/api/${idItem}`)
-    const {image,isLoading} = useGetImage(data?.found?.product.images.mainImage)
+    const {image} = useGetImage(data?.found?.product.images.mainImage)
 
     useEffect(() => {
         setItem(data?.found)
@@ -19,7 +19,7 @@ function DiscountItemSI({idItem}: IGetDiscountItemProps) {
         <>
         {discountItem && <div className={style.block}>
             <div className={style.imgBlock}>
-                {!isLoading ?  <img src={image ? image : ''} alt="photo"/> : <Skeleton width={'200px'} height={'120px'} variant={'rounded'}/>}
+                {image ?  <img src={image ? image : ''} alt="photo"/> : <Skeleton width={'200px'} height={'120px'} variant={'rounded'}/>}
 
             </div>
             <div className={style.textBlock}>

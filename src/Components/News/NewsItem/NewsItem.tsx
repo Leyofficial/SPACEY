@@ -13,7 +13,7 @@ interface INewsItemProps {
 
 const NewsItem = ({item}: INewsItemProps) => {
 
-    const {image, isLoading} = useGetImage(item.image)
+    const {image} = useGetImage(item.image)
     const date = new Date(item?.date)
     const options: Intl.DateTimeFormatOptions = {day: 'numeric', month: 'short', year: 'numeric'};
     const formattedDate = date.toLocaleDateString('en-US', options)
@@ -21,8 +21,7 @@ const NewsItem = ({item}: INewsItemProps) => {
 
     return (
         <div className={style.item}>
-
-            {isLoading ? <Skeleton width={360} height={250}/> : <img src={image ? image : ""} alt={'news'}/>}
+            {!image ? <Skeleton width={360} height={250}/> : <img src={image ? image : ""} alt={'news'}/>}
             <div className={style.aboutNews}>
                 <p className={style.author}><FaUserTie color={'orange'}></FaUserTie>{item.author}</p>
                 <p className={style.date}><BsFillCalendarDateFill color={'orange'}/>{formattedDate}</p>
