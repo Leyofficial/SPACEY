@@ -6,7 +6,7 @@ import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 
 
 function BigAdd({item}: IItem) {
-    const {image, isLoading} = useGetImage(item?.product.images.mainImage)
+    const {image} = useGetImage(item?.product.images.mainImage)
 
     return (
         <>

@@ -18,8 +18,7 @@ export interface IProduct {
     title: string,
 }
 export interface IProductOutside  {
-    title ? : string
-    item  : ICategory
+    title? : string,
 }
 export interface ICategory {
     brand: string,

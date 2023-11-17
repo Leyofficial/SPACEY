@@ -1,7 +1,8 @@
 .block {
-  margin: 50px;
+  width: 90%;
+  margin: 50px auto;
+}
+.itemsBlock {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
+  justify-content: space-between;
 }

@@ -26,7 +26,7 @@ function Acessories() {
         if (activeItem === 'All Product') {
             getAllItems().then(res => {
                 const array = shuffleArray(res.data.categories);
-                const filtered = array.filter(item => computerAcessories.includes(item.categoryOfProduct)).slice(0 , 8)
+                const filtered = array.filter((item: { categoryOfProduct: string; }) => computerAcessories.includes(item.categoryOfProduct)).slice(0 , 8)
                 setActiveItemProducts(filtered)
                 setDiscount(filtered[0])
             })

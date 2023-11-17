@@ -10,7 +10,7 @@ import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 
 function SmallDealItem({item}: ISmallDeal) {
-    const {image, isLoading} = useGetImage(item.product.images.mainImage)
+    const {image} = useGetImage(item.product.images.mainImage)
 
 
 

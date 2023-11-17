@@ -2,40 +2,44 @@ import style from './StatusProducts.module.scss'
 import {ICategory} from "../../types.ts";
 import StatusProduct from "./StatusProduct/StatusProduct.tsx";
 import {useEffect, useState} from "react";
-import {Skeleton} from "@mui/material";
+import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
+
 interface IStatusProduct {
-        categories : ICategory[]
+    items: {
+        categories: ICategory[]
+    }
+
 }
-function StatusProducts({items} : IStatusProduct) {
-    const [filtered , setFiltered] = useState<ICategory[]>([]);
+
+function StatusProducts({items}: IStatusProduct) {
+    const [filteredStateType, setFilteredState] = useState<ICategory[]>([]);
+    const [filteredItem , setFilteredItem] = useState([])
     useEffect(() => {
         if (!items) return;
 
-        const item = items?.filter((category) => {
-            category.product[titleTypes.map((item) =>  item)]
-        });
-        console.log(item)
-
-
-        setFiltered(item);
+        const filteredItem = items.filter((item: { product: { stateType: string; }; }) => item.product.stateType !== 'none' && item.product.stateType);
+        if (filteredItem.length > 0) {
+            setFilteredItem(filteredItem)
+            const stateType = filteredItem.map(((item: any) => item.product.stateType))
+            const uniqueCategories = stateType.filter((item: string, index: number): boolean => {
+                return stateType.indexOf(item) === index;
+            });
+            setFilteredState(uniqueCategories.splice(0 , 4));
+        }
     }, [items]);
-
-    const titleTypes: string[] = [
-        'flashSale',
-        'bestSellers',
-        'topRated',
-        'newArrival',
-    ];
-
 
     return (
         <div className={style.block}>
             <div className={style.itemsBlock}>
-                {/*{ filtered.length > 0 ? filtered.map((item : ICategory) =>*/}
-                {/* <StatusProduct item={item}/>*/}
+                {/*{ filteredItems.length > 0 ? filteredItems.map((item : any , index : number) =>*/}
+                {/* <StatusProduct title={filteredStateType[index]} item={item}/>*/}
                 {/*) : <Skeleton variant={'rounded'} width={100} height={20}/>}*/}
+                {filteredStateType.map(item => {
+                    return <StatusProduct items={filteredItem} title={item}/>
+                })}
             </div>
         </div>
     )
 }
+
 export default StatusProducts
