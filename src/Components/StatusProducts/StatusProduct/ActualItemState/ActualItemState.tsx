@@ -1,7 +1,8 @@
 import style from './ActualItemState.module.scss'
 import {Skeleton} from "@mui/material";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
-function ActualItemState({item}) {
+import {IItem} from "../../../../types.ts";
+function ActualItemState({item} : IItem) {
     const {image} = useGetImage(item?.product.images.mainImage);
     return (
         <div className={style.block}>

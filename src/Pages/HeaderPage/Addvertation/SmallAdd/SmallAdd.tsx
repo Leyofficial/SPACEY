@@ -1,11 +1,11 @@
 import style from './SmallAdd.module.scss'
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
-import {IItem} from "../BigAdd/types.ts";
 import {Skeleton} from "@mui/material";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
+import {IItem} from "../../../../types.ts";
 
 function SmallAdd({item}: IItem) {
-    const {image, isLoading} = useGetImage(item?.product.images.mainImage)
+    const {image} = useGetImage(item?.product.images.mainImage)
 
     return (
         <div className={style.block}>

@@ -1,8 +1,8 @@
 import style from './BigAdd.module.scss'
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
-import {IItem} from "./types.ts";
 import {Skeleton} from "@mui/material";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
+import {IItem} from "../../../../types.ts";
 
 
 function BigAdd({item}: IItem) {
