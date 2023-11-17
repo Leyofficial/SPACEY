@@ -87,7 +87,7 @@ function MainPage() {
                 <Acessories/>
             </div>
             <div className={style.smallStatus}>
-                {wholeDate?.length > 0 ?              <StatusProducts items={wholeDate}/> : null }
+                {/*{wholeDate?.length > 0 ?              <StatusProducts items={wholeDate}/> : null }*/}
 
             </div>
         </div>
