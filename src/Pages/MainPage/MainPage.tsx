@@ -13,11 +13,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Banner from "../../Components/Banner/Banner.tsx";
 import Acessories from "./ComputerAcessories/Acessories.tsx";
+import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
     const [filteredCategories, setFiltered] = useState([]);
     const numSkeleton = useState(8)[0];
+    const [wholeDate , setWhole] = useState([])
 
     function Skeleton() {
         return (
@@ -29,6 +31,7 @@ function MainPage() {
 
     useEffect(() => {
         const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
+        setWhole(data?.categories)
         if (filteredSale) {
             setFiltered(shuffleArray(filteredSale).slice(0, 8))
         }
@@ -82,6 +85,10 @@ function MainPage() {
             </div>
             <div className={style.acessroies}>
                 <Acessories/>
+            </div>
+            <div className={style.smallStatus}>
+                {wholeDate?.length > 0 ?              <StatusProducts items={wholeDate}/> : null }
+
             </div>
         </div>
     )

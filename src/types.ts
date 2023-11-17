@@ -17,7 +17,10 @@ export interface IProduct {
     storage: [string],
     title: string,
 }
-
+export interface IProductOutside  {
+    title ? : string
+    item  : ICategory
+}
 export interface ICategory {
     brand: string,
     categoryOfProduct: string,

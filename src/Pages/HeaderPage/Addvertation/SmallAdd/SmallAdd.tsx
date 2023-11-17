@@ -10,7 +10,7 @@ function SmallAdd({item}: IItem) {
     return (
         <div className={style.block}>
             <div className={style.imgBlock}>
-                {isLoading ? <Skeleton  variant="text" width={124} height={124}></Skeleton> : <img src={ image ? image : ''} alt="photo"/> }
+                {!image ? <Skeleton  variant="text" width={124} height={124}></Skeleton> : <img src={ image ? image : ''} alt="photo"/> }
             </div>
             <div className={style.textBlock}>
                     <p className={style.title}>{item?.brand}</p>

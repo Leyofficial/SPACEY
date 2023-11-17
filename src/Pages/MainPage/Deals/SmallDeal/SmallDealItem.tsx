@@ -18,7 +18,7 @@ function SmallDealItem({item}: ISmallDeal) {
         <div className={style.block}>
             <div className={style.cover}></div>
             <CustomSaleType typeSale={item?.product.saleType}/>
-            {!isLoading ? <img className={style.image} src={image ? image : ''} alt=""/> :
+            {image ? <img className={style.image} src={image ? image : ''} alt=""/> :
                 <Skeleton className={style.imgSkeleton} variant={"rounded"} width={216} height={188}/>}
 
             <p className={style.title}>{item?.brand}</p>
