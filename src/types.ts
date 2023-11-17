@@ -7,13 +7,13 @@ export interface IProduct {
             images: [string]
         }
     },
+    stateType : string[] | string,
     memory: [string],
     percentageOfSale: number,
     price: number,
     rating: number,
     sale: boolean,
     saleType: string,
-    stateType : string
     size: [string],
     storage: [string],
     title: string,
@@ -40,6 +40,7 @@ export interface IItem {
                     color:string
                 }
             },
+            stateType : string,
             percentageOfSale: number,
             price: number
         }
