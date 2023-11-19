@@ -17,7 +17,7 @@ const ProductDetail = () => {
             <main className={style.mainWrapper}>
                 <section className={style.wrapper}>
                     <ProductImagesSlider images={data?.found?.product.images}></ProductImagesSlider>
-                    <ProductInfo></ProductInfo>
+                    <ProductInfo product={data?.found}></ProductInfo>
                 </section>
                 <section></section>
             </main>

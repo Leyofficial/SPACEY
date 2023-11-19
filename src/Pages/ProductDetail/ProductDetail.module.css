@@ -1,11 +1,11 @@
 .wrapper {
   display: flex;
-  justify-content: space-between;
   width: 100%;
+  gap: 100px;
 }
 
 .mainWrapper {
-  max-width: 70%;
+  max-width: 79%;
   width: 100%;
   margin: 0 auto;
 }
