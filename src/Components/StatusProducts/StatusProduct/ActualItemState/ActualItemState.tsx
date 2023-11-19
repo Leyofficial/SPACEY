@@ -7,7 +7,7 @@ function ActualItemState({item} : IItem) {
     return (
         <div className={style.block}>
             <div className={style.imgBlock}>
-                {image ? <img src={image ? image : ''} alt={'photo'} /> : <Skeleton variant={'rounded'} width={80} height={80}/> }
+                {image ? <img className={style.img} src={image ? image : ''} alt={'photo'} /> : <Skeleton variant={'rounded'} width={80} height={80}/> }
             </div>
             <div className={style.textBlock}>
                 <p className={style.titleWrapper}>
