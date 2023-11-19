@@ -4,14 +4,20 @@ import style from './Radio.module.scss';
 
 interface ICustomRadio {
     text: string;
+    typeNavigate? : string,
 }
 
-export function CustomRadio({ text }: ICustomRadio) {
+export function CustomRadio({ text , typeNavigate = 'router' }: ICustomRadio) {
     const [checked, setChecked] = useState<boolean>(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (!checked) return
-        navigate(text)
+        if (typeNavigate === 'router') {
+            navigate(text.replace(/\s/g, ''))
+        } else if (typeNavigate === 'search') {
+            navigate( `?price=${text.replace(/\s/g, '')}`)
+        }
+
     }, [checked]);
 
     const handleInputChange = () => {

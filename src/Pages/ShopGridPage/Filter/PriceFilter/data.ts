@@ -1,0 +1,1 @@
+export const pricesRangeData = <string[]>['All Price' , 'Under 20$' , '$25 to $100' , '$100 to $300' , '$300 to $500' , '$500 to $1,000' , '$1,000 to $10,000']

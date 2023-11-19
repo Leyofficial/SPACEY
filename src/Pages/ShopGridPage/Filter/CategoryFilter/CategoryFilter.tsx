@@ -7,7 +7,7 @@ import {useState} from "react";
 function CategoryFilter () {
     const numSkeleton = useState(8)[0]
     const {data} = UseCustomQuery(`https://spacey-server.vercel.app/api`)
-    // /product?category=${hover}&brand=${hoverBrand}
+    // /product/category={price}&brand=${hoverBrand}
     const {filteredData} = useUniqueCategory(data)
 
     function Skeleton () {
