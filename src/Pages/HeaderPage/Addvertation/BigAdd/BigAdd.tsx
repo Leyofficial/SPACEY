@@ -6,7 +6,7 @@ import {IItem} from "../../../../types.ts";
 
 
 function BigAdd({item}: IItem) {
-    const {image} = useGetImage(item?.product.images.mainImage)
+    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
 
     return (
         <>
