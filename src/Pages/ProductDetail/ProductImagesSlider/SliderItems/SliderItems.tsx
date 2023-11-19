@@ -5,11 +5,11 @@ import {ISliderItemsProps} from "../../productDetail.ts";
 
 
 
-const SliderItems = ({imageId}: ISliderItemsProps) => {
+const SliderItems = ({imageId,callback,index}: ISliderItemsProps) => {
     const {image, isLoading} = useGetImage(imageId)
 
     return (
-        <div className={style.item}>
+        <div className={style.item} onClick={() => callback(index)}>
             {isLoading || !image ? <Skeleton width={100} height={100}/>: <img src={image ? image : ""} alt={'product'}/>}
         </div>
     );

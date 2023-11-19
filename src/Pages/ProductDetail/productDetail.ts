@@ -9,5 +9,7 @@ export interface IProductImagesSliderProps {
 }
 
 export interface ISliderItemsProps {
-    imageId: string
+    imageId: string,
+    callback:(arg:number) => void,
+    index:number
 }
