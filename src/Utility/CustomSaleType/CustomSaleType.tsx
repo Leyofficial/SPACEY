@@ -4,7 +4,7 @@ interface ICustomSaleType {
     typeSale : string,
     percentage? : number
 }
-export function CustomSaleType ({typeSale} : ICustomSaleType) {
+export function CustomSaleType ({typeSale = 'sold out'} : ICustomSaleType) {
     const [color , setColor] = useState<string>('')
     useEffect(() => {
         lookToText();
