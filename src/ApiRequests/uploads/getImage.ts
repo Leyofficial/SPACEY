@@ -13,7 +13,7 @@ export const getImageFromServer = async (id: string, callback: (arg: string) => 
                     '',
                 ),
             );
-            callback("data:;base64," + base64)
+            callback(`data:;base64,` + base64)
             if (isLoad)
                 isLoad(false)
         }else{
