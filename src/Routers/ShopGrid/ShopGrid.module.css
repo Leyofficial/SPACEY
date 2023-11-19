@@ -1,0 +1,20 @@
+.block {
+  margin: 0 auto;
+  width: 80%;
+}
+
+.header {
+  background: var(--gray-50, #F2F4F5);
+  margin-bottom: 40px;
+}
+
+.wrapper {
+  width: 80% !important;
+  margin: 0 auto;
+}
+
+.breadCrumb {
+  padding: 20px 0;
+}
+
+/*# sourceMappingURL=ShopGrid.module.css.map */
