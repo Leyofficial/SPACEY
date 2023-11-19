@@ -10,7 +10,7 @@
 .product .starWrapper {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 5px;
 }
 .product .starWrapper p {
   font-size: 14px !important;
@@ -24,6 +24,9 @@
 .product .titleWrapper p {
   font-size: 20px;
   letter-spacing: 0.7px;
+}
+.product .titleWrapper .title {
+  margin: 15px 0;
 }
 .product .smallInfoWrapper {
   display: flex;
@@ -76,6 +79,7 @@
 .product .techWrapper {
   display: flex;
   gap: 25px;
+  margin: 15px 0;
   justify-content: space-between;
 }
 .product .techWrapper .colorBlock {
@@ -113,6 +117,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  margin: 15px 0;
 }
 .product main {
   margin-top: 20px;
@@ -124,6 +129,7 @@
   display: flex;
   gap: 50px;
   align-items: center;
+  margin: 15px 0;
 }
 .product .servicesWrapper p {
   display: flex;
@@ -140,8 +146,11 @@
 .product .servicesWrapper p svg {
   font-size: 30px;
 }
+.product .guaranteWrapper {
+  margin: 15px 0;
+}
 .product .guaranteWrapper img {
-  max-height: 100px;
+  max-height: 80px;
 }
 
 /*# sourceMappingURL=ProductInfo.module.css.map */

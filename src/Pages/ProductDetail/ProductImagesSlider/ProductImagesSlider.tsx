@@ -14,13 +14,13 @@ const ProductImagesSlider = ({images}: IProductImagesSliderProps) => {
     const [indexOfMainImage, setIndexOfMainImage] = useState<number>(0)
     const {image, isLoading} = useGetImage(images?.restImages[0].images[indexOfMainImage])
     const [startColor] = useState<string>(images?.restImages[0]?.color)
-    const [currentColorImages, setCurrentColorImages] = useState<string[] | null>(null)
+    // const [currentColorImages, setCurrentColorImages] = useState<string[] | null>(null)
 
     useEffect(() => {
         images?.restImages.map(item => {
 
             if (item.color === startColor) {
-                setCurrentColorImages(item.images)
+                // setCurrentColorImages(item.images)
             }
         })
 

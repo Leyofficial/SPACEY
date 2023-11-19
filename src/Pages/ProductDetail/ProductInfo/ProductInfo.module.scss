@@ -12,7 +12,7 @@
   .starWrapper {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
 
     p {
       font-size: 14px !important;
@@ -29,6 +29,9 @@
     p {
       font-size: 20px;
       letter-spacing: 0.7px;
+    }
+    .title{
+      margin: 15px 0;
     }
   }
 
@@ -91,8 +94,7 @@
   .techWrapper{
     display: flex;
     gap: 25px;
-    //align-items: center;
-    //flex-direction: column;
+    margin: 15px 0;
     justify-content: space-between;
     .colorBlock{
       display: flex;
@@ -131,6 +133,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    margin: 15px 0;
   }
   main{
     margin-top: 20px;
@@ -142,6 +145,7 @@
     display: flex;
     gap:50px;
     align-items: center;
+    margin: 15px 0;
     p{
       display: flex;
       align-items: center;
@@ -159,8 +163,9 @@
     }
   }
   .guaranteWrapper{
+    margin: 15px 0;
     img{
-      max-height: 100px;
+      max-height: 80px;
     }
   }
 }

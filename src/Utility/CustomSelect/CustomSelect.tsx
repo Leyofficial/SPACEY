@@ -16,6 +16,7 @@ const CustomSelect = ({items,title,width}:ICustomSelectProps) => {
                 <NativeSelect
                     defaultValue={30}
                     inputProps={{
+                        //@ts-ignore
                         name: {title},
                         id: 'uncontrolled-native',
                     }}

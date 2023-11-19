@@ -12,10 +12,15 @@ export interface IProductImagesSliderProps {
 
 export interface ISliderItemsProps {
     imageId: string,
-    callback:(arg:number) => void,
-    index:number
+    callback: (arg: number) => void,
+    index: number
 }
 
-export interface IProductInfoProps{
-    product:ICategory
+export interface IProductInfoProps {
+    product: ICategory
+}
+
+export interface ITabItems {
+    tab: string,
+    content: any
 }
