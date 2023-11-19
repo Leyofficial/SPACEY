@@ -1,19 +1,28 @@
 import style from './ShopGrid.module.scss'
 import {Outlet} from "react-router-dom";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
+import Filter from "./Filter/Filter.tsx";
 function ShopGrid () {
     // const [categoriesItems, setCategoriesItems] = useState([]);
     return (
-        <div className={style.block}>
+        <>
             <header className={style.header}>
+                <div className={style.wrapper}>
                 <div className={style.breadCrumb}>
                     <BreadCrumb/>
                 </div>
+                </div>
             </header>
-            <section>
-                <Outlet/>
-            </section>
-        </div>
+            <div className={style.block}>
+
+                <main className={style.filters}>
+                    <Filter/>
+                </main>
+                <section>
+                    <Outlet/>
+                </section>
+            </div>
+        </>
     )
 }
 export default ShopGrid

@@ -13,7 +13,12 @@ export const useUniqueCategory = (data: { categories: ICategory[] }, typeCategor
             const uniqueCategories = category.filter((item: string, index: number): boolean => {
                 return category.indexOf(item) === index;
             });
-            setFilteredData(uniqueCategories.slice(0,4))
+            if (typeCategory) {
+                setFilteredData(uniqueCategories.slice(0,4))
+            } else {
+                setFilteredData(uniqueCategories)
+            }
+
             if (typeCategory && typeCategory?.toLowerCase() === 'computer accessories') {
                 getTypeOfCategory(uniqueCategories, computerAcessories, setFilteredData)
             } else if(typeCategory && typeCategory?.toLowerCase() === 'featured products') {

@@ -12,7 +12,7 @@ function App() {
             <Route path={'/'} element={<Layout/>}>
                 <Route index element={<HomePage/>}/>
                 <Route path={'shop-grid'} element={<ShopGrid/>}>
-                    {/*<Route path={'shop-grid/:i'}/>*/}
+                    {/*/!*<Route path={'shop-grid/:i'}/>*!/   // useParams*/}
                     {/*<Route path={'shop-grid/:category/:model'}/>*/}
                     {/*<Route path={'shop-grid/:category/:model'}/>*/}
                 </Route>
