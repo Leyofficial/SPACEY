@@ -9,9 +9,9 @@ interface ICustomBtn {
     path? : string,
     arrowLeft? : boolean,
 }
-function CustomBtn({text = 'shop now' , path = '#' , arrowLeft} : ICustomBtn) {
+function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICustomBtn) {
     return (
-        <NavLink to={path} className={style.btn}>
+        <NavLink onClick={callback} to={path} className={style.btn}>
             {arrowLeft ? <><BsArrowLeftShort color={'white'} size={30}/><p className={style.btnText}>{text}</p></> :
             <> <p className={style.btnText}>{text}</p>
                 <BsArrowRightShort color={'white'} size={30}/></>}

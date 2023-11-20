@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import style from './Radio.module.scss';
 
 interface ICustomRadio {
@@ -7,15 +7,24 @@ interface ICustomRadio {
     typeNavigate? : string,
 }
 
-export function CustomRadio({ text , typeNavigate = 'router' }: ICustomRadio) {
+export function CustomRadio({ text , typeNavigate = 'category' }: ICustomRadio) {
+    const location = useLocation();
     const [checked, setChecked] = useState<boolean>(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (!checked) return
-        if (typeNavigate === 'router') {
-            navigate(text.replace(/\s/g, ''))
-        } else if (typeNavigate === 'search') {
-            navigate( `?price=${text.replace(/\s/g, '')}`)
+        if (typeNavigate === 'category') {
+            if (location.search) {
+                navigate(`${location.search}&category=${text.replace(/\s/g, '')}`)
+            } else {
+                navigate(`?category=${text.replace(/\s/g, '')}`)
+            }
+        } else if (typeNavigate === 'price') {
+            if (location.search) {
+                navigate(`${location.search}&price=${text.replace(/\s/g, '')}`)
+            } else {
+                navigate( `?price=${text.replace(/\s/g, '')}`)
+            }
         }
 
     }, [checked]);

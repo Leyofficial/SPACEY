@@ -5,7 +5,7 @@ function PriceFilter() {
     return (
         <div className={style.block}>
             {pricesRangeData.map((item) =>
-                <CustomRadio typeNavigate={'search'} text={item.trim()} />
+                <CustomRadio typeNavigate={'price'} text={item.trim()} />
             )}
         </div>
     )
