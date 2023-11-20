@@ -49,19 +49,24 @@
   transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.radio-button__input:checked + .radio-button__label .radio-button__custom {
-  transform: translateY(-50%) scale(0.9);
-  border: 5px solid var(--primary-500, #FA8232);;
-  color: var(--primary-500, #FA8232);;
+.radio-checked {
+  /* Add your styles for the checked state here */
+  // For example, change background color
+  background-color: #e0e0e0;
 }
-
-.radio-button__input:checked + .radio-button__label {
-  color: var(--primary-500, #FA8232);;
-}
-
-.radio-button__label:hover .radio-button__custom {
-  transform: translateY(-50%) scale(1.2);
-  border-color: #FA8232;
-  box-shadow: 0 0 10px #FA8232;
-}
+//.radio-button__input:checked + .radio-button__label .radio-button__custom {
+//  transform: translateY(-50%) scale(0.9);
+//  border: 5px solid var(--primary-500, #FA8232);;
+//  color: var(--primary-500, #FA8232);;
+//}
+//
+//.radio-button__input:checked + .radio-button__label {
+//  color: var(--primary-500, #FA8232);;
+//}
+//
+//.radio-button__label:hover .radio-button__custom {
+//  transform: translateY(-50%) scale(1.2);
+//  border-color: #FA8232;
+//  box-shadow: 0 0 10px #FA8232;
+//}
 

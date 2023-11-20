@@ -24,8 +24,8 @@ function SmallDealItem({item}: ISmallDeal) {
             <p className={style.title}>{item?.brand}</p>
             {item?.product.sale ?
                 <div className={style.priceBlock}>
-                    <p className={style.oldPrice}>${checkNewPrice(item?.product.price, 20)}</p>
-                    <p className={style.newPrice}>${item?.product.price}</p>
+                    <p className={style.newPrice}>${checkNewPrice(item?.product.price, 20)}</p>
+                    <p className={style.oldPrice}>${item?.product.price}</p>
                 </div>
                 : null}
             <div className={style.iconsBlock}>

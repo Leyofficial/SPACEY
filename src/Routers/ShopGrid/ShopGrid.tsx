@@ -1,8 +1,13 @@
 import style from './ShopGrid.module.scss'
-import {Outlet} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import Filter from "../../Pages/ShopGridPage/Filter/Filter.tsx";
+import {useEffect} from "react";
 function ShopGrid () {
+    const params = useParams()
+    useEffect(() => {
+        console.log(params)
+    },[params])
     // const [categoriesItems, setCategoriesItems] = useState([]);
     return (
         <>

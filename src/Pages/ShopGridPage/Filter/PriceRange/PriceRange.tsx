@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { styled, Box } from "@mui/system";
 import style from "./PriceRange.module.scss";
 import {Slider, TextField} from "@mui/material";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 
 const CustomSlider = styled(Slider)`
@@ -18,11 +18,9 @@ const CustomSlider = styled(Slider)`
 `;
 
 function PriceRange() {
-    const [clicked , setClicked] = useState<boolean>(false)
-    const location = useLocation();
-    const navigate = useNavigate();
+    const params = useParams();
     const [range, setRange] = useState([180, 660]);
-
+    // console.log(params.category)
     const handleChanges = (event: any, newValue: number | number[] ) => {
         setRange(newValue as number[]);
     };
@@ -31,14 +29,6 @@ function PriceRange() {
         newRange[index] = Number(value); // Преобразуйте значение в число, так как TextField возвращает строку
         setRange(newRange);
     }
-
-    useEffect(() => {
-        if (location.search) {
-            navigate(location.search + '&' + 'minPrice=' + range[0]+ '&maxPrice=' + range[1])
-        } else {
-            navigate(`?minPrice=${range[0]}&maxPrice=${range[1]}`);
-        }
-    },[clicked])
 
     return (
         <div className={style.block}>
@@ -60,7 +50,7 @@ function PriceRange() {
                     <TextField value={range[1]}  onChange={(e) => handleTextFieldChange(1, e.target.value)} id="outlined-basic" label="Max price" variant="outlined" />
                     </div>
                 </Box>
-                <CustomBtn callback={setClicked} text={'OK'}/>
+                <CustomBtn path={ params.category ? `${params.category}?minPrice=${range[0]}&maxPrice=${range[1]}` : `?minPrice=${range[0]}&maxPrice=${range[1]}`} text={'OK'}/>
             </div>
         </div>
     );
