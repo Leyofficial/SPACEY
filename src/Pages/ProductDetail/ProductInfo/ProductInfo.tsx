@@ -11,6 +11,7 @@ import {MdOutlineChangeCircle} from "react-icons/md";
 import payment1 from '../../../assets/img/payment/image 322.png'
 import payment2 from '../../../assets/img/payment/image 323.png'
 import payment3 from '../../../assets/img/payment/image 321.png'
+import {getColorElement} from "../getColorElement.tsx";
 
 
 
@@ -23,6 +24,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
         if (countAddProduct !== 0)
             setCountAddProduct(countAddProduct - 1)
     }
+
     return (
         <article className={style.product}>
             {!product ? <Skeleton></Skeleton> : <>
@@ -59,8 +61,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                         <div className={style.colorBlock}>
                             <p>Color</p>
                             <div className={style.wrapperColor}>
-                                <p className={`${style.activeColor}`}><span className={`${style.color}`}></span></p>
-                                <p><span className={style.color}></span></p>
+                                {product?.product.images.restImages.map((item) => getColorElement(item.color.toUpperCase())) }
                             </div>
                             <CustomSelect width={300} items={product.product.memory} title={'Memory'}></CustomSelect>
                         </div>

@@ -1,4 +1,5 @@
 import {ICategory} from "../../types.ts";
+import {ReactNode} from "react";
 
 export interface IProductImagesSliderProps {
     images: {
@@ -22,5 +23,5 @@ export interface IProductInfoProps {
 
 export interface ITabItems {
     tab: string,
-    content: any
+    content: ReactNode
 }

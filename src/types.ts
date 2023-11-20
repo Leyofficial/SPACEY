@@ -2,10 +2,10 @@ export interface IProduct {
     description: string,
     images: {
         mainImage: string,
-        restImages: {
+        restImages: [{
             color: string,
             images: [string]
-        }
+        }]
     },
     stateType : string[] | string,
     memory: [string],
