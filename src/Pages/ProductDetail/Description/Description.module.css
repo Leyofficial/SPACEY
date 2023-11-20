@@ -1,0 +1,48 @@
+.description {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid rgba(95, 108, 114, 0.22);
+  padding: 40px;
+  border-radius: 3px;
+}
+.description h3 {
+  margin-bottom: 15px;
+  font-weight: bolder;
+  font-size: 18px;
+}
+.description .wrapperDescription {
+  width: 576px;
+}
+.description .wrapperDescription p {
+  color: #5F6C72;
+}
+.description .feature ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.description .feature ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.description .feature ul li svg {
+  font-size: 25px;
+  color: #FA8232;
+}
+.description .shipping .shippingItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.description .shipping .shippingItems p span {
+  color: #5F6C72;
+}
+.description .lineBlock {
+  width: 1px;
+  background: rgba(95, 108, 114, 0.22);
+  height: 100%;
+}
+
+/*# sourceMappingURL=Description.module.css.map */

@@ -18,7 +18,7 @@ const IntroItem = ({item, title}: IIntroItemProps) => {
                 <p className={`${style.title} ${title === 'INTRODUCING' ? style.blue : ""}`}>{title}</p>
                 <h3 className={`${style.itemTitle} ${title === 'INTRODUCING' ? style.color : ""}`}>New {item?.product.title}</h3>
                 <p className={`${style.description} ${title === 'INTRODUCING' ? style.innerColor : ""}`}>{item?.product.description}</p>
-                <CustomBtn text={'SHOP NOW'}></CustomBtn>
+                <CustomBtn text={'SHOP NOW'} path={`/product/${item?._id}`}></CustomBtn>
             </div>
             <div className={style.coverImage}>
                 {isLoading ? <Skeleton variant="text" width={240} height={240}></Skeleton> :

@@ -2,10 +2,10 @@ export interface IProduct {
     description: string,
     images: {
         mainImage: string,
-        restImages: {
+        restImages: [{
             color: string,
             images: [string]
-        }
+        }]
     },
     stateType : string[] | string,
     memory: [string],
@@ -25,7 +25,7 @@ export interface ICategory {
     brand: string,
     categoryOfProduct: string,
     _id: string,
-    product: IProduct[]
+    product: IProduct
 }
 
 export interface IItem {
@@ -43,6 +43,9 @@ export interface IItem {
             stateType : string,
             percentageOfSale: number,
             price: number
-        }
-    }
+        },
+        categoryOfProduct:string,
+        _id:string
+    },
+    idItem?:string,
 }

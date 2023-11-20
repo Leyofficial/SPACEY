@@ -1,0 +1,24 @@
+.wrapper {
+  cursor: pointer;
+}
+.wrapper .color {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.wrapper .default {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #191C1F;
+}
+
+.activeColor {
+  border: 1px solid #FA8232;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=getColorElement.module.css.map */

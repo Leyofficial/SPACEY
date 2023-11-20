@@ -23,6 +23,8 @@ function Addvertation() {
         if (!data) return
         setItems(data.categories)
     }, [data])
+
+
     return (
         <div className={style.block}>
                 <div className={style.blockWrapper}>
@@ -36,12 +38,12 @@ function Addvertation() {
                             className={style.mySwiper}
                     >
 
-                        <SwiperSlide> {!isLoading ? <BigAdd item={items[0]}/>  : <BigAddSkeleton/> } </SwiperSlide>
-                        <SwiperSlide> {!isLoading ? <BigAdd item={items[22]}/> : <BigAddSkeleton/> } </SwiperSlide>
+                        <SwiperSlide> {!isLoading ? <BigAdd item={items[0]} idItem={data.categories[0]._id}/>  : <BigAddSkeleton/> } </SwiperSlide>
+                        <SwiperSlide> {!isLoading ? <BigAdd item={items[22]} idItem={data.categories[22]._id}/> : <BigAddSkeleton/> } </SwiperSlide>
                     </Swiper>
                     <div className={style.rightBlock}>
-                        { !isLoading ?  <SmallAdd item={items[0]}/> :  <SmallAddSkeleton/>}
-                        { !isLoading ?  <SmallAdd item={items[12]}/> :  <SmallAddSkeleton/>}
+                        { !isLoading ?  <SmallAdd item={items[0]} idItem={data.categories[0]._id}/> :  <SmallAddSkeleton/>}
+                        { !isLoading ?  <SmallAdd item={items[12]} idItem={data.categories[12]._id}/> :  <SmallAddSkeleton/>}
                     </div>
                 </div>
         </div>

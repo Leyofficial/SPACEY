@@ -5,18 +5,18 @@ import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {IItem} from "../../../../types.ts";
 
 
-function BigAdd({item}: IItem) {
-    const {image} = useGetImage(item?.product.images.mainImage)
+function BigAdd({item,idItem}: IItem) {
+    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
 
     return (
         <>
             <div className={style.block}>
                 <div className={style.textBlock}>
                     <h2 className={style.title}>{item?.brand}</h2>
-                    <CustomBtn/>
+                    <CustomBtn path={`/product/${idItem}`}/>
                 </div>
                 <div className={style.photoBlock}>
-                    {!image ?   <Skeleton  variant="text" width={260} height={400}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
+                    {isLoading ?   <Skeleton  variant="text" width={260} height={400}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
                 </div>
             </div>
             </>

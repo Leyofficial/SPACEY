@@ -20,7 +20,7 @@ function Banner({item}: ISmallDeal) {
                         {item?.product.description ? item?.product.description : <Skeleton variant={'rounded'} width={240} height={'7rem'}/>}
                     </p>
                     <div className={style.btn}>
-                        <CustomBtn/>
+                        <CustomBtn path={`/product/${item?._id}`}/>
                     </div>
                 </div>
                 <div className={style.imgBlock}>

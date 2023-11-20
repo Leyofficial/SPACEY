@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  gap: 100px;
+  margin-bottom: 40px;
+}
+
+.mainWrapper {
+  max-width: 79%;
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.tabsWrapper {
+  position: relative;
+
+
+
+    .lineUp {
+      position: absolute;
+      top: -5px;
+      display: block;
+      background: #FA8232;
+      width: 50px;
+      height: 5px;
+      left: 50%;
+    }
+
+    .lineBottom {
+      position: absolute;
+      bottom: -5px;
+      display: block;
+      background: #FA8232;
+      width: 50px;
+      height: 5px;
+      left: 50%;
+
+  }
+}
+.statusProducts{
+  margin: 80px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
