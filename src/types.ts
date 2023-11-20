@@ -25,7 +25,7 @@ export interface ICategory {
     brand: string,
     categoryOfProduct: string,
     _id: string,
-    product: IProduct[]
+    product: IProduct
 }
 
 export interface IItem {

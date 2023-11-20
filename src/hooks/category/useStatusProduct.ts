@@ -3,7 +3,7 @@ interface IUseStatusProduct {
     items : ICategory[],
     callback : (splice: any[]) => void,
 }
-export function useStatusProduct({items , callback} : IUseStatusProduct) {
+export function customStatusProduct({items , callback} : IUseStatusProduct) {
     const filteredItem = items.filter((item : ICategory) => item.product.stateType !== 'none' && item.product.stateType);
     if (filteredItem.length > 0) {
         const stateType = filteredItem.map(((item: any) => item.product.stateType))

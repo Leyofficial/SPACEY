@@ -6,6 +6,7 @@ import ProductImagesSlider from "./ProductImagesSlider/ProductImagesSlider.tsx";
 import FullWidthTabs from "../../Utility/CustomTabs/CustomTabs.tsx";
 import {ITabItems} from "./productDetail.ts";
 import Description from "./Description/Description.tsx";
+import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
 
 
 const ProductDetail = () => {
@@ -49,6 +50,7 @@ const ProductDetail = () => {
                         <span className={style.lineBottom}></span>
 
                 </section>
+                <StatusProducts ></StatusProducts>
             </main>
 
         </article>
