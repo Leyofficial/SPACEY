@@ -6,35 +6,28 @@ import ProductImagesSlider from "./ProductImagesSlider/ProductImagesSlider.tsx";
 import FullWidthTabs from "../../Utility/CustomTabs/CustomTabs.tsx";
 import {ITabItems} from "./productDetail.ts";
 import Description from "./Description/Description.tsx";
-import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
+import StatusProduct from "../../Components/StatusProducts/StatusProduct/StatusProduct.tsx";
+import Footer from "../../Components/Footer/Footer.tsx";
 
 
 const ProductDetail = () => {
 
     const {productId} = useParams()
-
     const {data} = UseCustomQuery(`https://spacey-server.vercel.app/api/${productId}`)
-
-    const tabItems:ITabItems[] = [{
+    const tabItems:ITabItems[] = [
+        {
         tab: "DESCRIPTION",
-        content: <Description data={data?.found}/>,
-
-    },
-        {
+        content: <Description data={data?.found}/>}, {
             tab: 'ADDITIONAL INFORMATION',
-            content: 'aditional'
-        },
-        {
+            content: 'aditional'}, {
             tab: 'SPECIFICATION',
-            content: 'SPEC'
-        },
-        {
+            content: 'SPEC'}, {
             tab: 'REVIEW',
             content: 'REVIEW'
-        }
+    }
     ]
 
-
+const statusProductItems = ['RELATED PRODUCT','PRODUCT ACCESSORIES','APPLE PRODUCT','FEATURED PRODUCTS']
     return (
         <article className={style.container}>
             <main className={style.mainWrapper}>
@@ -50,9 +43,12 @@ const ProductDetail = () => {
                         <span className={style.lineBottom}></span>
 
                 </section>
-                <StatusProducts ></StatusProducts>
-            </main>
+                <section className={style.statusProducts}>
+                {statusProductItems.map((item:string,index:number) => <StatusProduct key={index} title={item}></StatusProduct>)}
+                </section>
 
+            </main>
+            <Footer></Footer>
         </article>
     );
 };
