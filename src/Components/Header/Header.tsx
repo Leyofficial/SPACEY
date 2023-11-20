@@ -49,7 +49,7 @@ function Header() {
                         </div>
                         <div className={style.actionBlock}>
                             <CustomIcon valueMultiply={10} isMultiply={true} icon={<PiBasket color={'white'}/>}/>
-                            <CustomIcon icon={<MdFavoriteBorder color={'white'}/>}/>
+                            <CustomIcon path={`wish`} icon={<MdFavoriteBorder color={'white'}/>}/>
                             <CustomIcon icon={<AiOutlineUser color={'white'}/>}/>
                         </div>
                     </nav>

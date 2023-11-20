@@ -24,7 +24,7 @@ function Addvertation() {
         setItems(data.categories)
     }, [data])
 
-    console.log(data)
+
     return (
         <div className={style.block}>
                 <div className={style.blockWrapper}>
