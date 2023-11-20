@@ -37,6 +37,8 @@ export interface ISmallDeal {
                     color: string
                 }
             }
-        }
+        },
+        categoryOfProduct:string,
+        _id:string
     }
 }

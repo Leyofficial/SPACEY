@@ -14,7 +14,7 @@ function Acessories() {
     const numSkeleton = useState(8)[0];
     const [activeItem, setActiveItem] = useState<string | null>('All Product')
     const [activeItemProducts, setActiveItemProducts] = useState<ICategory[] | null>(null)
-    const [discount , setDiscount] = useState();
+    const [discount , setDiscount] = useState<ICategory | null>(null);
 
     useEffect(() => {
         if (activeItem && activeItem !== 'All Product' ) {

@@ -30,6 +30,10 @@
   align-items: center;
   display: flex;
 }
+.titleBlock a {
+  text-decoration: none;
+  color: white;
+}
 
 .nav {
   align-items: center;

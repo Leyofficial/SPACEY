@@ -7,6 +7,7 @@ import {useState} from "react";
 import {PiBasket} from "react-icons/pi";
 import {MdFavoriteBorder} from "react-icons/md";
 import {CustomIcon} from "../../Utility/CustomIcon/CustomIcon.tsx";
+import {NavLink} from "react-router-dom";
 
 function Header() {
     const [inputValue, setValue] = useState<string>('')
@@ -32,8 +33,10 @@ function Header() {
                 <div className={style.bottomBlock}>
                     <nav className={style.nav}>
                         <div className={style.titleBlock}>
+                            <NavLink to={'/'}>
                             <img src={logo} alt="logo"/>
                             <h1 className={style.title}>SPACEY</h1>
+                            </NavLink>
                         </div>
                         <div className={style.inputBlock}>
                             <Input

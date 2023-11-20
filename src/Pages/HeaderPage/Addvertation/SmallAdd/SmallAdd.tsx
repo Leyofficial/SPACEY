@@ -4,7 +4,7 @@ import {Skeleton} from "@mui/material";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {IItem} from "../../../../types.ts";
 
-function SmallAdd({item}: IItem) {
+function SmallAdd({item,idItem}: IItem) {
     const {image} = useGetImage(item?.product.images.mainImage)
 
     return (
@@ -15,7 +15,7 @@ function SmallAdd({item}: IItem) {
             <div className={style.textBlock}>
                     <p className={style.title}>{item?.brand}</p>
                     <p className={style.price}>${item?.product.price} USD</p>
-                <CustomBtn/>
+                <CustomBtn path={`/product/${idItem}`}/>
             </div>
         </div>
     )

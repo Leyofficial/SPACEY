@@ -28,6 +28,10 @@ $containerWidth : 80%;
   gap: 10px;
   align-items: center;
   display: flex;
+  a{
+    text-decoration: none;
+    color: white;
+  }
 }
 .nav {
   align-items: center;

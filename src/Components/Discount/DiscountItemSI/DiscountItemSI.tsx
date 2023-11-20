@@ -35,7 +35,7 @@ function DiscountItemSI({idItem}: IGetDiscountItemProps) {
                 </div>
             </div>
             <div className={style.btn}>
-            <CustomBtn/>
+            <CustomBtn path={`/product/${idItem}`}/>
             </div>
         </div>}
         </>

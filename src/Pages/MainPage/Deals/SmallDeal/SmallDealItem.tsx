@@ -8,14 +8,14 @@ import {MdFavoriteBorder} from "react-icons/md";
 import {PiBasket} from "react-icons/pi";
 import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
+import {NavLink} from "react-router-dom";
 
 function SmallDealItem({item}: ISmallDeal) {
     const {image} = useGetImage(item.product.images.mainImage)
 
-
-
     return (
         <div className={style.block}>
+            <NavLink className={style.link} to={`/product/${item._id}`}>
             <div className={style.cover}></div>
             <CustomSaleType typeSale={item?.product.saleType}/>
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> :
@@ -35,7 +35,7 @@ function SmallDealItem({item}: ISmallDeal) {
                     <CustomIconButton shaped={true} icon={<AiOutlineEye size={30} color={'black'}/>}/>
                 </div>
             </div>
-
+            </NavLink>
         </div>
     )
 }

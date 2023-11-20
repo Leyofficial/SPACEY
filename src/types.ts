@@ -43,6 +43,9 @@ export interface IItem {
             stateType : string,
             percentageOfSale: number,
             price: number
-        }
-    }
+        },
+        categoryOfProduct:string,
+        _id:string
+    },
+    idItem?:string,
 }

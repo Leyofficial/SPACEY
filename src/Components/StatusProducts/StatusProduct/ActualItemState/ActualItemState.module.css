@@ -41,4 +41,11 @@
   height: 80px;
 }
 
+.link {
+  text-decoration: none;
+  color: #191C1F;
+  width: 100%;
+  text-align: center;
+}
+
 /*# sourceMappingURL=ActualItemState.module.css.map */
