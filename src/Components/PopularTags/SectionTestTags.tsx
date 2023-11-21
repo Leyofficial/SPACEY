@@ -11,7 +11,8 @@ const SectionTestTags = () => {
     const choseTagHandler = (tag: string) => {
         setActiveTag(tag)
     }
-    console.log(data)
+    console.log(data) // Тут найденные элементы по тегу . Можешь вынести это в глобальную компоненту когда будешь рисовать элементы
+        // Я так понимаю что , когда идет поиск по тегу то он независим от других фильтров
     return (
         <div className={style.container}>
             <PopularTags callback={choseTagHandler} activeTag={activeTag}></PopularTags>
