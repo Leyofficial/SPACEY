@@ -2,6 +2,13 @@
   border-bottom: 1px #E4E7E9 solid;
   margin-bottom: 24px;
 }
+.skeletonBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
 .items {
   display: flex;
   flex-direction: column;

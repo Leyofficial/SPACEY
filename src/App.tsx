@@ -6,7 +6,6 @@ import NotFound from "./Routers/NotFound/NotFound.tsx";
 import ShopGrid from "./Routers/ShopGrid/ShopGrid.tsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
 import WishList from "./Pages/WishList/WishList.tsx";
-import Check from "./Pages/ShopGridPage/Filter/Check.tsx";
 
 function App() {
   return (
@@ -15,7 +14,7 @@ function App() {
             <Route path={'/'} element={<Layout/>}>
                 <Route index element={<HomePage/>}/>
                 <Route path={'shop-grid'} element={<ShopGrid/>}>
-                  <Route path={'/shop-grid/:category'} element={<Check/>}/>
+                  {/*<Route path={'/shop-grid/:category'} element={<Check/>}/>*/}
                     {/*// useParams*/}
                     {/*<Route path={'shop-grid/:category/:model'}/>*/}
                     {/*<Route path={'shop-grid/:category/:model'}/>*/}

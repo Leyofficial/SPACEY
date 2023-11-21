@@ -1,13 +1,28 @@
 .block {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
+}
+.blockWrapper {
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.itemsBlock {
+    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+}
+.skeletonBlock {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(4 , 1fr);
 }
 .header {
   background: var(--gray-50, #F2F4F5);
   margin-bottom: 40px;
 }
 .wrapper {
-  width: 80% !important;
+  width: 90% !important;
   margin: 0 auto;
 
 }

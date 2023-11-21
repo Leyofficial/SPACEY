@@ -8,11 +8,16 @@ interface ICustomRadio {
     typeNavigate? : string,
 }
 
-export function CustomRadio({ text}: ICustomRadio) {
+export function CustomRadio({ text , typeNavigate}: ICustomRadio) {
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location)
     const changeRadioHandler = () => {
-        navigate(location.search ? text + location.search : text)
+        if (typeNavigate === 'category') {
+            const urlRequest = 'category=' + text;
+                navigate( location.search && !location.search.includes('category=') ? location.search + '&' + urlRequest : '?' + urlRequest)
+        }
+
     }
     return (
         <div>

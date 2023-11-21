@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { styled, Box } from "@mui/system";
 import style from "./PriceRange.module.scss";
 import {Slider, TextField} from "@mui/material";
-import {useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 
 const CustomSlider = styled(Slider)`
@@ -18,7 +18,8 @@ const CustomSlider = styled(Slider)`
 `;
 
 function PriceRange() {
-    const params = useParams();
+    const location = useLocation();
+    console.log(location)
     const [range, setRange] = useState([180, 660]);
     // console.log(params.category)
     const handleChanges = (event: any, newValue: number | number[] ) => {
@@ -50,7 +51,8 @@ function PriceRange() {
                     <TextField value={range[1]}  onChange={(e) => handleTextFieldChange(1, e.target.value)} id="outlined-basic" label="Max price" variant="outlined" />
                     </div>
                 </Box>
-                <CustomBtn path={ params.category ? `${params.category}?minPrice=${range[0]}&maxPrice=${range[1]}` : `?minPrice=${range[0]}&maxPrice=${range[1]}`} text={'OK'}/>
+                {/* params.category ? `${params.category}?minPrice=${range[0]}&maxPrice=${range[1]}` : `?minPrice=${range[0]}&maxPrice=${range[1]}*/}
+                <CustomBtn path={ location.search && !location.search.includes('minPrice=') ? location.search + '&' + `minPrice=${range[0]}&maxPrice=${range[1]}` : '?' + `minPrice=${range[0]}&maxPrice=${range[1]}` } text={'OK'}/>
             </div>
         </div>
     );
