@@ -1,0 +1,30 @@
+.container h2 {
+  margin-bottom: 20px;
+}
+.container .tagsWrapper {
+  width: 100%;
+}
+.container .tagsWrapper ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 20%;
+  gap: 10px;
+}
+.container .tagsWrapper ul li {
+  border: 1px solid rgba(95, 108, 114, 0.5);
+  padding: 5px;
+  border-radius: 3px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.container .tagsWrapper ul li:hover {
+  transform: scale(1.05);
+}
+.container .activeClassTag {
+  border: 1px solid #FA8232 !important;
+  background: rgba(250, 130, 50, 0.16);
+  color: #FA8232;
+}
+
+/*# sourceMappingURL=PopularTags.module.css.map */
