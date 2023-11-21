@@ -1,0 +1,32 @@
+.container{
+  h2{
+    margin-bottom: 20px;
+  }
+  .tagsWrapper {
+    width: 100%;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 20%;
+      gap: 10px;
+
+      li {
+        border: 1px solid rgba(95, 108, 114, 0.5);
+        padding: 5px;
+        border-radius: 3px;
+        transition: 0.3s ease-in-out;
+        cursor: pointer;
+        &:hover{
+          transform:scale(1.05);
+        }
+      }
+    }
+  }
+  .activeClassTag{
+    border: 1px solid #FA8232 !important;
+    background: rgba(250, 130, 50, 0.16);
+    color: #FA8232;
+  }
+}
