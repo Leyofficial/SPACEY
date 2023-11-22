@@ -19,7 +19,6 @@ const CustomSlider = styled(Slider)`
 
 function PriceRange() {
     const location = useLocation();
-    const navigate = useNavigate();
     const [newUrl ,  setNewUrl] = useState<string | null>(null)
     const [range, setRange] = useState([180, 660]);
     // console.log(params.category)

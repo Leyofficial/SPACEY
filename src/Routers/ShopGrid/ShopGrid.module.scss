@@ -7,16 +7,7 @@
   display: flex;
   justify-content: space-between;
 }
-.itemsBlock {
-    gap: 15px;
-    display: grid;
-    grid-template-columns: repeat(4 , 1fr);
-}
-.skeletonBlock {
-  gap: 15px;
-  display: grid;
-  grid-template-columns: repeat(4 , 1fr);
-}
+
 .header {
   background: var(--gray-50, #F2F4F5);
   margin-bottom: 40px;
