@@ -14,7 +14,7 @@ function PriceFilter() {
                     name="radio-buttons-group"
                 >
                     {pricesRangeData.map((item) =>
-                        <CustomRadio text={item}/>
+                        <CustomRadio typeNavigate={'priceRound'}  text={item}/>
                     )}
                 </RadioGroup>
             </FormControl>

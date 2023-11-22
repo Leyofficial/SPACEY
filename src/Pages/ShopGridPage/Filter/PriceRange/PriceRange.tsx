@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { styled, Box } from "@mui/system";
 import style from "./PriceRange.module.scss";
 import {Slider, TextField} from "@mui/material";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 
 const CustomSlider = styled(Slider)`
@@ -19,17 +19,27 @@ const CustomSlider = styled(Slider)`
 
 function PriceRange() {
     const location = useLocation();
-    console.log(location)
+    const navigate = useNavigate();
+    const [newUrl ,  setNewUrl] = useState<string | null>(null)
     const [range, setRange] = useState([180, 660]);
     // console.log(params.category)
     const handleChanges = (event: any, newValue: number | number[] ) => {
         setRange(newValue as number[]);
     };
+    function handleClickBtn () {
+        const queryParams = new URLSearchParams(location.search);
+        queryParams.set("minPrice", String(range[0]));
+        queryParams.set("maxPrice" , String(range[1]))
+        const newSearch = "?" + queryParams.toString();
+        const newUrl = location.pathname + newSearch;
+        setNewUrl(newUrl)
+    }
     function handleTextFieldChange(index : number, value : React.ReactNode) {
         const newRange = [...range];
         newRange[index] = Number(value); // Преобразуйте значение в число, так как TextField возвращает строку
         setRange(newRange);
     }
+    // location.search && !location.search.includes('minPrice=') ? location.search + '&' + `minPrice=${range[0]}&maxPrice=${range[1]}` : '?' + `minPrice=${range[0]}&maxPrice=${range[1]}`
 
     return (
         <div className={style.block}>
@@ -52,7 +62,7 @@ function PriceRange() {
                     </div>
                 </Box>
                 {/* params.category ? `${params.category}?minPrice=${range[0]}&maxPrice=${range[1]}` : `?minPrice=${range[0]}&maxPrice=${range[1]}*/}
-                <CustomBtn path={ location.search && !location.search.includes('minPrice=') ? location.search + '&' + `minPrice=${range[0]}&maxPrice=${range[1]}` : '?' + `minPrice=${range[0]}&maxPrice=${range[1]}` } text={'OK'}/>
+                <CustomBtn callback={handleClickBtn} path={newUrl}  text={'OK'}/>
             </div>
         </div>
     );

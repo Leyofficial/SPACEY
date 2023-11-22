@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormControlLabel, Radio } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
+import {useLocationCategory} from "../../hooks/category/useLocationCategory.ts";
 
 export interface ICustomRadio {
     text: string;
@@ -14,19 +15,15 @@ export function CustomRadio({ text, typeNavigate }: ICustomRadio) {
 
     const changeRadioHandler = () => {
         if (typeNavigate === "category") {
-            const queryParams = new URLSearchParams(location.search);
-            queryParams.set("category", text);
-            const newSearch = "?" + queryParams.toString();
-            const newUrl = location.pathname + newSearch;
-
-            // Программное перенаправление на новый URL
-            navigate(newUrl);
+            useLocationCategory("category" , text , navigate)
+        } else if (typeNavigate === 'price') {
+            useLocationCategory("priceRound" , text , navigate)
         }
     };
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
-        const categoryParam = queryParams.get("category");
+        const categoryParam = queryParams.get(typeNavigate);
 
         // Сравниваем categoryParam с text
         if (categoryParam === text) {

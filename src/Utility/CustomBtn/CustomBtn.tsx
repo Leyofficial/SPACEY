@@ -13,11 +13,13 @@ interface ICustomBtn {
 }
 function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICustomBtn) {
     return (
-        <NavLink onClick={callback} to={path} className={style.btn}>
+        <button className={style.button}  onClick={callback}>
+        <NavLink to={path} className={style.btn}>
             {arrowLeft ? <><BsArrowLeftShort color={'white'} size={30}/><p className={style.btnText}>{text}</p></> :
             <> <p className={style.btnText}>{text}</p>
                 <BsArrowRightShort color={'white'} size={30}/></>}
         </NavLink>
+        </button>
     )
 }
 export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn,blockWidth} : ICustomBtn) {
