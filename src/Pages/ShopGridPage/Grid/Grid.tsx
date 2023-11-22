@@ -34,7 +34,6 @@ function Grid() {
         const foundItem : ICategory[]  =  items.filter((item : ICategory) => item.brand.toLowerCase().includes(valueInput.toLowerCase()));
         setFound(foundItem.slice(0 , itemsOnScreen))
     }, [valueInput]);
-
     // useEffect(() => {
     //
     //     if (categoryParam) {
