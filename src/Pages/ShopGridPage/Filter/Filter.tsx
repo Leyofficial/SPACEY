@@ -9,7 +9,7 @@ function Filter () {
             <CategoryFilter/>
             <PriceRange/>
             <PriceFilter/>
-            <SectionTestTags></SectionTestTags>
+            {/*<SectionTestTags></SectionTestTags>*/}
         </div>
     )
 }
