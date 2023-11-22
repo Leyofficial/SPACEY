@@ -1,6 +1,6 @@
-
-import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { FormControlLabel, Radio } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export interface ICustomRadio {
     text: string;
@@ -8,29 +8,41 @@ export interface ICustomRadio {
 }
 
 export function CustomRadio({ text, typeNavigate }: ICustomRadio) {
+    const [checked, setChecked] = useState<boolean>(false);
     const location = useLocation();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const changeRadioHandler = () => {
         if (typeNavigate === "category") {
             const queryParams = new URLSearchParams(location.search);
             queryParams.set("category", text);
+            const newSearch = "?" + queryParams.toString();
+            const newUrl = location.pathname + newSearch;
 
-            const newSearch = queryParams.toString();
-            const newUrl = `${location.pathname}?${newSearch}`;
-
-            history.push(newUrl);
+            // Программное перенаправление на новый URL
+            navigate(newUrl);
         }
     };
 
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const categoryParam = queryParams.get("category");
+
+        // Сравниваем categoryParam с text
+        if (categoryParam === text) {
+            setChecked(true);
+        } else {
+            setChecked(false);
+        }
+    }, [location.search, text]);
+
     return (
-        <div>
-            <FormControlLabel
-                onClick={changeRadioHandler}
-                value={text}
-                control={<Radio />}
-                label={text}
-            />
-        </div>
+        <FormControlLabel
+            onClick={changeRadioHandler}
+            value={text}
+            control={<Radio checked={checked} />} // Используем checked для установки состояния
+            label={text}
+        />
     );
 }
+
