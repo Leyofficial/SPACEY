@@ -10,6 +10,7 @@ interface ICustomSearch {
 export function CustomSearch({ placeholder , callback}: ICustomSearch) {
     const [value , setValue ] = useState<string>();
     function handleClick () {
+        setValue('')
         callback(value)
     }
     return (

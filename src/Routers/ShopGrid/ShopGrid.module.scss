@@ -5,7 +5,9 @@
 .blockWrapper {
   gap: 10px;
   display: flex;
-  justify-content: space-between;
+}
+.filters {
+  width: 25rem;
 }
 
 .header {

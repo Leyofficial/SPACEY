@@ -9,7 +9,7 @@ export const useUniqueCategory = (data: { categories: ICategory[] }, typeCategor
     useEffect(() => {
         if (data) {
 
-            const category = data.categories.map(((item: { categoryOfProduct: string; }) => item.categoryOfProduct))
+            const category = data?.categories.map(((item: { categoryOfProduct: string; }) => item.categoryOfProduct))
             const uniqueCategories = category.filter((item: string, index: number): boolean => {
                 return category.indexOf(item) === index;
             });
