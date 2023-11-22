@@ -1,27 +1,36 @@
-import {useLocation, useNavigate} from "react-router-dom";
-// import style from './Radio.module.scss';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Radio from '@mui/material/Radio';
 
-interface ICustomRadio {
+import { useLocation } from "react-router-dom";
+import { FormControlLabel, Radio } from "@mui/material";
+
+export interface ICustomRadio {
     text: string;
-    typeNavigate? : string,
+    typeNavigate: string;
 }
 
-export function CustomRadio({ text , typeNavigate}: ICustomRadio) {
-    const navigate = useNavigate();
+export function CustomRadio({ text, typeNavigate }: ICustomRadio) {
     const location = useLocation();
-    console.log(location)
-    const changeRadioHandler = () => {
-        if (typeNavigate === 'category') {
-            const urlRequest = 'category=' + text;
-                navigate( location.search && !location.search.includes('category=') ? location.search + '&' + urlRequest : '?' + urlRequest)
-        }
+    const history = useHistory();
 
-    }
+    const changeRadioHandler = () => {
+        if (typeNavigate === "category") {
+            const queryParams = new URLSearchParams(location.search);
+            queryParams.set("category", text);
+
+            const newSearch = queryParams.toString();
+            const newUrl = `${location.pathname}?${newSearch}`;
+
+            history.push(newUrl);
+        }
+    };
+
     return (
         <div>
-            <FormControlLabel onClick={changeRadioHandler} value={text} control={<Radio />} label={text} />
+            <FormControlLabel
+                onClick={changeRadioHandler}
+                value={text}
+                control={<Radio />}
+                label={text}
+            />
         </div>
     );
 }

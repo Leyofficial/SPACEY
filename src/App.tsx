@@ -7,12 +7,14 @@ import ShopGrid from "./Routers/ShopGrid/ShopGrid.tsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
 import WishList from "./Pages/WishList/WishList.tsx";
 
+
 function App() {
   return (
     <>
         <Routes>
             <Route path={'/'} element={<Layout/>}>
                 <Route index element={<HomePage/>}/>
+
                 <Route path={'shop-grid'} element={<ShopGrid/>}>
                   {/*<Route path={'/shop-grid/:category'} element={<Check/>}/>*/}
                     {/*// useParams*/}
