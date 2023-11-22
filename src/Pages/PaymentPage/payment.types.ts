@@ -22,6 +22,14 @@ export interface Values {
     orderNotes: string
 }
 
+export interface IOrderProducts{
+    products:[{
+        count:number,
+        idProduct:string,
+        _id:string
+    }]
+}
+
 export const billingFormValues = {
     userName: {
         firstName: "",

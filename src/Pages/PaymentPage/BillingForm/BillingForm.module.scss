@@ -1,20 +1,27 @@
 
 .containerForm {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
 
   h2 {
     color: var(--gray-900, #191C1F);
     font-family: Public Sans;
-    font-size: 18px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 24px;
   }
 
   .billingForm {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    gap: 30px;
+
+    .mainForm {
+      display: flex;
+      flex-wrap: wrap;
+      width: 70%;
+
+    }
 
     .fieldName {
       display: flex;
@@ -177,5 +184,9 @@
     border-bottom: 1px solid var(--gray-100, #E4E7E9);
     border-top: 1px solid var(--gray-100, #E4E7E9);
     background: var(--gray-00, #FFF);
+  }
+
+  .summerWrapper {
+    width: 45%;
   }
 }

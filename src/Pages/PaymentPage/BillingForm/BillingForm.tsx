@@ -1,15 +1,16 @@
 import style from './BillingForm.module.scss';
 import {Form, Formik, FormikHelpers} from "formik";
 import CustomField from "./CustomField/CustomField.tsx";
-import {billingFormValues, Values} from "../payment.types.ts";
+import {billingFormValues, IOrderProducts, Values} from "../payment.types.ts";
 import {getCountries} from "../../../ApiRequests/getCountries/getCountries.ts";
 import {useEffect, useState} from "react";
 import CustomSelectForm from "./CustomSelect/CustomSelect.tsx";
 import RowRadioButtonsGroup from "./CustomRadio/CustomRadio.tsx";
+import SummeryProduct from "../SummeryProduct/SummeryProduct.tsx";
 
 
 
-const BillingForm = () => {
+const BillingForm = ({products} : IOrderProducts) => {
     const [countries, setCountries] = useState<[any] | null>(null)
     useEffect(() => {
         getCountries().then(res => setCountries(res.data))
@@ -27,6 +28,7 @@ const BillingForm = () => {
                         }}
                 >
                     <Form className={style.billingForm}>
+                        <div className={style.mainForm}>
                         <div className={style.fieldName}>
                             <div className={style.blockNames}>
                                 <CustomField id={'userName.firstName'} htmlFor={"userName.firstName"}
@@ -80,8 +82,10 @@ const BillingForm = () => {
                         <div className={style.notesWrapper}>
                             <CustomField placeholder={'Notes about your order,e.g. special notes for delivery'} isTextArea={'Textarea'} id={"orderNotes"} htmlFor={"orderNotes"} title={'Order Notes'}></CustomField>
                         </div>
-
-                        <button type={'submit'}>submit</button>
+                        </div>
+                        <section className={style.summerWrapper}>
+                            <SummeryProduct products={products}></SummeryProduct>
+                        </section>
                     </Form>
                 </Formik>
             </div>

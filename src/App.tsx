@@ -23,7 +23,7 @@ function App() {
                         {/*<Route path={'shop-grid/:category/:model'}/>*/}
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}>
-                        <Route path={':idItem'} element={<Billing/>}></Route>
+                        <Route path={':idUser'} element={<Billing/>}></Route>
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>
