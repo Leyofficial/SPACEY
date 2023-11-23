@@ -1,6 +1,7 @@
 import style from './Payment.module.scss';
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import {Outlet} from "react-router-dom";
+import Footer from "../../Components/Footer/Footer.tsx";
 
 const PaymentPage = () => {
     return (
@@ -11,6 +12,9 @@ const PaymentPage = () => {
             <main>
                 <Outlet></Outlet>
             </main>
+            <footer>
+                <Footer></Footer>
+            </footer>
         </article>
     );
 };
