@@ -19,7 +19,7 @@ const ListProducts = ({activeItem,callback,typeCategory } : IListProductsProps) 
             <ul>
                 <li onClick={() => callback('All Product')} className={`${style.startLink} ${activeItem === 'All Product' ? style.activeItem : ""}`}>All Product</li>
 
-                {filteredData.map((category,index:number) =>
+                {  filteredData.map((category,index:number) =>
                     <li onClick={() => callback(category)} className={activeItem === category ? style.activeItem : ""} key={index}>{category}
                     </li> ) }
                 <li onClick={() => callback('Browse All Product')} className={`${style.endLink} ${activeItem === 'Browse All Product' ? style.activeItem : ""}`}>

@@ -11,7 +11,7 @@ interface IIntroItemProps {
 
 const IntroItem = ({item, title}: IIntroItemProps) => {
 
-    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
+    const {image} = useGetImage(item?.product.images.mainImage)
     return (
         <div className={`${style.item} ${title === 'INTRODUCING' ? style.whiteBackground : ""}`}>
             <div className={style.info}>
@@ -21,7 +21,7 @@ const IntroItem = ({item, title}: IIntroItemProps) => {
                 <CustomBtn text={'SHOP NOW'} path={`/product/${item?._id}`}></CustomBtn>
             </div>
             <div className={style.coverImage}>
-                {isLoading ? <Skeleton variant="text" width={240} height={240}></Skeleton> :
+                {!image ? <Skeleton variant="text" width={240} height={240}></Skeleton> :
                     <img alt={'product'} src={image ? image : ""}/>}
                 {title === 'INTRODUCING NEW' ? <div className={style.price}>
                     {item?.product.price} $
