@@ -1,10 +1,13 @@
 .block {
-  width: 15rem;
+  margin: 10px 0;
+  text-decoration: none;
+  color: #191C1F;
+  width: 17rem;
   border-radius: 3px;
   border: 1px solid var(--gray-100, #E4E7E9);
   background: var(--gray-00, #FFF);
   align-items: center;
-  padding: 12px;
+  padding: 12px 20px;
   display: flex;
   gap: 12px;
 }
@@ -39,13 +42,6 @@
   width: 80px;
   object-fit: cover;
   height: 80px;
-}
-
-.link {
-  text-decoration: none;
-  color: #191C1F;
-  width: 100%;
-  text-align: center;
 }
 
 /*# sourceMappingURL=ActualItemState.module.css.map */

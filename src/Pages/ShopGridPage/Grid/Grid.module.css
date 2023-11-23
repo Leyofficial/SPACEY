@@ -1,0 +1,14 @@
+.items {
+  margin-top: 20px;
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.skeletonBlock {
+  gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/*# sourceMappingURL=Grid.module.css.map */

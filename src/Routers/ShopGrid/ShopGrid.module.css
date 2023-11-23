@@ -1,6 +1,15 @@
 .block {
   margin: 0 auto;
-  width: 80%;
+  width: 90%;
+}
+
+.blockWrapper {
+  gap: 10px;
+  display: flex;
+}
+
+.filters {
+  width: 25rem;
 }
 
 .header {
@@ -9,7 +18,7 @@
 }
 
 .wrapper {
-  width: 80% !important;
+  width: 90% !important;
   margin: 0 auto;
 }
 

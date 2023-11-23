@@ -8,6 +8,7 @@ import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
 import WishList from "./Pages/WishList/WishList.tsx";
 import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
 import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
+import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment.tsx";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}>
                         <Route path={':idUser'} element={<Billing/>}></Route>
+                        <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>

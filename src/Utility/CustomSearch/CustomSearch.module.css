@@ -1,0 +1,26 @@
+.wrapper {
+  width: 40rem;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  gap: 20px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+
+.input {
+  outline: none;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  color: var(--gray-500, #77878F);
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+/*# sourceMappingURL=CustomSearch.module.css.map */
