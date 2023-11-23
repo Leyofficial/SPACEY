@@ -9,12 +9,13 @@ import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import SmallDealSkeleton from "../Deals/SmallDeal/SmallDealSkeleton.tsx";
 import {computerAcessories} from "./ComputerAcessories.ts";
 import DiscountItemSI from "../../../Components/Discount/DiscountItemSI/DiscountItemSI.tsx";
+import SkeletonDiscountItemSI from "../../../Components/Discount/DiscountItemSI/SkeletonDiscountItemSI.tsx";
 
 function Acessories() {
     const numSkeleton = useState(8)[0];
     const [activeItem, setActiveItem] = useState<string | null>('All Product')
     const [activeItemProducts, setActiveItemProducts] = useState<ICategory[] | null>(null)
-    const [discount , setDiscount] = useState<ICategory | null>(null);
+    const [discount , setDiscount] = useState<ICategory | null>();
 
     useEffect(() => {
         if (activeItem && activeItem !== 'All Product' ) {
@@ -32,6 +33,14 @@ function Acessories() {
             })
         }
     }, [activeItem]);
+
+    useEffect(() => {
+        getAllItems().then(res => {
+            const array = shuffleArray(res.data.categories);
+            const filtered = array.filter((item: { categoryOfProduct: string; }) => computerAcessories.includes(item.categoryOfProduct)).slice(0 , 8)
+            setDiscount(filtered[0])
+        })
+    }, []);
 
     function Skeleton() {
         return (
@@ -55,7 +64,7 @@ function Acessories() {
 
                 </main>
                 <section>
-                    {discount ? <DiscountItemSI idItem={discount?._id}/> : null}
+                    {discount ? <DiscountItemSI idItem={discount?._id}/> : <SkeletonDiscountItemSI/>}
                 </section>
              </div>
         </div>

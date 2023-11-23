@@ -1,5 +1,7 @@
+.skeletonBlock {
+  text-align: center;
+}
 .block {
-  justify-content: space-between;
   text-align: center;
   display: flex;
   padding: 32px;
@@ -18,7 +20,7 @@
 }
 .textBlock{
   width: 90%;
-  margin: 24px 0;
+  margin: 24px auto;
 }
 .title {
   color: var(--gray-900, #191C1F);

@@ -6,7 +6,7 @@ import {IItem} from "../../../../types.ts";
 
 
 function BigAdd({item,idItem}: IItem) {
-    const {image,isLoading} = useGetImage(item?.product.images.mainImage)
+    const {image} = useGetImage(item?.product.images.mainImage)
 
     return (
         <>
@@ -16,7 +16,7 @@ function BigAdd({item,idItem}: IItem) {
                     <CustomBtn path={`/product/${idItem}`}/>
                 </div>
                 <div className={style.photoBlock}>
-                    {isLoading ?   <Skeleton  variant="text" width={260} height={400}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
+                    {!image ?   <Skeleton  variant="text" width={360} height={'100%'}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
                 </div>
             </div>
             </>
