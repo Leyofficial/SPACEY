@@ -28,5 +28,17 @@
 .product .price span {
   color: #5F6C72;
 }
+.product a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  text-decoration: none;
+  color: #191C1F;
+}
+.product a:hover {
+  opacity: 0.6;
+  transition: 0.3s ease-in-out;
+}
 
 /*# sourceMappingURL=SingleProduct.module.css.map */

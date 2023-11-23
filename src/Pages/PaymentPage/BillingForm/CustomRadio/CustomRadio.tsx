@@ -18,26 +18,26 @@ export default function RowRadioButtonsGroup() {
                 name="row-radio-buttons-group"
             className={style.wrapper}
             >
-                <FormControlLabel className={style.blockWrapper} value={'cash'} control={<Radio/>} label={<div>
+                <FormControlLabel className={style.blockWrapper} value={'cash'} control={<Radio required={true}/>} label={<div>
                     <BsCashCoin color={'#30b006'}/>
                     <p>Cash on Delivery</p>
                 </div>}/>
                 <span className={style.line}></span>
-                <FormControlLabel className={style.blockWrapper} value="paypal" control={<Radio/>} label={
+                <FormControlLabel className={style.blockWrapper} value="paypal" control={<Radio required={true}/>} label={
                     <div>
                         <SlPaypal color={'#052ca4'}/>
                         <p>PayPal</p>
                     </div>
                 }/>
                 <span className={style.line}></span>
-                <FormControlLabel className={style.blockWrapper} value="amazo" control={<Radio/>} label={
+                <FormControlLabel className={style.blockWrapper} value="amazo" control={<Radio required={true}/>} label={
                     <div>
                         <IoLogoAmazon color={'#e58807'}/>
                         <p>Amazon Pay</p>
                     </div>
                 }/>
                 <span className={style.line}></span>
-                <FormControlLabel className={style.blockWrapper} value="card" control={<Radio/>} label={
+                <FormControlLabel className={style.blockWrapper} value="card" control={<Radio required={true}/>} label={
                     <div>
                         <FaCreditCard color={'#e5620a'}/>
                         <p>Debit/Credit Card</p>

@@ -9,15 +9,15 @@ export interface Values {
         country: string,
         region: string,
         city: string,
-        zipCode: string | number
+        zipCode: string
     },
     email: string,
     phone: string,
     payment: {
         cardName: string,
-        cardNumber: number | string,
+        cardNumber: string,
         expireDate: string,
-        cvc: number | string,
+        cvc: string,
     }
     orderNotes: string
 }

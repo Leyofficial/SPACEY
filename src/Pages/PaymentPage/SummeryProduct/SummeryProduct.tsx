@@ -2,28 +2,31 @@ import style from './SummeryProduct.module.scss';
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import {IOrderProducts} from "../payment.types.ts";
 import SingleProduct from "./SingleProduct/SinglProduct.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {getProduct} from "../../../ApiRequests/Items/getProduct.ts";
 
 const SummeryProduct = ({products}: IOrderProducts) => {
 
-const [totalPrice,setTotalPrice] = useState<number>(0)
+    const [totalPrice, setTotalPrice] = useState<number>(0)
 
-    const changeTotalHandler = (sum : number) => {
-    if(totalPrice === 0 ) {
-        console.log(sum)
-        setTotalPrice(sum)
-    }else{
-        setTotalPrice(prev => {
-            console.log(prev)
-            return prev + sum
+    useEffect(() => {
+        setTotalPrice(0)
+        products?.map((product) => {
+            getProduct(product.idProduct).then(res => changeTotalHandler(res.data.found.product.price * product.count))
+
         })
+
+    }, [products])
+    const changeTotalHandler = (sum: number) => {
+        setTotalPrice(prev => prev + sum)
     }
-    }
+
 
     return (
         <div className={style.summer}>
             <h3>Order Summery</h3>
-            {products?.map((item,index) =>  <SingleProduct callback={changeTotalHandler} key={index} product={item}></SingleProduct>)}
+            {products?.map((item, index) => <SingleProduct key={index}
+                                                           product={item}></SingleProduct>)}
 
             <div className={style.infoPayment}>
                 <p><span>Sub-total</span>${totalPrice}</p>
@@ -33,7 +36,7 @@ const [totalPrice,setTotalPrice] = useState<number>(0)
             </div>
             <div className={style.totalWrapper}>
                 <p className={style.totalTitle}>Total</p>
-                <p className={style.totalPrice}>{totalPrice - (totalPrice * 0.10 - (totalPrice * 0.17)) } USD</p>
+                <p className={style.totalPrice}>{totalPrice - (totalPrice * 0.10 - (totalPrice * 0.17))} USD</p>
             </div>
             <div className={style.btn}>
                 <CustomBtn text={'PLACE ORDER'}></CustomBtn>
