@@ -1,0 +1,72 @@
+.summer {
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+  width: 100%;
+  padding: 25px;
+
+  h3 {
+    width: 100%;
+    color: var(--gray-900, #191C1F);
+    font-family: Public Sans;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+
+
+  .infoPayment {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    span {
+      color: #5F6C72;
+      font-size: 15px;
+    }
+  ;
+
+    p {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      color: var(--gray-900, #191C1F);
+      font-family: Public Sans;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+  }
+
+  .totalWrapper {
+    margin: 25px 0;
+    border-top: 1px solid rgba(128, 128, 128, 0.37);
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .totalTitle {
+      color: var(--gray-900, #191C1F);
+      font-size: 18px;
+      font-family: Public Sans;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    .totalPrice{
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+  }
+  .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

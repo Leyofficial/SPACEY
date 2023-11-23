@@ -1,0 +1,44 @@
+.product {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  margin: 20px 0;
+}
+.product .priceWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 20px;
+}
+.product img {
+  width: 70px;
+  height: 75px;
+  object-fit: cover;
+}
+.product .title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.product .price {
+  color: #2DA5F3;
+}
+.product .price span {
+  color: #5F6C72;
+}
+.product a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 15px;
+  text-decoration: none;
+  color: #191C1F;
+}
+.product a:hover {
+  opacity: 0.6;
+  transition: 0.3s ease-in-out;
+}
+
+/*# sourceMappingURL=SingleProduct.module.css.map */

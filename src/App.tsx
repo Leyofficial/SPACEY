@@ -6,28 +6,32 @@ import NotFound from "./Routers/NotFound/NotFound.tsx";
 import ShopGrid from "./Routers/ShopGrid/ShopGrid.tsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
 import WishList from "./Pages/WishList/WishList.tsx";
-
+import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
+import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
 
 function App() {
-  return (
-    <>
-        <Routes>
-            <Route path={'/'} element={<Layout/>}>
-                <Route index element={<HomePage/>}/>
-
-                <Route path={'shop-grid'} element={<ShopGrid/>}>
-                  {/*<Route path={'/shop-grid/:category'} element={<Check/>}/>*/}
-                    {/*// useParams*/}
-                    {/*<Route path={'shop-grid/:category/:model'}/>*/}
-                    {/*<Route path={'shop-grid/:category/:model'}/>*/}
+    return (
+        <>
+            <Routes>
+                <Route path={'/'} element={<Layout/>}>
+                    <Route index element={<HomePage/>}/>
+                    <Route path={'shop-grid'} element={<ShopGrid/>}>
+                        {/*<Route path={'/shop-grid/:category'} element={<Check/>}/>*/}
+                        {/*// useParams*/}
+                        {/*<Route path={'shop-grid/:category/:model'}/>*/}
+                        {/*<Route path={'shop-grid/:category/:model'}/>*/}
+                    </Route>
+                    <Route path={'payment-grid'} element={<PaymentPage/>}>
+                        <Route path={':idUser'} element={<Billing/>}></Route>
+                    </Route>
+                    <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
+                    <Route path={'/wish'} element={<WishList/>}></Route>
+                    <Route path={'*'} element={<NotFound/>}/>
+                    <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
                 </Route>
-                <Route path={'/wish'} element={<WishList/>}></Route>
-                <Route path={'*'} element={<NotFound/>}/>
-                <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
-            </Route>
-        </Routes>
-    </>
-  )
+            </Routes>
+        </>
+    )
 }
 
 export default App

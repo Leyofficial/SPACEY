@@ -1,0 +1,156 @@
+.containerForm {
+  width: 70%;
+  margin: 0 auto;
+}
+.containerForm h2 {
+  color: var(--gray-900, #191C1F);
+  font-family: Public Sans;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.containerForm .billingForm {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+}
+.containerForm .billingForm .mainForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 70%;
+}
+.containerForm .billingForm .fieldName {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin: 20px 0;
+}
+.containerForm .billingForm .companyName {
+  width: 100%;
+}
+.containerForm .billingForm .companyName input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .billingForm .blockNames {
+  width: 60%;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+.containerForm .billingForm .blockNames input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .addressWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.containerForm .addressWrapper option {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .addressWrapper input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .emailWrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin: 20px 0;
+}
+.containerForm .emailWrapper input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .cartDataWrapper {
+  width: 100%;
+  margin: 20px 0;
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .cartDataWrapper input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .cartDataWrapper .paymentTitle {
+  color: var(--gray-900, #191C1F);
+  font-family: Public Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  margin: 20px 0;
+}
+.containerForm .cardWrapper {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+.containerForm label {
+  color: var(--gray-900, #191C1F);
+  font-family: Public Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  margin-bottom: 15px;
+}
+.containerForm .street {
+  width: 100%;
+  margin: 20px 0;
+}
+.containerForm .street input {
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .notesWrapper {
+  margin: 20px 0;
+  width: 100%;
+}
+.containerForm .notesWrapper textarea {
+  height: 124px;
+  width: 100%;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+  resize: none;
+  padding: 15px;
+}
+.containerForm .wrapperFieldsCard {
+  width: 100%;
+  padding: 20px;
+}
+.containerForm .radioWrapper {
+  width: 100%;
+  border-radius: 4px;
+  border-bottom: 1px solid var(--gray-100, #E4E7E9);
+  border-top: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.containerForm .summerWrapper {
+  width: 45%;
+}
+
+/*# sourceMappingURL=BillingForm.module.css.map */
