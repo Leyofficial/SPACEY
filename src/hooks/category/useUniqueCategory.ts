@@ -4,11 +4,11 @@ import {getTypeOfCategory} from "./useTypeCategory.ts";
 import {computerAcessories} from "../../Pages/MainPage/ComputerAcessories/ComputerAcessories.ts";
 import {featuredProducts} from "../../Components/FeaturedProducts/ListProducts/featuredProducts.ts";
 
-export const useUniqueCategory = (data: { categories: ICategory[] }, typeCategory?: string) => {
+export const useUniqueCategory = (data: { categories: ICategory[]  , status : string}, typeCategory?: string) => {
     const [filteredData, setFilteredData] = useState<[] | string[]>([])
     useEffect(() => {
+        if (data?.status === 'error') return
         if (data) {
-
             const category = data?.categories.map(((item: { categoryOfProduct: string; }) => item.categoryOfProduct))
             const uniqueCategories = category.filter((item: string, index: number): boolean => {
                 return category.indexOf(item) === index;

@@ -4,8 +4,25 @@
   display: grid;
   grid-template-columns: repeat(4 , 1fr);
 }
+.span {
+  color: dodgerblue;
+}
 .skeletonBlock {
   gap: 15px;
   display: grid;
   grid-template-columns: repeat(4 , 1fr);
+}
+.notFound {
+  margin-top: 100px;
+}
+.notFoundText {
+  width: 100%;
+  color: var(--gray-900, #191C1F);
+  text-align: center;
+
+  /* Heading/01 */
+  font-family: Public Sans sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
 }
