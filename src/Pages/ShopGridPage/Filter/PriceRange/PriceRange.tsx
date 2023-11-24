@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { styled, Box } from "@mui/system";
 import style from "./PriceRange.module.scss";
 import {Slider, TextField} from "@mui/material";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 
 const CustomSlider = styled(Slider)`
@@ -22,6 +22,12 @@ function PriceRange() {
     const [newUrl ,  setNewUrl] = useState<string | null>(null)
     const [range, setRange] = useState([180, 660]);
     // console.log(params.category)
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const minPriceParams : number | string = queryParams.get("minPrice") || 180;
+        const maxPriceParams : number | string = queryParams.get("maxPrice") || 660;
+        setRange([ +minPriceParams , +maxPriceParams])
+    }, [location.search]);
     const handleChanges = (event: any, newValue: number | number[] ) => {
         setRange(newValue as number[]);
     };
@@ -30,7 +36,7 @@ function PriceRange() {
         queryParams.set("minPrice", String(range[0]));
         queryParams.set("maxPrice" , String(range[1]))
         const newSearch = "?" + queryParams.toString();
-        const newUrl = location.pathname + newSearch;
+        const newUrl = location.pathname  + newSearch;
         setNewUrl(newUrl)
     }
     function handleTextFieldChange(index : number, value : React.ReactNode) {
@@ -61,7 +67,7 @@ function PriceRange() {
                     </div>
                 </Box>
                 {/* params.category ? `${params.category}?minPrice=${range[0]}&maxPrice=${range[1]}` : `?minPrice=${range[0]}&maxPrice=${range[1]}*/}
-                <CustomBtn callback={handleClickBtn} path={newUrl}  text={'OK'}/>
+                <CustomBtn callback={handleClickBtn} path={newUrl ? newUrl : ''}  text={'OK'}/>
             </div>
         </div>
     );
