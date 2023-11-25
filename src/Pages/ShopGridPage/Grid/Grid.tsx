@@ -7,6 +7,7 @@ import SmallDealSkeleton from "../../MainPage/Deals/SmallDeal/SmallDealSkeleton.
 import {CustomSearch} from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import {useLocation} from "react-router-dom";
 import {getSingleCategory} from "../../../ApiRequests/Items/getSingleCategory.ts";
+import {useGetParams} from "../../../hooks/params/getAllParams.ts";
 
 function Grid() {
     const location = useLocation()
@@ -16,23 +17,21 @@ function Grid() {
     const [foundArrays, setFound] = useState<ICategory[]>([]);
     const [isFound, setFoundItem] = useState(true)
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const categoryParam = queryParams.get("category");
-        const minPriceParam = queryParams.get("minPrice");
-        const maxPriceParam = queryParams.get("maxPrice");
+        const  {categoryParam , maxPriceParam , minPriceParam} = useGetParams();
         if (!categoryParam) return
+        setFound([])
         getSingleCategory(categoryParam).then(res => {
-            if (res.status === 'error') return
+            if (res.status === 'error') return;
             if (minPriceParam && maxPriceParam) {
                 const priceFiltered = res.foundProduct.filter((item: any) => item.product.price <= maxPriceParam && item.product.price >= minPriceParam);
                 if (priceFiltered.length === 0) {
-                    setFoundItem(false)
+                    setFoundItem(false);
                 } else {
-                    setFoundItem(true)
-                    setFound(priceFiltered.splice(0, itemsOnScreen))
+                    setFoundItem(true);
+                    setFound(priceFiltered.splice(0, itemsOnScreen));
                 }
             } else {
-                setFound(res.foundProduct.slice(0, itemsOnScreen))
+                setFound(res.foundProduct.slice(0, itemsOnScreen));
             }
 
         })
@@ -49,18 +48,35 @@ function Grid() {
         }
     }, [items]);
 
+
     useEffect(() => {
-        const queryParams = new URLSearchParams(location.search);
-        const categoryParam = queryParams.get('category');
+        const  {categoryParam , maxPriceParam , minPriceParam} = useGetParams();
+
         if (!valueInput || !categoryParam) return
+
         const foundItem: ICategory[] = items.filter((item: ICategory) => item.brand.toLowerCase().includes(valueInput.toLowerCase()));
-        const checkByCategory = foundItem.filter((item: ICategory) => item.categoryOfProduct.includes(categoryParam))
-        if (checkByCategory && checkByCategory.length > 0) {
-            setFoundItem(true)
+        const checkByCategory : ICategory[] = foundItem.filter((item: ICategory) => item.categoryOfProduct.includes(categoryParam));
+        const checkByPrice : ICategory[] = checkByCategory.filter((item : any) => {
+            if (maxPriceParam && minPriceParam) {
+                return  item.product.price <= maxPriceParam && item.product.price >= minPriceParam
+            }
+        })
+
+        if (minPriceParam && maxPriceParam) {
+            if (checkByPrice.length === 0) {
+                setFoundItem(false);
+            } else {
+                setFoundItem(true);
+                setFound(checkByPrice.splice(0, itemsOnScreen));
+            }
         } else {
-            setFoundItem(false)
+            if (checkByCategory && checkByCategory.length > 0) {
+                setFoundItem(true)
+            } else {
+                setFoundItem(false)
+            }
+            setFound(checkByCategory.slice(0, itemsOnScreen))
         }
-        setFound(checkByCategory.slice(0, itemsOnScreen))
     }, [valueInput]);
 
     function NotFound() {
@@ -72,22 +88,6 @@ function Grid() {
             </div>
         )
     }
-
-    // useEffect(() => {
-    //     if (items)
-    //         setShuffledArray(shuffleArray(items).slice(0, itemsOnScreen))
-    // }, [items])
-    //
-    // useEffect(() => {
-    //     if (valueInput === '') {
-    //         setShuffledArray(shuffleArray(items).slice(0, itemsOnScreen))
-    //     } else {
-    //         setShuffledArray(foundArrays.slice(0 , itemsOnScreen))
-    //     }
-    //
-    // }, [foundArrays]);
-
-
     function Skeleton() {
         return (
             <div className={style.skeletonBlock}>
