@@ -1,5 +1,5 @@
 import style from './SmallDealItem.module.scss'
-import {ISmallDeal} from "../../types.ts";
+import { IBigDealItem, ISmallDeal} from "../../types.ts";
 import {Skeleton} from "@mui/material";
 import {CustomSaleType} from "../../../../Utility/CustomSaleType/CustomSaleType.tsx";
 import {checkNewPrice} from "../../percentageFuncrion.ts";
@@ -10,7 +10,7 @@ import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {NavLink} from "react-router-dom";
 
-function SmallDealItem({item}: ISmallDeal) {
+function SmallDealItem({item}: ISmallDeal | IBigDealItem) {
     const {image} = useGetImage(item.product.images.mainImage)
 
     return (

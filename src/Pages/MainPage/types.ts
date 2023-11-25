@@ -19,6 +19,8 @@ export interface IBigDeal {
             percentageOfSale: number,
             price: number
         }
+    categoryOfProduct:string,
+    _id:string
 }
 
 export interface ISmallDeal {

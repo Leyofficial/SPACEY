@@ -32,12 +32,10 @@ function Header() {
                 </div>
                 <div className={style.bottomBlock}>
                     <nav className={style.nav}>
-                        <div className={style.titleBlock}>
-                            <NavLink to={'/'}>
+                            <NavLink className={style.titleBlock} to={'/'}>
                             <img src={logo} alt="logo"/>
                             <h1 className={style.title}>SPACEY</h1>
                             </NavLink>
-                        </div>
                         <div className={style.inputBlock}>
                             <Input
                                 value={inputValue}

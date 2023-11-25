@@ -8,20 +8,10 @@ import SmallDealSkeleton from "../../MainPage/Deals/SmallDeal/SmallDealSkeleton.
 import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
 import { useGetParams } from "../../../hooks/params/getAllParams.ts";
-import NotFound from "../../../Routers/NotFound/NotFound.tsx";
+import {NotFound} from "../../../Utility/NotFound/NotFound.tsx";
 
 interface ISkeleton {
     itemsOnScreen : number
-}
-
-function Skeleton({itemsOnScreen} : ISkeleton) {
-    return (
-        <div className={style.skeletonBlock}>
-            {Array(itemsOnScreen).fill(null).map(() => (
-                <SmallDealSkeleton />
-            ))}
-        </div>
-    );
 }
 
 function Grid() {
@@ -123,6 +113,15 @@ function Grid() {
                     )}
                 </div>
             )}
+        </div>
+    );
+}
+function Skeleton({itemsOnScreen} : ISkeleton) {
+    return (
+        <div className={style.skeletonBlock}>
+            {Array(itemsOnScreen).fill(null).map(() => (
+                <SmallDealSkeleton />
+            ))}
         </div>
     );
 }
