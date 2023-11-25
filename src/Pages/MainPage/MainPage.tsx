@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import {IBigDeal} from "./types.ts";
 import BigDealItem from "./Deals/BigDeal/BigDealItem.tsx";
 import BigDealSkeleton from "./Deals/BigDeal/BigDealSkeleton.tsx";
-import SmallDealSkeleton from "./Deals/SmallDeal/SmallDealSkeleton.tsx";
 import Slider from "react-slick";
 import {shuffleArray} from "../../Utility/shufflerArray/shufllerArray.ts";
 import ProductCarouselItem from "../../Utility/Carousel/Carousel.tsx";
@@ -14,20 +13,13 @@ import 'slick-carousel/slick/slick-theme.css';
 import Banner from "../../Components/Banner/Banner.tsx";
 import Acessories from "./ComputerAcessories/Acessories.tsx";
 import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
+import {SkeletonSmallCall} from "../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 function MainPage() {
     const {isLoading, data} = UseCustomQuery("https://spacey-server.vercel.app/api");
     const [filteredCategories, setFiltered] = useState([]);
     const numSkeleton = useState(8)[0];
     const [wholeDate , setWhole] = useState([])
-
-    function Skeleton() {
-        return (
-            <>
-                {Array(numSkeleton).fill(null).map((index) => <SmallDealSkeleton key={index}/>)}
-            </>
-        )
-    }
 
     useEffect(() => {
         const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
@@ -65,7 +57,7 @@ function MainPage() {
                             <DealItem item={item}/>
                         )}
                     </> : <>
-                        {Skeleton()}
+                        {SkeletonSmallCall(numSkeleton)}
                     </>}
                 </div>
             </div>

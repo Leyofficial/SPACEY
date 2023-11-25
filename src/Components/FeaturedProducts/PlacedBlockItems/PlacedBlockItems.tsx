@@ -4,7 +4,7 @@ import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {shuffleArray} from "../../../Utility/shufflerArray/shufllerArray.ts";
 import SmallDealItem from "../../../Pages/MainPage/Deals/SmallDeal/SmallDealItem.tsx";
 import {ICategory} from "../../../types.ts";
-import SmallDealSkeleton from "../../../Pages/MainPage/Deals/SmallDeal/SmallDealSkeleton.tsx";
+import {SkeletonSmallCall} from "../../../Pages/HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 interface IPlacedBlockItemsProps {
     activeItemProducts: ICategory[] | null
@@ -20,13 +20,7 @@ const PlacedBlockItems = ({activeItemProducts}: IPlacedBlockItemsProps) => {
 
     const numSkeleton = useState(8)[0];
 
-    function Skeleton() {
-        return (
-            <>
-                {Array(numSkeleton).fill(null).map((index : number) => <SmallDealSkeleton key={index}/>)}
-            </>
-        )
-    }
+
 
     useEffect(() => {
         if (items)
@@ -35,7 +29,7 @@ const PlacedBlockItems = ({activeItemProducts}: IPlacedBlockItemsProps) => {
 
     return (
         <div className={style.container}>
-            {!items ? Skeleton() : activeItemProducts ?
+            {!items ?  SkeletonSmallCall(numSkeleton) : activeItemProducts ?
                 activeItemProducts?.map((item, index) => <SmallDealItem key={index}
                                                                         item={item}></SmallDealItem>)
                 :

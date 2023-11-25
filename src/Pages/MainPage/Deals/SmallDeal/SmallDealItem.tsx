@@ -10,7 +10,7 @@ import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {NavLink} from "react-router-dom";
 
-function SmallDealItem({item}: ISmallDeal | IBigDealItem) {
+function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
     const {image} = useGetImage(item.product.images.mainImage)
 
     return (

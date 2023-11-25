@@ -1,6 +1,7 @@
 import style from "./SmallAdd.module.scss";
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 import {Skeleton} from "@mui/material";
+import SmallDealSkeleton from "../../../MainPage/Deals/SmallDeal/SmallDealSkeleton.tsx";
 
 function SmallAddSkeleton() {
     return (
@@ -18,3 +19,14 @@ function SmallAddSkeleton() {
     )
 }
 export default SmallAddSkeleton
+
+export function SkeletonSmallCall(numSkeleton : number ) {
+    return (
+        <>
+            {Array.from({ length: numSkeleton }, (_, index) => (
+            <SmallDealSkeleton key={index} />
+            ))}
+
+        </>
+    )
+}

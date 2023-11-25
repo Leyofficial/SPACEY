@@ -6,10 +6,10 @@ import PlacedBlockItems from "../../../Components/FeaturedProducts/PlacedBlockIt
 import {getSingleCategory} from "../../../ApiRequests/Items/getSingleCategory.ts";
 import {shuffleArray} from "../../../Utility/shufflerArray/shufllerArray.ts";
 import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
-import SmallDealSkeleton from "../Deals/SmallDeal/SmallDealSkeleton.tsx";
 import {computerAcessories} from "./ComputerAcessories.ts";
 import DiscountItemSI from "../../../Components/Discount/DiscountItemSI/DiscountItemSI.tsx";
 import SkeletonDiscountItemSI from "../../../Components/Discount/DiscountItemSI/SkeletonDiscountItemSI.tsx";
+import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 function Acessories() {
     const numSkeleton = useState(8);
@@ -42,14 +42,6 @@ function Acessories() {
         })
     }, []);
 
-    function Skeleton() {
-        return (
-            <div className={style.skeletonBlock}>
-                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton key={numSkeleton}/>)}
-            </div>
-        )
-    }
-
     return (
         <div className={style.block}>
 
@@ -60,7 +52,9 @@ function Acessories() {
                 </header>
              <div className={style.items}>
                 <main>
-                    {activeItemProducts ? <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems> : Skeleton()}
+                    {activeItemProducts ? <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems> : <div className={style.skeletonBlock}>
+                        {SkeletonSmallCall(+numSkeleton)}
+                    </div>}
 
                 </main>
                 <section>

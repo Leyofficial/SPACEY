@@ -34,4 +34,7 @@
   .items {
     grid-template-columns: repeat(3 , 1fr);
   }
+  .skeletonBlock {
+    grid-template-columns: repeat(3 , 1fr);
+  }
 }

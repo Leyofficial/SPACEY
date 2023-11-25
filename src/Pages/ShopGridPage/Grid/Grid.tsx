@@ -4,16 +4,12 @@ import style from "./Grid.module.scss";
 import { ICategory } from "../../../types.ts";
 import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
 import { getAllItems } from "../../../ApiRequests/Items/Items.ts";
-import SmallDealSkeleton from "../../MainPage/Deals/SmallDeal/SmallDealSkeleton.tsx";
 import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
 import { useGetParams } from "../../../hooks/params/getAllParams.ts";
 import {NotFound} from "../../../Utility/NotFound/NotFound.tsx";
 import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
-
-interface ISkeleton {
-    itemsOnScreen : number
-}
+import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 function Grid() {
     const location = useLocation();
@@ -33,7 +29,7 @@ function Grid() {
         setCurrentProducts(currentProducts)
     }, [foundArrays , page]);
 
-    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
 
@@ -123,22 +119,15 @@ function Grid() {
                             ></SmallDealItem>
                         ))
                     ) : (
-                        <Skeleton itemsOnScreen={itemsOnScreen} />
+                        <div className={style.skeletonBlock}>
+                            {SkeletonSmallCall(itemsOnScreen)}
+                        </div>
                     )}
                 </div>
             )}
             <section className={style.pagination}>
                 <CustomPagination callback={handleChange} page={page} count={ Math.round(( foundArrays.length + 1 ) / itemsOnScreen ) }/>
             </section>
-        </div>
-    );
-}
-function Skeleton({itemsOnScreen} : ISkeleton) {
-    return (
-        <div className={style.skeletonBlock}>
-            {Array(itemsOnScreen).fill(null).map(() => (
-                <SmallDealSkeleton />
-            ))}
         </div>
     );
 }
