@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import style from "./Grid.module.scss";
 import { ICategory } from "../../../types.ts";
@@ -9,6 +9,7 @@ import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
 import { useGetParams } from "../../../hooks/params/getAllParams.ts";
 import {NotFound} from "../../../Utility/NotFound/NotFound.tsx";
+import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
 
 interface ISkeleton {
     itemsOnScreen : number
@@ -21,6 +22,18 @@ function Grid() {
     const [valueInput, setValueInput] = useState<string>("");
     const [foundArrays, setFound] = useState<ICategory[]>([]);
     const [isFound, setFoundItem] = useState(true);
+    const [page, setPage] = useState<number>(1);
+
+
+
+    const indexOfLastCourse = page * itemsOnScreen
+    const indexOfFirstCourse = indexOfLastCourse - itemsOnScreen
+
+    const currentCourses = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse)
+
+    const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
 
     useEffect(() => {
         const { categoryParam, maxPriceParam, minPriceParam } = useGetParams();
@@ -39,10 +52,10 @@ function Grid() {
                     setFoundItem(false);
                 } else {
                     setFoundItem(true);
-                    setFound(priceFiltered.slice(0, itemsOnScreen));
+                    setFound(priceFiltered);
                 }
             } else {
-                setFound(res.foundProduct.slice(0, itemsOnScreen));
+                setFound(res.foundProduct);
             }
         });
     }, [location.search]);
@@ -53,7 +66,7 @@ function Grid() {
 
     useEffect(() => {
         if (items) {
-            setFound(items.slice(0, itemsOnScreen));
+            setFound(items);
         }
     }, [items]);
 
@@ -82,11 +95,11 @@ function Grid() {
                 setFoundItem(false);
             } else {
                 setFoundItem(true);
-                setFound(checkByPrice.slice(0, itemsOnScreen));
+                setFound(checkByPrice);
             }
         } else {
             setFoundItem(checkByCategory && checkByCategory.length > 0);
-            setFound(checkByCategory.slice(0, itemsOnScreen));
+            setFound(checkByCategory);
         }
     }, [valueInput]);
 
@@ -96,13 +109,12 @@ function Grid() {
                 placeholder={"Search for brand..."}
                 callback={setValueInput}
             />
-
             {!isFound ? (
                 <NotFound />
             ) : (
                 <div className={style.items}>
-                    {foundArrays.length > 0 ? (
-                        foundArrays?.map((item: ICategory, index: number) => (
+                    {currentCourses.length > 0 ? (
+                        currentCourses?.map((item: ICategory, index: number) => (
                             <SmallDealItem
                                 key={index}
                                 item={item}
@@ -113,6 +125,9 @@ function Grid() {
                     )}
                 </div>
             )}
+            <section className={style.pagination}>
+                <CustomPagination callback={handleChange} page={page} count={ Math.round(( foundArrays.length + 1 ) / itemsOnScreen ) }/>
+            </section>
         </div>
     );
 }

@@ -25,7 +25,10 @@ function ShopGrid() {
                         <Grid/>
                     </section>
                 </div>
+
             </div>
+
+
         </>
     )
 }
