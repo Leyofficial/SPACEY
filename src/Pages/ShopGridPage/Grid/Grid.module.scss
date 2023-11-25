@@ -26,3 +26,9 @@
   font-style: normal;
   font-weight: 600;
 }
+
+@media (max-width: 1470px) {
+  .items {
+    grid-template-columns: repeat(3 , 1fr);
+  }
+}
