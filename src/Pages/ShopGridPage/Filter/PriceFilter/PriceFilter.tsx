@@ -1,5 +1,5 @@
 import style from './PriceFilter.module.scss'
-import {pricesRangeData} from "./data.ts";
+import {IPricesRange, pricesRangeData} from "./data.ts";
 import {CustomRadio} from "../../../../Utility/CustomRadio/CustomRadio.tsx";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
@@ -13,8 +13,8 @@ function PriceFilter() {
                     defaultValue="female"
                     name="radio-buttons-group"
                 >
-                    {pricesRangeData.map((item) =>
-                        <CustomRadio typeNavigate={'priceRound'}  text={item}/>
+                    {pricesRangeData.map((item : IPricesRange) =>
+                        <CustomRadio typeNavigate={'price'} price={[item.minPrice , item.maxPrice]} text={item.text}/>
                     )}
                 </RadioGroup>
             </FormControl>
