@@ -19,8 +19,8 @@ function StatusProducts({items}: IStatusProduct) {
     return (
         <div className={style.block}>
             <div className={style.itemsBlock}>
-                {filteredStateType.map(item => {
-                    return <StatusProduct title={item}/>
+                {filteredStateType.map((item: ICategory , index : number) => {
+                    return <StatusProduct key={index} title={item}/>
                 })}
             </div>
         </div>

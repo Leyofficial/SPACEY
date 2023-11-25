@@ -24,7 +24,7 @@ function MainPage() {
     function Skeleton() {
         return (
             <>
-                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton/>)}
+                {Array(numSkeleton).fill(null).map((index) => <SmallDealSkeleton key={index}/>)}
             </>
         )
     }

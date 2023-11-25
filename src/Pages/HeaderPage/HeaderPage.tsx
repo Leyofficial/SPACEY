@@ -44,8 +44,8 @@ function HeaderPage() {
                     <Addvertation/>
                 </div>
                 <div className={style.subtitleBlock}>
-                    {data.map((item) =>
-                        <HeaderSubtitle subtitle={item.subtitle} title={item.title} img={item.img}/>
+                    {data.map((item : IData , index) =>
+                        <HeaderSubtitle key={index} subtitle={item.subtitle} title={item.title} img={item.img}/>
                     )}
                 </div>
             </div>

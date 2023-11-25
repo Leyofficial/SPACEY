@@ -4,6 +4,7 @@ import {AiOutlineArrowDown, AiOutlineArrowUp} from "react-icons/ai";
 import {NavLink} from "react-router-dom";
 import {CategoryData} from "./CategoryData.tsx";
 import PopperWindow from "./ProperWindow/Left/PopperWindow.tsx";
+import {ICategory} from "../../../types.ts";
 
 function Category() {
     const [open , setOpen] = useState(false);
@@ -24,8 +25,8 @@ function Category() {
                     </button>
                 </div>
                 <div className={style.navItems}>
-                    {CategoryData.map((item) => {
-                        return <NavLink className={`${style.btn}`} to={item.path}>
+                    {CategoryData.map((item  , index : number) => {
+                        return <NavLink key={index} className={`${style.btn}`} to={item.path}>
                             <div className={style.icon}>
                                 {item.icon}
                             </div>

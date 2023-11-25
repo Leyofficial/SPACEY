@@ -16,7 +16,7 @@ function CategoryFilter () {
     function Skeleton () {
         return (
             <div className={style.skeletonBlock}>
-                {Array(numSkeleton).fill(null).map(() => <SkeletonCategoryFilter/>)}
+                {Array(numSkeleton).fill(null).map((index : number) => <SkeletonCategoryFilter key={index}/>)}
             </div>
         )
     }
@@ -35,7 +35,7 @@ function CategoryFilter () {
                     >
                         {filteredData.length > 0 ? (
                                 filteredData.map((item: string, index: number) => (
-                                    <CustomRadio typeNavigate={'category'} key={index} text={item} />
+                                    <CustomRadio  typeNavigate={'category'} key={index} text={item} />
                                 ))
                             ) : Skeleton()}
                     </RadioGroup>

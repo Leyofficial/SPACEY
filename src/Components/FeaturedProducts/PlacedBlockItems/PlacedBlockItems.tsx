@@ -17,12 +17,13 @@ const PlacedBlockItems = ({activeItemProducts}: IPlacedBlockItemsProps) => {
         getAllItems().then(res => setItems(res.data.categories))
     }, [])
 
+
     const numSkeleton = useState(8)[0];
 
     function Skeleton() {
         return (
             <>
-                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton/>)}
+                {Array(numSkeleton).fill(null).map((index : number) => <SmallDealSkeleton key={index}/>)}
             </>
         )
     }

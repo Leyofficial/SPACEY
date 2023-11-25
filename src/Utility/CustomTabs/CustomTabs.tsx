@@ -82,7 +82,7 @@ export default function FullWidthTabs({tabItems} : IFullWidthTabsProps) {
                 onChangeIndex={handleChangeIndex}
                 style={{padding:0}}
             >
-                {tabItems?.map((item,index) => <TabPanel  value={index} index={index} dir={theme.direction}>
+                {tabItems?.map((item,index) => <TabPanel  value={index} key={index} index={index} dir={theme.direction}>
                     {item.content}
                 </TabPanel>)}
                 <TabPanel value={value} index={0} dir={theme.direction}>

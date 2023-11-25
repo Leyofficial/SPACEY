@@ -12,7 +12,7 @@ import DiscountItemSI from "../../../Components/Discount/DiscountItemSI/Discount
 import SkeletonDiscountItemSI from "../../../Components/Discount/DiscountItemSI/SkeletonDiscountItemSI.tsx";
 
 function Acessories() {
-    const numSkeleton = useState(8)[0];
+    const numSkeleton = useState(8);
     const [activeItem, setActiveItem] = useState<string | null>('All Product')
     const [activeItemProducts, setActiveItemProducts] = useState<ICategory[] | null>(null)
     const [discount , setDiscount] = useState<ICategory | null>();
@@ -45,7 +45,7 @@ function Acessories() {
     function Skeleton() {
         return (
             <div className={style.skeletonBlock}>
-                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton/>)}
+                {Array(numSkeleton).fill(null).map(() => <SmallDealSkeleton key={numSkeleton}/>)}
             </div>
         )
     }

@@ -12,7 +12,7 @@ function StatusProduct({title} : IProductOutside ) {
     function SkeletonFunc() {
         return (
             <div className={style.skeletonBlock}>
-                {Array(numSkeleton).fill(null).map(() => <SkeletonActualItem/>)}
+                {Array(numSkeleton).fill(null).map((index : number) => <SkeletonActualItem key={index}/>)}
             </div>
         )
     }
