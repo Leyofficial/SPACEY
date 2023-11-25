@@ -8,6 +8,7 @@ import PopperItem from "../PopperItem/PopperItem.tsx";
 import GetDiscountItem from "../../../../Discount/PopperDiscount/GetDiscountItem.tsx";
 import {ICategory} from "../../../../../types.ts";
 import {useUniqueCategory} from "../../../../../hooks/category/useUniqueCategory.ts";
+import {useLocationCategory} from "../../../../../hooks/category/useLocationCategory.ts";
 
 function PopperWindow() {
     const navigate = useNavigate()
@@ -23,7 +24,7 @@ function PopperWindow() {
 
     const {filteredData} = useUniqueCategory(data)
     function handleClick(call: string): void {
-        navigate(call)
+        useLocationCategory('category' , call , navigate )
     }
 
 
