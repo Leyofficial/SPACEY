@@ -23,13 +23,15 @@ function Grid() {
     const [foundArrays, setFound] = useState<ICategory[]>([]);
     const [isFound, setFoundItem] = useState(true);
     const [page, setPage] = useState<number>(1);
-
+    const [currentProducts , setCurrentProducts] = useState<ICategory[]>([])
 
 
     const indexOfLastCourse = page * itemsOnScreen
     const indexOfFirstCourse = indexOfLastCourse - itemsOnScreen
-
-    const currentCourses = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse)
+    useEffect(() => {
+        const currentProducts : ICategory[] = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse);
+        setCurrentProducts(currentProducts)
+    }, [foundArrays]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
@@ -113,8 +115,8 @@ function Grid() {
                 <NotFound />
             ) : (
                 <div className={style.items}>
-                    {currentCourses.length > 0 ? (
-                        currentCourses?.map((item: ICategory, index: number) => (
+                    {currentProducts.length > 0 ? (
+                        currentProducts?.map((item: ICategory, index: number) => (
                             <SmallDealItem
                                 key={index}
                                 item={item}
