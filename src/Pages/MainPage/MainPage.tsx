@@ -53,8 +53,8 @@ function MainPage() {
                 </div>
                 <div className={style.itemsBlock}>
                     {!isLoading && filteredCategories.length > 0 ? <>
-                        {filteredCategories.map((item) =>
-                            <DealItem item={item}/>
+                        {filteredCategories.map((item , index) =>
+                            <DealItem key={index} item={item}/>
                         )}
                     </> : <>
                         {SkeletonSmallCall(numSkeleton)}
@@ -65,8 +65,8 @@ function MainPage() {
                 <p className={style.title}>Shop with Categories</p>
                 <div className={style.carouselItems}>
                     <Slider  {...settings}>
-                        {filteredCategories.map((item) => {
-                            return    <div><ProductCarouselItem item={item}/></div>
+                        {filteredCategories.map((item , index) => {
+                            return    <div><ProductCarouselItem key={index} item={item}/></div>
                         })}
                     </Slider>
                 </div>

@@ -12,7 +12,7 @@ import SkeletonDiscountItemSI from "../../../Components/Discount/DiscountItemSI/
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 function Acessories() {
-    const numSkeleton = useState(8);
+    const numSkeleton : number =  8;
     const [activeItem, setActiveItem] = useState<string | null>('All Product')
     const [activeItemProducts, setActiveItemProducts] = useState<ICategory[] | null>(null)
     const [discount , setDiscount] = useState<ICategory | null>();
@@ -53,7 +53,7 @@ function Acessories() {
              <div className={style.items}>
                 <main>
                     {activeItemProducts ? <PlacedBlockItems activeItemProducts={activeItemProducts}></PlacedBlockItems> : <div className={style.skeletonBlock}>
-                        {SkeletonSmallCall(+numSkeleton)}
+                        {SkeletonSmallCall(numSkeleton)}
                     </div>}
 
                 </main>

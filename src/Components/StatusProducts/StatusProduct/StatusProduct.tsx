@@ -24,8 +24,8 @@ function StatusProduct({title} : IProductOutside ) {
         <div className={style.listItem}>
             {title ? <h1 className={style.title}>{title}</h1> : <Skeleton variant={'rounded'}  width={100} height={10}/>}
             <div className={style.block}>
-                { actualState.length > 0 ? actualState.map((item) => {
-                    return <ActualItemState  item={item}/>
+                { actualState.length > 0 ? actualState.map((item , index : number) => {
+                    return <ActualItemState key={index} item={item}/>
                 }) :
                     SkeletonFunc()}
             </div>
