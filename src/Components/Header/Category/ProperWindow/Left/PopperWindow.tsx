@@ -24,7 +24,9 @@ function PopperWindow() {
 
     const {filteredData} = useUniqueCategory(data)
     function handleClick(call: string): void {
+        navigate('shop-grid')
         useLocationCategory('category' , call , navigate )
+
     }
 
 
