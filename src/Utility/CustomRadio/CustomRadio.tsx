@@ -10,7 +10,7 @@ export interface ICustomRadio {
     price? : number[]
 }
 
-export function CustomRadio({ text, typeNavigate , price}: ICustomRadio) {
+export function CustomRadio({ text, typeNavigate , price = [0 , 10000]}: ICustomRadio) {
     const [checked, setChecked] = useState<boolean>(false);
     const location = useLocation();
     const navigate = useNavigate();
