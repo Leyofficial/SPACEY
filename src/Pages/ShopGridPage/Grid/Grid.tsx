@@ -8,19 +8,10 @@ import SmallDealSkeleton from "../../MainPage/Deals/SmallDeal/SmallDealSkeleton.
 import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
 import { useGetParams } from "../../../hooks/params/getAllParams.ts";
+import NotFound from "../../../Routers/NotFound/NotFound.tsx";
 
 interface ISkeleton {
     itemsOnScreen : number
-}
-
-function NotFound() {
-    return (
-        <div className={style.notFound}>
-            <p className={style.notFoundText}>
-                Product<span className={style.span}> not found</span> :(
-            </p>
-        </div>
-    );
 }
 
 function Skeleton({itemsOnScreen} : ISkeleton) {
