@@ -31,7 +31,7 @@ function Grid() {
     useEffect(() => {
         const currentProducts : ICategory[] = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse);
         setCurrentProducts(currentProducts)
-    }, [foundArrays]);
+    }, [foundArrays , page]);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
