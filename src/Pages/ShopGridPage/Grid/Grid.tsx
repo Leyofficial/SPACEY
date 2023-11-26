@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
 import style from "./Grid.module.scss";
 import { ICategory } from "../../../types.ts";
@@ -7,45 +7,71 @@ import { getAllItems } from "../../../ApiRequests/Items/Items.ts";
 import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
 import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
 import { useGetParams } from "../../../hooks/params/getAllParams.ts";
-import {NotFound} from "../../../Utility/NotFound/NotFound.tsx";
-import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
-import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
+import { NotFound } from "../../../Utility/NotFound/NotFound.tsx";
+import { CustomPagination } from "../../../Utility/Pagination/CustomPagination.tsx";
+import { SkeletonSmallCall } from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
+import {useCheckByPrice} from "./hooks/useCheckByPrice.ts";
+
+const ITEMS_ON_SCREEN = 24;
 
 function Grid() {
     const location = useLocation();
-    const itemsOnScreen = 24;
     const [items, setItems] = useState<ICategory[]>([]);
     const [valueInput, setValueInput] = useState<string>("");
     const [foundArrays, setFound] = useState<ICategory[]>([]);
     const [isFound, setFoundItem] = useState(true);
     const [page, setPage] = useState<number>(1);
-    const [currentProducts , setCurrentProducts] = useState<ICategory[]>([])
+    const [currentProducts, setCurrentProducts] = useState<ICategory[]>([]);
+    const { categoryParam, maxPriceParam, minPriceParam } = useGetParams();
 
+    const indexOfLastCourse = page * ITEMS_ON_SCREEN;
+    const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
 
-    const indexOfLastCourse = page * itemsOnScreen
-    const indexOfFirstCourse = indexOfLastCourse - itemsOnScreen
-    useEffect(() => {
-        const currentProducts : ICategory[] = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse);
-        setCurrentProducts(currentProducts)
-    }, [foundArrays , page]);
+    // Functions
+    const fetchData = useCallback(async () => {
+        try {
+            const { data } = categoryParam ? await getSingleCategory(categoryParam) : await getAllItems();
+            setItems(data?.categories || []);
+        } catch (error) {
+            console.error(error);
+            setItems([]);
+        }
+    }, [categoryParam]);
 
     const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
 
+    // Filter
     useEffect(() => {
-        const { categoryParam, maxPriceParam, minPriceParam } = useGetParams();
+        // get All items or by CATEGORY
+        fetchData().catch(err => console.error(err))
+    }, [categoryParam]);
+
+
+    useEffect(() => {
+        // Pagination filter
+        const currentProducts: ICategory[] = foundArrays.slice(indexOfFirstCourse, indexOfLastCourse);
+        setCurrentProducts(currentProducts);
+    }, [foundArrays, page]);
+
+    useEffect(() => {
+        // IF category changed
         if (!categoryParam) return;
 
         setFound([]);
         getSingleCategory(categoryParam).then((res) => {
             if (res.status === "error") return;
             if (minPriceParam && maxPriceParam) {
-                const priceFiltered = res.foundProduct.filter(
-                    (item: any) =>
-                        item.product.price <= maxPriceParam &&
-                        item.product.price >= minPriceParam
-                );
+                const priceFiltered = useCheckByPrice(res.foundProduct)
+                //     .filter((item: any) => {
+                //     if (maxPriceParam && minPriceParam) {
+                //         return (
+                //             item.product.price <= maxPriceParam &&
+                //             item.product.price >= minPriceParam
+                //         );
+                //     }
+                // })
                 if (priceFiltered.length === 0) {
                     setFoundItem(false);
                 } else {
@@ -59,7 +85,12 @@ function Grid() {
     }, [location.search]);
 
     useEffect(() => {
-        getAllItems().then((res) => setItems(res.data.categories));
+        if (categoryParam) {
+            getSingleCategory(categoryParam).then((res) => setItems(res.foundProduct))
+        } else {
+            getAllItems().then((res) => setItems(res.data.categories));
+        }
+
     }, []);
 
     useEffect(() => {
@@ -68,25 +99,19 @@ function Grid() {
         }
     }, [items]);
 
+
     useEffect(() => {
-        const { categoryParam, maxPriceParam, minPriceParam } = useGetParams();
-
+        // Filter by INPUT VALUE + CATEGORY + PRICE
         if (!valueInput || !categoryParam) return;
-
         const foundItem: ICategory[] = items.filter((item: ICategory) =>
             item.brand.toLowerCase().includes(valueInput.toLowerCase())
         );
+
         const checkByCategory: ICategory[] = foundItem.filter((item: ICategory) =>
             item.categoryOfProduct.includes(categoryParam)
         );
-        const checkByPrice: ICategory[] = checkByCategory.filter((item: any) => {
-            if (maxPriceParam && minPriceParam) {
-                return (
-                    item.product.price <= maxPriceParam &&
-                    item.product.price >= minPriceParam
-                );
-            }
-        });
+        const checkByPrice: ICategory[] = useCheckByPrice( checkByCategory )
+        console.log(checkByPrice)
 
         if (minPriceParam && maxPriceParam) {
             if (checkByPrice.length === 0) {
@@ -97,7 +122,12 @@ function Grid() {
             }
         } else {
             setFoundItem(checkByCategory && checkByCategory.length > 0);
-            setFound(checkByCategory);
+            if (checkByPrice.length > 0 ) {
+                setFound(checkByPrice);
+            } else {
+                setFound(foundItem)
+            }
+
         }
     }, [valueInput]);
 
@@ -120,13 +150,17 @@ function Grid() {
                         ))
                     ) : (
                         <div className={style.skeletonBlock}>
-                            {SkeletonSmallCall(itemsOnScreen)}
+                            {SkeletonSmallCall(ITEMS_ON_SCREEN)}
                         </div>
                     )}
                 </div>
             )}
             <section className={style.pagination}>
-                <CustomPagination callback={handleChange} page={page} count={ Math.round(( foundArrays.length + 1 ) / itemsOnScreen ) }/>
+                <CustomPagination
+                    callback={handleChange}
+                    page={page}
+                    count={Math.round((foundArrays.length + 1) / ITEMS_ON_SCREEN)}
+                />
             </section>
         </div>
     );

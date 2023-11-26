@@ -27,7 +27,7 @@ function PriceRange() {
         const {minPriceParam , maxPriceParam  } = useGetParams()
         setRange([ +minPriceParam , +maxPriceParam])
     }, [location.search]);
-    const handleChanges = (event: any, newValue: number | number[] ) => {
+    const handleChanges = (_event: any, newValue: number | number[] ) => {
         setRange(newValue as number[]);
     };
     function handleClickBtn () {
