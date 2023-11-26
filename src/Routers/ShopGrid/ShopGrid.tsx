@@ -4,9 +4,6 @@ import Filter from "../../Pages/ShopGridPage/Filter/Filter.tsx";
 import Grid from "../../Pages/ShopGridPage/Grid/Grid.tsx";
 
 function ShopGrid() {
-
-
-    // const [categoriesItems, setCategoriesItems] = useState([]);
     return (
         <>
             <header className={style.header}>
@@ -27,8 +24,6 @@ function ShopGrid() {
                 </div>
 
             </div>
-
-
         </>
     )
 }
