@@ -1,15 +1,15 @@
 import React, {useCallback, useEffect, useState} from "react";
-import { useLocation } from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import style from "./Grid.module.scss";
-import { ICategory } from "../../../types.ts";
+import {ICategory} from "../../../types.ts";
 import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
-import { getAllItems } from "../../../ApiRequests/Items/Items.ts";
-import { CustomSearch } from "../../../Utility/CustomSearch/CustomSearch.tsx";
-import { getSingleCategory } from "../../../ApiRequests/Items/getSingleCategory.ts";
-import { useGetParams } from "../../../hooks/params/getAllParams.ts";
-import { NotFound } from "../../../Utility/NotFound/NotFound.tsx";
-import { CustomPagination } from "../../../Utility/Pagination/CustomPagination.tsx";
-import { SkeletonSmallCall } from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
+import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
+import {CustomSearch} from "../../../Utility/CustomSearch/CustomSearch.tsx";
+import {getSingleCategory} from "../../../ApiRequests/Items/getSingleCategory.ts";
+import {useGetParams} from "../../../hooks/params/getAllParams.ts";
+import {NotFound} from "../../../Utility/NotFound/NotFound.tsx";
+import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
+import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import {useCheckByPrice} from "./hooks/useCheckByPrice.ts";
 
 const ITEMS_ON_SCREEN = 24;
@@ -22,7 +22,7 @@ function Grid() {
     const [isFound, setFoundItem] = useState(true);
     const [page, setPage] = useState<number>(1);
     const [currentProducts, setCurrentProducts] = useState<ICategory[]>([]);
-    const { categoryParam, maxPriceParam, minPriceParam } = useGetParams();
+    const {categoryParam, maxPriceParam, minPriceParam} = useGetParams();
 
     const indexOfLastCourse = page * ITEMS_ON_SCREEN;
     const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
@@ -30,7 +30,7 @@ function Grid() {
     // Functions
     const fetchData = useCallback(async () => {
         try {
-            const { data } = categoryParam ? await getSingleCategory(categoryParam) : await getAllItems();
+            const {data} = categoryParam ? await getSingleCategory(categoryParam) : await getAllItems();
             setItems(data?.categories || []);
         } catch (error) {
             console.error(error);
@@ -64,14 +64,6 @@ function Grid() {
             if (res.status === "error") return;
             if (minPriceParam && maxPriceParam) {
                 const priceFiltered = useCheckByPrice(res.foundProduct)
-                //     .filter((item: any) => {
-                //     if (maxPriceParam && minPriceParam) {
-                //         return (
-                //             item.product.price <= maxPriceParam &&
-                //             item.product.price >= minPriceParam
-                //         );
-                //     }
-                // })
                 if (priceFiltered.length === 0) {
                     setFoundItem(false);
                 } else {
@@ -95,25 +87,34 @@ function Grid() {
 
     useEffect(() => {
         if (items) {
-            setFound(items);
+            const priceFiltered = useCheckByPrice(items)
+            if (priceFiltered.length === 0) {
+                setFoundItem(true);
+                setFound(items)
+            } else {
+                setFoundItem(true);
+                setFound(priceFiltered);
+            }
         }
     }, [items]);
 
 
     useEffect(() => {
         // Filter by INPUT VALUE + CATEGORY + PRICE
-        if (!valueInput || !categoryParam) return;
-        const foundItem: ICategory[] = items.filter((item: ICategory) =>
+        if (!valueInput) return; // * category Param
+        const foundItem: ICategory[] = foundArrays.filter((item: ICategory) =>
             item.brand.toLowerCase().includes(valueInput.toLowerCase())
         );
 
-        const checkByCategory: ICategory[] = foundItem.filter((item: ICategory) =>
-            item.categoryOfProduct.includes(categoryParam)
-        );
-        const checkByPrice: ICategory[] = useCheckByPrice( checkByCategory )
-        console.log(checkByPrice)
-
-        if (minPriceParam && maxPriceParam) {
+        const checkByCategory: ICategory[] = foundItem.filter((item: ICategory) => {
+            if (categoryParam) {
+                return item.categoryOfProduct.includes(categoryParam);
+            } else {
+                return []
+            }
+        });
+        const checkByPrice: ICategory[] = useCheckByPrice(checkByCategory)
+        if (minPriceParam) {
             if (checkByPrice.length === 0) {
                 setFoundItem(false);
             } else {
@@ -121,13 +122,8 @@ function Grid() {
                 setFound(checkByPrice);
             }
         } else {
-            setFoundItem(checkByCategory && checkByCategory.length > 0);
-            if (checkByPrice.length > 0 ) {
-                setFound(checkByPrice);
-            } else {
-                setFound(foundItem)
-            }
-
+            setFoundItem(foundItem && foundItem.length > 0);
+            setFound(checkByCategory)
         }
     }, [valueInput]);
 
@@ -138,7 +134,7 @@ function Grid() {
                 callback={setValueInput}
             />
             {!isFound ? (
-                <NotFound />
+                <NotFound/>
             ) : (
                 <div className={style.items}>
                     {currentProducts.length > 0 ? (
