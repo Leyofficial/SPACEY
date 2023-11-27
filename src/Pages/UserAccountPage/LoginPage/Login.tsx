@@ -1,11 +1,12 @@
 import style from './Login.module.scss'
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
-import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
+import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast";
 import CustomTab from "../../../Utility/CustomTab/CustomTab.tsx";
 import {tabArray} from "../tabArray.ts";
 import {BsArrowRightShort} from "react-icons/bs";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
+import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 
 interface MyForm {
     email: string,
@@ -14,14 +15,10 @@ interface MyForm {
 
 function Login() {
     const navigate = useNavigate()
-    const {register, handleSubmit, formState: {errors}} = useForm<MyForm>({
-        defaultValues: {
-            email: '',
-            password: '',
-        },
-    })
+    const defaultValues  = ['email' , 'password'];
+   const {register , handleSubmit , errors} = useFormRegister(defaultValues);
 
-    const submit: SubmitHandler<MyForm> = data => {
+    const submit:  SubmitHandler<MyForm | any> = data  => {
         toast.success('Success !')
         console.log(data)
             navigate('/')
@@ -59,9 +56,10 @@ function Login() {
                             eye={true}
                             register={register}
                         />
+                        <NavLink to={'/user-account/login/forget-password'} className={style.forgetPassword}>Forget Password</NavLink>
                     </div>
-                    <button type="submit" className={style.button}>
-                        <p className={style.textBtn}>Login</p>
+                    <button type="submit" className={'button'}>
+                        <p className={'textBtn'}>Login</p>
                         <BsArrowRightShort color={'white'} size={30}/>
                     </button>
                 </form>

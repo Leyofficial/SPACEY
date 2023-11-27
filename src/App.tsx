@@ -12,6 +12,7 @@ import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment
 import UserAccount from "./Routers/UserAccount/UserAccount.tsx";
 import Login from "./Pages/UserAccountPage/LoginPage/Login.tsx";
 import SignUp from "./Pages/UserAccountPage/SignUpPage/SignUp.tsx";
+import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPassword.tsx";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'login'} element={<Login/>}/>
                         <Route path={'sign-up'} element={<SignUp/>}/>
+                        <Route path={'login/forget-password'} element={<ForgetPassword/>}/>
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>

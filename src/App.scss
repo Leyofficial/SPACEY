@@ -32,3 +32,28 @@ img {
 
   border-bottom: 2px solid #FA8232;
 }
+.button {
+  width: 100%;
+  display: flex;
+  gap : 8px;
+  justify-content: center;
+  border-radius: 2px;
+  color: white;
+  cursor: pointer;
+  align-items: center;
+  background: var(--primary-500, #FA8232);
+  border: none;
+  margin-top: 24px;
+}
+.textBtn {
+  color: var(--gray-00, #FFF);
+
+  /* Heading/07 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px; /* 342.857% */
+  letter-spacing: 0.168px;
+  text-transform: uppercase;
+}

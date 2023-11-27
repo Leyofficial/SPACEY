@@ -1,31 +1,18 @@
 .emailInput {
   margin-bottom: 16px;
 }
-.button {
-  width: 100%;
-  display: flex;
-  gap : 8px;
-  justify-content: center;
-  border-radius: 2px;
-  color: white;
-  cursor: pointer;
-  align-items: center;
-  background: var(--primary-500, #FA8232);
-  border: none;
-  margin-top: 24px;
-}
-.textBtn {
-  color: var(--gray-00, #FFF);
-
-  /* Heading/07 */
-  font-family: Public Sans sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 48px; /* 342.857% */
-  letter-spacing: 0.168px;
-  text-transform: uppercase;
-}
 .tabs {
   margin-bottom: 20px;
+}
+.forgetPassword {
+  cursor: pointer;
+  top: 2px;
+  right: 0;
+  position: absolute;
+  font-size: 14px;
+  color: var(--secondary-500, #2DA5F3);
+}
+.passwordInput {
+
+  position: relative;
 }

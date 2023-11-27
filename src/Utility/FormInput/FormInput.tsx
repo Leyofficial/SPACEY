@@ -13,12 +13,13 @@ interface IFormInput {
     register : any,
 
     // custom
+    numCharacters? : number,
     placeHolder?: string;
     eye?: boolean;
 }
 
 export function FormInput(props: IFormInput) {
-    const {label, register , name , errors ,  placeHolder,  eye, type = 'text'} = props;
+    const {label, register , numCharacters = 8 , name , errors ,  placeHolder,  eye, type = 'text'} = props;
     const [eyeOpen , setEyeOpen ] =  useState(false);
     return (
         <div className={style.block}>
@@ -28,8 +29,8 @@ export function FormInput(props: IFormInput) {
             <div className={style.inputBlock}>
                 <input
                     {...register(name , {required : `${label} is required` ,  minLength : {
-                            value : 5,
-                            message : 'The input field must be more than 5 characters'
+                            value : numCharacters,
+                            message : `The input field must be more than ${numCharacters} characters`
                         }})}
                     className={`${style.input} ${errors[name] ? style.invalidInput : ''  } `}
                     placeholder={placeHolder}
