@@ -9,6 +9,7 @@ import WishList from "./Pages/WishList/WishList.tsx";
 import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
 import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
 import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment.tsx";
+import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 
 function App() {
     return (
@@ -30,6 +31,7 @@ function App() {
                     <Route path={'/wish'} element={<WishList/>}></Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
+                    <Route path={'/about'} element={<AboutUs/>}></Route>
                 </Route>
             </Routes>
         </>

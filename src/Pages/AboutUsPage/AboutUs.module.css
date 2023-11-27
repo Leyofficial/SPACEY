@@ -1,0 +1,155 @@
+.container .main {
+  max-width: 1400px;
+  margin: 50px auto;
+}
+.container .main .introduction {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  padding-bottom: 50px;
+}
+.container .main .introduction .textWrapper {
+  max-width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+.container .main .introduction .textWrapper .tag {
+  border-radius: 2px;
+  background: var(--secondary-500, #2DA5F3);
+  width: max-content;
+  font-size: 13px;
+  padding: 5px 15px;
+  color: white;
+}
+.container .main .introduction .textWrapper h1 {
+  color: var(--gray-900, #191C1F);
+  font-size: 40px;
+  width: 100%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 0.7px;
+}
+.container .main .introduction .textWrapper .description {
+  color: var(--gray-700, #475156);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.container .main .introduction .textWrapper ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container .main .introduction .textWrapper ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.container .main .introduction .textWrapper ul li svg {
+  color: #0ca620;
+  font-size: 20px;
+}
+.container .main .introduction .imageWrapper img {
+  border-radius: 3px;
+  max-width: 500px;
+}
+.container .main .team {
+  margin-top: 70px;
+}
+.container .main .team h1 {
+  color: var(--gray-900, #191C1F);
+  font-size: 32px;
+  width: 100%;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 0.7px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.container .main .team .wrapperMembers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.container .main .team .wrapperMembers .wrapperMember {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  border: 1px solid rgba(128, 128, 128, 0.22);
+  border-radius: 3px;
+  gap: 15px;
+}
+.container .main .team .wrapperMembers .wrapperMember .infoMember p {
+  color: var(--gray-700, #475156);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.container .main .team .wrapperMembers .wrapperMember .infoMember h3 {
+  width: 170px;
+}
+
+.movie {
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 50vh;
+  background-position: bottom;
+  background-size: cover;
+  margin: 50px 0;
+  background-color: rgba(25, 28, 31, 0.7);
+  background-blend-mode: multiply;
+}
+.movie .movieInfo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 70%;
+  gap: 10px;
+}
+.movie .movieInfo h3 {
+  max-width: 300px;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+  color: white;
+}
+.movie .movieInfo p {
+  max-width: 400px;
+  color: var(--gray-900, #e0dcdc);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+.movie .play {
+  background: #FA8232;
+  width: max-content;
+  padding: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.movie .play svg {
+  font-size: 20px;
+  color: white;
+}
+.movie .play:hover {
+  transform: scale(1.1);
+}
+
+/*# sourceMappingURL=AboutUs.module.css.map */
