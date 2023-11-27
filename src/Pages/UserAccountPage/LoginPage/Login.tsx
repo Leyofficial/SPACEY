@@ -1,5 +1,3 @@
-// Login.tsx
-
 import style from './Login.module.scss'
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
@@ -33,40 +31,42 @@ function Login() {
     }
 
     return (
-        <div className={style.block}>
-            <Toaster
-                position="top-right"
-                reverseOrder={false}
-            />
-            <div className={style.tabs}>
-                <CustomTab array={[...tabArray]}/>
+        <>
+            <div className={style.block}>
+                <Toaster
+                    position="top-right"
+                    reverseOrder={false}
+                />
+                <div className={style.tabs}>
+                    <CustomTab array={[...tabArray]}/>
+                </div>
+                <form onSubmit={handleSubmit(submit, error)}>
+                    <div className={style.emailInput}>
+                        <FormInput
+                            errors={errors}
+                            name={'email'}
+                            label={'Email Address'}
+                            type={'email'}
+                            register={register}
+                        />
+                    </div>
+                    <div className={style.passwordInput}>
+                        <FormInput
+                            errors={errors}
+                            name={'password'}
+                            label={'Password'}
+                            type={'password'}
+                            eye={true}
+                            register={register}
+                        />
+                    </div>
+                    <button type="submit" className={style.button}>
+                        <p className={style.textBtn}>Login</p>
+                        <BsArrowRightShort color={'white'} size={30}/>
+                    </button>
+                </form>
             </div>
-            <form onSubmit={handleSubmit(submit, error)}>
-                <div className={style.emailInput}>
-                    <FormInput
-                        errors={errors}
-                        name={'email'}
-                        label={'Email Address'}
-                        type={'email'}
-                        register={register}
-                    />
-                </div>
-                <div className={style.passwordInput}>
-                    <FormInput
-                        errors={errors}
-                        name={'password'}
-                        label={'Password'}
-                        type={'password'}
-                        eye={true}
-                        register={register}
-                    />
-                </div>
-                <button type="submit" className={style.button}>
-                    <p className={style.textBtn}>Login</p>
-                    <BsArrowRightShort color={'white'} size={30}/>
-                </button>
-            </form>
-        </div>
+        </>
     );
 }
 
