@@ -1,6 +1,7 @@
 import style from './UserAccount.module.scss'
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import {Outlet} from "react-router-dom";
+import Footer from "../../Components/Footer/Footer.tsx";
 
 function UserAccount() {
     return (
@@ -16,7 +17,9 @@ function UserAccount() {
                     <div className={style.blockWrapper}>
                         <Outlet/>
                     </div>
-
+                </div>
+                <div className={style.footer}>
+                    <Footer/>
                 </div>
         </>
     )
