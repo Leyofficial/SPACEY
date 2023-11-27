@@ -14,6 +14,9 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   font-weight: normal;
 }
 
+a {
+  text-decoration: none;
+}
 ol, ul {
   list-style: none;
 }
@@ -21,4 +24,11 @@ ol, ul {
 img {
   //max-width: 100%;
   height: auto;
+}
+
+.activeLink {
+  color: black !important;
+  background: var(--gray-00, #FFF);
+
+  border-bottom: 2px solid #FA8232;
 }

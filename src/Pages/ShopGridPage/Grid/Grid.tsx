@@ -12,6 +12,15 @@ import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import {useCheckByPrice} from "./hooks/useCheckByPrice.ts";
 
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+
 const ITEMS_ON_SCREEN = 24;
 
 function Grid() {

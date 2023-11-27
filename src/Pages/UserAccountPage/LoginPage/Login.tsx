@@ -4,24 +4,31 @@ import style from './Login.module.scss'
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {SubmitErrorHandler, SubmitHandler, useForm} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast";
+import CustomTab from "../../../Utility/CustomTab/CustomTab.tsx";
+import {tabArray} from "../tabArray.ts";
+import {BsArrowRightShort} from "react-icons/bs";
+import {useNavigate} from "react-router-dom";
 
 interface MyForm {
-    email : string,
-    password : string
+    email: string,
+    password: string
 }
+
 function Login() {
-    const {register, handleSubmit , formState : {errors}} = useForm<MyForm>({
+    const navigate = useNavigate()
+    const {register, handleSubmit, formState: {errors}} = useForm<MyForm>({
         defaultValues: {
-            email : '',
-            password : '',
+            email: '',
+            password: '',
         },
     })
 
     const submit: SubmitHandler<MyForm> = data => {
         toast.success('Success !')
         console.log(data)
+            navigate('/')
     }
-    const error : SubmitErrorHandler<MyForm> = () => {
+    const error: SubmitErrorHandler<MyForm> = () => {
         toast.error("All inputs required.")
     }
 
@@ -31,7 +38,10 @@ function Login() {
                 position="top-right"
                 reverseOrder={false}
             />
-            <form onSubmit={handleSubmit(submit , error)}>
+            <div className={style.tabs}>
+                <CustomTab array={[...tabArray]}/>
+            </div>
+            <form onSubmit={handleSubmit(submit, error)}>
                 <div className={style.emailInput}>
                     <FormInput
                         errors={errors}
@@ -52,7 +62,8 @@ function Login() {
                     />
                 </div>
                 <button type="submit" className={style.button}>
-                    Submit
+                    <p className={style.textBtn}>Login</p>
+                    <BsArrowRightShort color={'white'} size={30}/>
                 </button>
             </form>
         </div>
