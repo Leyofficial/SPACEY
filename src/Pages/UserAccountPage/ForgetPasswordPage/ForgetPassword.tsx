@@ -63,7 +63,7 @@ function ForgetPassword() {
                 </p>
                 <p className={style.notArrive}>If the email did not arrive, check your email and try again</p>
                 <div className={style.btn}>
-                    <CustomBtn arrowLeft={true} path={'/user-account/login/forget-password'} text={'Try again'}/>
+                    <CustomBtn arrowLeft={true} callback={() => setPending(false)} text={'Try again'}/>
                 </div>
             </div>}
 
