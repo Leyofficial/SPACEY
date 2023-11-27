@@ -10,6 +10,7 @@ import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
 import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
 import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment.tsx";
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
+import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
 
 function App() {
     return (
@@ -27,7 +28,7 @@ function App() {
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
-                    <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
+                    <Route path={'help'} element={<HelpPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
