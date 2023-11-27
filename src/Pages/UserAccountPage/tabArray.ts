@@ -1,3 +1,3 @@
-export const tabArray : string = [
+export const tabArray : string[] = [
      'Login' , 'Sign-up'
 ]
