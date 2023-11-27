@@ -13,8 +13,14 @@ import member8 from '../../assets/img/team/image 325.png'
 import bgMovie from '../../assets/background/bgMovie.jpg'
 import {FaPlay} from "react-icons/fa";
 import Subscribe from "../../Components/Footer/Subscribe/Subscribe.tsx";
+import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
+
+import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
+import Footer from "../../Components/Footer/Footer.tsx";
 
 const AboutUs = () => {
+    const {data} = UseCustomQuery("https://spacey-server.vercel.app/api");
+
 
     const members = [{
         avatar: member1,
@@ -114,8 +120,13 @@ const AboutUs = () => {
                 </div>
 
             </section>
+            <section className={style.productsWrapper}>
+                <StatusProducts items={data?.categories}></StatusProducts>
+            </section>
+
             <footer>
                 <Subscribe></Subscribe>
+                <Footer/>
             </footer>
         </article>
     );

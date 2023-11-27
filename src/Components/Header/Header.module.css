@@ -26,13 +26,15 @@
 }
 
 .titleBlock {
+  transition: 0.3s;
+  text-decoration: none;
   gap: 10px;
   align-items: center;
   display: flex;
-}
-.titleBlock a {
-  text-decoration: none;
   color: white;
+}
+.titleBlock:hover {
+  transform: scale(1.05);
 }
 
 .nav {

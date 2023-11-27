@@ -29,7 +29,7 @@ const Footer = () => {
                     <div className={style.topCategory}>
                         <FooterItems items={filteredData} title={'TOP CATEGORY'}></FooterItems>
                     </div>
-                    <div>
+                  <div>
                         <FooterItems items={quickLinks} title={'QUICK LINKS'}></FooterItems>
                     </div>
                     <div className={style.tags}>

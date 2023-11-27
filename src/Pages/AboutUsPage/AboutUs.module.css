@@ -152,4 +152,9 @@
   transform: scale(1.1);
 }
 
+.productsWrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 /*# sourceMappingURL=AboutUs.module.css.map */

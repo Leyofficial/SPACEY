@@ -22,7 +22,7 @@ function MainPage() {
     const [wholeDate , setWhole] = useState([])
 
     useEffect(() => {
-        const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
+        const filteredSale = data?.categories?.filter((item: IBigDeal) => item.product.sale);
         setWhole(data?.categories)
         if (filteredSale) {
             setFiltered(shuffleArray(filteredSale).slice(0, 8))
