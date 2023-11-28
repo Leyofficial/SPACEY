@@ -3,6 +3,8 @@ import {IoSearch} from "react-icons/io5";
 import help from '../../assets/img/help.png'
 import {helpItems} from "./HelpItemsList.tsx";
 import AssistItem from "./AssistItem/AssistItem.tsx";
+import PopularQuestions from "./PopularQuestion/PopularQuestion.tsx";
+import ContactUs from "./Contact/ContactUs.tsx";
 
 const HelpPage = () => {
     return (
@@ -28,9 +30,18 @@ const HelpPage = () => {
             <section className={style.assistWrapper}>
                 <h1>What can we assist you with today?</h1>
                 <div className={style.assistItems}>
-                    {helpItems().map((item,index) => <AssistItem key={index} item={item}></AssistItem>)}
+                    {helpItems().map((item, index) => <AssistItem key={index} item={item}></AssistItem>)}
                 </div>
 
+            </section>
+
+            <section className={style.questionsWrapper}>
+                <h2>Popular Topics</h2>
+
+                <PopularQuestions></PopularQuestions>
+            </section>
+            <section>
+                <ContactUs></ContactUs>
             </section>
         </main>
     );

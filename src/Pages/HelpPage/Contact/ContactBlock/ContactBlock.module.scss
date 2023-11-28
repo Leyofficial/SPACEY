@@ -1,0 +1,25 @@
+.block {
+  background: white;
+  padding: 20px;
+  border-radius: 3px;
+
+  .iconWrapper {
+    width: max-content;
+    padding: 20px;
+    border-radius: 3px;
+    svg {
+      font-size: 20px;
+
+    }
+  }
+
+  .blueIcon {
+    background: rgba(45, 165, 243, 0.12);
+    color: #2DA5F3;
+  }
+
+  .greenIcon {
+    background: rgba(12, 166, 32, 0.14);
+    color: #0ca620;
+  }
+}

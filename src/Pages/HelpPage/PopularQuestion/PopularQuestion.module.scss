@@ -1,0 +1,28 @@
+.container {
+  width: 100%;
+  margin-top: 50px;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+    max-width: 90%;
+    margin: 0 auto;
+
+    li {
+      width: 27%;
+      list-style: initial;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        color: #FA8232;
+      }
+    }
+  }
+}

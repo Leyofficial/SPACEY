@@ -78,5 +78,20 @@
   margin: 0 auto;
   gap: 20px;
 }
+.container .questionsWrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 100px auto;
+  border-top: 1px solid rgba(128, 128, 128, 0.27);
+  padding-top: 50px;
+}
+.container .questionsWrapper h2 {
+  text-align: center;
+  color: var(--gray-900, #191C1F);
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
 
 /*# sourceMappingURL=HelpPage.module.css.map */

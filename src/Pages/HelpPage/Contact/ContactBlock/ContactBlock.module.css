@@ -1,0 +1,23 @@
+.block {
+  background: white;
+  padding: 20px;
+  border-radius: 3px;
+}
+.block .iconWrapper {
+  width: max-content;
+  padding: 20px;
+  border-radius: 3px;
+}
+.block .iconWrapper svg {
+  font-size: 20px;
+}
+.block .blueIcon {
+  background: rgba(45, 165, 243, 0.12);
+  color: #2DA5F3;
+}
+.block .greenIcon {
+  background: rgba(12, 166, 32, 0.14);
+  color: #0ca620;
+}
+
+/*# sourceMappingURL=ContactBlock.module.css.map */
