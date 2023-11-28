@@ -14,7 +14,7 @@ interface MyForm {
 }
 
 function ForgetPassword() {
-    const [isPending, setPending] = useState<boolean>(false);
+    const [isPendingConfirm, setPending] = useState<boolean>(false);
     const [currentEmail , setEmail] = useState('')
     const defaultValues = ['email'];
     const {register, handleSubmit, errors} = useFormRegister(defaultValues);
@@ -30,7 +30,7 @@ function ForgetPassword() {
     }
     return (
         <div className={style.block}>
-            {!isPending ? <>  <Toaster
+            {!isPendingConfirm ? <>  <Toaster
                 position="top-right"
                 reverseOrder={false}
             />

@@ -7,6 +7,7 @@ import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
+import axios from "axios";
 
 interface MyForm {
     name: string,
@@ -18,17 +19,32 @@ interface MyForm {
 function SignUp() {
     const navigate = useNavigate()
     const defaultValues  = ['name' , 'email' , 'password' , 'repeatPassword'];
-    const {register , handleSubmit , errors} = useFormRegister(defaultValues);
+    const {register , handleSubmit , reset , errors} = useFormRegister(defaultValues);
 
-
+    // https://spacey-server.vercel.app/auth
     const submit: SubmitHandler<MyForm | any> = data => {
         if (data.password !== data.repeatPassword) {
             toast.error('Password and confirm password should be same');
             return
         }
-        toast.success('Success !')
-        console.log(data)
-        navigate('/')
+        axios
+            .post('https://spacey-server.vercel.app/auth' , {
+                name : data.name,
+                email : data.email,
+                password : data.password,
+                passwordConfirm : data.repeatPassword,
+            })
+            .then((response) => {
+                localStorage.setItem('token' , response.data.token);
+                toast.success('Success');
+                navigate('/')
+            })
+            .catch((error) => {
+                console.log(error)
+                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
+                toast.error(errorMessage);
+                reset()
+            });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
         toast.error("All inputs required.")
