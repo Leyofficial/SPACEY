@@ -5,20 +5,33 @@ import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import {useState} from "react";
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {BsArrowRightShort} from "react-icons/bs";
+import axios from "axios";
 
 interface MyForm {
     password : string,
     confirmPassword : string,
 }
-function ResetPassword() {
+function ResetPassword({callback} : any) {
     const [pending, setPending] = useState<boolean>(false)
     const defaultValues = ['password , confirmPassword'];
-    const {register, handleSubmit, errors} = useFormRegister(defaultValues);
+    const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm | any> = data => {
         if (data.password !== data.confirmPassword) {
             toast.error('Password and confirm password should be same');
             return
         }
+        // https://spacey-server.vercel.app/auth/resetPassword email
+
+        axios
+            .post('https://spacey-server.vercel.app/auth/resetPassword' , {
+                email : data.email
+            })
+
+            .catch((error) => {
+                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
+                toast.error(errorMessage);
+                reset()
+            });
         toast.success('Success !')
         console.log(data)
         setPending(true)

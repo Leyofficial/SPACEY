@@ -16,7 +16,7 @@ interface MyForm {
     repeatPassword: string
 }
 
-function SignUp() {
+function SignUp({callback} : any) {
     const navigate = useNavigate()
     const defaultValues  = ['name' , 'email' , 'password' , 'repeatPassword'];
     const {register , handleSubmit , reset , errors} = useFormRegister(defaultValues);
@@ -37,10 +37,10 @@ function SignUp() {
             .then((response) => {
                 localStorage.setItem('token' , response.data.token);
                 toast.success('Success');
-                navigate('/')
+                callback(true);
+                navigate('/');
             })
             .catch((error) => {
-                console.log(error)
                 const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
                 toast.error(errorMessage);
                 reset()

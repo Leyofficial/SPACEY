@@ -7,23 +7,35 @@ import {BsArrowRightShort} from "react-icons/bs";
 import AllreadyQuestion from "../utitlity/AllreadyQuestion.tsx";
 import {useState} from "react";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
+import axios from "axios";
 
 
 interface MyForm {
     email: string
 }
 
-function ForgetPassword() {
+function ForgetPassword({callback} : any) {
     const [isPendingConfirm, setPending] = useState<boolean>(false);
     const [currentEmail , setEmail] = useState('')
     const defaultValues = ['email'];
-    const {register, handleSubmit, errors} = useFormRegister(defaultValues);
+    const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
 
     const submit: SubmitHandler<MyForm | any> = data => {
-        toast.success('Success !')
-        console.log(data)
         setEmail(data.email);
         setPending(true)
+        axios
+            .post('https://spacey-server.vercel.app/auth/resetPassword' , {
+                email : data.email
+            })
+            .then(() => {//
+                callback(true)
+            })
+
+            .catch((error) => {
+                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
+                toast.error(errorMessage);
+                reset()
+            });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
         toast.error("All inputs required.")
@@ -37,7 +49,7 @@ function ForgetPassword() {
                 <div className={style.textBlock}>
                     <h2 className={style.title}>Forget Password</h2>
                     <p className={style.subtitle}>
-                        Enter the email address or mobile phone number associated with your Clicon account.
+                        Enter the email address associated with your Spacey account.
                     </p>
                 </div>
                 <form onSubmit={handleSubmit(submit, error)}>

@@ -5,7 +5,7 @@ import toast, {Toaster} from "react-hot-toast";
 import CustomTab from "../../../Utility/CustomTab/CustomTab.tsx";
 import {tabArray} from "../tabArray.ts";
 import {BsArrowRightShort} from "react-icons/bs";
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import axios from "axios";
 
@@ -18,7 +18,6 @@ function Login() {
     const defaultValues  = ['email' , 'password'];
    const {register , handleSubmit , errors , reset} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm | any> = (dataFormInputs) => {
-        console.log(dataFormInputs)
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
