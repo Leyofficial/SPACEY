@@ -13,6 +13,8 @@ import UserAccount from "./Routers/UserAccount/UserAccount.tsx";
 import Login from "./Pages/UserAccountPage/LoginPage/Login.tsx";
 import SignUp from "./Pages/UserAccountPage/SignUpPage/SignUp.tsx";
 import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPassword.tsx";
+import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
+import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
 
 function App() {
     return (
@@ -26,6 +28,9 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
+                        <Route element={<PrivateRoute to={'login'} isAuth={true}/>}>
+                            <Route path={'login/reset-password'} element={<ResetPassword/>}/>
+                        </Route>
                         <Route path={'login'} element={<Login/>}/>
                         <Route path={'sign-up'} element={<SignUp/>}/>
                         <Route path={'login/forget-password'} element={<ForgetPassword/>}/>
