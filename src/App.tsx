@@ -18,8 +18,8 @@ import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPasswo
 import {useState} from "react";
 
 function App() {
-    const [getPermision , setPermisionReset] = useState(true);
-    const [permisionFromLogin , setPermisionLogin] = useState(false);
+    const [getPermission , setPermissionReset] = useState(true);
+    const [permissionFromLogin , setPermissionLogin] = useState(false);
     return (
         <>
             <Routes>
@@ -31,15 +31,15 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
-                        <Route element={<PrivateRoute to={'login'} isAuth={getPermision}/>}>
+                        <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
                             <Route path={'login/reset-password'} element={<ResetPassword/>}/>
                         </Route>
                         <Route path={'login'} element={<Login/>}/>
-                        <Route element={<PrivateRoute to={'login'} isAuth={permisionFromLogin}/>}>
+                        <Route element={<PrivateRoute to={'login'} isAuth={permissionFromLogin}/>}>
                             {/*блок который нужно будет вводить числа с емайла */}
                         </Route>
-                        <Route path={'sign-up'} element={<SignUp callback={setPermisionLogin}/>}/>
-                        <Route path={'login/forget-password'} element={<ForgetPassword callback={setPermisionReset}/>}/>
+                        <Route path={'sign-up'} element={<SignUp callback={setPermissionLogin}/>}/>
+                        <Route path={'login/forget-password'} element={<ForgetPassword callback={setPermissionReset}/>}/>
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>
