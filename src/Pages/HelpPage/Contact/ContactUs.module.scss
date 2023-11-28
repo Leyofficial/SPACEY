@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 10px;
 
     .tag {
       border-radius: 2px;
@@ -22,15 +21,17 @@
       font-style: normal;
       font-weight: 600;
       line-height: 20px;
+      margin-bottom: 15px;
     }
 
     .title {
-      color: var(--gray-900, #191C1F);
       text-align: center;
-      font-size: 25px;
+      color: var(--gray-900, #191C1F);
+      font-size: 24px;
       font-style: normal;
       font-weight: 600;
-      line-height: 40px; /* 125% */
+      line-height: 32px;
+
     }
   }
 
@@ -40,6 +41,6 @@
   display: flex;
   justify-content: space-between;
   max-width: 50%;
-  margin: 0 auto;
+  margin: 25px  auto;
   gap: 30px;
 }

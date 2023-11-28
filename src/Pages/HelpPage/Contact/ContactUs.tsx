@@ -14,7 +14,7 @@ const ContactUs = () => {
     },
         {
             title: 'Chat with us',
-            icon: <IoChatboxEllipsesOutline />,
+            icon: <IoChatboxEllipsesOutline/>,
             description: "We are available online from 9:00 AM to 5:00 PM (GMT95:45) Talk with use now",
             subject: 'Support@clicon.com',
             btnTitle: "contact us",
@@ -25,12 +25,12 @@ const ContactUs = () => {
         <div className={style.container}>
             <div className={style.wrapperTitle}>
                 <p className={style.tag}>CONTACT US</p>
-                <h1 className={style.title}>Dont find your answer.</h1>
-                <h1 className={style.title}>Contact with us</h1>
-            </div>
 
+                    <h1 className={style.title}>Dont find your answer.</h1>
+                    <h1 className={style.title}>Contact with us</h1>
+            </div>
             <div className={style.blockWrapper}>
-                {blockItems.map((item,index) => <ContactBlock item={item} key={index}></ContactBlock>)}
+                {blockItems.map((item, index) => <ContactBlock item={item} key={index}></ContactBlock>)}
             </div>
         </div>
     );

@@ -1,5 +1,6 @@
 import style from './ContactBlock.module.scss';
 import {ReactNode} from "react";
+import {FaArrowRight} from "react-icons/fa";
 
 interface IContactBlockProps {
     item: {
@@ -18,11 +19,11 @@ const ContactBlock = ({item}: IContactBlockProps) => {
             <div className={`${style.iconWrapper} ${item.color === 'blue' ? style.blueIcon : style.greenIcon}`}>
                 {item.icon}
             </div>
-            <div>
+            <div className={style.infoWrapper}>
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
                 <h3>{item.subject}</h3>
-                <button className={`${style.btn} ${item.color === 'blue' ? style.blueBtn : style.greenBtn}`}>{item.btnTitle}</button>
+                <button className={`${style.btn} ${item.color === 'blue' ? style.blueBtn : style.greenBtn}`}>{item.btnTitle.toUpperCase()}<FaArrowRight /></button>
             </div>
         </div>
     );

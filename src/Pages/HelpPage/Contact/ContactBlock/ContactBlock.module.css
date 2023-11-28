@@ -2,14 +2,17 @@
   background: white;
   padding: 20px;
   border-radius: 3px;
+  display: flex;
+  gap: 15px;
 }
 .block .iconWrapper {
   width: max-content;
-  padding: 20px;
+  padding: 25px;
   border-radius: 3px;
+  height: max-content;
 }
 .block .iconWrapper svg {
-  font-size: 20px;
+  font-size: 25px;
 }
 .block .blueIcon {
   background: rgba(45, 165, 243, 0.12);
@@ -18,6 +21,53 @@
 .block .greenIcon {
   background: rgba(12, 166, 32, 0.14);
   color: #0ca620;
+}
+.block .infoWrapper h4 {
+  color: var(--gray-900, #191C1F);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.block .infoWrapper h3 {
+  color: var(--gray-900, #191C1F);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+  margin: 10px 0;
+}
+.block .infoWrapper p {
+  color: var(--gray-600, #5F6C72);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+}
+.block .infoWrapper button {
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  color: var(--gray-00, #FFF);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0.168px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.block .infoWrapper button:hover {
+  transform: scale(1.05);
+}
+.block .infoWrapper .blueBtn {
+  background: #2DA5F3;
+}
+.block .infoWrapper .greenBtn {
+  background: #0ca620;
 }
 
 /*# sourceMappingURL=ContactBlock.module.css.map */
