@@ -30,6 +30,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.18.0",
     "react-slick": "^0.29.0",
+    "react-spring": "^9.7.3",
     "react-swipeable-views": "^0.14.0",
     "react-toaster": "^0.0.3",
     "redux": "^4.2.1",

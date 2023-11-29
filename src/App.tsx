@@ -16,6 +16,7 @@ import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPas
 import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
 import {useState} from "react";
+import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 
 function App() {
     const [getPermission , setPermissionReset] = useState(true);
@@ -31,6 +32,7 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
+                        <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
                         <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
                             <Route path={'login/reset-password'} element={<ResetPassword/>}/>
                         </Route>
@@ -39,7 +41,7 @@ function App() {
                             {/*блок который нужно будет вводить числа с емайла */}
                         </Route>
                         <Route path={'sign-up'} element={<SignUp callback={setPermissionLogin}/>}/>
-                        <Route path={'login/forget-password'} element={<ForgetPassword callback={setPermissionReset}/>}/>
+                        <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'payment-grid'} element={<PaymentPage/>}></Route>
                     <Route path={'/wish'} element={<WishList/>}></Route>

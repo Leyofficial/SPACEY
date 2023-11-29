@@ -14,7 +14,7 @@ interface MyForm {
     email: string
 }
 
-function ForgetPassword({callback} : any) {
+function ForgetPassword() {
     const [isPendingConfirm, setPending] = useState<boolean>(false);
     const [currentEmail , setEmail] = useState('')
     const defaultValues = ['email'];
@@ -22,13 +22,12 @@ function ForgetPassword({callback} : any) {
 
     const submit: SubmitHandler<MyForm | any> = data => {
         setEmail(data.email);
-        setPending(true)
         axios
             .post('https://spacey-server.vercel.app/auth/resetPassword' , {
                 email : data.email
             })
             .then(() => {//
-                callback(true)
+                setPending(true)
             })
 
             .catch((error) => {
