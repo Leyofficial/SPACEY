@@ -22,6 +22,7 @@ function MainPage() {
     const [wholeDate , setWhole] = useState([])
 
     useEffect(() => {
+        if (!data) return;
         const filteredSale = data?.categories.filter((item: IBigDeal) => item.product.sale);
         setWhole(data?.categories)
         if (filteredSale) {
