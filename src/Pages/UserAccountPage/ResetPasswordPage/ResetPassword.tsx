@@ -11,7 +11,7 @@ interface MyForm {
     password : string,
     confirmPassword : string,
 }
-function ResetPassword({callback} : any) {
+function ResetPassword() {
     const [pending, setPending] = useState<boolean>(false)
     const defaultValues = ['password , confirmPassword'];
     const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
