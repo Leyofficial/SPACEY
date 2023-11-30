@@ -17,6 +17,7 @@ import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
 import {useState} from "react";
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
+import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 
 function App() {
     const [getPermission , setPermissionReset] = useState(true);
@@ -31,6 +32,7 @@ function App() {
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
+                    <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
                         <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
