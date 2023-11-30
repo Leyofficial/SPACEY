@@ -4,6 +4,7 @@ import { CircularProgress } from "@mui/material";
 import { DoneProgress } from "../../../Utility/CircularProgress/DoneProgress.tsx";
 import ErrorProgress from "../../../Utility/CircularProgress/ErrorProgress.tsx";
 import style from './ActiveTokenReset.module.scss';
+import axios from "axios";
 
 function ActiveTokenReset({ callback }: any) {
     const [isChecked, setChecked] = useState(false);
@@ -11,18 +12,17 @@ function ActiveTokenReset({ callback }: any) {
     const [isPending, setPending] = useState<boolean>(false);
     const navigate = useNavigate();
     const { token } = useParams();
-
+    const [tokenToResetPassword , setResetToken] = useState<string | null>(null);
     useEffect(() => {
-        const tokenLc = localStorage.getItem('token') || '';
-
+        if (!tokenToResetPassword) return;
         const handleSuccess = () => {
             setChecked(true);
-            setPending(false);
+            setPending(true);
             setStatus(true);
             setTimeout(() => {
                 callback(true);
                 navigate('/user-account/login/reset-password');
-            }, 500);
+            }, 2500);
         };
 
         const handleFailure = () => {
@@ -32,13 +32,23 @@ function ActiveTokenReset({ callback }: any) {
                 navigate('/');
             }, 2500);
         };
-
-        if (tokenLc === token) {
+        debugger
+        if (tokenToResetPassword === token) {
             handleSuccess();
         } else {
             handleFailure();
         }
-    }, [token]);
+    }, [tokenToResetPassword]);
+
+    useEffect(() => {
+        axios.get(`https://spacey-server.vercel.app/auth/find/${token}`).then((res) => {
+            if (res.status === 200) {
+                setResetToken(res.data.foundUser.randomNumberToUpdatePassword)
+            } else {
+                setResetToken('error')
+            }
+        })
+    }, []);
 
     return (
         <div className={style.block}>

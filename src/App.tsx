@@ -20,7 +20,7 @@ import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenRes
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 
 function App() {
-    const [getPermission , setPermissionReset] = useState(true);
+    const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
     return (
         <>
