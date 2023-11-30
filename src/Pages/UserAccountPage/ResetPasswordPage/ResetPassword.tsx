@@ -26,15 +26,17 @@ function ResetPassword() {
             .post('https://spacey-server.vercel.app/auth/resetPassword' , {
                 email : data.email
             })
-
+            .then(() => {
+                toast.success('Success !')
+                setPending(true)
+            })
             .catch((error) => {
                 const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
                 toast.error(errorMessage);
                 reset()
             });
-        toast.success('Success !')
-        console.log(data)
-        setPending(true)
+
+
     }
     const error: SubmitErrorHandler<MyForm> = () => {
         toast.error("All inputs required.")
