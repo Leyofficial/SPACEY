@@ -16,7 +16,7 @@ interface MyForm {
     confirmPassword: string,
 }
 
-function ResetPassword({callback} : ICallbackAccount) {
+function ResetPassword({callback}: ICallbackAccount) {
     const [pending, setPending] = useState<boolean>(false);
     const defaultValues = ['password , confirmPassword'];
     const location = useLocation();
@@ -24,7 +24,7 @@ function ResetPassword({callback} : ICallbackAccount) {
     const navigate = useNavigate();
     // Теперь переменная id содержит значение из URL
     const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
-    const submit: SubmitHandler<MyForm> = data => {
+    const submit: SubmitHandler<MyForm> = (data) => {
         if (data.password !== data.confirmPassword) {
             toast.error('Password and confirm password should be same');
             return
@@ -42,7 +42,7 @@ function ResetPassword({callback} : ICallbackAccount) {
                 reset()
                 setTimeout(() => {
                     navigate('/')
-                },2000)
+                }, 2000)
             })
             .catch((error) => {
                 const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
@@ -50,8 +50,8 @@ function ResetPassword({callback} : ICallbackAccount) {
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.")
-    }
+        toast.error("All inputs required.");
+    };
     return (
         <div className={style.block}>
             <Toaster

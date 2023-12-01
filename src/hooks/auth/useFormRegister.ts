@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 
 export function useFormRegister(array: string[]) {
-    const { register, handleSubmit , reset, formState: { errors } } = useForm({
+    const { register, handleSubmit , reset, formState: { errors } } = useForm<any>({
         defaultValues: {
             // Распаковываем значения массива в объект defaultValues
             ...array.reduce((acc, fieldName : string) => {
