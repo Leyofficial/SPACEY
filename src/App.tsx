@@ -36,7 +36,7 @@ function App() {
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
                         <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
-                            <Route path={'login/reset-password'} element={<ResetPassword/>}/>
+                            <Route path={'login/reset-password'} element={<ResetPassword callback={setPermissionReset}/>}/>
                         </Route>
                         <Route path={'login'} element={<Login/>}/>
                         <Route element={<PrivateRoute to={'login'} isAuth={permissionFromLogin}/>}>

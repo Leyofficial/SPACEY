@@ -17,14 +17,17 @@ interface MyForm {
 function Login() {
     const defaultValues  = ['email' , 'password'];
     const navigate = useNavigate()
-   const {register , handleSubmit , errors } = useFormRegister(defaultValues);
+   const {register , handleSubmit, reset , errors } = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm | any> = (dataFormInputs) => {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
+                reset();
                 localStorage.setItem('token' , response.data.token);
                 toast.success('Success');
-                navigate('/')
+                setTimeout(() => {
+                    navigate('/')
+                },1500)
             })
             .catch((error) => {
                 const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';

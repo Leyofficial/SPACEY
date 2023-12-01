@@ -15,7 +15,7 @@ interface MyForm {
     confirmPassword: string,
 }
 
-function ResetPassword() {
+function ResetPassword({callback} : any) {
     const [pending, setPending] = useState<boolean>(false);
     const defaultValues = ['password , confirmPassword'];
     const location = useLocation();
@@ -35,8 +35,9 @@ function ResetPassword() {
                 newPassword: data.confirmPassword
             })
             .then((res) => {
-                toast.success(res.data.message || 'Success!')
                 setPending(false)
+                toast.success(res.data.message || 'Success!')
+                callback(false)
                 reset()
                 setTimeout(() => {
                     navigate('/')
@@ -45,7 +46,6 @@ function ResetPassword() {
             .catch((error) => {
                 const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
                 toast.error(errorMessage);
-                reset()
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
