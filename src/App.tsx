@@ -18,6 +18,7 @@ import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPasswo
 import {useState} from "react";
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
+import TrackOrder from "./Pages/TrackOrderPage/TrackOrder.tsx";
 
 function App() {
     const [getPermission , setPermissionReset] = useState(false);
@@ -33,6 +34,7 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
+                    <Route path={'track-order'} element={<TrackOrder/>}/>
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
                         <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>

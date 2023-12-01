@@ -10,10 +10,8 @@ function UserAccount() {
     return (
         <>
                 <header className={style.header}>
-                    <div className={style.wrapper}>
-                        <div className={style.breadCrumb}>
-                            <BreadCrumb/>
-                        </div>
+                    <div className={style.breadCrumb}>
+                        <BreadCrumb/>
                     </div>
                 </header>
                 <div className={style.block}>

@@ -1,3 +1,11 @@
+.block {
+  background: var(--gray-50, #F2F4F5);
+}
+.wrapperBlock {
+  padding: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
 .home {
   display: flex;
   align-items: center;
