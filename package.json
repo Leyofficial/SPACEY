@@ -21,6 +21,7 @@
     "formik": "^2.4.5",
     "mongoose": "^8.0.0",
     "node-sass": "^9.0.0",
+    "query-string": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
