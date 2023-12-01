@@ -111,7 +111,7 @@ function Grid() {
     useEffect(() => {
         // Filter by INPUT VALUE + CATEGORY + PRICE
         if (!valueInput) return; // * category Param
-        const foundItem: ICategory[] = foundArrays.filter((item: ICategory) =>
+        const foundItem: ICategory[] = items.filter((item: ICategory) =>
             item.brand.toLowerCase().includes(valueInput.toLowerCase())
         );
 

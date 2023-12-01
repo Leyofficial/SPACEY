@@ -6,13 +6,9 @@ import Grid from "../../Pages/ShopGridPage/Grid/Grid.tsx";
 function ShopGrid() {
     return (
         <>
-            <header className={style.header}>
-                <div className={style.wrapper}>
-                    <div className={style.breadCrumb}>
-                        <BreadCrumb/>
-                    </div>
-                </div>
-            </header>
+            <div className={style.breadCrumb}>
+                <BreadCrumb/>
+            </div>
             <div className={style.block}>
                 <div className={style.blockWrapper}>
                     <main className={style.filters}>
