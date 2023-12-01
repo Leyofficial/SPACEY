@@ -9,13 +9,14 @@ import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 import queryString from 'query-string';
 import {CircularProgress} from "@mui/material";
+import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
 
 interface MyForm {
     password: string,
     confirmPassword: string,
 }
 
-function ResetPassword({callback} : any) {
+function ResetPassword({callback} : ICallbackAccount) {
     const [pending, setPending] = useState<boolean>(false);
     const defaultValues = ['password , confirmPassword'];
     const location = useLocation();
@@ -23,7 +24,7 @@ function ResetPassword({callback} : any) {
     const navigate = useNavigate();
     // Теперь переменная id содержит значение из URL
     const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
-    const submit: SubmitHandler<MyForm | any> = data => {
+    const submit: SubmitHandler<MyForm> = data => {
         if (data.password !== data.confirmPassword) {
             toast.error('Password and confirm password should be same');
             return

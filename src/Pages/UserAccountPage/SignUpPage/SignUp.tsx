@@ -8,6 +8,7 @@ import toast, {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import axios from "axios";
+import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
 
 interface MyForm {
     name: string,
@@ -16,13 +17,15 @@ interface MyForm {
     repeatPassword: string
 }
 
-function SignUp({callback} : any) {
+
+
+function SignUp({callback} : ICallbackAccount) {
     const navigate = useNavigate()
     const defaultValues  = ['name' , 'email' , 'password' , 'repeatPassword'];
     const {register , handleSubmit , reset , errors} = useFormRegister(defaultValues);
 
     // https://spacey-server.vercel.app/auth
-    const submit: SubmitHandler<MyForm | any> = data => {
+    const submit: SubmitHandler<MyForm> = data => {
         if (data.password !== data.repeatPassword) {
             toast.error('Password and confirm password should be same');
             return

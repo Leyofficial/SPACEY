@@ -4,7 +4,7 @@ import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
 import toast, {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
-import AllreadyQuestion from "../utitlity/AllreadyQuestion.tsx";
+import AlreadyQuestion from "../utitlity/AlreadyQuestion.tsx";
 import {useState} from "react";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import axios from "axios";
@@ -20,7 +20,7 @@ function ForgetPassword() {
     const defaultValues = ['email'];
     const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
 
-    const submit: SubmitHandler<MyForm | any> = data => {
+    const submit: SubmitHandler<MyForm> = data => {
         setEmail(data.email);
         axios
             .post('https://spacey-server.vercel.app/auth/resetPassword' , {
@@ -61,8 +61,8 @@ function ForgetPassword() {
                     </button>
                 </form>
                 <div className={style.questionsBlock}>
-                    <AllreadyQuestion question={'Already have account'} path={'/user-account/login'} todo={'Login'}/>
-                    <AllreadyQuestion path={'/user-account/sign-up'} question={'Don’t have account'} todo={'Sign up'}/>
+                    <AlreadyQuestion question={'Already have account'} path={'/user-account/login'} todo={'Login'}/>
+                    <AlreadyQuestion path={'/user-account/sign-up'} question={'Don’t have account'} todo={'Sign up'}/>
                 </div>
                 <div className={style.footer}>
                     You may contact <span>Customer Service</span> for help restoring access to your account.

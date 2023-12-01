@@ -5,8 +5,9 @@ import { DoneProgress } from "../../../Utility/CircularProgress/DoneProgress.tsx
 import ErrorProgress from "../../../Utility/CircularProgress/ErrorProgress.tsx";
 import style from './ActiveTokenReset.module.scss';
 import axios from "axios";
+import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
 
-function ActiveTokenReset({ callback }: any) {
+function ActiveTokenReset({ callback }: ICallbackAccount) {
     const [isChecked, setChecked] = useState(false);
     const [status, setStatus] = useState(false);
     const [isPending, setPending] = useState<boolean>(false);
@@ -27,6 +28,7 @@ function ActiveTokenReset({ callback }: any) {
             setPending(true);
             setChecked(true);
             setTimeout(() => {
+                callback(false)
                 navigate('/');
             }, 2500);
         };

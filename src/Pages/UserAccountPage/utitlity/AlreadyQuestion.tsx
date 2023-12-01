@@ -1,11 +1,11 @@
-import style from './Allready.module.scss'
+import style from './Already.module.scss'
 import {NavLink} from "react-router-dom";
-interface IAllready {
+interface IAlready {
     path : string,
     question : string,
     todo : string
 }
-function AllreadyQuestion({path , question , todo } : IAllready) {
+function AlreadyQuestion({path , question , todo } : IAlready) {
     return (
         <div className={style.block}>
             <p>{question}?</p>
@@ -13,4 +13,4 @@ function AllreadyQuestion({path , question , todo } : IAllready) {
         </div>
     )
 }
-export default AllreadyQuestion
+export default AlreadyQuestion

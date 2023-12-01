@@ -18,7 +18,7 @@ function Login() {
     const defaultValues  = ['email' , 'password'];
     const navigate = useNavigate()
    const {register , handleSubmit, reset , errors } = useFormRegister(defaultValues);
-    const submit: SubmitHandler<MyForm | any> = (dataFormInputs) => {
+    const submit: SubmitHandler<MyForm> = (dataFormInputs) => {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {

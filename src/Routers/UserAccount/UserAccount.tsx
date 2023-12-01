@@ -3,6 +3,9 @@ import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import {Outlet} from "react-router-dom";
 import Footer from "../../Components/Footer/Footer.tsx";
 
+export interface ICallbackAccount {
+    callback : ( a : boolean) => void
+}
 function UserAccount() {
     return (
         <>
