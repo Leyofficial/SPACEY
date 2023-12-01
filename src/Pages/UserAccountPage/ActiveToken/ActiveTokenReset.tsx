@@ -14,7 +14,6 @@ function ActiveTokenReset({ callback }: any) {
     const { token } = useParams();
     const [tokenToResetPassword , setResetToken] = useState<string | null | any>(null);
     useEffect(() => {
-        if (!tokenToResetPassword) return;
         const handleSuccess = () => {
             setChecked(true);
             setPending(true);
@@ -24,7 +23,6 @@ function ActiveTokenReset({ callback }: any) {
                 navigate(`/user-account/login/reset-password?id=${tokenToResetPassword._id}`);
             }, 2500);
         };
-
         const handleFailure = () => {
             setPending(true);
             setChecked(true);
@@ -32,6 +30,12 @@ function ActiveTokenReset({ callback }: any) {
                 navigate('/');
             }, 2500);
         };
+
+        if (!tokenToResetPassword){
+            handleFailure();
+            return
+        }
+
         if (tokenToResetPassword.randomNumberToUpdatePassword === token) {
             handleSuccess();
         } else {
@@ -41,10 +45,11 @@ function ActiveTokenReset({ callback }: any) {
 
     useEffect(() => {
         axios.get(`https://spacey-server.vercel.app/auth/find/${token}`).then((res) => {
-            if (res.status === 200) {
+            console.log(res)
+            if (res.status === 200 && res.data.foundUser) {
                 setResetToken(res.data.foundUser)
             } else {
-                setResetToken('error')
+                setResetToken(null)
             }
         })
     }, []);
@@ -53,13 +58,13 @@ function ActiveTokenReset({ callback }: any) {
         <div className={style.block}>
             {!isPending ? (
                 <CircularProgress />
-            ) : status ? (
-                <div className={style.doneBlock}>
-                    <DoneProgress isChecked={isChecked} />
-                </div>
             ) : (
                 <div className={style.doneBlock}>
-                    <ErrorProgress isChecked={isChecked} />
+                    {status ? (
+                        <DoneProgress isChecked={isChecked} />
+                    ) : (
+                        <ErrorProgress isChecked={isChecked} />
+                    )}
                 </div>
             )}
         </div>
