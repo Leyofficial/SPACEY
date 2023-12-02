@@ -15,14 +15,25 @@ import SignUp from "./Pages/UserAccountPage/SignUpPage/SignUp.tsx";
 import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPassword.tsx";
 import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 import TrackOrder from "./Pages/TrackOrderPage/TrackOrder.tsx";
+import {gapi} from "gapi-script";
 
 function App() {
+    const clientId = '982859489612-1o67pno0bhgh0dtvblloucbqbpjptlf5.apps.googleusercontent.com'
     const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
+    useEffect(() => {
+        function start() {
+            gapi.client.init({
+                clientId : clientId,
+                scope : '',
+            })
+        }
+        gapi.load('client:auth2' , start)
+    }, []);
     return (
         <>
             <Routes>
