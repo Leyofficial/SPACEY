@@ -1,5 +1,5 @@
 .block {
-  width: 50%;
+  width: 100%;
   padding: 44px;
   border-radius: 4px;
   background: var(--gray-50, #F2F4F5);
@@ -7,6 +7,7 @@
 .wrapperBlock {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
 }
 .textBlock {
@@ -26,14 +27,15 @@
 .description {
   width: 280px;
   height: 10rem;
+  margin-bottom: 100px;
   overflow: auto;
 }
 .imgBlock {
 
   img {
-    width: 312px !important;
-    height: 349px !important;
-    object-fit: contain !important;
+    max-width: 370px;
+    max-height: 300px;
+    object-fit: fill !important;
   }
 
 

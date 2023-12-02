@@ -16,7 +16,7 @@ function BigAdd({item,idItem}: IItem) {
                     <CustomBtn path={`/product/${idItem}`}/>
                 </div>
                 <div className={style.photoBlock}>
-                    {!image ?   <Skeleton  variant="text" width={360} height={'100%'}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}</div> </> }
+                    {!image ?   <Skeleton  variant="text" width={360} height={'100%'}></Skeleton> : <><img src={image ? image : ""} alt="photo"/><div className={style.price}>{item?.product.price}$</div> </> }
                 </div>
             </div>
             </>
