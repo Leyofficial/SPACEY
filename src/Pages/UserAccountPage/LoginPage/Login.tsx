@@ -8,7 +8,11 @@ import {BsArrowRightShort} from "react-icons/bs";
 import {NavLink, useNavigate} from "react-router-dom";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import axios from "axios";
-import GoogleLogin from "react-google-login";
+import {useGoogleLogin} from "@react-oauth/google";
+import {FcGoogle} from "react-icons/fc";
+import {useEffect, useState} from "react";
+import {BtnLogoText} from "../../../Utility/BtnLogoText/BtnLogoText.tsx";
+
 
 interface MyForm {
     email: string,
@@ -16,16 +20,30 @@ interface MyForm {
 }
 
 function Login() {
-    const clientId = '982859489612-1o67pno0bhgh0dtvblloucbqbpjptlf5.apps.googleusercontent.com'
+    const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues = ['email', 'password'];
     const navigate = useNavigate()
-    const handleGoogleLoginSuccess = (res : any) => {
-        console.log("Google Credential Response:", res);
-    }
-    const handleGoogleFailure = (res : any) => {
-        toast.error('Login failed!')
-        console.log('Login Failed! , res :' , res)
-    }
+    const googleLogin = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            console.log(tokenResponse)
+            const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
+            })
+            if (userInfo) {
+                setUserInfoGoogle(userInfo.data)
+            }
+        },
+        onError: () => toast.error('Login failed :(')
+    })
+
+    useEffect(() => {
+        if (!userInfoGoogle) return
+        console.log(userInfoGoogle)
+        // const {sub , email , family_name , given_name , picture} = userInfoGoogle;
+        // console.log(sub)
+        // axios.get()
+    }, [userInfoGoogle]);
+
     const {register, handleSubmit, reset, errors} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm> = (dataFormInputs) => {
         axios
@@ -85,14 +103,8 @@ function Login() {
                         <p className={style.orText}>or</p>
                         <span className={style.line}></span>
                     </div>
-                    <div className={style.googleAuth}>
-                        <GoogleLogin
-                            clientId={clientId}
-                            onSuccess={handleGoogleLoginSuccess}
-                            onFailure={handleGoogleFailure}
-                        >
-                            <span> Login with Google</span>
-                        </GoogleLogin>
+                    <div className={style.signInWith}>
+                        <BtnLogoText text={'Sign in with Google'} logo={<FcGoogle/>} callback={googleLogin}/>
                     </div>
                     <button type="submit" className={'button'}>
                         <p className={'textBtn'}>Login</p>
