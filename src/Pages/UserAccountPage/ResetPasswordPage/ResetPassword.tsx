@@ -36,11 +36,11 @@ function ResetPassword({callback}: ICallbackAccount) {
                 newPassword: data.confirmPassword
             })
             .then((res) => {
+                reset()
                 setPending(false)
                 toast.success(res.data.message || 'Success!')
-                callback(false)
-                reset()
                 setTimeout(() => {
+                    callback(false)
                     navigate('/')
                 }, 2000)
             })

@@ -15,13 +15,14 @@ function ActiveTokenReset({ callback }: ICallbackAccount) {
     const { token } = useParams();
     const [tokenToResetPassword , setResetToken] = useState<string | null | any>(null);
     useEffect(() => {
+        if (!tokenToResetPassword) return
         const handleSuccess = () => {
             setChecked(true);
             setPending(true);
             setStatus(true);
             setTimeout(() => {
                 callback(true);
-                navigate(`/user-account/login/reset-password?id=${tokenToResetPassword._id}`);
+                navigate(`/user-account/login/reset-password?id=${tokenToResetPassword.foundUser._id}`);
             }, 2500);
         };
         const handleFailure = () => {
@@ -29,16 +30,15 @@ function ActiveTokenReset({ callback }: ICallbackAccount) {
             setChecked(true);
             setTimeout(() => {
                 callback(false)
-                navigate('/');
+                // navigate('/');
             }, 2500);
         };
 
-        if (!tokenToResetPassword){
+        if (!tokenToResetPassword?.foundUser) {
             handleFailure();
-            return
         }
 
-        if (tokenToResetPassword.randomNumberToUpdatePassword === token) {
+        if (tokenToResetPassword?.foundUser?.randomNumberToUpdatePassword === token) {
             handleSuccess();
         } else {
             handleFailure();
@@ -47,9 +47,8 @@ function ActiveTokenReset({ callback }: ICallbackAccount) {
 
     useEffect(() => {
         axios.get(`https://spacey-server.vercel.app/auth/find/${token}`).then((res) => {
-            console.log(res)
-            if (res.status === 200 && res.data.foundUser) {
-                setResetToken(res.data.foundUser)
+            if (res.status === 200) {
+                setResetToken(res.data)
             } else {
                 setResetToken(null)
             }
