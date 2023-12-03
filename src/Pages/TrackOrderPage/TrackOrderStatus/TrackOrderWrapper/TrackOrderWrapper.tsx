@@ -2,6 +2,8 @@ import style from './TrackOrderWrapper.module.scss'
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import CustomizedSteppers from "../../../../Utility/Stepper/Stepper.tsx";
+import {steps} from "./TrackOrderSteps.tsx";
 
 function TrackOrderWrapper() {
     const [orderInfo, setOrderInfo] = useState(null)
@@ -38,6 +40,14 @@ function TrackOrderWrapper() {
                     <h2 className={style.price}>${1199}.00</h2>
                 </div>
             </header>
+            <main className={style.main}>
+                <p className={style.expectedDate}>
+                    Order expected arrival 23 Jan, 2021
+                </p>
+                <div className={style.stepper}>
+                    <CustomizedSteppers steps={steps} activeStep={1}/>
+                </div>
+            </main>
         </div>
     )
 }
