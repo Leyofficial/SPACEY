@@ -9,8 +9,8 @@ export interface IFieldProps{
     countries?:[any] | null,
     dataToMap?:string,
     isTextArea?:string,
-    typeField:string,
-    validate:(arg:string) => void
+    typeField?:string,
+    validate? :(arg:string) => void
 }
 const CustomField = ({title,htmlFor,placeholder = "",id,isTextArea,typeField,validate} : IFieldProps) => {
     return (

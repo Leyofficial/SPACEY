@@ -1,7 +1,7 @@
 import {Box, FormControl, InputLabel, NativeSelect} from "@mui/material";
 
 interface ICustomSelectProps{
-    items:[string],
+    items:string[],
     title:string,
     width:number,
 }

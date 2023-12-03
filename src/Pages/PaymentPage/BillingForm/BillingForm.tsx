@@ -17,7 +17,7 @@ const validate = (value : string) => {
     return errorMessage;
 };
 const BillingForm = ({products} : IOrderProducts) => {
-    const [countries, setCountries] = useState<[any] | null>(null)
+    const [countries, setCountries] = useState<any | null>(null)
     useEffect(() => {
         getCountries().then(res => setCountries(res.data))
     }, [])
@@ -53,7 +53,7 @@ const BillingForm = ({products} : IOrderProducts) => {
                             <CustomField validate={validate}  typeField={'text'} id={"address.street"} placeholder={'St.Ponte Alto'} htmlFor={"address.street"} title={'Street'}></CustomField>
                         </div>
                         <div className={style.addressWrapper}>
-                            <CustomSelectForm   dataToMap={'name.official'} countries={countries} id={"address.country"}
+                            <CustomSelectForm  dataToMap={'name.official'} countries={countries} id={"address.country"}
                                               htmlFor={"address.country"} title={'Country'}></CustomSelectForm>
                             <CustomSelectForm  dataToMap={'region'} countries={countries} id={"address.regional"}
                                               htmlFor={"address.regional"} title={'Regional'}></CustomSelectForm>
