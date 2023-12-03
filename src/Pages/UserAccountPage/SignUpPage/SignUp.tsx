@@ -13,6 +13,8 @@ import {BtnLogoText} from "../../../Utility/BtnLogoText/BtnLogoText.tsx";
 import {FcGoogle} from "react-icons/fc";
 import {useGoogleLogin} from "@react-oauth/google";
 import {useEffect, useState} from "react";
+import {successAction} from "../utitlity/successAction.ts";
+import {failureAction} from "../utitlity/failureAction.ts";
 
 interface MyForm {
     name: string,
@@ -31,7 +33,6 @@ function SignUp({callback} : ICallbackAccount) {
 
     const googleLogin = useGoogleLogin({
         onSuccess: async tokenResponse => {
-            console.log(tokenResponse)
             const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
                 headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
             })
@@ -44,10 +45,21 @@ function SignUp({callback} : ICallbackAccount) {
 
     useEffect(() => {
         if (!userInfoGoogle) return
-        console.log(userInfoGoogle)
-        // const {sub , email , family_name , given_name , picture} = userInfoGoogle;
-        // console.log(sub)
-        // axios.get()
+        const {email_verified , family_name , given_name , locale , sub , email , picture} = userInfoGoogle
+        axios.post('https://spacey-server.vercel.app/auth/google' , {
+            email_verified : email_verified,
+            family_name: family_name,
+            given_name: given_name,
+            locale: locale,
+            picture: picture,
+            sub: sub,
+            email: email
+        }).then(res => {
+            successAction(res.data.createdAccount.googleToken , navigate , callback)
+        }).catch(error => {
+            failureAction(error , reset)
+        })
+
     }, [userInfoGoogle]);
 
     // https://spacey-server.vercel.app/auth
@@ -64,15 +76,10 @@ function SignUp({callback} : ICallbackAccount) {
                 passwordConfirm : data.repeatPassword,
             })
             .then((response) => {
-                localStorage.setItem('token' , response.data.token);
-                toast.success('Success');
-                callback(true);
-                navigate('/');
+               successAction(response.data.token , navigate ,  callback)
             })
             .catch((error) => {
-                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
-                toast.error(errorMessage);
-                reset()
+               failureAction(error , reset)
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {

@@ -8,6 +8,7 @@ import AlreadyQuestion from "../utitlity/AlreadyQuestion.tsx";
 import {useState} from "react";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import axios from "axios";
+import {failureAction} from "../utitlity/failureAction.ts";
 
 
 interface MyForm {
@@ -31,9 +32,7 @@ function ForgetPassword() {
             })
 
             .catch((error) => {
-                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
-                toast.error(errorMessage);
-                reset()
+                failureAction(error , reset)
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
