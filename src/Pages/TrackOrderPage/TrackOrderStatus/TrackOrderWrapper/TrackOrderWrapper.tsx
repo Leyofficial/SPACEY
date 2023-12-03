@@ -1,8 +1,8 @@
 import style from './TrackOrderWrapper.module.scss'
-interface ITrackOrderStatus {
-    orderId : string
-}
-function TrackOrderWrapper({orderId} : ITrackOrderStatus) {
+// interface ITrackOrderStatus {
+//     orderId : string
+// }
+function TrackOrderWrapper() {
     return (
         <div className={style.block}>
 
