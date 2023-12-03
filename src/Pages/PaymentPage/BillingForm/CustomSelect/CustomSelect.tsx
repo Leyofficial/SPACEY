@@ -4,7 +4,7 @@ import {NativeSelect} from "@mui/material";
 import {IFieldProps} from "../CustomField/CustomField.tsx";
 import style from './CustomSelect.module.scss'
 const CustomSelectForm = ({title,htmlFor,id,countries,dataToMap} : IFieldProps) => {
-    const getValue = (object : any, path : string) => path.split('.').reduce((o : any, p : any) => (o || {})[p], object);
+    const getValue = (object: any, path: string) => path.split('.').reduce((o : any, p : any) => (o || {})[p], object);
     return (
         <>
             <div style={{width:`100%`,display:'flex',flexDirection:'column'}}>
@@ -21,7 +21,7 @@ const CustomSelectForm = ({title,htmlFor,id,countries,dataToMap} : IFieldProps) 
                             >
                                 <option disabled={true}></option>
                                 {countries && countries.map((country,index) => {
-                                    const value = getValue(country ,dataToMap);
+                                    const value = getValue(country ,dataToMap );
                                     return value && <option value={index}>{value}</option>
                                 })}
                             </NativeSelect>

@@ -7,7 +7,7 @@ export interface IFieldProps{
     placeholder?:string,
     id:string,
     countries?:[any] | null,
-    dataToMap?:string,
+    dataToMap?:string | any,
     isTextArea?:string,
     typeField?:string,
     validate? :(arg:string) => void
