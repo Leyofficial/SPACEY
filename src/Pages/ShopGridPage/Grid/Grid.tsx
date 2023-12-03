@@ -12,6 +12,15 @@ import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import {useCheckByPrice} from "./hooks/useCheckByPrice.ts";
 
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+// DO NOT TOUCH ANYTHING , IF SOMETHING WENT WRONG TEXT ME !!!
+
 const ITEMS_ON_SCREEN = 24;
 
 function Grid() {
@@ -102,7 +111,7 @@ function Grid() {
     useEffect(() => {
         // Filter by INPUT VALUE + CATEGORY + PRICE
         if (!valueInput) return; // * category Param
-        const foundItem: ICategory[] = foundArrays.filter((item: ICategory) =>
+        const foundItem: ICategory[] = items.filter((item: ICategory) =>
             item.brand.toLowerCase().includes(valueInput.toLowerCase())
         );
 
