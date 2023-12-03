@@ -4,7 +4,7 @@ import {Outlet} from "react-router-dom";
 
 function TrackOrderStatus() {
     return (
-       <div className={style.block}>
+       <div className={style.contaner}>
            <div className={style.breadCrumb}>
                <BreadCrumb/>
            </div>

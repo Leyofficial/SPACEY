@@ -26,7 +26,6 @@ import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
 
 function App() {
-    // const clientId = '982859489612-1o67pno0bhgh0dtvblloucbqbpjptlf5.apps.googleusercontent.com'
     const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
     return (
@@ -41,7 +40,7 @@ function App() {
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'track-order'} element={<TrackOrder/>}/>
-                    <Route path={'/track-order/status'} element={<TrackOrderStatus/>}>
+                    <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
