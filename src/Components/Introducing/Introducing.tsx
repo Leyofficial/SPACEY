@@ -7,8 +7,8 @@ const Introducing = () => {
 
     return (
         <section className={style.container}>
-            <IntroItem title={"INTRODUCING"} item={data?.foundProduct[0]} ></IntroItem>
-            <IntroItem title={"INTRODUCING NEW"} item={data?.foundProduct[1]} ></IntroItem>
+            <IntroItem title={"INTRODUCING"} item={data ? data?.foundProduct[0] : null} ></IntroItem>
+            <IntroItem title={"INTRODUCING NEW"} item={data ? data?.foundProduct[1] : null} ></IntroItem>
         </section>
     );
 };
