@@ -4,8 +4,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Radio from "@mui/material/Radio";
 import {FaCreditCard} from "react-icons/fa";
-import {SlPaypal} from "react-icons/sl";
-import {IoLogoAmazon} from "react-icons/io5";
 import {BsCashCoin} from "react-icons/bs";
 import style from './CustomRadio.module.scss'
 export default function RowRadioButtonsGroup() {
@@ -22,20 +20,6 @@ export default function RowRadioButtonsGroup() {
                     <BsCashCoin color={'#30b006'}/>
                     <p>Cash on Delivery</p>
                 </div>}/>
-                <span className={style.line}></span>
-                <FormControlLabel className={style.blockWrapper} value="paypal" control={<Radio required={true}/>} label={
-                    <div>
-                        <SlPaypal color={'#052ca4'}/>
-                        <p>PayPal</p>
-                    </div>
-                }/>
-                <span className={style.line}></span>
-                <FormControlLabel className={style.blockWrapper} value="amazo" control={<Radio required={true}/>} label={
-                    <div>
-                        <IoLogoAmazon color={'#e58807'}/>
-                        <p>Amazon Pay</p>
-                    </div>
-                }/>
                 <span className={style.line}></span>
                 <FormControlLabel className={style.blockWrapper} value="card" control={<Radio required={true}/>} label={
                     <div>

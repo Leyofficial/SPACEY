@@ -39,7 +39,7 @@ const SummeryProduct = ({products}: IOrderProducts) => {
                 <p className={style.totalPrice}>{totalPrice - (totalPrice * 0.10 - (totalPrice * 0.17))} USD</p>
             </div>
             <div className={style.btn}>
-                <CustomBtn text={'PLACE ORDER'}></CustomBtn>
+                <CustomBtn path={'pay-card'} text={'PLACE ORDER'}></CustomBtn>
             </div>
 
         </div>

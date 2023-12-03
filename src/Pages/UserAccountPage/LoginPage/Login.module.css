@@ -1,0 +1,22 @@
+.emailInput {
+  margin-bottom: 16px;
+}
+
+.tabs {
+  margin-bottom: 20px;
+}
+
+.forgetPassword {
+  cursor: pointer;
+  top: 2px;
+  right: 0;
+  position: absolute;
+  font-size: 14px;
+  color: var(--secondary-500, #2DA5F3);
+}
+
+.passwordInput {
+  position: relative;
+}
+
+/*# sourceMappingURL=Login.module.css.map */
