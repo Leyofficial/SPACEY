@@ -9,6 +9,10 @@ import {BsArrowRightShort} from "react-icons/bs";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import axios from "axios";
 import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
+import {BtnLogoText} from "../../../Utility/BtnLogoText/BtnLogoText.tsx";
+import {FcGoogle} from "react-icons/fc";
+import {useGoogleLogin} from "@react-oauth/google";
+import {useEffect, useState} from "react";
 
 interface MyForm {
     name: string,
@@ -21,8 +25,30 @@ interface MyForm {
 
 function SignUp({callback} : ICallbackAccount) {
     const navigate = useNavigate()
+    const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues  = ['name' , 'email' , 'password' , 'repeatPassword'];
     const {register , handleSubmit , reset , errors} = useFormRegister(defaultValues);
+
+    const googleLogin = useGoogleLogin({
+        onSuccess: async tokenResponse => {
+            console.log(tokenResponse)
+            const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
+                headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
+            })
+            if (userInfo) {
+                setUserInfoGoogle(userInfo.data)
+            }
+        },
+        onError: () => toast.error('Login failed :(')
+    })
+
+    useEffect(() => {
+        if (!userInfoGoogle) return
+        console.log(userInfoGoogle)
+        // const {sub , email , family_name , given_name , picture} = userInfoGoogle;
+        // console.log(sub)
+        // axios.get()
+    }, [userInfoGoogle]);
 
     // https://spacey-server.vercel.app/auth
     const submit: SubmitHandler<MyForm> = data => {
@@ -86,7 +112,7 @@ function SignUp({callback} : ICallbackAccount) {
                         <FormInput errors={errors} name={'password'} label={'Password'} register={register}
                                    placeHolder={'8+ characters'}  type={'password'} eye={true}/>
                     </div>
-                    <div className={style.econdPassword}>
+                    <div className={style.secondPassword}>
                         <FormInput errors={errors} name={'repeatPassword'} label={'Confirm Password'}
                                     register={register} type={'password'} eye={true}/>
                     </div>
@@ -96,6 +122,14 @@ function SignUp({callback} : ICallbackAccount) {
                     <BsArrowRightShort color={'white'} size={30}/>
                 </button>
             </form>
+            <div className={style.orChoose}>
+                <span className={style.line}></span>
+                <p className={style.orText}>or</p>
+                <span className={style.line}></span>
+            </div>
+            <div className={style.signInWith}>
+                <BtnLogoText text={'Sign in with Google'} logo={<FcGoogle/>} callback={googleLogin}/>
+            </div>
         </div>
     )
 }

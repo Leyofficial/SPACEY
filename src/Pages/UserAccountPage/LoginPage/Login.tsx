@@ -98,6 +98,11 @@ function Login() {
                         <NavLink to={'/user-account/login/forget-password'} className={style.forgetPassword}>Forget
                             Password</NavLink>
                     </div>
+
+                    <button type="submit" className={'button'}>
+                        <p className={'textBtn'}>Login</p>
+                        <BsArrowRightShort color={'white'} size={30}/>
+                    </button>
                     <div className={style.orChoose}>
                         <span className={style.line}></span>
                         <p className={style.orText}>or</p>
@@ -106,10 +111,6 @@ function Login() {
                     <div className={style.signInWith}>
                         <BtnLogoText text={'Sign in with Google'} logo={<FcGoogle/>} callback={googleLogin}/>
                     </div>
-                    <button type="submit" className={'button'}>
-                        <p className={'textBtn'}>Login</p>
-                        <BsArrowRightShort color={'white'} size={30}/>
-                    </button>
                 </form>
             </div>
         </>
