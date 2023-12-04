@@ -1,0 +1,45 @@
+.label {
+  color: var(--gray-900, #191C1F);
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.inputBlock {
+  position: relative;
+  margin-top: 8px;
+  border-radius: 2px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+
+.input {
+  border: none;
+  padding: 10px 10px;
+  height: 44px;
+  align-self: stretch;
+  width: 100%;
+  outline: none;
+}
+
+.invalidInput {
+  border: 1px solid crimson;
+}
+
+.errorText {
+  font-size: 13px;
+  color: #1B6392;
+  margin-top: 5px;
+}
+
+.eye {
+  cursor: pointer;
+  top: 14px;
+  right: 14px;
+  position: absolute;
+}
+
+/*# sourceMappingURL=FormInput.module.css.map */

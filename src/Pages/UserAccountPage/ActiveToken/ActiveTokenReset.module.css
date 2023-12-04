@@ -1,0 +1,13 @@
+.block {
+  width: 100%;
+  text-align: center;
+  margin: 150px auto;
+}
+
+.doneBlock {
+  text-align: center;
+  width: 25%;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=ActiveTokenReset.module.css.map */

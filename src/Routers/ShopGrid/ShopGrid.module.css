@@ -12,18 +12,13 @@
   width: 25rem;
 }
 
-.header {
-  background: var(--gray-50, #F2F4F5);
+.breadCrumb {
   margin-bottom: 40px;
 }
 
 .wrapper {
   width: 90% !important;
   margin: 0 auto;
-}
-
-.breadCrumb {
-  padding: 20px 0;
 }
 
 /*# sourceMappingURL=ShopGrid.module.css.map */
