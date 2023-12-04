@@ -57,6 +57,7 @@ function Login() {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
+                console.log(response.data)
                 reset();
                 successAction(response.data.token , navigate)
             })

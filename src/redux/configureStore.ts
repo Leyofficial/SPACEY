@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import conter from "./conter.ts";
+import conter from "./user/setUser.ts";
 // ...
 
 export const store = configureStore({
