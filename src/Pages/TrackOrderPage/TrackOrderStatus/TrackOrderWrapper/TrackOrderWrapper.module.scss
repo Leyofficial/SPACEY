@@ -57,3 +57,11 @@
   padding-bottom: 1.7rem;
   border-bottom: 1px #E4E7E9 solid;
 }
+.orderActivity {
+  margin: 1.5rem 0;
+}
+.activityItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
