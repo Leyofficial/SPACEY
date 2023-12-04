@@ -8,4 +8,16 @@
   margin-bottom: 20px;
 }
 
+.orChoose {
+  margin: 20px 0;
+  align-items: center;
+  display: flex;
+  gap: 5px;
+}
+
+.line {
+  border-bottom: 1px solid var(--gray-100, #E4E7E9);
+  width: 100%;
+}
+
 /*# sourceMappingURL=SignUp.module.css.map */

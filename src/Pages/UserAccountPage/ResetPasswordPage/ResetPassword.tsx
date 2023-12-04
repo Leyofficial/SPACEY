@@ -10,6 +10,7 @@ import {useLocation, useNavigate} from "react-router-dom";
 import queryString from 'query-string';
 import {CircularProgress} from "@mui/material";
 import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
+import {failureAction} from "../utitlity/failureAction.ts";
 
 interface MyForm {
     password: string,
@@ -36,17 +37,16 @@ function ResetPassword({callback}: ICallbackAccount) {
                 newPassword: data.confirmPassword
             })
             .then((res) => {
+                reset()
                 setPending(false)
                 toast.success(res.data.message || 'Success!')
-                callback(false)
-                reset()
                 setTimeout(() => {
+                    callback(false)
                     navigate('/')
                 }, 2000)
             })
             .catch((error) => {
-                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
-                toast.error(errorMessage);
+                failureAction(error , reset)
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {

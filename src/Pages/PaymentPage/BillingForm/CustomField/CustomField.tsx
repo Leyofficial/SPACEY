@@ -7,10 +7,10 @@ export interface IFieldProps{
     placeholder?:string,
     id:string,
     countries?:[any] | null,
-    dataToMap?:string,
+    dataToMap?:string | any,
     isTextArea?:string,
-    typeField:string,
-    validate:(arg:string) => void
+    typeField?:string,
+    validate? :(arg:string) => void
 }
 const CustomField = ({title,htmlFor,placeholder = "",id,isTextArea,typeField,validate} : IFieldProps) => {
     return (

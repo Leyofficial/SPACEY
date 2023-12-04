@@ -11,7 +11,7 @@ interface ICategory {
 
 export const CategoryData: ICategory[] = [
     {
-        path: 'order',
+        path: 'track-order',
         icon: <CiLocationOn color={'#5F6C72'}/>,
         title: 'Track Order'
     },

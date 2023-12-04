@@ -12,6 +12,8 @@ import {useGoogleLogin} from "@react-oauth/google";
 import {FcGoogle} from "react-icons/fc";
 import {useEffect, useState} from "react";
 import {BtnLogoText} from "../../../Utility/BtnLogoText/BtnLogoText.tsx";
+import {successAction} from "../utitlity/successAction.ts";
+import {failureAction} from "../utitlity/failureAction.ts";
 
 
 interface MyForm {
@@ -23,9 +25,9 @@ function Login() {
     const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues = ['email', 'password'];
     const navigate = useNavigate()
+
     const googleLogin = useGoogleLogin({
         onSuccess: async tokenResponse => {
-            console.log(tokenResponse)
             const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
                 headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
             })
@@ -38,10 +40,16 @@ function Login() {
 
     useEffect(() => {
         if (!userInfoGoogle) return
-        console.log(userInfoGoogle)
-        // const {sub , email , family_name , given_name , picture} = userInfoGoogle;
-        // console.log(sub)
-        // axios.get()
+        const {sub , email } = userInfoGoogle;
+        axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
+            if (!res.data.foundUser) {
+                toast.error('User not found')
+                return
+            }
+            successAction(res.data.token, navigate)
+        }).catch((err) => {
+            toast.error(err)
+        })
     }, [userInfoGoogle]);
 
     const {register, handleSubmit, reset, errors} = useFormRegister(defaultValues);
@@ -50,15 +58,10 @@ function Login() {
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
                 reset();
-                localStorage.setItem('token', response.data.token);
-                toast.success('Success');
-                setTimeout(() => {
-                    navigate('/')
-                }, 1500)
+                successAction(response.data.token , navigate)
             })
             .catch((error) => {
-                const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
-                toast.error(errorMessage);
+                failureAction(error , reset)
             });
     };
 
