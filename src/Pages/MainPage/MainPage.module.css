@@ -41,6 +41,9 @@
 }
 
 .banner {
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
   display: flex;
   gap: 10px;
   margin-bottom: 72px;

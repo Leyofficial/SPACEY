@@ -1,0 +1,26 @@
+.googleAuth {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px #E4E7E9 solid;
+  color: #191C1F;
+  padding: 10px 20px;
+  gap: 28%;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.googleAuth:hover {
+  transform: scale(1.05);
+}
+
+.googleIcon {
+  margin-right: 10px;
+}
+
+.googleText {
+  font-size: 13px;
+}
+
+/*# sourceMappingURL=BtnLogoText.module.css.map */
