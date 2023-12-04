@@ -24,6 +24,7 @@ import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrde
 
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
+import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
 
 function App() {
     // const clientId = '982859489612-1o67pno0bhgh0dtvblloucbqbpjptlf5.apps.googleusercontent.com'
@@ -38,6 +39,7 @@ function App() {
                     <Route path={'payment-grid'} element={<PaymentPage/>}>
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
+                        <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'track-order'} element={<TrackOrder/>}/>

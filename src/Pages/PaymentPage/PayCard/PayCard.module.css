@@ -1,0 +1,74 @@
+.container {
+  width: 100%;
+  height: 71vh;
+}
+.container .containerCard {
+  display: flex;
+  padding-top: 100px;
+  margin: 0 auto;
+  max-width: 1400px;
+  justify-content: center;
+  gap: 30px;
+  height: 100%;
+}
+.container .containerCard .wrapperCard {
+  width: 50%;
+}
+.container .containerCard form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+  width: 50%;
+}
+.container .containerCard form input {
+  width: 100%;
+  padding: 20px 30px;
+  border-radius: 5px;
+  border: none;
+  background: rgba(27, 99, 146, 0.55);
+  outline: none;
+  color: #ffffff;
+}
+.container .containerCard form input::placeholder {
+  color: #3a3838;
+}
+.container .dateWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.btn {
+  text-align: center;
+  width: 100%;
+}
+.btn button {
+  width: 100%;
+  padding: 15px;
+  background: transparent;
+  border: 1px solid orange;
+  color: #FA8232;
+  border-radius: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.btn button:hover {
+  transform: scale(1.02);
+  color: #1B6392;
+  border: 1px solid #1B6392;
+}
+
+/*# sourceMappingURL=PayCard.module.css.map */
