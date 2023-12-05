@@ -3,9 +3,9 @@ const SimpleTable = ({column, data}) => (
         <tbody>
         <tr key={column}
             style={{borderBottom: '1px solid #ddd', display: 'flex', justifyContent: 'space-between', padding: '1rem'}}>
+            <td>{column}</td>
             {data.map(item =>
                 <>
-                    <td>{column}</td>
                     <td>{item.rating}</td>
                 </>
         )}

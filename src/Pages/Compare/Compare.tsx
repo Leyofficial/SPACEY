@@ -11,7 +11,17 @@ function Compare() {
         stockStatus:  'In Stock',
         size: '6.1 inches',
         weight : '194 grams',
-    }
+    },
+        {
+            rating: '10star',
+            price : 100,
+            soldBy : 'Spacey',
+            brand : 'StarTech',
+            model: 'iPhone 13',
+            stockStatus:  'In Stock',
+            size: '6.1 inches',
+            weight : '194 grams',
+        }
     ];
     return (
         <div className={style.block}>
