@@ -30,6 +30,9 @@ import {useAppSelector} from "./redux/hooks/hooks.ts";
 // import {userSlice} from "./redux/user/userSlice.ts";
 // import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
+import ComparePage from "./Routers/Compare/ComparePage.tsx";
+import Compare from "./Pages/Compare/Compare.tsx";
+// import ComparePage from "./Routers/Compare/ComparePage.tsx";
 
 function App() {
     // const token = localStorage.getItem('token');
@@ -60,6 +63,9 @@ function App() {
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                         <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
+                    </Route>
+                    <Route path={'/Compare'} element={<ComparePage/>}>
+                        <Route index element={<Compare/>}/>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'track-order'} element={<TrackOrder/>}/>
