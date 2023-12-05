@@ -25,7 +25,6 @@ import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrde
 
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
-import {useAppSelector} from "./redux/hooks/hooks.ts";
 import {useAppDispatch} from "./redux/hooks/hooks.ts";
 import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
@@ -36,7 +35,6 @@ import  {setUser} from "./redux/user/reducers/UserSlice.ts";
 
 function App() {
     const token = localStorage.getItem('token');
-    const {user} = useAppSelector(state => state.user)
     const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
     const dispatch = useAppDispatch()
@@ -46,7 +44,6 @@ function App() {
         axios.get(`https://spacey-server.vercel.app/auth/token/${token}`).then(res => {
             if (!res.data.user) return;
             dispatch( setUser(res.data.user))
-            console.log(user)
         })
     }, [token]);
 
