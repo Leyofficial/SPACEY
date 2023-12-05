@@ -5,7 +5,6 @@ import {getStateType} from "../../../ApiRequests/Items/getStateType.ts";
 import ActualItemState from "./ActualItemState/ActualItemState.tsx";
 import SkeletonActualItem from "./ActualItemState/SkeletonActualItem.tsx";
 import {Skeleton} from "@mui/material";
-// import {shuffleArray} from "../../../Utility/shufflerArray/shufllerArray.ts";
 function StatusProduct({title} : IProductOutside ) {
     const numSkeleton = useState(3)[0];
     const [actualState , setActualState] = useState([])

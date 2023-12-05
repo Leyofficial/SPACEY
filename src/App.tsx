@@ -15,7 +15,8 @@ import SignUp from "./Pages/UserAccountPage/SignUpPage/SignUp.tsx";
 import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPassword.tsx";
 import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
-import { useState} from "react";
+import {useEffect, useState} from "react";
+// useEffect
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 import TrackOrder from "./Pages/TrackOrderPage/TrackOrder.tsx";
@@ -24,11 +25,31 @@ import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrde
 
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
+import {useAppSelector} from "./redux/hooks/hooks.ts";
+// import {useAppDispatch} from "./redux/hooks/hooks.ts";
+// import {userSlice} from "./redux/user/userSlice.ts";
+// import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
 
 function App() {
+    // const token = localStorage.getItem('token');
+    const {user} = useAppSelector(state => state.user)
+    useEffect(() => {
+        console.log(user)
+    }, [user]);
     const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
+    // const dispatch = useAppDispatch()
+
+    // useEffect(() => {
+    //     if (!token) return
+    //     axios.get('https://spacey-server.vercel.app').then(res => {
+    //         if (!res.data.foundUser) return;
+    //         dispatch(userSlice(res.data.foundUser))
+    //     })
+    // }, [token]);
+
+
     return (
         <>
             <Routes>

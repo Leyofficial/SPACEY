@@ -14,7 +14,6 @@ export function OrderActivity({text , data} : IOrderActivity) {
                 <h2 className={style.title}>{text}</h2>
                 <p className={style.data}>{data}</p>
             </div>
-
         </div>
     )
 }
