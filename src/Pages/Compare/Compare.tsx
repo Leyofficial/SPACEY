@@ -30,6 +30,7 @@ function Compare() {
         {text: 'Weight', accessor: 'weight'},
     ]
     const data = [{
+        img : '',
         rating: '5star',
         price: 100,
         soldBy: 'Spacey',
@@ -40,6 +41,7 @@ function Compare() {
         weight: '194 grams',
     },
         {
+            img : '',
             rating: '10star',
             price: 100,
             soldBy: 'Spacey',
