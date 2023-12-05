@@ -35,15 +35,15 @@ const initialState = {
 } as IUserState
 // appSlice.js
 
-const appSlice = createSlice({
-    name: 'app',
+const userSlice = createSlice({
+    name: 'user',
     initialState,
     reducers: {
-        setUser: (state, action) => {
+        setUser: (state , action) => {
             state.user = action.payload;
         },
     },
 });
 
-export const { setUser } = appSlice.actions;
-export default appSlice.reducer;
+export const { setUser } = userSlice.actions;
+export default userSlice.reducer;

@@ -14,6 +14,8 @@ import {useEffect, useState} from "react";
 import {BtnLogoText} from "../../../Utility/BtnLogoText/BtnLogoText.tsx";
 import {successAction} from "../utitlity/successAction.ts";
 import {failureAction} from "../utitlity/failureAction.ts";
+import {useAppDispatch} from "../../../redux/hooks/hooks.ts";
+import {setUser} from "../../../redux/user/reducers/UserSlice.ts";
 
 
 interface MyForm {
@@ -22,6 +24,7 @@ interface MyForm {
 }
 
 function Login() {
+    const dispatch = useAppDispatch()
     const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues = ['email', 'password'];
     const navigate = useNavigate()
@@ -57,7 +60,7 @@ function Login() {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
-                console.log(response.data)
+                dispatch(setUser(response.data.data))
                 reset();
                 successAction(response.data.token , navigate)
             })
