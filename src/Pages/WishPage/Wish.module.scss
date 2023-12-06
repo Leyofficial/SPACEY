@@ -4,8 +4,7 @@
   background: var(--gray-50, #F2F4F5);
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  padding: 0.625rem 1.5rem;
+  padding: 0.925rem 1.5rem;
 }
 .title {
   padding: 1.25rem;
@@ -22,7 +21,7 @@
   display: flex;
 }
 .product {
-  width: 36.1875rem;
+  width: 55%;
   color: var(--gray-700, #475156);
 
   /* Label/04 */
@@ -45,16 +44,7 @@
   line-height: 150%; /* 1.125rem */
   text-transform: uppercase;
 }
-.action {
-  /* Label/04 */
-  font-family: Public Sans sans-serif;
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%; /* 1.125rem */
-  text-transform: uppercase;
-  width: 10.8125rem;
-}
+
 .items {
   padding: 1.25rem;
   display: flex;
