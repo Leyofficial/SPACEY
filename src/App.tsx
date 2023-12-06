@@ -25,6 +25,7 @@ import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrde
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
+import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 
 function App() {
     const [getPermission , setPermissionReset] = useState(false);
@@ -39,6 +40,7 @@ function App() {
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                         <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
+                        <Route path={'basket'} element={<ShoppingCart/>}></Route>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'track-order'} element={<TrackOrder/>}/>

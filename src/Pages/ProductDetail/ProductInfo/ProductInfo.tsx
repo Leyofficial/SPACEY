@@ -15,8 +15,11 @@ import {getColorElement} from "../getColorElement.tsx";
 
 
 
+
+
 const ProductInfo = ({product}: IProductInfoProps) => {
     const [countAddProduct, setCountAddProduct] = useState<number>(1)
+
     const increaseProduct = () => {
         setCountAddProduct(countAddProduct + 1)
     }
