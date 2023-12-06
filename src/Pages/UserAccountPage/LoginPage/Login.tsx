@@ -18,6 +18,7 @@ import {useAppDispatch} from "../../../redux/hooks/hooks.ts";
 import {setUser} from "../../../redux/user/reducers/UserSlice.ts";
 
 
+
 interface MyForm {
     email: string,
     password: string
@@ -46,6 +47,7 @@ function Login() {
         const {sub , email } = userInfoGoogle;
         axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
             if (!res.data.foundUser) {
+
                 toast.error('User not found')
                 return
             }
@@ -65,6 +67,7 @@ function Login() {
                 successAction(response.data.token , navigate)
             })
             .catch((error) => {
+                console.log(error)
                 failureAction(error , reset)
             });
     };

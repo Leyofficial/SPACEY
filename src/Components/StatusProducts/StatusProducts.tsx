@@ -10,6 +10,7 @@ export interface IStatusProduct {
 }
 
 function StatusProducts({items}: IStatusProduct) {
+
     const [filteredStateType, setFilteredState] = useState<ICategory[]>([]);
     useEffect(() => {
         if (!items) return;
