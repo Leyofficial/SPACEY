@@ -5,7 +5,6 @@ import HomePage from "./Routers/Home/HomePage.tsx";
 import NotFound from "./Routers/NotFound/NotFound.tsx";
 import ShopGrid from "./Routers/ShopGrid/ShopGrid.tsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
-import WishList from "./Pages/WishList/WishList.tsx";
 import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
 import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
 import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment.tsx";
@@ -31,6 +30,7 @@ import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
 import ComparePage from "./Routers/Compare/ComparePage.tsx";
 import Compare from "./Pages/Compare/Compare.tsx";
 import  {setUser} from "./redux/user/reducers/UserSlice.ts";
+import WishPage from "./Routers/Wish/WishPage.tsx";
 // import ComparePage from "./Routers/Compare/ComparePage.tsx";
 
 function App() {
@@ -80,7 +80,7 @@ function App() {
                         <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'help'} element={<HelpPage/>}></Route>
-                    <Route path={'/wish'} element={<WishList/>}></Route>
+                    <Route path={'/wish'} element={<WishPage/>}></Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
                     <Route path={'/about'} element={<AboutUs/>}></Route>

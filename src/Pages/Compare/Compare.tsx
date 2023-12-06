@@ -55,9 +55,7 @@ function Compare() {
     return (
         <div className={style.block}>
             <div className={style.table}>
-                {columns.map((item) => {
-                    return <Table column={item.text} accessor={item.accessor}  data={data}/>
-                })}
+                    <Table />
             </div>
         </div>
     )
