@@ -28,10 +28,11 @@ import {useAppDispatch} from "./redux/hooks/hooks.ts";
 import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
 import ComparePage from "./Routers/Compare/ComparePage.tsx";
-import Compare from "./Pages/Compare/Compare.tsx";
+import Compare from "./Pages/ComparePage/Compare.tsx";
 import  {setUser} from "./redux/user/reducers/UserSlice.ts";
 import WishPage from "./Routers/Wish/WishPage.tsx";
-// import ComparePage from "./Routers/Compare/ComparePage.tsx";
+import Wish from "./Pages/WishPage/Wish.tsx";
+// import ComparePage from "./Routers/ComparePage/ComparePage.tsx";
 
 function App() {
     const token = localStorage.getItem('token');
@@ -59,7 +60,7 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                         <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
                     </Route>
-                    <Route path={'/Compare'} element={<ComparePage/>}>
+                    <Route path={'/ComparePage'} element={<ComparePage/>}>
                         <Route index element={<Compare/>}/>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
@@ -80,7 +81,9 @@ function App() {
                         <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'help'} element={<HelpPage/>}></Route>
-                    <Route path={'/wish'} element={<WishPage/>}></Route>
+                    <Route path={'/wish'} element={<WishPage/>}>
+                        <Route index  element={<Wish/>}></Route>
+                    </Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
                     <Route path={'/about'} element={<AboutUs/>}></Route>

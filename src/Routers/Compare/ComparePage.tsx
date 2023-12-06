@@ -1,6 +1,6 @@
 import style from './ComparePage.module.scss'
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
-import Compare from "../../Pages/Compare/Compare.tsx";
+import Compare from "../../Pages/ComparePage/Compare.tsx";
 function ComparePage() {
     return (
         <>

@@ -21,7 +21,7 @@ return  [{
         icon:<FaRegUser />,
     },
     {
-        title:"Wishlist & Compare",
+        title:"Wishlist & ComparePage",
         icon:<GoGitCompare />
     },
     {
