@@ -15,7 +15,24 @@ function Wish() {
     ]
     return (
         <div className={style.block}>
-            <h2>Wishlist</h2>
+            <h2 className={style.title}>Wishlist</h2>
+            <ul className={style.tab}>
+                <div className={style.product}>
+                    Products
+                </div>
+                <div className={style.itemsTab}>
+                    <li className={style.basic}>
+                        Price
+                    </li>
+                    <li className={style.basic}>
+                        Stock Status
+                    </li>
+                    <li className={style.action}>
+                        Actions
+                    </li>
+                </div>
+
+            </ul>
             <div className={style.items}>
                 {wishList.map((item) =>
                 <WishItem obj={item}  key={item.productTitle}/>

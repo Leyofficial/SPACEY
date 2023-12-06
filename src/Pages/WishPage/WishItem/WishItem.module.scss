@@ -1,5 +1,4 @@
 .block {
-
   width: 100%;
   align-items: center;
   display: flex;
@@ -35,4 +34,9 @@
     line-height: 1.25rem; /* 142.857% */
     text-decoration: line-through;
   }
+}
+.action {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
 }
