@@ -14,7 +14,7 @@
   padding: 8px 10px ;
   gap: 12px;
   border-radius: 3px;
-  background: var(--primary-500, #FA8232);
+  //background: var(--primary-500, #FA8232);
   &:hover {
     scale: 1.05;
   }
@@ -33,7 +33,7 @@
   padding: 13px 10px ;
   justify-content: center;
   text-decoration: none;
-  color: var(--primary-500, #FA8232);
+  //color: var(--primary-500, #FA8232);
   border: 1px solid var(--primary-500, #FA8232);
   transition: .4s linear;
   cursor: pointer;
@@ -46,6 +46,23 @@
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
+  &:hover {
+    scale: 1.05;
+  }
+}
+.customBtn {
+  text-decoration: none;
+  width: 10rem;
+  transition: .4s linear;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px ;
+  gap: 12px;
+  border-radius: 3px;
+  //background: var(--primary-500, #FA8232);
   &:hover {
     scale: 1.05;
   }

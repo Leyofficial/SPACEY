@@ -10,6 +10,7 @@ interface ICustomBtn {
     arrowLeft? : boolean,
     typeBtn?:string,
     blockWidth?:string,
+    background? : string
 }
 function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICustomBtn) {
     return (
@@ -22,10 +23,10 @@ function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICu
         </button>
     )
 }
-export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn,blockWidth} : ICustomBtn) {
+export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn, blockWidth , background = '#FA8232'} : ICustomBtn) {
     return (
         <>
-            {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink style={{width:`100%`}} to={path} className={style.btn}>
+            {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink style={{width:`100%` , background,}} to={path} className={style.customBtn}>
             <p className={style.btnText}>{text}</p>
             <PiBasket  color={'white'} size={30}/>
         </NavLink>}

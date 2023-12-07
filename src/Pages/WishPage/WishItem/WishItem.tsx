@@ -12,6 +12,7 @@ import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {IWishItemServer} from "../types.ts";
 import toast, {Toaster} from "react-hot-toast";
 import {addToCart} from "../../../Utility/ActionProduct/addToCart.ts";
+import {useCheckInCart} from "../../../hooks/cart/useCheckInCart.ts";
 
 interface IWishItem {
     id : string
@@ -22,12 +23,15 @@ function WishItem({id} : IWishItem) {
     const [image , setImage] = useState<any | null>(null);
     const [ canceled , setCanceled] = useState<boolean>(false);
     const [foundProduct , setProduct] = useState<IWishItemServer | null>(null);
-
+    const [inCart , setInCart] = useState<boolean>(false);
     // const {img, productTitle, percentageOfDiscount, price, status} = obj
     useEffect(() => {
         if (!id) return ;
         getProduct(id).then((res) => {
-            setProduct(res.data.found)
+            setProduct(res.data.found);
+           useCheckInCart( res.data.found._id , user._id)?.then((response) => {
+                setInCart(response.data.isCart)
+            });
         })
     },[])
 
@@ -73,7 +77,7 @@ function WishItem({id} : IWishItem) {
             </div>
             <div className={style.action}>
                 <div onClick={handleAddToCart} className={style.btn}>
-                    <CustomBtnCart  text={'ADD TO CART'}/>
+                    <CustomBtnCart background={ inCart ? '#ADB7BC' : '#FA8232'}  text={'ADD TO CART'}/>
                 </div>
                 <div onClick={handleDeleteItem} className={style.cancel}>
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
