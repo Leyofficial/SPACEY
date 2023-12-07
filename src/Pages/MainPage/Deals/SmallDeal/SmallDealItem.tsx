@@ -9,27 +9,21 @@ import {PiBasket} from "react-icons/pi";
 import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {NavLink} from "react-router-dom";
-import {useAddToWish} from "../../../../hooks/wish/useAddToWish.ts";
 import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
-import toast, {Toaster} from "react-hot-toast";
-import {useAddToCart} from "../../../../hooks/cart/useAddToCart.ts";
+import {Toaster} from "react-hot-toast";
+import {addToCart} from "../../../../Utility/ActionProduct/addToCart.ts";
+import {addToWist} from "../../../../Utility/ActionProduct/addToWish.ts";
 
 function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
     const {user} = useAppSelector((state) => state.user)
     const {image} = useGetImage(item.product.images.mainImage);
-    function addToWist() {
-        if (!item && !user) return
-        toast.success('Product added to your wish!')
-      useAddToWish(user._id , item._id).catch((err) => {
-            toast.error(err)
-      } );
+    function handleAddToWist() {
+        // if (!item && !user) return
+        addToWist(user, item);
     }
-    function addToCart() {
+    function handleAddToCart() {
         if (!item && !user) return
-        toast.success('Product added to your cart!');
-        useAddToCart(user._id , item._id).catch((err) => {
-            toast.error(err)
-        })
+        addToCart(user , item)
     }
 
     return (
@@ -54,8 +48,8 @@ function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
                 : null}
             <div className={style.iconsBlock}>
                 <div className={style.wrapperBlock}>
-                    <CustomIconButton callback={addToWist}  shaped={true} icon={<MdFavoriteBorder size={30} color={'black'}/>}/>
-                    <CustomIconButton callback={addToCart} shaped={true} icon={<PiBasket color={'black'} size={30}/>}/>
+                    <CustomIconButton callback={handleAddToWist}  shaped={true} icon={<MdFavoriteBorder size={30} color={'black'}/>}/>
+                    <CustomIconButton callback={handleAddToCart} shaped={true} icon={<PiBasket color={'black'} size={30}/>}/>
                     <CustomIconButton shaped={true} icon={<AiOutlineEye size={30} color={'black'}/>}/>
                 </div>
             </div>

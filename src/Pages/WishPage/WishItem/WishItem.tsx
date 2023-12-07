@@ -38,7 +38,6 @@ function WishItem({id} : IWishItem) {
             idItem: foundProduct._id
         }).then( () => {
             setCanceled(true)
-            toast.success('Item deleted!')
         }).catch((err) => toast.error(err.message))
     }
 

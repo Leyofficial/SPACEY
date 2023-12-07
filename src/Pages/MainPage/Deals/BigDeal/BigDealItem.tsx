@@ -9,14 +9,21 @@ import {MdFavoriteBorder} from "react-icons/md";
 import {CustomBtnCart} from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 import {AiOutlineEye} from "react-icons/ai";
 import {Rating, Skeleton} from "@mui/material";
+import {addToCart} from "../../../../Utility/ActionProduct/addToCart.ts";
+import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
 
 function BigDealItem({item}: IBigDealItem) {
+    const {user} = useAppSelector((state) => state.user)
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {
             getImageFromServer(item?.product.images.mainImage, setImage)
         }
     }, [item])
+    function handleAddToCart() {
+        if (!item && !user) return
+        addToCart(user , item)
+    }
     return (
         <div className={style.block}>
             <CustomSaleType typeSale={item?.product.saleType} />
@@ -35,7 +42,7 @@ function BigDealItem({item}: IBigDealItem) {
             <p className={style.description}>{item?.product.description}</p>
             <div className={style.buttons}>
                 <CustomIconButton icon={<MdFavoriteBorder size={24} color={'black'}/>}/>
-                <CustomBtnCart/>
+                <CustomBtnCart callback={handleAddToCart}/>
                 <CustomIconButton icon={<AiOutlineEye size={24} color={'black'} />} />
             </div>
         </div>
