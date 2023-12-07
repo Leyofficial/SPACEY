@@ -45,7 +45,7 @@ function WishItem({id} : IWishItem) {
         }).catch((err) => toast.error(err.message))
     }
     function handleAddToCart() {
-        addToCart(user._id , foundProduct );
+        addToCart(user , foundProduct );
     }
 
     useEffect(() => {
@@ -60,7 +60,7 @@ function WishItem({id} : IWishItem) {
                 reverseOrder={false}
             />
             <div className={style.imgBlock}>
-                {image ? <img src={image} alt='img'/> : <Skeleton variant={'rounded'} width={80} height={60}/> }
+                {image ? <img src={image ? image : ''} alt='img'/> : <Skeleton variant={'rounded'} width={80} height={60}/> }
             </div>
             <div className={style.text}>
                 {foundProduct?.brand}

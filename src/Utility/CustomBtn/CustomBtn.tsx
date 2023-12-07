@@ -26,7 +26,7 @@ function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICu
 export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn, blockWidth , background = '#FA8232'} : ICustomBtn) {
     return (
         <>
-            {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink style={{width:`100%` , background,}} to={path} className={style.customBtn}>
+            {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink style={{width:`100%` , background : background}} to={path} className={style.customBtn}>
             <p className={style.btnText}>{text}</p>
             <PiBasket  color={'white'} size={30}/>
         </NavLink>}
