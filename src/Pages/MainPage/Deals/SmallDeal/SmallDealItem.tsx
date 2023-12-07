@@ -9,11 +9,27 @@ import {PiBasket} from "react-icons/pi";
 import {AiOutlineEye} from "react-icons/ai";
 import {useGetImage} from "../../../../hooks/getImage/useGetImage.ts";
 import {NavLink} from "react-router-dom";
+import {useAddToWish} from "../../../../hooks/wish/useAddToWish.ts";
+import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
+import toast, {Toaster} from "react-hot-toast";
 
 function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
-    const {image} = useGetImage(item.product.images.mainImage)
+    const {user} = useAppSelector((state) => state.user)
+    const {image} = useGetImage(item.product.images.mainImage);
+    function addToWist() {
+        if (!item && !user) return
+        toast.success('Product added to your wish!')
+      useAddToWish(user._id , item._id).catch((err) => {
+            toast.error(err)
+      } );
+    }
 
     return (
+        <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         <div className={style.block}>
             <NavLink className={style.link} to={`/product/${item._id}`}>
             <div className={style.cover}></div>
@@ -30,13 +46,14 @@ function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
                 : null}
             <div className={style.iconsBlock}>
                 <div className={style.wrapperBlock}>
-                    <CustomIconButton shaped={true} icon={<MdFavoriteBorder size={30} color={'black'}/>}/>
+                    <CustomIconButton callback={addToWist}  shaped={true} icon={<MdFavoriteBorder size={30} color={'black'}/>}/>
                     <CustomIconButton shaped={true} icon={<PiBasket color={'black'} size={30}/>}/>
                     <CustomIconButton shaped={true} icon={<AiOutlineEye size={30} color={'black'}/>}/>
                 </div>
             </div>
             </NavLink>
         </div>
+        </>
     )
 }
 

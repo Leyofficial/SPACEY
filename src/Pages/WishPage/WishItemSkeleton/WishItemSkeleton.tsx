@@ -7,17 +7,17 @@ function WishItemSkeleton() {
     return (
         <div className={style.block}>
             <div className={style.imgBlock}>
-       <Skeleton variant={'rounded'} width={80} height={60}/>
+                <Skeleton variant={'rounded'} width={80} height={60}/>
             </div>
             <div className={style.text}>
-                <Skeleton height={30} variant={'rounded'} />
+                <Skeleton height={30} variant={'rounded'}/>
             </div>
             <div className={style.price}>
-                <p className={style.newPrice}>     <Skeleton variant={'rounded'} width={50} height={30} /></p>
+                <p className={style.newPrice}><Skeleton variant={'rounded'} width={50} height={30}/></p>
             </div>
             <div className={style.status}>
                 {/*{checkStock(foundProduct?.product?.stock)}*/}
-                <Skeleton variant={'rounded'} height={50} />
+                <Skeleton variant={'rounded'} height={50}/>
             </div>
             <div className={style.action}>
                 <div className={style.btn}>
@@ -30,4 +30,5 @@ function WishItemSkeleton() {
         </div>
     )
 }
+
 export default WishItemSkeleton

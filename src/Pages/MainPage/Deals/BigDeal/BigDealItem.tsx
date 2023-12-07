@@ -22,7 +22,7 @@ function BigDealItem({item}: IBigDealItem) {
             <CustomSaleType typeSale={item?.product.saleType} />
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> : <Skeleton className={style.imgSkeleton} variant={"rounded"} width={280} height={268}/>  }
                     <>
-                        <Rating name="read-only" value={item?.product.rating} readOnly />
+                        <Rating name="read-only" value={item ? item.product.rating : 1} readOnly />
                     </>
                 {item?.product.numberOfRatings ? <p className={style.numRating}>({item?.product.numberOfRatings})</p> : null}
             <p className={style.title}>{item?.brand}</p>

@@ -35,7 +35,10 @@ function WishItem({id} : IWishItem) {
         axios.patch('https://spacey-server.vercel.app/wishList', {
             idUser: user._id,
             idItem: foundProduct._id
-        }).then( () => setCanceled(true)).catch((err) => toast.error(err.message))
+        }).then( () => {
+            setCanceled(true)
+            toast.success('Item deleted!')
+        }).catch((err) => toast.error(err.message))
     }
 
     useEffect(() => {
