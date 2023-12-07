@@ -9,21 +9,8 @@ import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 import {Skeleton} from "@mui/material";
 import axios from "axios";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
-
-interface IWishItemServer {
-    brand : string,
-    product : {
-        images : {
-            mainImage : string
-        }
-        productTitle: string,
-        percentageOfSale : number | string
-        percentageOfDiscount: number,
-        price: string | number,
-        status: string
-    }
-    _id : string
-}
+import {IWishItemServer} from "../types.ts";
+import toast, {Toaster} from "react-hot-toast";
 
 interface IWishItem {
     id : string
@@ -34,6 +21,7 @@ function WishItem({id} : IWishItem) {
     const [image , setImage] = useState<any | null>(null);
     const [ canceled , setCanceled] = useState<boolean>(false);
     const [foundProduct , setProduct] = useState<IWishItemServer | null>(null);
+
     // const {img, productTitle, percentageOfDiscount, price, status} = obj
     useEffect(() => {
         if (!id) return ;
@@ -47,7 +35,7 @@ function WishItem({id} : IWishItem) {
         axios.patch('https://spacey-server.vercel.app/wishList', {
             idUser: user._id,
             idItem: foundProduct._id
-        }).then( () => setCanceled(true))
+        }).then( () => setCanceled(true)).catch((err) => toast.error(err.message))
     }
 
     useEffect(() => {
@@ -57,6 +45,10 @@ function WishItem({id} : IWishItem) {
 
     return (
         <div style={ canceled ? {display : 'none'} : {display : 'flex'}} className={style.block}>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className={style.imgBlock}>
                 {image ? <img src={image} alt='img'/> : <Skeleton variant={'rounded'} width={80} height={60}/> }
             </div>
@@ -64,10 +56,10 @@ function WishItem({id} : IWishItem) {
                 {foundProduct?.brand}
             </div>
             <div className={style.price}>
-                <p className={style.oldPrice}>
+                {+foundProduct?.product.percentageOfSale > 0 ? <p className={style.oldPrice}>
                     {foundProduct?.product.price}
-                </p>
-                <p>${checkNewPrice(foundProduct?.product.price, foundProduct?.product.percentageOfSale)}</p>
+                </p> : null}
+                <p className={style.newPrice}>${checkNewPrice(foundProduct?.product.price, foundProduct?.product.percentageOfSale)}</p>
             </div>
             <div className={style.status}>
                 {/*{checkStock(foundProduct?.product?.stock)}*/}

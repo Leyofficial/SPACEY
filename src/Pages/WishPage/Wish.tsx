@@ -8,7 +8,6 @@ function Wish() {
     const {user} = useAppSelector((state) => state.user);
     const [allId , setAllId] = useState<string[] | null>(null);
 
-
     useEffect(() => {
         if (!user) return
        axios.get(`https://spacey-server.vercel.app/wishList/${user._id}`).then((res) => {
