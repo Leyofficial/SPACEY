@@ -1,23 +1,36 @@
-.tableProduct{
-  td{
-    img{
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
+
+.productInfo {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  width: 40% !important;
+  margin-right: 5vh;
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  svg{
+    font-size: 30px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover{
+      color: red;
     }
   }
-  .title{
-    display: flex;
-    align-items: center;
-    gap:35px;
-    svg{
-      font-size: 25px;
-      color: #5F6C72;
-      cursor: pointer;
-      transition: 0.3s ease-in-out;
-      &:hover{
-        color:red;
-      }
-    }
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  li{
+    width: 25%;
+    text-align: left;
   }
+
+
 }

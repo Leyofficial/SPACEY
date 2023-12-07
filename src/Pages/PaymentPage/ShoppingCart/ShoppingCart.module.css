@@ -1,3 +1,28 @@
+.products {
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #c7c7ce);
+  width: 100%;
+}
+.products h1 {
+  color: var(--gray-900, #191C1F);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 20px;
+}
 
+.cart {
+  padding: 15px;
+  margin: 0 auto;
+}
+.cart .container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.cart .container .totalWrapper {
+  width: 30%;
+}
 
 /*# sourceMappingURL=ShoppingCart.module.css.map */

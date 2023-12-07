@@ -1,0 +1,58 @@
+.block {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgBlock img {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+}
+
+.text {
+  width: 26.1875rem;
+  color: var(--gray-700, #475156);
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.price {
+  display: flex;
+  gap: 5px;
+}
+.price .oldPrice {
+  color: var(--gray-400, #929FA5);
+  font-family: Public Sans sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
+  text-decoration: line-through;
+}
+
+.action {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.status {
+  text-align: center;
+  width: 100px;
+}
+
+.cancel {
+  cursor: pointer;
+}
+
+.newPrice {
+  color: #2DA5F3;
+}
+
+/*# sourceMappingURL=WishItem.module.css.map */

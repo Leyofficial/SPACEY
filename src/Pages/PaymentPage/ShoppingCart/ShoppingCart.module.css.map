@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"ShoppingCart.module.css"}
+{"version":3,"sourceRoot":"","sources":["ShoppingCart.module.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;;AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAIJ;EACE;EACA;;AACA;EACE;EACA;EACA;;AACA;EACE","file":"ShoppingCart.module.css"}

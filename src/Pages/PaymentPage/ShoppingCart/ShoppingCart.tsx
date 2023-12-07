@@ -20,7 +20,9 @@ const ShoppingCart = () => {
                     <h1>Shopping Card</h1>
                     <TableProducts products={basketProducts}></TableProducts>
                 </div>
-
+                <div className={style.totalWrapper}>
+asdasd
+                </div>
             </div>
         </section>
     );
