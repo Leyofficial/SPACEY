@@ -28,6 +28,7 @@ function WishItem({id} : IWishItem) {
         getProduct(id).then((res) => {
             setProduct(res.data.found)
         })
+        console.log(foundProduct)
     },[])
 
     function deleteItem() {
