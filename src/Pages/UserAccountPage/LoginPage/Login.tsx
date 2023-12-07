@@ -46,12 +46,13 @@ function Login() {
         if (!userInfoGoogle) return
         const {sub , email } = userInfoGoogle;
         axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
+            console.log(res)
             if (!res.data.foundUser) {
 
                 toast.error('User not found')
                 return
             }
-            successAction(res.data.token, navigate)
+            successAction(res.data.foundUser.googleToken, navigate)
         }).catch((err) => {
             toast.error(err)
         })
@@ -62,9 +63,9 @@ function Login() {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
-                dispatch(setUser(response.data.data))
+                dispatch(setUser(response.data.user))
                 reset();
-                successAction(response.data.token , navigate)
+                successAction(response.data.user.userToken , navigate)
             })
             .catch((error) => {
                 console.log(error)

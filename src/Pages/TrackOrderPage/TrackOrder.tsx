@@ -8,6 +8,7 @@ import {PiInfo} from "react-icons/pi";
 import {BsArrowRightShort} from "react-icons/bs";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import Footer from "../../Components/Footer/Footer.tsx";
+import {useNavigate} from "react-router-dom";
 
 interface MyForm {
     id: string
@@ -15,11 +16,12 @@ interface MyForm {
 }
 
 function TrackOrder() {
+    const navigate = useNavigate();
     const defaultValues = ['id', 'email'];
     const {register, handleSubmit, errors} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm> = data => {
         console.log(data)
-
+        navigate('/track-order/' + data.id)
     }
     const error: SubmitErrorHandler<MyForm> = () => {
         toast.error("All inputs required.")

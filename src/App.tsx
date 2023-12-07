@@ -5,7 +5,6 @@ import HomePage from "./Routers/Home/HomePage.tsx";
 import NotFound from "./Routers/NotFound/NotFound.tsx";
 import ShopGrid from "./Routers/ShopGrid/ShopGrid.tsx";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail.tsx";
-import WishList from "./Pages/WishList/WishList.tsx";
 import PaymentPage from "./Pages/PaymentPage/PaymentPage.tsx";
 import Billing from "./Pages/PaymentPage/Billing/Billing.tsx";
 import CheckOutPayment from "./Pages/PaymentPage/CheckOutPayment/CheckOutPayment.tsx";
@@ -25,30 +24,30 @@ import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrde
 
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
-import {useAppSelector} from "./redux/hooks/hooks.ts";
-// import {useAppDispatch} from "./redux/hooks/hooks.ts";
-// import {userSlice} from "./redux/user/userSlice.ts";
-// import axios from "axios";
+import {useAppDispatch} from "./redux/hooks/hooks.ts";
+import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
+import ComparePage from "./Routers/Compare/ComparePage.tsx";
+import Compare from "./Pages/ComparePage/Compare.tsx";
+import  {setUser} from "./redux/user/reducers/UserSlice.ts";
+import WishPage from "./Routers/Wish/WishPage.tsx";
+import Wish from "./Pages/WishPage/Wish.tsx";
+// import ComparePage from "./Routers/ComparePage/ComparePage.tsx";
 import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 
 function App() {
-    // const token = localStorage.getItem('token');
-    const {user} = useAppSelector(state => state.user)
-    useEffect(() => {
-        console.log(user)
-    }, [user]);
+    const token = localStorage.getItem('token');
     const [getPermission , setPermissionReset] = useState(false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
-    // const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch()
 
-    // useEffect(() => {
-    //     if (!token) return
-    //     axios.get('https://spacey-server.vercel.app').then(res => {
-    //         if (!res.data.foundUser) return;
-    //         dispatch(userSlice(res.data.foundUser))
-    //     })
-    // }, [token]);
+    useEffect(() => {
+        if (!token) return
+        axios.get(`https://spacey-server.vercel.app/auth/token/${token}`).then(res => {
+            if (!res.data.user) return;
+            dispatch( setUser(res.data.user))
+        })
+    }, [token]);
 
 
     return (
@@ -62,6 +61,9 @@ function App() {
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                         <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
                         <Route path={'basket'} element={<ShoppingCart/>}></Route>
+                    </Route>
+                    <Route path={'/ComparePage'} element={<ComparePage/>}>
+                        <Route index element={<Compare/>}/>
                     </Route>
                     <Route path={'/FAQ'} element={<FaqPage/>}/>
                     <Route path={'track-order'} element={<TrackOrder/>}/>
@@ -81,7 +83,9 @@ function App() {
                         <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'help'} element={<HelpPage/>}></Route>
-                    <Route path={'/wish'} element={<WishList/>}></Route>
+                    <Route path={'/wish'} element={<WishPage/>}>
+                        <Route index  element={<Wish/>}></Route>
+                    </Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
                     <Route path={'/about'} element={<AboutUs/>}></Route>

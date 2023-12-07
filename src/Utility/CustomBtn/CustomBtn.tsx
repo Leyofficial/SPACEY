@@ -32,4 +32,5 @@ export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn,blockWi
         </>
     )
 }
+
 export default CustomBtn

@@ -9,9 +9,9 @@ interface ICustomIconButton {
     shaped? : boolean,
 }
 
-export function CustomIconButton({icon , path = '#' , shaped}: ICustomIconButton) {
+export function CustomIconButton({icon , path = '#' , shaped , callback}: ICustomIconButton) {
     return (
-        <div className={`${style.block} ${shaped ? style.shaped : null}`}>
+        <div onClick={callback} className={`${style.block} ${shaped ? style.shaped : null}`}>
             <NavLink to={path}>
                 {icon}
             </NavLink>

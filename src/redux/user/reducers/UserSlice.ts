@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export interface IUserState {
     user : {
+        _id : string,
         email : string ,
         familyName : string ,
         givenName : string ,
@@ -41,6 +42,7 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state , action) => {
             state.user = action.payload;
+            console.log(state.user)
         },
     },
 });
