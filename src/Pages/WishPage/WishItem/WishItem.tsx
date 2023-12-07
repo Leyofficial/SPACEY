@@ -11,6 +11,7 @@ import axios from "axios";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {IWishItemServer} from "../types.ts";
 import toast, {Toaster} from "react-hot-toast";
+import {addToCart} from "../../../Utility/ActionProduct/addToCart.ts";
 
 interface IWishItem {
     id : string
@@ -31,7 +32,7 @@ function WishItem({id} : IWishItem) {
         console.log(foundProduct)
     },[])
 
-    function deleteItem() {
+    function handleDeleteItem() {
         if (!foundProduct) return
         axios.patch('https://spacey-server.vercel.app/wishList', {
             idUser: user._id,
@@ -40,11 +41,15 @@ function WishItem({id} : IWishItem) {
             setCanceled(true)
         }).catch((err) => toast.error(err.message))
     }
+    function handleAddToCart() {
+        if (!id && !user) return;
+        addToCart(user._id , id );
+    }
 
     useEffect(() => {
         if (!foundProduct) return
         getImageFromServer(foundProduct?.product?.images.mainImage , setImage);
-    }, [foundProduct]);
+    }, []);
 
     return (
         <div style={ canceled ? {display : 'none'} : {display : 'flex'}} className={style.block}>
@@ -70,9 +75,9 @@ function WishItem({id} : IWishItem) {
             </div>
             <div className={style.action}>
                 <div className={style.btn}>
-                    <CustomBtnCart text={'ADD TO CART'}/>
+                    <CustomBtnCart callback={handleAddToCart} text={'ADD TO CART'}/>
                 </div>
-                <div onClick={deleteItem} className={style.cancel}>
+                <div onClick={handleDeleteItem} className={style.cancel}>
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
                 </div>
             </div>

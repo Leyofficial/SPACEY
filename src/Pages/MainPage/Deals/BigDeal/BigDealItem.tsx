@@ -13,7 +13,7 @@ import {addToCart} from "../../../../Utility/ActionProduct/addToCart.ts";
 import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
 
 function BigDealItem({item}: IBigDealItem) {
-    const {user} = useAppSelector((state) => state.user)
+    const {user} = useAppSelector((state) => state.user);
     const [image, setImage] = useState<string | null>(null)
     useEffect(() => {
         if (item) {
@@ -21,7 +21,7 @@ function BigDealItem({item}: IBigDealItem) {
         }
     }, [item])
     function handleAddToCart() {
-        if (!item && !user) return
+        if (!item && !user) return;
         addToCart(user , item)
     }
     return (
