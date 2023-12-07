@@ -10,5 +10,6 @@ export interface IWishItemServer {
         price: string | number,
         status: string
     }
+    isStock : boolean
     _id : string
 }

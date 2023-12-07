@@ -66,7 +66,7 @@ function WishItem({id} : IWishItem) {
             </div>
             <div className={style.status}>
                 {/*{checkStock(foundProduct?.product?.stock)}*/}
-                {checkStock('OUT OF STOCK')}
+                {checkStock(foundProduct?.isStock)}
             </div>
             <div className={style.action}>
                 <div className={style.btn}>

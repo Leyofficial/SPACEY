@@ -1,13 +1,14 @@
 import style from './checkStock.module.scss'
-export function checkStock(text : string) {
+
+export function checkStock(boolean: boolean | undefined) {
     function checkByText() {
-        switch (text.toLowerCase()) {
-            case 'in stock' :
-            return <p style={{color : '#2DB224'}}>IN STOCK</p>
-            case  'out of stock' :
-                return <p style={{color : '#EE5858'}}>OUT OF STOCK</p>
+        if (boolean) {
+            return <p style={{color: '#2DB224'}}>IN STOCK</p>
+        } else {
+            return <p style={{color: '#EE5858'}}>OUT OF STOCK</p>
         }
     }
+
     return (
         <div className={style.text}>
             {checkByText()}
