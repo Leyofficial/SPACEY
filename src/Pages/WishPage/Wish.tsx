@@ -3,10 +3,11 @@ import WishItem from "./WishItem/WishItem.tsx";
 import {useEffect, useState} from "react";
 import {useAppSelector} from "../../redux/hooks/hooks.ts";
 import axios from "axios";
+import WishItemSkeleton from "./WishItemSkeleton/WishItemSkeleton.tsx";
 
 function Wish() {
     const {user} = useAppSelector((state) => state.user);
-    const [allId , setAllId] = useState<string[] | null>(null);
+    const [allId , setAllId] = useState<string[]>([]);
 
     useEffect(() => {
         if (!user) return
@@ -36,10 +37,10 @@ function Wish() {
 
             </ul>
             <div className={style.items}>
-                {allId && allId.map((item : string) => {
+                {allId?.length > 0  && allId ? allId?.map((item : string) => {
                         return <WishItem id={item}/>
                     }
-                )}
+                ) : <WishItemSkeleton/>}
             </div>
         </div>
     )
