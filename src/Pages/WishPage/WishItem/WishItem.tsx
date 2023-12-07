@@ -45,7 +45,12 @@ function WishItem({id} : IWishItem) {
         }).catch((err) => toast.error(err.message))
     }
     function handleAddToCart() {
-        addToCart(user , foundProduct );
+        if (!inCart) {
+            addToCart(user , foundProduct );
+        } else {
+            toast.error('It`s already in your cart!')
+        }
+
     }
 
     useEffect(() => {
