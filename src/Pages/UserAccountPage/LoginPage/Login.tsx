@@ -46,7 +46,6 @@ function Login() {
         if (!userInfoGoogle) return
         const {sub , email } = userInfoGoogle;
         axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
-            console.log(res)
             if (!res.data.foundUser) {
 
                 toast.error('User not found')

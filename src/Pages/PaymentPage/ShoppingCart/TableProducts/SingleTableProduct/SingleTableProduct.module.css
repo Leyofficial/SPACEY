@@ -1,0 +1,21 @@
+.tableProduct td img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+.tableProduct .title {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+.tableProduct .title svg {
+  font-size: 25px;
+  color: #5F6C72;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+.tableProduct .title svg:hover {
+  color: red;
+}
+
+/*# sourceMappingURL=SingleTableProduct.module.css.map */

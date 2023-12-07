@@ -1,0 +1,18 @@
+.table {
+  width: 100%;
+}
+.table thead {
+  width: 100%;
+}
+.table thead tr {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+.table tbody tr {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/*# sourceMappingURL=TableProducts.module.css.map */

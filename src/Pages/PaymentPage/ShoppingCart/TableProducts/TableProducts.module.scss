@@ -1,0 +1,29 @@
+.table {
+  width: 100%;
+
+  thead {
+
+    width: 100%;
+
+    tr {
+      display: flex;
+      align-items: center;
+      gap:50px;
+      th {
+        //width: 25%;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+
+      td {
+        //width: 25%;
+      }
+    }
+  }
+}

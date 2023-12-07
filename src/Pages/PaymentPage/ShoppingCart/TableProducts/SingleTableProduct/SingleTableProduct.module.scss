@@ -1,0 +1,23 @@
+.tableProduct{
+  td{
+    img{
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+  .title{
+    display: flex;
+    align-items: center;
+    gap:35px;
+    svg{
+      font-size: 25px;
+      color: #5F6C72;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      &:hover{
+        color:red;
+      }
+    }
+  }
+}
