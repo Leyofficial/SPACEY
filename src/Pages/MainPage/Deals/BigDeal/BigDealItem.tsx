@@ -21,13 +21,15 @@ function BigDealItem({item}: IBigDealItem) {
         <div className={style.block}>
             <CustomSaleType typeSale={item?.product.saleType} />
             {image ? <img className={style.image} src={image ? image : ''} alt=""/> : <Skeleton className={style.imgSkeleton} variant={"rounded"} width={280} height={268}/>  }
-                    <Rating name="read-only" value={item?.product.rating} readOnly />
+                    <>
+                        <Rating name="read-only" value={item?.product.rating} readOnly />
+                    </>
                 {item?.product.numberOfRatings ? <p className={style.numRating}>({item?.product.numberOfRatings})</p> : null}
             <p className={style.title}>{item?.brand}</p>
             {item?.product.sale ?
                 <div className={style.priceBlock}>
-                    <p className={style.oldPrice}>${checkNewPrice(item?.product.price, 20)}</p>
-                    <p className={style.newPrice}>${item?.product.price}</p>
+                    <p className={style.oldPrice}>${item?.product.price}</p>
+                    <p className={style.newPrice}>${checkNewPrice(item?.product.price, 20)}</p>
                 </div>
                 : null}
             <p className={style.description}>{item?.product.description}</p>
