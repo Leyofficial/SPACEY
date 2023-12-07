@@ -29,7 +29,6 @@ function WishItem({id} : IWishItem) {
         getProduct(id).then((res) => {
             setProduct(res.data.found)
         })
-        console.log(foundProduct)
     },[])
 
     function handleDeleteItem() {
@@ -42,8 +41,7 @@ function WishItem({id} : IWishItem) {
         }).catch((err) => toast.error(err.message))
     }
     function handleAddToCart() {
-        if (!id && !user) return;
-        addToCart(user._id , id );
+        addToCart(user._id , foundProduct );
     }
 
     useEffect(() => {
@@ -74,8 +72,8 @@ function WishItem({id} : IWishItem) {
                 {checkStock(foundProduct?.isStock)}
             </div>
             <div className={style.action}>
-                <div className={style.btn}>
-                    <CustomBtnCart callback={handleAddToCart} text={'ADD TO CART'}/>
+                <div onClick={handleAddToCart} className={style.btn}>
+                    <CustomBtnCart  text={'ADD TO CART'}/>
                 </div>
                 <div onClick={handleDeleteItem} className={style.cancel}>
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
