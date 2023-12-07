@@ -62,9 +62,11 @@ function Login() {
         axios
             .get(`https://spacey-server.vercel.app/auth?email=${dataFormInputs.email}&password=${dataFormInputs.password}`)
             .then((response) => {
-                dispatch(setUser(response.data.data))
+
+                dispatch(setUser(response.data.user))
+                console.log(response.data.user)
                 reset();
-                successAction(response.data.token , navigate)
+                successAction(response.data.user.userToken , navigate)
             })
             .catch((error) => {
                 console.log(error)
