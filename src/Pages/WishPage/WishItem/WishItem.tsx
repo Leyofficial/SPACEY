@@ -59,8 +59,8 @@ function WishItem({id}: IWishItem) {
 
     useEffect(() => {
         if (!foundProduct) return
-        getImageFromServer(foundProduct?.product?.images.mainImage, setImage);
-    }, []);
+        getImageFromServer(foundProduct?.product?.images?.mainImage, setImage);
+    }, [foundProduct]);
 
     return (
         foundProduct ? <div style={canceled ? {display: 'none'} : {display: 'flex'}} className={style.block}>
@@ -73,7 +73,7 @@ function WishItem({id}: IWishItem) {
                     <Skeleton variant={'rounded'} width={80} height={60}/>}
             </div>
             <div className={style.text}>
-                {foundProduct ? foundProduct?.brand : <Skeleton variant={'rounded'} height={20} width={150}/> }
+                {foundProduct ? foundProduct?.brand : <Skeleton variant={'rounded'} height={20} width={150}/>}
             </div>
             <div className={style.price}>
                 {+foundProduct?.product.percentageOfSale > 0 ? <p className={style.oldPrice}>
