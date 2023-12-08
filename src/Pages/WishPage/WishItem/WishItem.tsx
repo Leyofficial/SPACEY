@@ -64,6 +64,7 @@ function WishItem({id}: IWishItem) {
         if (!inCart && foundProduct) {
             setInCart(true)
             addToCart(user, foundProduct);
+            return;
         } else {
             toast.error('It`s already in your cart!')
         }

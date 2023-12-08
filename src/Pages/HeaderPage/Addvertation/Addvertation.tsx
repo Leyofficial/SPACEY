@@ -39,8 +39,8 @@ function Addvertation() {
                         className={style.mySwiper}
                 >
 
-                    <SwiperSlide> {!isLoading && items ? <BigAdd item={items[0]} idItem={data.categories[0]._id}/>  : <BigAddSkeleton/> } </SwiperSlide>
-                    <SwiperSlide> {!isLoading && items ? <BigAdd item={items[22]} idItem={data.categories[22]._id}/> : <BigAddSkeleton/> } </SwiperSlide>
+                    <SwiperSlide> {!isLoading && items ? <BigAdd item={items[0]} idItem={data ? data.categories[0]._id : null}/>  : <BigAddSkeleton/> } </SwiperSlide>
+                    <SwiperSlide> {!isLoading && items ? <BigAdd item={items[22]} idItem={data ? data.categories[22]._id : null}/> : <BigAddSkeleton/> } </SwiperSlide>
                 </Swiper>
                 <div className={style.rightBlock}>
                     { !isLoading && data ?  <SmallAdd item={items[0]} idItem={data.categories[0]._id}/> :  <SmallAddSkeleton/>}
