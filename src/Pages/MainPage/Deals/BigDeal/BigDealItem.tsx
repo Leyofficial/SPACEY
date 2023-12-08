@@ -22,7 +22,7 @@ function BigDealItem({item}: IBigDealItem) {
     }, [item])
     function handleAddToCart() {
         if (!item && !user) return;
-        addToCart(user , item)
+        addToCart(user, item)
     }
     return (
         <div className={style.block}>

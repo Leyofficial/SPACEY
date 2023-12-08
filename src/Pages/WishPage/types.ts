@@ -5,7 +5,7 @@ export interface IWishItemServer {
             mainImage : string
         }
         productTitle: string,
-        percentageOfSale :  number | string | any
+        percentageOfSale :  number | string
         percentageOfDiscount: number,
         price: string | number,
         status: string

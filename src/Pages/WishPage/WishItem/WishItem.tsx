@@ -13,6 +13,7 @@ import {IWishItemServer} from "../types.ts";
 import toast, {Toaster} from "react-hot-toast";
 import {addToCart} from "../../../Utility/ActionProduct/addToCart.ts";
 import {useCheckInCart} from "../../../hooks/cart/useCheckInCart.ts";
+import WishItemSkeleton from "../WishItemSkeleton/WishItemSkeleton.tsx";
 
 interface IWishItem {
     id: string
@@ -21,22 +22,30 @@ interface IWishItem {
 function WishItem({id}: IWishItem) {
 
     const {user} = useAppSelector((state) => state.user);
-    const [image, setImage] = useState<any | null>(null);
+    const [image, setImage] = useState<string | null>(null);
     const [canceled, setCanceled] = useState<boolean>(false);
     const [foundProduct, setProduct] = useState<IWishItemServer | null>(null);
     const [inCart, setInCart] = useState<boolean>(false);
-    // const {img, productTitle, percentageOfDiscount, price, status} = obj
+
+
     useEffect(() => {
         if (!id) return;
-        setProduct(null)
         getProduct(id).then((res) => {
             setProduct(res.data.found);
             useCheckInCart(res.data.found._id, user._id).then((response) => {
                 setInCart(response.data.isCart)
             });
+        }).catch((err) => {
+            toast.error(err.message || 'Something went wrong!');
         })
     }, [])
 
+    useEffect(() => {
+        if (!foundProduct) return
+        getImageFromServer(foundProduct?.product?.images?.mainImage, setImage);
+    }, [foundProduct]);
+
+    // function actions
     function handleDeleteItem() {
         if (!foundProduct?._id) return
         axios.patch('https://spacey-server.vercel.app/wishList', {
@@ -48,7 +57,7 @@ function WishItem({id}: IWishItem) {
     }
 
     function handleAddToCart() {
-        if (!inCart) {
+        if (!inCart && foundProduct) {
             setInCart(true)
             addToCart(user, foundProduct);
         } else {
@@ -56,11 +65,6 @@ function WishItem({id}: IWishItem) {
         }
 
     }
-
-    useEffect(() => {
-        if (!foundProduct) return
-        getImageFromServer(foundProduct?.product?.images?.mainImage, setImage);
-    }, [foundProduct]);
 
     return (
         foundProduct ? <div style={canceled ? {display: 'none'} : {display: 'flex'}} className={style.block}>
@@ -82,7 +86,6 @@ function WishItem({id}: IWishItem) {
                 <p className={style.newPrice}>${checkNewPrice(foundProduct?.product.price, foundProduct?.product.percentageOfSale)}</p>
             </div>
             <div className={style.status}>
-                {/*{checkStock(foundProduct?.product?.stock)}*/}
                 {checkStock(foundProduct?.isStock)}
             </div>
             <div className={style.action}>
@@ -93,7 +96,7 @@ function WishItem({id}: IWishItem) {
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
                 </div>
             </div>
-        </div> : null
+        </div> : <WishItemSkeleton/>
 
     )
 }

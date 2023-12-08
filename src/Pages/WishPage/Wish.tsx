@@ -11,7 +11,7 @@ function Wish() {
 
     useEffect(() => {
         if (!user) return
-       axios.get(`https://spacey-server.vercel.app/wishList/${user ? user._id : 'error'}`).then((res) => {
+       axios.get(`https://spacey-server.vercel.app/wishList/${user._id}`).then((res) => {
            if (!res.data) return
             setAllId(res?.data?.foundItems?.items);
         });
@@ -38,7 +38,7 @@ function Wish() {
 
             </ul>
             <div className={style.items}>
-                { allId.length > 0 ? allId.map((item : string , index : number) => {
+                { allId && allId.length > 0 ? allId.map((item : string , index : number) => {
                         return <WishItem key={index} id={item}/>
                     }
                 ) : <WishItemSkeleton/>}

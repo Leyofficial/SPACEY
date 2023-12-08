@@ -16,7 +16,6 @@ function WishItemSkeleton() {
                 <p className={style.newPrice}><Skeleton variant={'rounded'} width={50} height={30}/></p>
             </div>
             <div className={style.status}>
-                {/*{checkStock(foundProduct?.product?.stock)}*/}
                 <Skeleton variant={'rounded'} height={50}/>
             </div>
             <div className={style.action}>
