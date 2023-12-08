@@ -15,38 +15,42 @@ import {addToCart} from "../../../Utility/ActionProduct/addToCart.ts";
 import {useCheckInCart} from "../../../hooks/cart/useCheckInCart.ts";
 
 interface IWishItem {
-    id : string
+    id: string
 }
-function WishItem({id} : IWishItem) {
+
+function WishItem({id}: IWishItem) {
 
     const {user} = useAppSelector((state) => state.user);
-    const [image , setImage] = useState<any | null>(null);
-    const [ canceled , setCanceled] = useState<boolean>(false);
-    const [foundProduct , setProduct] = useState<IWishItemServer | null>(null);
-    const [inCart , setInCart] = useState<boolean>(false);
+    const [image, setImage] = useState<any | null>(null);
+    const [canceled, setCanceled] = useState<boolean>(false);
+    const [foundProduct, setProduct] = useState<IWishItemServer | null>(null);
+    const [inCart, setInCart] = useState<boolean>(false);
     // const {img, productTitle, percentageOfDiscount, price, status} = obj
     useEffect(() => {
-        if (!id) return ;
+        if (!id) return;
+        setProduct(null)
         getProduct(id).then((res) => {
             setProduct(res.data.found);
-           useCheckInCart( res.data.found._id , user._id)?.then((response) => {
+            useCheckInCart(res.data.found._id, user._id).then((response) => {
                 setInCart(response.data.isCart)
             });
         })
-    },[])
+    }, [])
 
     function handleDeleteItem() {
-        if (!foundProduct) return
+        if (!foundProduct?._id) return
         axios.patch('https://spacey-server.vercel.app/wishList', {
             idUser: user._id,
             idItem: foundProduct._id
-        }).then( () => {
+        }).then(() => {
             setCanceled(true)
         }).catch((err) => toast.error(err.message))
     }
+
     function handleAddToCart() {
         if (!inCart) {
-            addToCart(user , foundProduct );
+            setInCart(true)
+            addToCart(user, foundProduct);
         } else {
             toast.error('It`s already in your cart!')
         }
@@ -55,20 +59,21 @@ function WishItem({id} : IWishItem) {
 
     useEffect(() => {
         if (!foundProduct) return
-        getImageFromServer(foundProduct?.product?.images.mainImage , setImage);
+        getImageFromServer(foundProduct?.product?.images.mainImage, setImage);
     }, []);
 
     return (
-        <div style={ canceled ? {display : 'none'} : {display : 'flex'}} className={style.block}>
+        foundProduct ? <div style={canceled ? {display: 'none'} : {display: 'flex'}} className={style.block}>
             <Toaster
                 position="top-right"
                 reverseOrder={false}
             />
             <div className={style.imgBlock}>
-                {image ? <img src={image ? image : ''} alt='img'/> : <Skeleton variant={'rounded'} width={80} height={60}/> }
+                {image ? <img src={image} alt='img'/> :
+                    <Skeleton variant={'rounded'} width={80} height={60}/>}
             </div>
             <div className={style.text}>
-                {foundProduct?.brand}
+                {foundProduct ? foundProduct?.brand : <Skeleton variant={'rounded'} height={20} width={150}/> }
             </div>
             <div className={style.price}>
                 {+foundProduct?.product.percentageOfSale > 0 ? <p className={style.oldPrice}>
@@ -82,13 +87,14 @@ function WishItem({id} : IWishItem) {
             </div>
             <div className={style.action}>
                 <div onClick={handleAddToCart} className={style.btn}>
-                    <CustomBtnCart background={ inCart ? '#ADB7BC' : '#FA8232'}  text={'ADD TO CART'}/>
+                    <CustomBtnCart background={inCart ? '#ADB7BC' : '#FA8232'} text={'ADD TO CART'}/>
                 </div>
                 <div onClick={handleDeleteItem} className={style.cancel}>
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
                 </div>
             </div>
-        </div>
+        </div> : null
+
     )
 }
 
