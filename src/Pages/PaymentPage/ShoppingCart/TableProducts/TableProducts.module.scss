@@ -12,7 +12,7 @@
     width: 100%;
 
     li {
-      width: 25%;
+      width: 17%;
       text-align: left;
       color: var(--gray-700, #475156);
 
@@ -24,13 +24,26 @@
       text-transform: uppercase;
     }
 
+    .price {
+      margin-left: 15px;
+    }
+
+    .subTotal {
+      margin-right: 15px;
+    }
   }
 
   .mainList {
     width: 100%;
   }
 }
-.productItem{
+
+.productItem {
   width: 40% !important;
   margin-right: 5vh;
+}
+
+.empty {
+  text-align: center;
+  margin: 100px 0;
 }

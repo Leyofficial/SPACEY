@@ -12,14 +12,15 @@ import payment1 from '../../../assets/img/payment/image 322.png'
 import payment2 from '../../../assets/img/payment/image 323.png'
 import payment3 from '../../../assets/img/payment/image 321.png'
 import {getColorElement} from "../getColorElement.tsx";
-
-
-
+import {addBasketItem} from "../../../ApiRequests/Items/basketItems.ts";
+import {useAppSelector} from "../../../redux/hooks/hooks.ts";
+import toast, {Toaster} from "react-hot-toast";
 
 
 const ProductInfo = ({product}: IProductInfoProps) => {
     const [countAddProduct, setCountAddProduct] = useState<number>(1)
-
+    const {user} = useAppSelector(state => state.user)
+    const [process,setProcess] = useState<boolean>(false)
     const increaseProduct = () => {
         setCountAddProduct(countAddProduct + 1)
     }
@@ -28,8 +29,35 @@ const ProductInfo = ({product}: IProductInfoProps) => {
             setCountAddProduct(countAddProduct - 1)
     }
 
+    const addCartItemHandler = () => {
+        const data: { idProduct: string, count: number, price: number | string } = {
+            idProduct: product._id,
+            count: countAddProduct,
+            price: product.product.price
+        }
+        addBasketItem(user?._id, data,setProcess).then(res => {
+            if(res.status === 200) {
+                toast.success('The product was added to your cart')
+                setTimeout(() => {
+                    setProcess(false)
+                },500)
+
+            }else if (res.status === 201) {
+                toast.error('This product is already in your cart')
+                setTimeout(() => {
+
+                    setProcess(false)
+                },500)
+            }
+        })
+    }
+
     return (
         <article className={style.product}>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             {!product ? <Skeleton></Skeleton> : <>
                 <header className={style.header}>
 
@@ -53,7 +81,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                     </section>
 
                     <section className={style.priceWrapper}>
-                        <p className={style.price}>${product?.product.price - (Number(product?.product.price) * (Number(product.product.percentageOfSale) / 100 ) )}.00 <span>${product.product.price}.00</span>
+                        <p className={style.price}>${Number(product?.product.price) - (Number(product?.product.price) * (Number(product.product.percentageOfSale) / 100))}.00 <span>${product.product.price}.00</span>
                         </p>
                         <p className={style.discount}>{product?.product.percentageOfSale}% {product.product.saleType.toUpperCase()}</p>
                     </section>
@@ -64,7 +92,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                         <div className={style.colorBlock}>
                             <p>Color</p>
                             <div className={style.wrapperColor}>
-                                {product?.product.images.restImages.map((item) => getColorElement(item.color.toUpperCase())) }
+                                {product?.product.images.restImages.map((item) => getColorElement(item.color.toUpperCase()))}
                             </div>
                             <CustomSelect width={300} items={product.product.memory} title={'Memory'}></CustomSelect>
                         </div>
@@ -77,7 +105,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                     <section className={style.cardWrapper}>
                         <CountAddToCard decrease={decreaseProduct} increase={increaseProduct}
                                         count={countAddProduct}></CountAddToCard>
-                        <CustomBtnCart blockWidth={'100%'} text={'ADD TO CARD'}/>
+                        <CustomBtnCart inProcess={process} blockWidth={'100%'} text={'ADD TO CARD'} callback={addCartItemHandler}/>
                         <CustomBtnCart blockWidth={'40%'} typeBtn={'BUY'} text={"BUY NOW"}></CustomBtnCart>
                     </section>
 

@@ -1,0 +1,59 @@
+.cardTotal {
+  width: 100%;
+}
+.cardTotal .btn {
+  padding: 0 10px;
+}
+.cardTotal .btn button {
+  width: 100%;
+}
+.cardTotal .btn button a {
+  width: 100%;
+}
+.cardTotal .info {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.53);
+  margin-bottom: 25px;
+  padding: 0 20px;
+}
+.cardTotal .info p {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cardTotal .info p span {
+  color: var(--gray-600, #5F6C72);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  padding: 10px 0;
+}
+.cardTotal h1 {
+  color: var(--gray-900, #191C1F);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 20px;
+}
+.cardTotal .wrapperInfo {
+  border: 1px solid rgba(128, 128, 128, 0.45);
+  padding: 16px 0;
+}
+
+.total {
+  margin-bottom: 35px;
+  padding: 0 20px;
+}
+.total p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+.total p span {
+  font-weight: normal;
+}
+
+/*# sourceMappingURL=CardTotals.module.css.map */

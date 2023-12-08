@@ -7,6 +7,8 @@ import {useEffect, useState} from "react";
 import CustomSelectForm from "./CustomSelect/CustomSelect.tsx";
 import RowRadioButtonsGroup from "./CustomRadio/CustomRadio.tsx";
 import SummeryProduct from "../SummeryProduct/SummeryProduct.tsx";
+import {NavLink} from "react-router-dom";
+import {FaArrowRight} from "react-icons/fa";
 
 
 const validate = (value : string) => {
@@ -23,17 +25,21 @@ const BillingForm = ({products} : IOrderProducts) => {
     }, [])
 
 
+    const submitFormHandler = (e) => {
+        e.preventDefault()
+    }
     return (
         <>
             <div className={style.containerForm}>
                 <h2>Billing information</h2>
                 <Formik initialValues={billingFormValues}
                         onSubmit={(values: Values, {setSubmitting}: FormikHelpers<Values>) => {
+
                             console.log(values)
                             setSubmitting(false)
                         }}
                 >
-                    <Form className={style.billingForm}>
+                    <Form className={style.billingForm} onSubmit={submitFormHandler}>
                         <div className={style.mainForm}>
                         <div className={style.fieldName}>
                             <div className={style.blockNames}>
@@ -70,27 +76,19 @@ const BillingForm = ({products} : IOrderProducts) => {
                             <div className={style.radioWrapper}>
                                 <RowRadioButtonsGroup></RowRadioButtonsGroup>
                             </div>
-                            <div className={style.wrapperFieldsCard}>
-
-
-                            <CustomField validate={validate}  typeField={'text'} id={"payment.cardName"} htmlFor={"payment.cardName"}
-                                         title={'Name on Card'} placeholder={'Volodymyr Lupashko'}></CustomField>
-                            <CustomField validate={validate}  typeField={'card'} id={"payment.cardNumber"} htmlFor={"payment.cardNumber"}
-                                         title={'Card Number'} placeholder={'0000 0000 0000 0000'}></CustomField>
-
-                            <div className={style.cardWrapper}>
-                                <CustomField validate={validate}  typeField={'date'} id={"payment.expireDate"} placeholder={'DD/YY'} htmlFor={"payment.expireDate"}
-                                             title={'Expire Date'}></CustomField>
-                                <CustomField validate={validate}  typeField={'number'} id={"payment.cvc"} placeholder={"062"} htmlFor={"payment.cvc"}  title={'CVC'}></CustomField>
-                            </div>
-                            </div>
                         </div>
                         <div className={style.notesWrapper}>
                             <CustomField validate={validate}  typeField={'text'} placeholder={'Notes about your order,e.g. special notes for delivery'} isTextArea={'Textarea'} id={"orderNotes"} htmlFor={"orderNotes"} title={'Order Notes'}></CustomField>
                         </div>
                         </div>
                         <section className={style.summerWrapper}>
-                            <SummeryProduct products={products}></SummeryProduct>
+                            <div className={style.summer}>
+                                <SummeryProduct products={products}></SummeryProduct>
+
+                                    <button type={'submit'} >PLACE ORDER    <FaArrowRight /></button>
+
+
+                            </div>
                         </section>
                     </Form>
                 </Formik>

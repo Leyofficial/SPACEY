@@ -1,9 +1,10 @@
 import style from './SummeryProduct.module.scss';
-import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
+
 import {IOrderProducts} from "../payment.types.ts";
 import SingleProduct from "./SingleProduct/SinglProduct.tsx";
 import {useEffect, useState} from "react";
 import {getProduct} from "../../../ApiRequests/Items/getProduct.ts";
+
 
 const SummeryProduct = ({products}: IOrderProducts) => {
 
@@ -23,7 +24,10 @@ const SummeryProduct = ({products}: IOrderProducts) => {
 
 
     return (
-        <div className={style.summer}>
+    <>
+        <div className={style.wrapper}>
+
+
             <h3>Order Summery</h3>
             {products?.map((item, index) => <SingleProduct key={index}
                                                            product={item}></SingleProduct>)}
@@ -32,17 +36,20 @@ const SummeryProduct = ({products}: IOrderProducts) => {
                 <p><span>Sub-total</span>${totalPrice}</p>
                 <p><span>Shipping</span>Free</p>
                 <p><span>Discount</span>{totalPrice && Math.round(totalPrice * 0.10)}.00</p>
-                <p><span>Tax</span>${totalPrice && Math.round(totalPrice * 0.17)}.00</p>
+                <p><span>Tax</span>${totalPrice && Math.round(totalPrice * 0.05)}.00</p>
             </div>
             <div className={style.totalWrapper}>
                 <p className={style.totalTitle}>Total</p>
                 <p className={style.totalPrice}>{totalPrice - (totalPrice * 0.10 - (totalPrice * 0.17))} USD</p>
             </div>
             <div className={style.btn}>
-                <CustomBtn path={'pay-card'} text={'PLACE ORDER'}></CustomBtn>
+                {/*<CustomBtn path={'pay-card'} text={'PLACE ORDER'}></CustomBtn>*/}
+                {/*<NavLink to={'#'}>*/}
+                {/*    <button type={'submit'}>PLACE ORDER</button>*/}
+                {/*</NavLink>*/}
             </div>
-
         </div>
+    </>
     );
 };
 

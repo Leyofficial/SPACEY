@@ -1,14 +1,14 @@
 .productInfo {
   display: flex;
   align-items: center;
-  gap: 35px;
-  width: 40% !important;
+  width: 60% !important;
   margin-right: 5vh;
 }
 .productInfo img {
   width: 100px;
   height: 100px;
   object-fit: cover;
+  margin: 0 15px;
 }
 .productInfo svg {
   font-size: 30px;

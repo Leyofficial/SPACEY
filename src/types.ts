@@ -10,7 +10,7 @@ export interface IProduct {
     stateType : string[] | string,
     memory: [string],
     percentageOfSale: number,
-    price: number,
+    price: number | string,
     rating: number,
     sale: boolean,
     saleType: string,
