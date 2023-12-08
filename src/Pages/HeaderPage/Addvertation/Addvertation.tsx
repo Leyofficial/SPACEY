@@ -27,7 +27,7 @@ function Addvertation() {
 
 
     return (
-        items.length > 0 ? <div className={style.block}>
+        items?.length > 0 ? <div className={style.block}>
             <div className={style.blockWrapper}>
                 <Swiper spaceBetween={30}
                         centeredSlides={true}
