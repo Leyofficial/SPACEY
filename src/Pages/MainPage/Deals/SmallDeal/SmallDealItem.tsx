@@ -18,8 +18,7 @@ function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
     const {user} = useAppSelector((state) => state.user)
     const {image} = useGetImage(item.product.images.mainImage);
     function handleAddToWist() {
-        // if (!item && !user) return
-        addToWist(user, item);
+        addToWist(user._id, item._id);
     }
     function handleAddToCart() {
         if (!item && !user) return

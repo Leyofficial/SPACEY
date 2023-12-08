@@ -57,15 +57,17 @@ function WishItem({id}: IWishItem) {
     }
 
     function handleAddToCart() {
+        if (!foundProduct?.isStock) {
+            toast.error('Sorry, but this item is not in stock at the moment.')
+            return
+        }
         if (!inCart && foundProduct) {
             setInCart(true)
             addToCart(user, foundProduct);
         } else {
             toast.error('It`s already in your cart!')
         }
-
     }
-
     return (
         foundProduct ? <div style={canceled ? {display: 'none'} : {display: 'flex'}} className={style.block}>
             <Toaster
@@ -82,7 +84,7 @@ function WishItem({id}: IWishItem) {
             <div className={style.price}>
                 {+foundProduct?.product.percentageOfSale > 0 ? <p className={style.oldPrice}>
                     {foundProduct?.product.price}
-                </p> : null}
+                </p> : <Skeleton variant={'circular'} width={50} height={20}/>}
                 <p className={style.newPrice}>${checkNewPrice(foundProduct?.product.price, foundProduct?.product.percentageOfSale)}</p>
             </div>
             <div className={style.status}>
