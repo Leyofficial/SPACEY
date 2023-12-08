@@ -87,7 +87,7 @@ function WishItem({id}: IWishItem) {
             </div>
             <div className={style.action}>
                 <div onClick={handleAddToCart} className={style.btn}>
-                    <CustomBtnCart background={inCart ? '#ADB7BC' : '#FA8232'} text={'ADD TO CART'}/>
+                    <CustomBtnCart background={inCart || !foundProduct.isStock ? '#ADB7BC' : '#FA8232'} text={'ADD TO CART'}/>
                 </div>
                 <div onClick={handleDeleteItem} className={style.cancel}>
                     <MdOutlineCancel size={25} color={'#929FA5'}/>
