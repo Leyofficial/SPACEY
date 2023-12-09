@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {getImageFromServer} from "../../ApiRequests/uploads/getImage.ts";
 
 interface IUserGetImage{
-    image:string | null,
+    image:string | null ,
     isLoading:boolean
 }
 export const useGetImage = (id:string):IUserGetImage  => {

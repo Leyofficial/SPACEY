@@ -7,9 +7,10 @@ const Billing = () => {
 
     const {idUser} = useParams()
     const {data} = UseCustomQuery(`https://spacey-server.vercel.app/orders/${idUser}`)
+
     return (
         <div className={style.billing}>
-            <BillingForm products={data?.foundOrders?.products}></BillingForm>
+            <BillingForm products={data?.foundOrders?.products} idOrder={data?.foundOrders._id}></BillingForm>
         </div>
     );
 };

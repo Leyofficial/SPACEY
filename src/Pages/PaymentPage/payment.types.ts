@@ -13,12 +13,6 @@ export interface Values {
     },
     email: string,
     phone: string,
-    payment: {
-        cardName: string,
-        cardNumber: string,
-        expireDate: string,
-        cvc: string,
-    }
     orderNotes: string
 }
 
@@ -27,7 +21,8 @@ export interface IOrderProducts{
         count:number,
         idProduct:string,
         _id:string
-    }]
+    }],
+    idOrder:string
 }
 
 export const billingFormValues = {
@@ -42,13 +37,6 @@ export const billingFormValues = {
         region: "",
         city: "",
         zipCode: "",
-    },
-
-    payment: {
-        cardName: "",
-        cardNumber: "",
-        expireDate: "",
-        cvc: "",
     },
     email: "",
     phone: "",

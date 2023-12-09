@@ -1,21 +1,34 @@
-.tableProduct td img {
+.productInfo {
+  display: flex;
+  align-items: center;
+  width: 60% !important;
+  margin-right: 5vh;
+}
+.productInfo img {
   width: 100px;
   height: 100px;
   object-fit: cover;
+  margin: 0 15px;
 }
-.tableProduct .title {
+.productInfo svg {
+  font-size: 30px;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+.productInfo svg:hover {
+  color: red;
+}
+
+.list {
   display: flex;
   align-items: center;
-  gap: 35px;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
 }
-.tableProduct .title svg {
-  font-size: 25px;
-  color: #5F6C72;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-.tableProduct .title svg:hover {
-  color: red;
+.list li {
+  width: 25%;
+  text-align: left;
 }
 
 /*# sourceMappingURL=SingleTableProduct.module.css.map */

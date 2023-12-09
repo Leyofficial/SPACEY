@@ -3,6 +3,13 @@
   background-color: transparent;
 }
 
+.disableBtn {
+  background: #5F6C72;
+}
+.disableBtn .btn {
+  background: #5F6C72;
+}
+
 .btn {
   text-decoration: none;
   width: 10rem;
@@ -35,6 +42,7 @@
   padding: 13px 10px;
   justify-content: center;
   text-decoration: none;
+  color: var(--primary-500, #FA8232);
   border: 1px solid var(--primary-500, #FA8232);
   transition: 0.4s linear;
   cursor: pointer;
@@ -52,21 +60,8 @@
   scale: 1.05;
 }
 
-.customBtn {
-  text-decoration: none;
-  width: 10rem;
-  transition: 0.4s linear;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 10px;
-  gap: 12px;
-  border-radius: 3px;
-}
-.customBtn:hover {
-  scale: 1.05;
+.processBtn {
+  background: #5F6C72;
 }
 
 /*# sourceMappingURL=CustomBtn.module.css.map */

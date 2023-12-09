@@ -1,0 +1,27 @@
+.products {
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #c7c7ce);
+  width: 100%;
+
+  h1 {
+    color: var(--gray-900, #191C1F);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    padding: 20px;
+
+  }
+}
+.cart{
+  padding: 15px;
+  margin: 0 auto;
+  .container {
+    width: 100%;
+    display: flex;
+    gap:20px;
+    .totalWrapper{
+      width: 30%;
+    }
+  }
+}

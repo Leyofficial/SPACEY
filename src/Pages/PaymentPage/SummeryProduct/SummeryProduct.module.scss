@@ -1,9 +1,5 @@
-.summer {
-  border-radius: 4px;
-  border: 1px solid var(--gray-100, #E4E7E9);
-  background: var(--gray-00, #FFF);
+.wrapper {
   width: 100%;
-  padding: 25px;
 
   h3 {
     width: 100%;
@@ -16,7 +12,6 @@
   }
 
 
-
   .infoPayment {
     display: flex;
     flex-direction: column;
@@ -26,7 +21,6 @@
       color: #5F6C72;
       font-size: 15px;
     }
-  ;
 
     p {
       display: flex;
@@ -59,12 +53,14 @@
       font-weight: 400;
       line-height: 24px;
     }
-    .totalPrice{
+
+    .totalPrice {
       font-weight: 600;
       letter-spacing: 1px;
     }
   }
-  .btn{
+
+  .btn {
     display: flex;
     align-items: center;
     justify-content: center;

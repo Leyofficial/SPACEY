@@ -59,7 +59,7 @@ function App() {
                     <Route path={'payment-grid'} element={<PaymentPage/>}>
                         <Route path={':idUser'} element={<Billing/>}></Route>
                         <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
-                        <Route path={':idOrder/pay-card'} element={<PayCard/>}></Route>
+                        <Route path={':idOrder/:idCard?/pay-card'} element={<PayCard/>}></Route>
                         <Route path={'basket'} element={<ShoppingCart/>}></Route>
                     </Route>
                     <Route path={'/ComparePage'} element={<ComparePage/>}>
