@@ -4,7 +4,7 @@ import {tabArray} from "../tabArray.ts";
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {useNavigate} from "react-router-dom";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import axios from "axios";
@@ -15,6 +15,7 @@ import {useGoogleLogin} from "@react-oauth/google";
 import {useEffect, useState} from "react";
 import {successAction} from "../utitlity/successAction.ts";
 import {failureAction} from "../utitlity/failureAction.ts";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 interface MyForm {
     name: string,
@@ -22,8 +23,6 @@ interface MyForm {
     password: string,
     repeatPassword: string
 }
-
-
 
 function SignUp({callback} : ICallbackAccount) {
     const navigate = useNavigate()
@@ -40,7 +39,7 @@ function SignUp({callback} : ICallbackAccount) {
                 setUserInfoGoogle(userInfo.data)
             }
         },
-        onError: () => toast.error('Login failed :(')
+        onError: () => errorToaster('Login failed :(')
     })
 
     useEffect(() => {
@@ -65,7 +64,7 @@ function SignUp({callback} : ICallbackAccount) {
     // https://spacey-server.vercel.app/auth
     const submit: SubmitHandler<MyForm> = data => {
         if (data.password !== data.repeatPassword) {
-            toast.error('Password and confirm password should be same');
+            errorToaster('Password and confirm password should be same');
             return
         }
         axios
@@ -82,9 +81,11 @@ function SignUp({callback} : ICallbackAccount) {
                failureAction(error , reset)
             });
     }
+
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.")
+        errorToaster()
     }
+
     return (
         <div className={style.block}>
             <Toaster

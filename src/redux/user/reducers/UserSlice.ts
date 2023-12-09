@@ -34,7 +34,6 @@ const initialState = {
         role : ''
     }
 } as IUserState
-// appSlice.js
 
 const userSlice = createSlice({
     name: 'user',

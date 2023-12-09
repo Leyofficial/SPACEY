@@ -2,19 +2,18 @@ import style from './ForgetPassword.module.scss'
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast";
+import  {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
 import AlreadyQuestion from "../utitlity/AlreadyQuestion.tsx";
 import {useState} from "react";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import axios from "axios";
 import {failureAction} from "../utitlity/failureAction.ts";
-
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 interface MyForm {
     email: string
 }
-
 function ForgetPassword() {
     const [isPendingConfirm, setPending] = useState<boolean>(false);
     const [currentEmail , setEmail] = useState('')
@@ -36,8 +35,9 @@ function ForgetPassword() {
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.")
+       errorToaster()
     }
+
     return (
         <div className={style.block}>
             {!isPendingConfirm ? <>  <Toaster
@@ -66,7 +66,8 @@ function ForgetPassword() {
                 <div className={style.footer}>
                     You may contact <span>Customer Service</span> for help restoring access to your account.
                 </div>
-            </> : <div className={style.textBlock}>
+            </> :
+                <div className={style.textBlock}>
                <h2 className={style.title}>Check you email</h2>
                 <p className={style.subtitle}>
                     We will send a confirmation email to this  <span>{currentEmail}</span>  email about your forgotten password. If it's not there, check your spam folder.
@@ -75,8 +76,8 @@ function ForgetPassword() {
                 <div className={style.btn}>
                     <CustomBtn arrowLeft={true} callback={() => setPending(false)} text={'Try again'}/>
                 </div>
-            </div>}
-
+            </div>
+            }
         </div>
     )
 }

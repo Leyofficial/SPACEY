@@ -1,6 +1,6 @@
 import style from './ResetPassword.module.scss'
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import {useState} from "react";
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
@@ -11,6 +11,8 @@ import queryString from 'query-string';
 import {CircularProgress} from "@mui/material";
 import {ICallbackAccount} from "../../../Routers/UserAccount/UserAccount.tsx";
 import {failureAction} from "../utitlity/failureAction.ts";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
+import {successToaster} from "../../../Utility/ToasterActions/SuccessToaster.tsx";
 
 interface MyForm {
     password: string,
@@ -27,11 +29,10 @@ function ResetPassword({callback}: ICallbackAccount) {
     const {register, reset, handleSubmit, errors} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm> = (data) => {
         if (data.password !== data.confirmPassword) {
-            toast.error('Password and confirm password should be same');
+            errorToaster('Password and confirm password should be same');
             return
         }
         setPending(true)
-        // https://spacey-server.vercel.app/auth/resetPassword email
         axios
             .post(`https://spacey-server.vercel.app/auth/updatePassword/${id}`, {
                 newPassword: data.confirmPassword
@@ -39,7 +40,7 @@ function ResetPassword({callback}: ICallbackAccount) {
             .then((res) => {
                 reset()
                 setPending(false)
-                toast.success(res.data.message || 'Success!')
+                successToaster(res.data.message)
                 setTimeout(() => {
                     callback(false)
                     navigate('/')
@@ -50,8 +51,9 @@ function ResetPassword({callback}: ICallbackAccount) {
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.");
+        errorToaster()
     };
+
     return (
         <div className={style.block}>
             <Toaster

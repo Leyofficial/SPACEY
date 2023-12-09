@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 export function failureAction(error: {
     response: {
@@ -8,6 +8,6 @@ export function failureAction(error: {
     }
 }, reset : () => void) {
     const errorMessage = error.response ? error.response.data.message : 'Something went wrong ...';
-    toast.error(errorMessage);
+    errorToaster(errorMessage);
     reset()
 }

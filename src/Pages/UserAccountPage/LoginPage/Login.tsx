@@ -1,7 +1,7 @@
 import style from './Login.module.scss'
 import {FormInput} from "../../../Utility/FormInput/FormInput.tsx";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 import CustomTab from "../../../Utility/CustomTab/CustomTab.tsx";
 import {tabArray} from "../tabArray.ts";
 import {BsArrowRightShort} from "react-icons/bs";
@@ -16,8 +16,7 @@ import {successAction} from "../utitlity/successAction.ts";
 import {failureAction} from "../utitlity/failureAction.ts";
 import {useAppDispatch} from "../../../redux/hooks/hooks.ts";
 import {setUser} from "../../../redux/user/reducers/UserSlice.ts";
-
-
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 interface MyForm {
     email: string,
@@ -39,7 +38,7 @@ function Login() {
                 setUserInfoGoogle(userInfo.data)
             }
         },
-        onError: () => toast.error('Login failed :(')
+        onError: () => errorToaster('Login failed :(')
     })
 
     useEffect(() => {
@@ -48,12 +47,12 @@ function Login() {
         axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
             if (!res.data.foundUser) {
 
-                toast.error('User not found')
+                errorToaster('User not found')
                 return
             }
             successAction(res.data.foundUser.googleToken, navigate)
         }).catch((err) => {
-            toast.error(err)
+            errorToaster(err || 'Something went wrong!');
         })
     }, [userInfoGoogle]);
 
@@ -73,7 +72,7 @@ function Login() {
     };
 
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.")
+       errorToaster("All inputs required.")
     }
 
     return (

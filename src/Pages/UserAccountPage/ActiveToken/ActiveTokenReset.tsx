@@ -30,7 +30,6 @@ function ActiveTokenReset({ callback }: ICallbackAccount) {
             setChecked(true);
             setTimeout(() => {
                 callback(false)
-                // navigate('/');
             }, 2500);
         };
 
