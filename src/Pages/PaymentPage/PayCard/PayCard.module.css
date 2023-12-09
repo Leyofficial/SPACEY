@@ -71,4 +71,15 @@ input[type=date]::-webkit-calendar-picker-indicator {
   border: 1px solid #1B6392;
 }
 
+.wrapperOrderId .orderId {
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+}
+.wrapperOrderId .orderId span {
+  color: #FA8232;
+  font-weight: bold;
+  padding: 0 20px;
+}
+
 /*# sourceMappingURL=PayCard.module.css.map */

@@ -55,6 +55,9 @@
   margin-bottom: 20px;
   align-items: center;
 }
+.containerForm .addressWrapper div {
+  width: 100%;
+}
 .containerForm .addressWrapper option {
   padding: 10px;
   border-radius: 2px;

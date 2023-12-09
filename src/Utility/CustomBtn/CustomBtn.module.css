@@ -3,6 +3,13 @@
   background-color: transparent;
 }
 
+.disableBtn {
+  background: #5F6C72;
+}
+.disableBtn .btn {
+  background: #5F6C72;
+}
+
 .btn {
   text-decoration: none;
   width: 10rem;

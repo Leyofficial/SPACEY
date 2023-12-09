@@ -10,11 +10,12 @@ interface ICustomBtn {
     arrowLeft? : boolean,
     typeBtn?:string,
     blockWidth?:string,
-    inProcess?:boolean
+    inProcess?:boolean,
+    disable?:boolean
 }
-function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback} : ICustomBtn) {
+function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback,disable} : ICustomBtn) {
     return (
-        <button className={style.button}  onClick={callback}>
+        <button className={`${style.button} ${disable ? style.disableBtn : ""}`}  onClick={callback} disabled={disable}>
         <NavLink to={path} className={style.btn}>
             {arrowLeft ? <><BsArrowLeftShort color={'white'} size={30}/><p className={style.btnText}>{text}</p></> :
             <> <p className={style.btnText}>{text}</p>

@@ -3,8 +3,12 @@ import 'react-credit-cards/es/styles-compiled.css'
 import style from './PayCard.module.scss'
 import Card from "react-credit-cards";
 import '../card.scss'
+import {useNavigate, useParams} from "react-router-dom";
+import {updatePaymentStatus} from "../../../ApiRequests/Billing/Billing.ts";
+
 
 const PayCard = () => {
+    const {idOrder,idCard} = useParams<string>()
     const [state, setState] = useState({
         number: '',
         expiry: '',
@@ -12,7 +16,32 @@ const PayCard = () => {
         name: '',
         focus: '',
     });
+    const navigate = useNavigate()
 
+ const payOrderHandler = (e) => {
+        console.log('what')
+     e.preventDefault()
+     const cardDate = {
+         number:state.number,
+         expiry:state.expiry,
+         cvc:state.cvc,
+         name:state.name,
+     }
+     updatePaymentStatus(idCard,cardDate).then(res => {
+         if(res.status === 200){
+             setTimeout(() => {
+                 if(idCard){
+                     navigate(`/payment-grid/check/${idOrder}`)
+                 }else{
+                     navigate(`/payment-grid/check/${idOrder}`)
+                 }
+
+
+             },500)
+
+         }
+     })
+ }
     const handleInputChange = (evt) => {
         const {name, value} = evt.target;
         if (value.length > 3 && name === 'cvc') {
@@ -31,10 +60,14 @@ const PayCard = () => {
 
     return (
         <section className={style.container}>
+            <div className={style.wrapperOrderId}>
+                <p className={style.orderId}>Payment for the order according to this <span>#{idOrder}</span> id order</p>
+            </div>
+
             <div className={style.containerCard}>
                 <Card number={state.number} expiry={state.expiry} cvc={state.cvc} name={state.name}
                       focused={state.focus} preview={true}></Card>
-                <form>
+                <form onSubmit={payOrderHandler}>
                     <input
                         type="number"
                         name="number"
@@ -73,7 +106,7 @@ const PayCard = () => {
                         />
                     </div>
                     <div className={style.btn}>
-                        <button>PAY</button>
+                        <button type={'submit'}>PAY</button>
                     </div>
 
                 </form>

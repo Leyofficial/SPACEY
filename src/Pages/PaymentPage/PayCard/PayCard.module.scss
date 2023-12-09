@@ -76,3 +76,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     }
   }
 }
+.wrapperOrderId{
+  .orderId{
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    span{
+      color: #FA8232;
+      font-weight: bold;
+
+      padding: 0 20px;
+
+    }
+  }
+}
+
