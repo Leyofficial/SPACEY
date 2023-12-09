@@ -21,7 +21,6 @@ function TrackOrder() {
     const defaultValues = ['id', 'email'];
     const {register, handleSubmit, errors} = useFormRegister(defaultValues);
     const submit: SubmitHandler<MyForm> = data => {
-        console.log(data)
         navigate('/track-order/' + data.id)
     }
     const error: SubmitErrorHandler<MyForm> = () => {
