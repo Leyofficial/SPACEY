@@ -8,10 +8,10 @@
   font-weight: 400;
 }
 .block p {
-  color: var(--gray-600, #5F6C72);
+  color: #5F6C72;
 }
 .block a {
-  color: var(--secondary-500, #2DA5F3);
+  color: #2DA5F3;
   font-weight: 500;
 }
 
