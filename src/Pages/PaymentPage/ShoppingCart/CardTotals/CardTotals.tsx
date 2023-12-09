@@ -7,7 +7,8 @@ import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
 
 interface  ICardTotalItems{
 
-       totalData:IShoppingItems[] | null
+       totalData:IShoppingItems[] | null,
+
 
 }
 const CardTotals = ({totalData}:ICardTotalItems ) => {

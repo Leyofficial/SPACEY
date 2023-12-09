@@ -3,13 +3,15 @@ import SingleTableProduct from "./SingleTableProduct/SingleTableProduct.tsx";
 import {IShoppingItems} from "../shoppingCartTypes.ts";
 import style from './TableProducts.module.scss'
 import Smile from "./Smile/Smile.tsx";
+import MiniLoader from "../../../../Utility/Loaders/MiniLoader.tsx";
 
 interface ITableProducts {
     products: IShoppingItems[] | null,
-    updateCart:() => void
+    updateCart:() => void,
+    isLoading:boolean
 }
 
-export default function TableProducts({products,updateCart}: ITableProducts) {
+export default function TableProducts({products,updateCart,isLoading}: ITableProducts) {
 
     return (
         <>
@@ -21,9 +23,12 @@ export default function TableProducts({products,updateCart}: ITableProducts) {
                 <li className={style.subTotal}>Sub-total</li>
             </ul>
             <div className={style.mainList}>
-                {products && products?.length > 0 ? products?.map((product:IShoppingItems, index:number) => (
-                              <SingleTableProduct key={index} product={product} index={index} updateCart={updateCart}></SingleTableProduct>
-                           )) : <Smile></Smile>}
+                {isLoading ? <MiniLoader></MiniLoader> : (products && products?.length > 0 ? products?.map((product:IShoppingItems, index:number) => (
+                    <SingleTableProduct key={index} product={product} index={index} updateCart={updateCart}></SingleTableProduct>
+                )) : <Smile></Smile>)}
+                {/*{products && products?.length > 0 ? products?.map((product:IShoppingItems, index:number) => (*/}
+                {/*              <SingleTableProduct key={index} product={product} index={index} updateCart={updateCart}></SingleTableProduct>*/}
+                {/*           )) : <Smile></Smile>}*/}
             </div>
         </div>
         </>

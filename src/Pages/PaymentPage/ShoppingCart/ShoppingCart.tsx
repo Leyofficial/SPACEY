@@ -9,9 +9,14 @@ import CardTotals from "./CardTotals/CardTotals.tsx";
 const ShoppingCart = () => {
     const {user} = useAppSelector(state => state.user)
     const [basketProducts, setBasketProducts] = useState<IShoppingItems[] | null>(null)
-
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
-        getBasketItems(user?._id).then(res => setBasketProducts(res.data.foundOrders?.products))
+        getBasketItems(user?._id,setIsLoading).then(res => {
+            if(res.status === 200){
+                setBasketProducts(res.data.foundOrders?.products)
+                setIsLoading(false)
+            }
+        })
     }, [user])
 
     const updateBasketItem = () => {
@@ -23,10 +28,10 @@ const ShoppingCart = () => {
             <div className={style.container}>
                 <div className={style.products}>
                     <h1>Shopping Card</h1>
-                    <TableProducts products={basketProducts} updateCart={updateBasketItem}></TableProducts>
+                    <TableProducts isLoading={isLoading} products={basketProducts} updateCart={updateBasketItem}></TableProducts>
                 </div>
                 <div className={style.totalWrapper}>
-                    <CardTotals totalData={basketProducts}></CardTotals>
+                    <CardTotals  totalData={basketProducts}></CardTotals>
                 </div>
             </div>
         </section>
