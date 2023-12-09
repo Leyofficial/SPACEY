@@ -10,10 +10,11 @@ import {Skeleton} from "@mui/material";
 import axios from "axios";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {IWishItemServer} from "../types.ts";
-import toast, {Toaster} from "react-hot-toast";
+import  {Toaster} from "react-hot-toast";
 import {addToCart} from "../../../Utility/ActionProduct/addToCart.ts";
 import {useCheckInCart} from "../../../hooks/cart/useCheckInCart.ts";
 import WishItemSkeleton from "../WishItemSkeleton/WishItemSkeleton.tsx";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 interface IWishItem {
     id: string
@@ -36,7 +37,7 @@ function WishItem({id}: IWishItem) {
                 setInCart(response.data.isCart)
             });
         }).catch((err) => {
-            toast.error(err.message || 'Something went wrong!');
+            errorToaster(err.message || 'Something went wrong!');
         })
     }, [])
 
@@ -53,12 +54,12 @@ function WishItem({id}: IWishItem) {
             idItem: foundProduct._id
         }).then(() => {
             setCanceled(true)
-        }).catch((err) => toast.error(err.message))
+        }).catch((err) => errorToaster(err.message))
     }
 
     function handleAddToCart() {
         if (!foundProduct?.isStock) {
-            toast.error('Sorry, but this item is not in stock at the moment.')
+            errorToaster('Sorry, but this item is not in stock at the moment.')
             return
         }
         if (!inCart && foundProduct) {
@@ -66,7 +67,7 @@ function WishItem({id}: IWishItem) {
             addToCart(user, foundProduct);
             return;
         } else {
-            toast.error('It`s already in your cart!')
+            errorToaster('It`s already in your cart!')
         }
     }
     return (

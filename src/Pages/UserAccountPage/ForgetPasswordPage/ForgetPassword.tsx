@@ -4,7 +4,7 @@ import {useFormRegister} from "../../../hooks/auth/useFormRegister.ts";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
 import  {Toaster} from "react-hot-toast";
 import {BsArrowRightShort} from "react-icons/bs";
-import AlreadyQuestion from "../utitlity/AlreadyQuestion.tsx";
+import AlreadyQuestion from "../utitlity/AlreadyGot/AlreadyQuestion.tsx";
 import {useState} from "react";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import axios from "axios";
@@ -35,7 +35,7 @@ function ForgetPassword() {
             });
     }
     const error: SubmitErrorHandler<MyForm> = () => {
-       errorToaster()
+       errorToaster('All inputs required.')
     }
 
     return (

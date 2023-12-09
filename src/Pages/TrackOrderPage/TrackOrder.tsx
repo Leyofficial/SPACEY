@@ -2,13 +2,14 @@ import style from './TrackOrder.module.scss'
 import {FormInput} from "../../Utility/FormInput/FormInput.tsx";
 import {useFormRegister} from "../../hooks/auth/useFormRegister.ts";
 import {SubmitErrorHandler, SubmitHandler} from "react-hook-form";
-import toast, {Toaster} from "react-hot-toast";
+import  {Toaster} from "react-hot-toast";
 import {InfoUser} from "../../Utility/InfoUser/InfoUser.tsx";
 import {PiInfo} from "react-icons/pi";
 import {BsArrowRightShort} from "react-icons/bs";
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import Footer from "../../Components/Footer/Footer.tsx";
 import {useNavigate} from "react-router-dom";
+import {errorToaster} from "../../Utility/ToasterActions/ErrorToaster.tsx";
 
 interface MyForm {
     id: string
@@ -24,7 +25,7 @@ function TrackOrder() {
         navigate('/track-order/' + data.id)
     }
     const error: SubmitErrorHandler<MyForm> = () => {
-        toast.error("All inputs required.")
+        errorToaster("All inputs required.")
     }
     return (
         <>

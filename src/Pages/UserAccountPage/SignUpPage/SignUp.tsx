@@ -83,7 +83,7 @@ function SignUp({callback} : ICallbackAccount) {
     }
 
     const error: SubmitErrorHandler<MyForm> = () => {
-        errorToaster()
+        errorToaster('All inputs required.')
     }
 
     return (

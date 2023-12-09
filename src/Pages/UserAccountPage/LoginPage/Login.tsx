@@ -66,7 +66,6 @@ function Login() {
                 successAction(response.data.user.userToken , navigate)
             })
             .catch((error) => {
-                console.log(error)
                 failureAction(error , reset)
             });
     };
