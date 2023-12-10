@@ -4,9 +4,8 @@
 }
 
 .block {
-  align-items: center;
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
   margin-top: 28px;
   margin-bottom: 33px;
 }
@@ -23,9 +22,11 @@
 }
 
 .itemsBlock {
+  align-items: center;
   justify-items: center;
   display: grid;
-  gap: 30px;
+  gap: 1rem;
+  height: 100%;
   grid-template-columns: repeat(4, 1fr);
 }
 
@@ -38,15 +39,16 @@
 .carouselItems {
   text-align: center;
   margin-top: 40px;
-  margin-bottom: 72px;
+  margin-bottom: 62px;
 }
 
 .banner {
   width: 100%;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   display: flex;
   gap: 10px;
+  margin: 50px auto;
   margin-bottom: 72px;
 }
 
