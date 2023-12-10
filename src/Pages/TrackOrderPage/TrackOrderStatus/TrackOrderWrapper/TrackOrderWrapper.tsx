@@ -5,10 +5,9 @@ import axios from "axios";
 import CustomizedSteppers from "../../../../Utility/Stepper/Stepper.tsx";
 import {steps} from "./TrackOrderSteps.tsx";
 import {OrderActivity} from "../../../../Utility/OrderActivity/OrderActivity.tsx";
-import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
+import {errorToaster} from "../../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 function TrackOrderWrapper() {
-    const state = useAppSelector(state => state);
     const activity = [
         {
             text: 'Your order has been confirmed',
@@ -25,11 +24,10 @@ function TrackOrderWrapper() {
     const {orderId} = useParams();
 
     useEffect(() => {
-        console.log(state)
         axios.get('https://spacey-server.vercel.apps').then((res) => {
             setOrderInfo(res.data)
         }).catch((err) => {
-            console.log(err)
+           errorToaster(err.message);
         })
     }, [orderId]);
 
