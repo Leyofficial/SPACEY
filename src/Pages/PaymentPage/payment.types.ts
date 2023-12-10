@@ -16,13 +16,18 @@ export interface Values {
     orderNotes: string
 }
 
-export interface IOrderProducts{
-    products:[{
-        count:number,
-        idProduct:string,
-        _id:string
-    }],
-    idOrder:string
+export interface IProducts {
+
+    count: number | string,
+    idProduct: string,
+    _id: string,
+    price: string | number
+
+}
+
+export interface IOrderProducts {
+    products: IProducts,
+    idOrder: string
 }
 
 export const billingFormValues = {
@@ -41,4 +46,22 @@ export const billingFormValues = {
     email: "",
     phone: "",
     orderNotes: ""
+}
+
+export interface IBillingFormValues {
+    userName: {
+        firstName: string,
+        lastName: string,
+        companyName: string
+    },
+    address: {
+        street: string,
+        country: string,
+        region: string,
+        city: string,
+        zipCode: string,
+    },
+    email: string,
+    phone: string,
+    orderNotes: string
 }

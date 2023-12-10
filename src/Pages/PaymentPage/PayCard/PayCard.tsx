@@ -20,7 +20,6 @@ const PayCard = () => {
     const navigate = useNavigate()
 
  const payOrderHandler =  (e: FormEvent<HTMLFormElement>) => {
-        console.log('what')
      e.preventDefault()
      const cardDate = {
          number:state.number,
@@ -36,7 +35,8 @@ const PayCard = () => {
                  }else{
                      navigate(`/payment-grid/check/${idOrder}`)
                  }
-             },500)
+             },1000)
+
          }
      })
  }
