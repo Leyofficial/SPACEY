@@ -25,14 +25,15 @@ function CustomBtn({text = 'shop now' , path = '#' , arrowLeft , callback,disabl
         </button>
     )
 }
-export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn, blockWidth , background = '#FA8232',callback,inProcess} : ICustomBtn) {
+export function CustomBtnCart({text = 'add to cart' , path = '#',typeBtn, blockWidth , background = '#FA8232' ,callback,inProcess} : ICustomBtn) {
     return (
         <>
-                {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth,background:background}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink onClick={callback} style={{width:`100%`}} to={path} className={`${style.btn}
+                {typeBtn === 'BUY' ? <NavLink style={{width:blockWidth}} to={path} className={style.buyBtn}>{text}</NavLink> :  <NavLink onClick={callback} style={{width:`100%` , background : background}} to={path} className={`${style.btn}
              ${inProcess ? style.processBtn : ""}`}>
                 <p className={style.btnText}>{text}</p>
             <PiBasket  color={'white'} size={30}/>
-        </NavLink>}
+                    </NavLink>
+                }
         </>
     )
 }

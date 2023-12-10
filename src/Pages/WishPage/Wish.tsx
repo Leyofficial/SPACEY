@@ -12,7 +12,6 @@ function Wish() {
     useEffect(() => {
         if (!user._id) return
        axios.get(`https://spacey-server.vercel.app/wishList/${user._id}`).then((res) => {
-           if (!res.data) return
             setAllId(res?.data?.foundItems?.items);
         });
     },[user])
