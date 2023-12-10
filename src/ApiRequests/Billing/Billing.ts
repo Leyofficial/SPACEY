@@ -5,7 +5,7 @@ interface INewOrderData {
     paymentType: string | null,
     date: Date,
     dataBilling:IBillingFormValues,
-    products: IProducts,
+    products: IProducts[],
     user: string,
     orderId:string
 }
