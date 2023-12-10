@@ -1,7 +1,8 @@
 .block {
   position: relative;
   padding: 24px;
-  width: 328px;
+  width: 100%;
+  max-width: 25rem;
   flex-shrink: 0;
   border: 1px solid var(--gray-100, #E4E7E9);
   background: var(--gray-00, #FFF);
@@ -18,6 +19,7 @@
   flex-shrink: 0;
   text-align: center;
   width: 100%;
+  object-fit: contain;
   height: 268px;
   margin-bottom: 35px;
 }

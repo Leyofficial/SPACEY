@@ -5,6 +5,7 @@
 .block {
   align-items: center;
   display: flex;
+  justify-content: space-between;
   margin-top: 28px;
   margin-bottom: 33px;
 }
@@ -21,7 +22,8 @@
 .itemsBlock {
   justify-items: center;
   display: grid;
-  gap: 0;
+  gap: 30px;
+
   grid-template-columns: repeat(4 , 1fr);
 }
 .skeleton {
@@ -37,6 +39,7 @@
 .banner {
   width: 100%;
   justify-content: center;
+
   flex-wrap: wrap;
   display: flex;
   gap: 10px;
