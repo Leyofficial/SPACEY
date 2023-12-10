@@ -13,7 +13,7 @@ const SummeryProduct = ({products}: IOrderProducts) => {
     useEffect(() => {
         setTotalPrice(0)
         products?.map((product) => {
-            getProduct(product.idProduct).then(res => changeTotalHandler(res.data.found.product.price * product.count))
+            getProduct(product.idProduct).then(res => changeTotalHandler(res.data.found.product.price * Number(product.count)))
 
         })
 
@@ -41,12 +41,6 @@ const SummeryProduct = ({products}: IOrderProducts) => {
             <div className={style.totalWrapper}>
                 <p className={style.totalTitle}>Total</p>
                 <p className={style.totalPrice}>{totalPrice - (totalPrice * 0.10 - (totalPrice * 0.17))} USD</p>
-            </div>
-            <div className={style.btn}>
-                {/*<CustomBtn path={'pay-card'} text={'PLACE ORDER'}></CustomBtn>*/}
-                {/*<NavLink to={'#'}>*/}
-                {/*    <button type={'submit'}>PLACE ORDER</button>*/}
-                {/*</NavLink>*/}
             </div>
         </div>
     </>

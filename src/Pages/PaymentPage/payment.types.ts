@@ -26,7 +26,7 @@ export interface IProducts {
 }
 
 export interface IOrderProducts {
-    products: IProducts,
+    products: IProducts[],
     idOrder: string
 }
 
