@@ -9,6 +9,7 @@ import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {createNewOrder} from "../../../ApiRequests/Billing/Billing.ts";
+import {randomCode} from "./randomNumber.ts";
 
 const BillingForm = ({products,idOrder}: IOrderProducts) => {
 
@@ -25,7 +26,8 @@ const BillingForm = ({products,idOrder}: IOrderProducts) => {
                 date: new Date(),
                 dataBilling: formData,
                 products,
-                user: user._id
+                user: user._id,
+                orderId:randomCode()
             }
             createNewOrder(billingData).then(res => {
                 if(res.status === 200){
