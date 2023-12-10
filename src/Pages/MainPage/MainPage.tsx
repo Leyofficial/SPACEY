@@ -50,7 +50,6 @@ function MainPage() {
                 <div className={style.leftBlock}>
                     {!isLoading && filteredCategories ? <BigDealItem item={filteredCategories[0]}/> :
                         <BigDealSkeleton/>}
-
                 </div>
                 <div className={style.itemsBlock}>
                     {!isLoading && filteredCategories.length > 0 ? <>
