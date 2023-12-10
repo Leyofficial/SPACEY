@@ -19,7 +19,6 @@ const PayCard = () => {
     const navigate = useNavigate()
 
  const payOrderHandler = (e) => {
-        console.log('what')
      e.preventDefault()
      const cardDate = {
          number:state.number,
@@ -37,7 +36,7 @@ const PayCard = () => {
                  }
 
 
-             },500)
+             },1000)
 
          }
      })

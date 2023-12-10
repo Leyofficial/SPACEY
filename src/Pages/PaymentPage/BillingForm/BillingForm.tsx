@@ -8,7 +8,7 @@ import {FaArrowRight} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
-import {createNewOrder} from "../../../ApiRequests/Billing/Billing.ts";
+import {createNewOrder, deleteOrder} from "../../../ApiRequests/Billing/Billing.ts";
 import {randomCode} from "./randomNumber.ts";
 
 const BillingForm = ({products,idOrder}: IOrderProducts) => {
@@ -31,7 +31,7 @@ const BillingForm = ({products,idOrder}: IOrderProducts) => {
             }
             createNewOrder(billingData).then(res => {
                 if(res.status === 200){
-                    console.log(res)
+                    deleteOrder(idOrder).then(res => console.log(res)).catch(err => console.log(err))
                     if(billingData.paymentType === 'card') {
                         navigate(`/payment-grid/${idOrder}/${res.data.createOrder._id}/pay-card`)
                     }else {

@@ -22,8 +22,9 @@ function SmallDealItem({item}: ISmallDeal | IBigDealItem | any) {
     }
     function handleAddToCart() {
         if (!item && !user) return
-        addToCart(user , item)
+        addToCart(user , item,item.product.price)
     }
+
 
     return (
         <>
