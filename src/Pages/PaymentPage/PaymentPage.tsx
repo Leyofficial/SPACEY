@@ -5,17 +5,20 @@ import Footer from "../../Components/Footer/Footer.tsx";
 
 const PaymentPage = () => {
     return (
-        <article className={style.container}>
+        <>
             <header>
                 <BreadCrumb/>
             </header>
-            <main>
-                <Outlet></Outlet>
-            </main>
+            <article className={style.container}>
+                <main>
+                    <Outlet></Outlet>
+                </main>
+            </article>
             <footer>
                 <Footer></Footer>
             </footer>
-        </article>
+        </>
+
     );
 };
 

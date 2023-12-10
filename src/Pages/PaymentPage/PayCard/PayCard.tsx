@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import 'react-credit-cards/es/styles-compiled.css'
 import style from './PayCard.module.scss'
 import Card from "react-credit-cards";
@@ -8,17 +8,18 @@ import {updatePaymentStatus} from "../../../ApiRequests/Billing/Billing.ts";
 
 
 const PayCard = () => {
+    type Focused = "name" | "number" | "expiry" | "cvc";
     const {idOrder,idCard} = useParams<string>()
     const [state, setState] = useState({
         number: '',
         expiry: '',
         cvc: '',
         name: '',
-        focus: '',
+        focus: '' as Focused ,
     });
     const navigate = useNavigate()
 
- const payOrderHandler = (e) => {
+ const payOrderHandler =  (e: FormEvent<HTMLFormElement>) => {
         console.log('what')
      e.preventDefault()
      const cardDate = {
@@ -35,14 +36,11 @@ const PayCard = () => {
                  }else{
                      navigate(`/payment-grid/check/${idOrder}`)
                  }
-
-
              },500)
-
          }
      })
  }
-    const handleInputChange = (evt) => {
+    const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = evt.target;
         if (value.length > 3 && name === 'cvc') {
             return
@@ -52,7 +50,7 @@ const PayCard = () => {
 
     }
 
-    const handleInputFocus = (evt) => {
+    const handleInputFocus = (evt: any) => {
         setState((prev) => ({...prev, focus: evt.target.name}));
     }
 
@@ -108,10 +106,8 @@ const PayCard = () => {
                     <div className={style.btn}>
                         <button type={'submit'}>PAY</button>
                     </div>
-
                 </form>
             </div>
-
         </section>
     );
 }

@@ -35,11 +35,11 @@ function TrackOrder() {
         }).catch((err) => {
             errorToaster(err.response.data.message);
         } )
-
     }
     const error: SubmitErrorHandler<MyForm> = () => {
         errorToaster("All inputs required.")
     }
+
     return (
         <>
             <div className={style.breadCrumb}>
