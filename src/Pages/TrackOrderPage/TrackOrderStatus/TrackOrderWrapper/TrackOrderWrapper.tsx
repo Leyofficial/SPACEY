@@ -4,37 +4,39 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import CustomizedSteppers from "../../../../Utility/Stepper/Stepper.tsx";
 import {steps} from "./TrackOrderSteps.tsx";
-import {OrderActivity} from "../../../../Utility/OrderActivity/OrderActivity.tsx";
 import {errorToaster} from "../../../../Utility/ToasterActions/ErrorToaster.tsx";
+import {IOrderInfo} from "../../types.ts";
+import {OrderActivity} from "../../../../Utility/OrderActivity/OrderActivity.tsx";
+import {formatOrderDate} from "../../../../Utility/Date/formatOrderDate.ts";
 
 function TrackOrderWrapper() {
-    const activity = [
-        {
-            text: 'Your order has been confirmed',
-            data: '19 Jan, 2021 at 2:61 PM',
-        }, {
-            text: 'Your order is successfully verified.',
-            data: '20 Jan, 2021 at 7:32 PM',
-        }, {
-            text: 'Your order on the way to (last mile) hub.',
-            data: '21, 2021 at 5:32 AM'
-        }
-    ]
-    const [orderInfo, setOrderInfo] = useState(null)
+    const [orderInfo, setOrderInfo] = useState<IOrderInfo | null>(null)
     const {orderId} = useParams();
+    const [dateOrder , setDate] = useState<Date>()
+    const [totalPrice , setTotalPrice] = useState<number>(0);
 
     useEffect(() => {
-        axios.get('https://spacey-server.vercel.apps').then((res) => {
-            setOrderInfo(res.data)
+        axios.get(`https://spacey-server.vercel.app/processOrder/${orderId}`).then((res) => {
+            setOrderInfo(res.data.order);
         }).catch((err) => {
            errorToaster(err.message);
         })
     }, [orderId]);
 
-    console.log(orderInfo);
+    useEffect(() => {
+        // total Price + date
+        if (!orderInfo) return
+        let price = 0;
+        const date = new Date(orderInfo.date);
+        setDate(date);
+        orderInfo.products.map((item) => {
+            price += item.price
+        })
+        setTotalPrice(price)
+    }, [orderInfo]);
 
     return (
-        <div className={style.block}>
+        orderInfo ? <div className={style.block}>
             <header className={style.header}>
                 <div className={style.textBlock}>
                     <h2 className={style.orderId}>
@@ -42,35 +44,32 @@ function TrackOrderWrapper() {
                     </h2>
                     <div className={style.subtitleBlock}>
                         <p className={style.productsAmount}>
-                            {8} Products
+                            {orderInfo.products.length} Products
                         </p>
                         <span className={style.point}>•</span>
                         <p className={style.dateOrder}>
-                            Order Placed in 17 Jan, 2021 at 7:32 PM
+                            Order Placed in  {formatOrderDate(dateOrder)}
                         </p>
                     </div>
                 </div>
                 <div className={style.priceBlock}>
-                    <h2 className={style.price}>${1199}.00</h2>
+                    <h2 className={style.price}>${totalPrice}.00</h2>
                 </div>
             </header>
             <main className={style.main}>
-                <p className={style.expectedDate}>
-                    Order expected arrival 23 Jan, 2021
-                </p>
                 <div className={style.stepper}>
-                    <CustomizedSteppers steps={steps} activeStep={1}/>
+                    <CustomizedSteppers steps={steps} activeStep={orderInfo.orderActivity.length / 2}/>
                 </div>
             </main>
             <section className={style.orderActivity}>
                 <h2 className={style.orderActivity}>Order Activity</h2>
                 <div className={style.activityItems}>
-                    {activity.map((item , index) => {
-                        return <OrderActivity key={index} text={item.text} data={item.data}/>
+                    {orderInfo.orderActivity.map((item , index) => {
+                        return <OrderActivity key={index} text={item.text} date={item.date}/>
                     })}
                 </div>
             </section>
-        </div>
+        </div> : null
     )
 }
 

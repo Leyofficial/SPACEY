@@ -25,16 +25,16 @@ export function getIconOrder(text: string) {
         return <div style={greenStyles}><CiCircleCheck size={'2rem'} color={successBtn}/></div>;
     } else if (lowerCaseText.includes('way')) {
         return <div style={blueStyles}><CiMap size={'2rem'} color={blueBtn}/></div>;
-    } else if (lowerCaseText.includes('confirmed')) {
+    } else if (lowerCaseText.includes('confirmed') || lowerCaseText.includes('confirmation') || lowerCaseText.includes('process')) {
         return <div style={blueStyles}><PiNotepad size={'2rem'} color={blueBtn}/></div>;
     } else if (lowerCaseText.includes('last mile')) {
         return <div style={blueStyles}><PiMapPinLineBold size={'2rem'} color={blueBtn}/></div>;
-    } else if (lowerCaseText.includes('pay сash')) {
+    } else if (lowerCaseText.includes('pay cash')) {
         return <div style={greenStyles}><MdAttachMoney size={'2rem'} color={successBtn} /></div>
-    }
-    else if (lowerCaseText.includes('picked up')) {
+    } else if (lowerCaseText.includes('picked up')) {
         return <div style={blueStyles}><LuUser2 size={'2rem'} color={blueBtn}/></div>;
     } else if (lowerCaseText.includes('delivered')) {
         return <div style={greenStyles}><PiChecksLight size={'2rem'} color={successBtn}/></div>;
     }
+
 }
