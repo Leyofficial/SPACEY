@@ -64,7 +64,7 @@ function WishItem({id}: IWishItem) {
         }
         if (!inCart && foundProduct) {
             setInCart(true)
-            addToCart(user, foundProduct);
+            addToCart(user, foundProduct, foundProduct.product.price);
             return;
         } else {
             errorToaster('It`s already in your cart!')
