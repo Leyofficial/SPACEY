@@ -1,7 +1,7 @@
 import style from './BillingForm.module.scss';
 import {Form, Formik, FormikHelpers} from "formik";
 import CustomField from "./CustomField/CustomField.tsx";
-import {billingFormValues, IOrderProducts, Values} from "../payment.types.ts";
+import {billingFormValues, IBillingFormValues, IOrderProducts, Values} from "../payment.types.ts";
 import RowRadioButtonsGroup from "./CustomRadio/CustomRadio.tsx";
 import SummeryProduct from "../SummeryProduct/SummeryProduct.tsx";
 import {FaArrowRight} from "react-icons/fa";
@@ -19,7 +19,7 @@ const BillingForm = ({products,idOrder}: IOrderProducts) => {
     const selectRadioHandler = (radioName: string) => {
         setSelectRadio(radioName)
     }
-    const submitFormHandler = (formData) => {
+    const submitFormHandler = (formData :IBillingFormValues) => {
         if (user) {
             const billingData = {
                 paymentType: selectRadio,
