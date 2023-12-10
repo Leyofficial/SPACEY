@@ -5,7 +5,7 @@ function BigDealSkeleton() {
     return (
         <div className={style.block}>
             <Skeleton className={style.skeletonType} variant="rounded" width={46} height={30} />
-            <Skeleton className={style.imgSkeleton} variant={"rounded"} width={280} height={268}/>
+            <Skeleton className={style.imgSkeleton} variant={"rounded"} width={'100%'} height={268}/>
             <div className={style.ratingBlock}>
                 <Skeleton variant="rounded" width={156} height={20} />
             </div>

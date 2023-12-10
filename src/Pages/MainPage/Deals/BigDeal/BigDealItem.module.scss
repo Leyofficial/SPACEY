@@ -25,8 +25,10 @@
 }
 
 .buttons {
+  text-align: center;
   width: 100%;
   bottom: 15px;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   display: flex;
