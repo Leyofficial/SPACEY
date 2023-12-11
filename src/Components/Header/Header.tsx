@@ -17,7 +17,7 @@ function Header() {
     const [countItemCart,setCountItemCart] = useState<number>(0)
     useEffect(() => {
         getBasketItems(user._id).then(res => {
-            if(res.status === 200) {
+            if(res.status === 200 && res.data?.foundOrders) {
                 setCountItemCart(res.data.foundOrders.products.length)
             }
         })
