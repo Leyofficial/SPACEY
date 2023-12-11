@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 $containerW : '80%';
 html {
   box-sizing: border-box;
