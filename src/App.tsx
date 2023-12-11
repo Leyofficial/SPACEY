@@ -15,7 +15,6 @@ import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPas
 import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
 import {useEffect, useState} from "react";
-// useEffect
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 import TrackOrder from "./Pages/TrackOrderPage/TrackOrder.tsx";
@@ -32,7 +31,6 @@ import Compare from "./Pages/ComparePage/Compare.tsx";
 import  {setUser} from "./redux/user/reducers/UserSlice.ts";
 import WishPage from "./Routers/Wish/WishPage.tsx";
 import Wish from "./Pages/WishPage/Wish.tsx";
-// import ComparePage from "./Routers/ComparePage/ComparePage.tsx";
 import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.tsx";
 import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";

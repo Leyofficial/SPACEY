@@ -1,10 +1,11 @@
 import style from './UserAccountProfile.module.scss'
 import {Outlet} from "react-router-dom";
+import MiniSideBar from "../../../Utility/MiniSideBar/MiniSideBar.tsx";
 function UserAccountProfile() {
     return (
         <>
             <header className={style.container}>
-                <p>Hello</p>
+                <MiniSideBar/>
             </header>
             <section>
                 <Outlet/>
