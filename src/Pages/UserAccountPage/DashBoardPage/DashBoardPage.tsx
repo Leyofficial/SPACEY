@@ -21,7 +21,7 @@ function DashBoardPage() {
                     <FormInfo text={'Account Info'}>
                         <div className={style.avatarBlock}>
                             <div className={style.avatar}>
-                                <Avatar alt="Remy Sharp" src={user?.picture}/>
+                                {user.picture ? <Avatar alt="Remy Sharp" src={user?.picture}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
                                 <h2>{user.givenName} {user.familyName}</h2>
