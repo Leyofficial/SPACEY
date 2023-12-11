@@ -14,7 +14,7 @@ function Wish() {
        axios.get(`https://spacey-server.vercel.app/wishList/${user._id}`).then((res) => {
             setAllId(res?.data?.foundItems?.items);
         });
-    },[user])
+    },[])
 
     return (
         <div className={style.block}>
