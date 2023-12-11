@@ -14,7 +14,8 @@ export interface IUserState {
         passwordResetExpires : string
         passwordResetToken : string,
         randomNumberToUpdatePassword : string,
-        role : string
+        role : string,
+        picture : string
     }
 }
 
@@ -31,7 +32,8 @@ const initialState = {
         passwordResetExpires : '',
         passwordResetToken : '',
         randomNumberToUpdatePassword : '',
-        role : ''
+        role : '',
+        picture : '',
     }
 } as IUserState
 
