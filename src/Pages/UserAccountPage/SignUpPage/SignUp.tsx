@@ -69,7 +69,7 @@ function SignUp({callback} : ICallbackAccount) {
         }
         axios
             .post('https://spacey-server.vercel.app/auth' , {
-                name : data.name,
+                givenName : data.name,
                 email : data.email,
                 password : data.password,
                 passwordConfirm : data.repeatPassword,
