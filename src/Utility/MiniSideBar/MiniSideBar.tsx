@@ -1,55 +1,14 @@
 import style from './MiniSideBar.module.scss'
-import {NavLink} from "react-router-dom";
 import {GoGear, GoSignOut, GoStack} from "react-icons/go";
+import {CustomTabItem} from "./CustomTabItem/CustomTabItem.tsx";
 
 function MiniSideBar() {
     return (
         <div className={style.block}>
             <div className={style.links}>
-                <div className={style.linkItem}><NavLink
-                    className={({isActive}) =>
-                        isActive ? "activeLinkSidebar" : ""
-                    }
-                    to={`/user-account/dashboard`}
-                >
-                    <div><GoStack size={'1.25rem'}/></div>
-                    <div>
-                        Dashboard
-                    </div>
-
-                </NavLink>
-                </div>
-                <div className={style.linkItem}><NavLink
-                    className={({isActive}) =>
-                        isActive ? "activeLinkSidebar" : ""
-                    }
-                    to={`/user-account/settings`}
-                >
-                    <div>
-                        <GoGear size={'1.25rem'}/>
-                    </div>
-                    <div>
-                        Setting
-                    </div>
-
-                </NavLink>
-                </div>
-                <div className={style.linkItem}><NavLink
-                    className={({isActive}) =>
-                        isActive ? "activeLinkSidebar" : ""
-                    }
-                    to={`/user-account/settings`}
-                >
-                    <div>
-                        <GoSignOut  size={'1.25rem'}/>
-                    </div>
-                    <div>
-                        Log out
-                    </div>
-
-                </NavLink>
-                </div>
-
+                <CustomTabItem text={'Dashboard'} path={'/user-account/dashboard'} icon={<GoStack size={'1.25rem'}/>}/>
+                <CustomTabItem text={'Settings'} path={'/user-account/settings'} icon={<GoGear size={'1.25rem'} />}/>
+                <CustomTabItem text={'Log out'} path={'/user-account/logout'} icon={<GoSignOut  size={'1.25rem'}/>}/>
             </div>
         </div>
     )

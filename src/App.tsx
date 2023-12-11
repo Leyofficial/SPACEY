@@ -70,7 +70,7 @@ function App() {
                     </Route>
                     <Route element={<PrivateRoute to={'user-account/login'} isAuth={true}/>}>
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
-                        <Route path={'dashboard'} element={<DashBoardPage/>}/>
+                        <Route path={':type'} element={<DashBoardPage/>}/>
                         </Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
