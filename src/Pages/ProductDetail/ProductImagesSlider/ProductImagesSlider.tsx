@@ -3,7 +3,6 @@ import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
 import {Skeleton} from "@mui/material";
 import SliderItems from "./SliderItems/SliderItems.tsx";
 import {useEffect, useState} from "react";
-import {FaArrowLeftLong} from "react-icons/fa6";
 import {IProductImagesSliderProps} from "../productDetail.ts";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
@@ -41,7 +40,7 @@ const ProductImagesSlider = ({images}: IProductImagesSliderProps) => {
                     onSwiper={(swiper) => console.log(swiper)}
                     className={style.items}
                 >
-                    {images?.restImages[0].images.map((item, index) => <SwiperSlide> <SliderItems index={index} callback={changeIndexOfImage} key={index}
+                    {images?.restImages[0].images.map((item, index) => <SwiperSlide style={{maxWidth:"22%",color:'red'}}> <SliderItems index={index} callback={changeIndexOfImage} key={index}
                                                                                                   imageId={item}></SliderItems>
                     </SwiperSlide>)}
 
@@ -49,8 +48,6 @@ const ProductImagesSlider = ({images}: IProductImagesSliderProps) => {
 
             </section>
             <section className={style.arrows}>
-                <FaArrowLeftLong/>
-                <FaArrowLeftLong style={{rotate: `180deg`}}/>
             </section>
         </div>
     );

@@ -24,7 +24,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
         setCountAddProduct(countAddProduct + 1)
     }
     const decreaseProduct = () => {
-        if (countAddProduct !== 0)
+        if (countAddProduct > 1)
             setCountAddProduct(countAddProduct - 1)
     }
   const addCartItemHandler = () => {
