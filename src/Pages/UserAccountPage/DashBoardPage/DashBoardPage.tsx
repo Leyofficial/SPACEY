@@ -6,7 +6,7 @@ import {IOrderInfo, OrderInfo} from "./OrderInfo/OrderInfo.tsx";
 import {MdOutlineRocket} from "react-icons/md";
 import {PiReceiptDuotone} from "react-icons/pi";
 import {BiPackage} from "react-icons/bi";
-import CustomizedTables from "./CustomTable/CustomTable.tsx";
+import CustomizedTables, {ICustomTable} from "./CustomTable/CustomTable.tsx";
 
 function DashBoardPage() {
     const {user} = useAppSelector((state) => state.user);
@@ -30,6 +30,15 @@ function DashBoardPage() {
             numberOfOrders : 51
         }
     ]
+    const tableInfo : ICustomTable[]  = [
+        {
+            orderId : '#96459765',
+            status : 'In progress',
+            date : 'Dec 30, 2019 05:18',
+            total : '$1,500 (10 Products)'
+        }
+    ]
+
     return (
         user ?
             <div className={style.container}>
@@ -70,7 +79,7 @@ function DashBoardPage() {
                     </div>
                 </div>
                 <div className={style.table}>
-                    <CustomizedTables/>
+                    <CustomizedTables array={tableInfo}/>
                 </div>
             </div> : null
     )

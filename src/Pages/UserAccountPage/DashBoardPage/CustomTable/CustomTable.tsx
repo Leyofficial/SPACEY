@@ -9,6 +9,19 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
+import {useEffect, useState} from "react";
+
+interface IOutsideTable {
+    array : ICustomTable[]
+}
+export interface ICustomTable {
+    action?: string;
+    orderId: string,
+    status : string,
+    date: string,
+    total : number | string,
+    pathForLink? : string,
+}
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -35,20 +48,23 @@ function createData(
     status : string,
     date: string,
     total : number | string,
-    action : number,
+    action : string,
 ) {
     return { orderId, status , date , total , action};
 }
 
-const rows = [
-    createData('#96459761', 'IN PROGRESS', 'Dec 30, 2019 05:18', '$1,500 (5 Products)', 'View Details'),
-    // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    // createData('Eclair', 262, 16.0, 24, 6.0),
-    // createData('Cupcake', 305, 3.7, 67, 4.3),
-    // createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-export default function CustomizedTables() {
+export default function CustomizedTables({array} : IOutsideTable) {
+    const [rows , setRows] = useState<ICustomTable[] | null>([]);
+    useEffect(() => {
+        const rowsData = [
+            // '#96459761', 'IN PROGRESS', 'Dec 30, 2019 05:18', '$1,500 (5 Products)', 'View Details'
+            array.map((item : ICustomTable) => {
+               return  createData(item.orderId , item.status.toUpperCase() ,item.date , item.total , 'View Details')
+            })
+        ];
+        // @ts-ignore
+        setRows(...rowsData)
+    },[])
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -62,7 +78,7 @@ export default function CustomizedTables() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {rows?.map((row) => (
                         <StyledTableRow key={row.orderId}>
                             <StyledTableCell component="th" scope="row">
                                 {row.orderId}
