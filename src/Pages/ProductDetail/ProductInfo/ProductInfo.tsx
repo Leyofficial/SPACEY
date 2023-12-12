@@ -2,7 +2,6 @@ import style from './ProductInfo.module.scss'
 import {addCartItem, IProductInfoProps} from "../productDetail.ts";
 import {getRatingIcons} from "../../../Utility/Rating/getRating.tsx";
 import CustomSelect from "../../../Utility/CustomSelect/CustomSelect.tsx";
-import {Skeleton} from "@mui/material";
 import CountAddToCard from "../../../Utility/CountAddToCard/CountAddToCard.tsx";
 import {useState} from "react";
 import {CustomBtnCart} from "../../../Utility/CustomBtn/CustomBtn.tsx";
@@ -14,6 +13,7 @@ import payment3 from '../../../assets/img/payment/image 321.png'
 import {getColorElement} from "../getColorElement.tsx";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {Toaster} from "react-hot-toast";
+import SkeletonProductDetail from "../SkeletonProductDetail/SkeletonProductDetail.tsx";
 
 
 const ProductInfo = ({product}: IProductInfoProps) => {
@@ -43,7 +43,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                 position="top-right"
                 reverseOrder={false}
             />
-            {!product ? <Skeleton></Skeleton> : <>
+            {!product ? <SkeletonProductDetail></SkeletonProductDetail> : <>
                 <header className={style.header}>
 
                     <section className={style.titleWrapper}>
