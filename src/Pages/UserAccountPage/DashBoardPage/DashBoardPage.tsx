@@ -35,7 +35,8 @@ function DashBoardPage() {
             orderId : '#96459765',
             status : 'In progress',
             date : 'Dec 30, 2019 05:18',
-            total : '$1,500 (10 Products)'
+            total : '$1,500 (10 Products)',
+            pathForLink : '/'
         }
     ]
 

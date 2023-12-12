@@ -20,7 +20,7 @@ export interface ICustomTable {
     status : string,
     date: string,
     total : number | string,
-    pathForLink? : string,
+    pathForLink : string,
 }
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -54,12 +54,13 @@ function createData(
 }
 
 export default function CustomizedTables({array} : IOutsideTable) {
+    const [link , setLink ] = useState('');
     const [rows , setRows] = useState<ICustomTable[] | null>([]);
     useEffect(() => {
         const rowsData = [
-            // '#96459761', 'IN PROGRESS', 'Dec 30, 2019 05:18', '$1,500 (5 Products)', 'View Details'
             array.map((item : ICustomTable) => {
-               return  createData(item.orderId , item.status.toUpperCase() ,item.date , item.total , 'View Details')
+                setLink(item.pathForLink)
+               return  createData(item.orderId , item.status.toUpperCase() ,item.date , item.total , 'View Details' );
             })
         ];
         // @ts-ignore
@@ -86,7 +87,7 @@ export default function CustomizedTables({array} : IOutsideTable) {
                             <StyledTableCell align="center">{row.status}</StyledTableCell>
                             <StyledTableCell align="center">{row.date}</StyledTableCell>
                             <StyledTableCell align="center">{row.total}</StyledTableCell>
-                            <StyledTableCell align="center"><NavLink className={style.link} to={'/'}>
+                            <StyledTableCell align="center"><NavLink className={style.link} to={link}>
                                 <div className={style.linkBlock}>
                                     {row.action}
                                     <FaArrowRightLong color={'#2DA5F3'} />
