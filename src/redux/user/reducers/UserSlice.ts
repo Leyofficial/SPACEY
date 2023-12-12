@@ -16,6 +16,7 @@ export interface IUserState {
         randomNumberToUpdatePassword : string,
         role : string,
         picture : string
+        locale : string
     }
 }
 
@@ -34,6 +35,7 @@ const initialState = {
         randomNumberToUpdatePassword : '',
         role : '',
         picture : '',
+        locale : ''
     }
 } as IUserState
 

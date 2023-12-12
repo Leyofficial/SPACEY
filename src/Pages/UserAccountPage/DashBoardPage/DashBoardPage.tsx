@@ -2,7 +2,7 @@ import style from './DashBoardPage.module.scss'
 // import {useEffect} from "react";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import FormInfo from "./FormInfo/FormInfo.tsx";
-import {Avatar} from "@mui/material";
+import {Avatar, Skeleton} from "@mui/material";
 
 function DashBoardPage() {
     const {user} = useAppSelector((state) => state.user);
@@ -24,14 +24,14 @@ function DashBoardPage() {
                                 {user.picture ? <Avatar alt="Remy Sharp" src={user?.picture}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
-                                <h2>{user.givenName} {user.familyName}</h2>
-                                <p>Dhaka - 1207, Bangladesh</p>
+                                <h2>{user.familyName && user.givenName ?  user.givenName + ' ' + user.familyName : <Skeleton variant={'rounded'} width={'7rem'} height={15}/>}</h2>
+                                <p>{user.locale || 'unknown'}</p>
                                 {/*place*/}
                             </div>
                         </div>
                         <div className={style.otherContacts}>
                             <div className={style.item}>
-                                <p>Email : <span>{user.email}</span></p>
+                                <p>Email : </p>{user.email ? <span>{user.email}</span> : <Skeleton variant={'rounded'} width={'10rem'}/>}
                             </div>
                         </div>
                     </FormInfo>
