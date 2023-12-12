@@ -1,5 +1,6 @@
 import style from './FormInfo.module.scss'
 import React from "react";
+import {NavLink} from "react-router-dom";
 
 function FormInfo({ text, children }: { text: string; children: React.ReactNode }) {
     const lineStyle: React.CSSProperties = {
@@ -14,9 +15,10 @@ function FormInfo({ text, children }: { text: string; children: React.ReactNode 
                 <main>
                     {children}
                 </main>
-                <button className={style.button}>
+                {/*Link to Vova`s component*/}
+                <NavLink to={'/'} className={style.button}>
                     Edit Account
-                </button>
+                </NavLink>
             </div>
         </section>
 

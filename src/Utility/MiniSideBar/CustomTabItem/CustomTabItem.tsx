@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
 import React from "react";
 import style from './CustomTabItem.module.scss'
-interface ICustomTabItem {
+export interface ICustomTabItem {
     text : string,
     path : string,
     icon : React.ReactNode

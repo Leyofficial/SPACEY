@@ -1,15 +1,17 @@
 import style from './MiniSideBar.module.scss'
-import {GoGear, GoSignOut, GoStack} from "react-icons/go";
-import {CustomTabItem} from "./CustomTabItem/CustomTabItem.tsx";
+import {CustomTabItem, ICustomTabItem} from "./CustomTabItem/CustomTabItem.tsx";
 
-function MiniSideBar() {
+interface IMiniSideBar {
+    tabItems : ICustomTabItem[]
+}
+function MiniSideBar({tabItems} : IMiniSideBar) {
     return (
         <div className={style.block}>
             <div className={style.links}>
-                <CustomTabItem text={'Dashboard'} path={'/user-account/dashboard'} icon={<GoStack size={'1.25rem'}/>}/>
-                <CustomTabItem text={'Settings'} path={'/user-account/settings'} icon={<GoGear size={'1.25rem'} />}/>
-                <CustomTabItem text={'Log out'} path={'/user-account/logout'} icon={<GoSignOut  size={'1.25rem'}/>}/>
-                {/*Добавить окошко с прощанием пользователя */}
+                {tabItems.map((item : ICustomTabItem) =>
+                   <CustomTabItem text={item.text} path={item.path} icon={item.icon}/>
+                )}
+                {/*Добавить окно с прощанием пользователя */}
             </div>
         </div>
     )
