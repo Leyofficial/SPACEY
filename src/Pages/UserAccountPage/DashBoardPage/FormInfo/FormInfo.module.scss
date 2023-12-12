@@ -1,4 +1,5 @@
 .block {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -24,6 +25,8 @@
 }
 
 .button {
+  position: absolute;
+  bottom: 1.5rem;
   cursor: pointer;
   display: flex;
   padding: 0 1.5rem;
