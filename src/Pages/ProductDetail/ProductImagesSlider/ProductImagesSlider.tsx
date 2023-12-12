@@ -18,12 +18,10 @@ const ProductImagesSlider = ({images}: IProductImagesSliderProps) => {
 
     useEffect(() => {
         images?.restImages.map(item => {
-
             if (item.color === startColor) {
                 // setCurrentColorImages(item.images)
             }
         })
-
     }, [images])
 
     const changeIndexOfImage = (index : number) => {

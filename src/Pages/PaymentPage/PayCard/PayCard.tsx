@@ -4,11 +4,12 @@ import style from './PayCard.module.scss'
 import Card from "react-credit-cards";
 import '../card.scss'
 import {useNavigate, useParams} from "react-router-dom";
-import {updatePaymentStatus} from "../../../ApiRequests/Billing/Billing.ts";
+import {Focused, payOrderHandler} from "./PayCardAssists.ts";
+import InputCard from "./InputCard/InputCard.tsx";
 
 
 const PayCard = () => {
-    type Focused = "name" | "number" | "expiry" | "cvc";
+    const navigate = useNavigate()
     const {idOrder,idCard} = useParams<string>()
     const [state, setState] = useState({
         number: '',
@@ -17,29 +18,10 @@ const PayCard = () => {
         name: '',
         focus: '' as Focused ,
     });
-    const navigate = useNavigate()
 
- const payOrderHandler =  (e: FormEvent<HTMLFormElement>) => {
-     e.preventDefault()
-     const cardDate = {
-         number:state.number,
-         expiry:state.expiry,
-         cvc:state.cvc,
-         name:state.name,
-     }
-     updatePaymentStatus(idCard,cardDate).then(res => {
-         if(res.status === 200){
-             setTimeout(() => {
-                 if(idCard){
-                     navigate(`/payment-grid/check/${idOrder}`)
-                 }else{
-                     navigate(`/payment-grid/check/${idOrder}`)
-                 }
-             },1000)
-
-         }
-     })
- }
+    const submitForm = (e:FormEvent<HTMLFormElement>) => {
+        payOrderHandler({e,state,idCard,idOrder,navigate})
+    }
     const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = evt.target;
         if (value.length > 3 && name === 'cvc') {
@@ -49,12 +31,9 @@ const PayCard = () => {
         }
 
     }
-
-    const handleInputFocus = (evt: any) => {
-        setState((prev) => ({...prev, focus: evt.target.name}));
+    const handleInputFocus = (evt: React.FocusEvent<HTMLInputElement>) => {
+        setState((prev) => ({...prev, focus: evt.target.name as Focused}));
     }
-
-
 
     return (
         <section className={style.container}>
@@ -65,43 +44,19 @@ const PayCard = () => {
             <div className={style.containerCard}>
                 <Card number={state.number} expiry={state.expiry} cvc={state.cvc} name={state.name}
                       focused={state.focus} preview={true}></Card>
-                <form onSubmit={payOrderHandler}>
-                    <input
-                        type="number"
-                        name="number"
-                        placeholder="Card Number"
-                        value={state.number}
-                        onChange={handleInputChange}
-                        onFocus={handleInputFocus}
-                        maxLength={16}
 
-                    />
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Your Name"
-                        value={state.name}
-                        onChange={handleInputChange}
-                        onFocus={handleInputFocus}
-                    />
+                <form onSubmit={submitForm}>
+                    <InputCard value={state.number} name={'number'} placeholder={'Card Number'} type={'number'} maxLength={16}
+                               focusHandler={handleInputFocus} changeHandler={handleInputChange}></InputCard>
+
+                    <InputCard value={state.name} name={'name'} placeholder={'Your Name'} type={'text'} maxLength={16}
+                               focusHandler={handleInputFocus} changeHandler={handleInputChange}></InputCard>
                     <div className={style.dateWrapper}>
-                        <input
-                            type="date"
-                            name="expiry"
-                            placeholder="Expire"
-                            value={state.expiry}
-                            onChange={handleInputChange}
-                            onFocus={handleInputFocus}
-                        />
-                        <input
-                            type="number"
-                            name="cvc"
-                            placeholder="CVC"
-                            value={state.cvc}
-                            onChange={handleInputChange}
-                            onFocus={handleInputFocus}
-                            maxLength={3}
-                        />
+                        <InputCard value={state.expiry} name={'expiry'} placeholder={'Expire'} type={'date'} maxLength={16}
+                                   focusHandler={handleInputFocus} changeHandler={handleInputChange}></InputCard>
+
+                        <InputCard value={state.cvc} name={'cvc'} placeholder={'CVC'} type={'number'} maxLength={3}
+                                   focusHandler={handleInputFocus} changeHandler={handleInputChange}></InputCard>
                     </div>
                     <div className={style.btn}>
                         <button type={'submit'}>PAY</button>

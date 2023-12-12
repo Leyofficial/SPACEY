@@ -1,4 +1,3 @@
-import {IShoppingItems} from "../../shoppingCartTypes.ts";
 import {useEffect, useState} from "react";
 import {getProduct} from "../../../../../ApiRequests/Items/getProduct.ts";
 import {useGetImage} from "../../../../../hooks/getImage/useGetImage.ts";
@@ -7,17 +6,8 @@ import style from './SingleTableProduct.module.scss'
 import {TiDeleteOutline} from "react-icons/ti";
 import {deleteCartItem} from "../../../../../ApiRequests/Items/Items.ts";
 import {useAppSelector} from "../../../../../redux/hooks/hooks.ts";
-import {IProduct} from "../../../../../types.ts";
+import {ICartProduct, ISingleProductProps} from "../../shoppingCartTypes.ts";
 
-interface ISingleProductProps {
-    product: IShoppingItems,
-    index: number,
-    updateCart: () => void
-}
-
-interface ICartProduct {
-    product: IProduct
-}
 
 const SingleTableProduct = ({product, updateCart}: ISingleProductProps) => {
     const [cardProduct, setCardProduct] = useState<ICartProduct | null>(null)
@@ -45,7 +35,6 @@ const SingleTableProduct = ({product, updateCart}: ISingleProductProps) => {
                         <img src={image ? image : ""} alt={'product'}/>}
                     <li className={style.productInfo}>{cardProduct?.product.title}</li>
                 </div>
-
                 <li>${cardProduct?.product.price}</li>
                 <li>{product?.count}</li>
                 <li>{Number(cardProduct?.product.price) * Number(product?.count)}</li>

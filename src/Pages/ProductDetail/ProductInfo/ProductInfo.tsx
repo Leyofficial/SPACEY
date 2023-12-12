@@ -1,5 +1,5 @@
 import style from './ProductInfo.module.scss'
-import {IProductInfoProps} from "../productDetail.ts";
+import {addCartItem, IProductInfoProps} from "../productDetail.ts";
 import {getRatingIcons} from "../../../Utility/Rating/getRating.tsx";
 import CustomSelect from "../../../Utility/CustomSelect/CustomSelect.tsx";
 import {Skeleton} from "@mui/material";
@@ -12,9 +12,8 @@ import payment1 from '../../../assets/img/payment/image 322.png'
 import payment2 from '../../../assets/img/payment/image 323.png'
 import payment3 from '../../../assets/img/payment/image 321.png'
 import {getColorElement} from "../getColorElement.tsx";
-import {addBasketItem} from "../../../ApiRequests/Items/basketItems.ts";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
 
 
 const ProductInfo = ({product}: IProductInfoProps) => {
@@ -28,29 +27,15 @@ const ProductInfo = ({product}: IProductInfoProps) => {
         if (countAddProduct !== 0)
             setCountAddProduct(countAddProduct - 1)
     }
-
-    const addCartItemHandler = () => {
-        const data: { idProduct: string, count: number, price: number | string } = {
-            idProduct: product._id,
-            count: countAddProduct,
-            price: product.product.price
-        }
-        addBasketItem(user?._id, data,setProcess).then(res => {
-            if(res.status === 200) {
-                toast.success('The product was added to your cart')
-                setTimeout(() => {
-                    setProcess(false)
-                },500)
-
-            }else if (res.status === 201) {
-                toast.error('This product is already in your cart')
-                setTimeout(() => {
-
-                    setProcess(false)
-                },500)
-            }
-        })
-    }
+  const addCartItemHandler = () => {
+      const data: { idProduct: string, count: number, price: number | string } = {
+          idProduct: product._id,
+          count: countAddProduct,
+          price: product.product.price
+      }
+      const userId = user?._id
+      addCartItem({data, setProcess, userId})
+  }
 
     return (
         <article className={style.product}>
