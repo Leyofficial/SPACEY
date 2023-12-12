@@ -6,6 +6,7 @@ import {IOrderInfo, OrderInfo} from "./OrderInfo/OrderInfo.tsx";
 import {MdOutlineRocket} from "react-icons/md";
 import {PiReceiptDuotone} from "react-icons/pi";
 import {BiPackage} from "react-icons/bi";
+import CustomizedTables from "./CustomTable/CustomTable.tsx";
 
 function DashBoardPage() {
     const {user} = useAppSelector((state) => state.user);
@@ -46,7 +47,7 @@ function DashBoardPage() {
                                 {user.picture ? <Avatar alt="Remy Sharp" src={user?.picture}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
-                                <h2>{user.familyName && user.givenName ?  user.givenName + ' ' + user.familyName : <Skeleton variant={'rounded'} width={'7rem'} height={15}/>}</h2>
+                                <h2>{user.givenName ?  user.givenName + ' ' + user.familyName : <Skeleton variant={'rounded'} width={'7rem'} height={15}/>}</h2>
                                 <p>{user.locale || 'unknown'}</p>
                             </div>
                         </div>
@@ -67,7 +68,9 @@ function DashBoardPage() {
                         <OrderInfo background={item.background} numberOfOrders={item.numberOfOrders} icon={item.icon} text={item.text}/>
                         )}
                     </div>
-
+                </div>
+                <div className={style.table}>
+                    <CustomizedTables/>
                 </div>
             </div> : null
     )
