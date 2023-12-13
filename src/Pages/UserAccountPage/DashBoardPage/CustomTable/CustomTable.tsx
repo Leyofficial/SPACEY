@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
 import {useEffect, useState} from "react";
+import {CheckStatus} from "../CheckStatus/CheckStatus.tsx";
 
 interface IOutsideTable {
     array : ICustomTable[]
@@ -84,7 +85,7 @@ export default function CustomizedTables({array} : IOutsideTable) {
                             <StyledTableCell component="th" scope="row">
                                 {row.orderId}
                             </StyledTableCell>
-                            <StyledTableCell align="center">{row.status}</StyledTableCell>
+                            <StyledTableCell align="center">{CheckStatus(row.status)}</StyledTableCell>
                             <StyledTableCell align="center">{row.date}</StyledTableCell>
                             <StyledTableCell align="center">{row.total}</StyledTableCell>
                             <StyledTableCell align="center"><NavLink className={style.link} to={link}>
