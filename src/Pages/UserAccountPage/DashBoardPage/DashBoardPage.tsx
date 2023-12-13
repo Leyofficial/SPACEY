@@ -7,9 +7,26 @@ import {MdOutlineRocket} from "react-icons/md";
 import {PiReceiptDuotone} from "react-icons/pi";
 import {BiPackage} from "react-icons/bi";
 import CustomizedTables, {ICustomTable} from "./CustomTable/CustomTable.tsx";
+import {ICategory} from "../../../types.ts";
+import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
+import {useEffect, useState} from "react";
+import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
+import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
+
+const ITEMS_ON_SCREEN = 4;
 
 function DashBoardPage() {
+
+    const [items , setItems] = useState([]);
+
+    const [page, setPage] = useState<number>(1);
+    const [ currentProducts ,  setCurrentProducts] = useState([]);
+    const indexOfLastCourse = page * ITEMS_ON_SCREEN;
+    const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
     const {user} = useAppSelector((state) => state.user);
+    const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+        setPage(value);
+    };
     const orderInfo: IOrderInfo[] = [
         {
             text: 'Total Orders',
@@ -39,6 +56,18 @@ function DashBoardPage() {
             pathForLink: '/'
         }
     ]
+
+    useEffect(() => {
+        getAllItems().then((res) => {
+            setItems(res.data.categories);
+        })
+    },[])
+
+
+    useEffect(() => {
+        const currentProducts  = items.slice(indexOfFirstCourse, indexOfLastCourse);
+        setCurrentProducts(currentProducts);
+    }, [items , page]);
 
     return (
         user ?
@@ -91,6 +120,29 @@ function DashBoardPage() {
                     <div className={style.table}>
                         <CustomizedTables array={tableInfo}/>
                     </div>
+                </div>
+                <div className={style.historyBlock}>
+                    <h2 className={style.historyTitle}>
+                        Browsing history
+                    </h2>
+                    <div className={style.historyItems}>
+                        {
+                            currentProducts?.map((item: ICategory, index: number) => (
+                                <SmallDealItem
+                                    key={index}
+                                    item={item}
+                                ></SmallDealItem>
+                            ))
+                        }
+                    </div>
+                    <section className={style.pagination}>
+                    <CustomPagination
+                        callback={handleChange}
+                        page={page}
+                        count={Math.round((items.length + 1) / ITEMS_ON_SCREEN)}
+                    />
+                </section>
+
                 </div>
 
             </div> : null

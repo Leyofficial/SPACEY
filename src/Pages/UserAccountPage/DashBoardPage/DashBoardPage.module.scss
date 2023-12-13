@@ -139,3 +139,31 @@
   line-height: 1.25rem; /* 142.857% */
   text-transform: uppercase;
 }
+.historyBlock {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 0.25rem 0.25rem 0 0;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.historyItems {
+  padding: .5rem;
+  display: grid;
+  grid-template-columns: repeat(4  , 1fr);
+}
+.historyTitle{
+
+  padding: 0.925rem 1.5rem;
+  color: var(--gray-900, #191C1F);
+
+  /* Label/03 */
+  font-family: Public Sans sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25rem; /* 142.857% */
+  text-transform: uppercase;
+  border-bottom: 1px solid #E4E7E9;
+  margin-bottom: 20px;
+}
