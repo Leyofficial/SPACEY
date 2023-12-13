@@ -147,11 +147,12 @@
   border: 1px solid var(--gray-100, #E4E7E9);
   background: var(--gray-00, #FFF);
 }
-.historyItems {
-  padding: .5rem;
+.historyItems, .skeletonBlock {
+  padding: 0.5rem;
   display: grid;
-  grid-template-columns: repeat(4  , 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
+
 .historyTitle{
 
   padding: 0.925rem 1.5rem;

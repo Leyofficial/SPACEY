@@ -9,9 +9,10 @@ import {BiPackage} from "react-icons/bi";
 import CustomizedTables, {ICustomTable} from "./CustomTable/CustomTable.tsx";
 import {ICategory} from "../../../types.ts";
 import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
+import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -62,7 +63,6 @@ function DashBoardPage() {
             setItems(res.data.categories);
         })
     },[])
-
 
     useEffect(() => {
         const currentProducts  = items.slice(indexOfFirstCourse, indexOfLastCourse);
@@ -127,12 +127,15 @@ function DashBoardPage() {
                     </h2>
                     <div className={style.historyItems}>
                         {
-                            currentProducts?.map((item: ICategory, index: number) => (
+                            currentProducts.length > 0 ?
+                            currentProducts.map((item: ICategory, index: number) => (
                                 <SmallDealItem
                                     key={index}
                                     item={item}
                                 ></SmallDealItem>
-                            ))
+                            )) :   <div className={style.skeletonBlock}>
+                                    {SkeletonSmallCall(ITEMS_ON_SCREEN)}
+                                </div>
                         }
                     </div>
                     <section className={style.pagination}>

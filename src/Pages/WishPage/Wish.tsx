@@ -8,13 +8,13 @@ import WishItemSkeleton from "./WishItemSkeleton/WishItemSkeleton.tsx";
 function Wish() {
     const {user} = useAppSelector((state) => state.user);
     const [allId , setAllId] = useState<string[]>([]);
-
+    const token = localStorage.getItem('token' || '');
     useEffect(() => {
         if (!user._id) return
        axios.get(`https://spacey-server.vercel.app/wishList/${user._id}`).then((res) => {
             setAllId(res?.data?.foundItems?.items);
         });
-    },[])
+    },[token])
 
     return (
         <div className={style.block}>
