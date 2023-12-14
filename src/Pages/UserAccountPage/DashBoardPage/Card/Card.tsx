@@ -8,8 +8,7 @@ import {successToaster} from "../../../../Utility/ToasterActions/SuccessToaster.
 import {errorToaster} from "../../../../Utility/ToasterActions/ErrorToaster.tsx";
 import {Toaster} from "react-hot-toast";
 import {Unstable_Popup as BasePopup} from '@mui/base/Unstable_Popup';
-import {styled} from '@mui/system';
-import {grey} from "@mui/material/colors";
+import {Button, PopupBody } from './Popup/popupStyles.ts';
 
 // interface ICard {
 //     color : string,
@@ -17,14 +16,13 @@ import {grey} from "@mui/material/colors";
 // }
 function Card() {
     const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
+    const numberToCopy = '4441 1144 3155 3814'; // Замените на ваш реальный номер
+    const open = Boolean(anchor);
+    const id = open ? 'simple-popper' : undefined;
 
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchor(anchor ? null : event.currentTarget);
     };
-
-    const open = Boolean(anchor);
-    const id = open ? 'simple-popper' : undefined;
-    const numberToCopy = '4441 1144 3155 3814'; // Замените на ваш реальный номер
 
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -87,34 +85,5 @@ function Card() {
         </div>
     )
 }
-
-
-const PopupBody = styled('div')(
-    ({theme}) => `
-  width: max-content;
-  padding: 12px 16px;
-  margin: 8px;
-  border-radius: 2px;
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
-  background-color: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
-  box-shadow: ${
-        theme.palette.mode === 'dark'
-            ? `0px 4px 8px rgb(0 0 0 / 0.7)`
-            : `0px 4px 8px rgb(0 0 0 / 0.1)`
-    };
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.875rem;
-  z-index: 1;
-`,
-);
-
-const Button = styled('button')(
-    () => `
-  color: white;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-`,
-);
 
 export default Card
