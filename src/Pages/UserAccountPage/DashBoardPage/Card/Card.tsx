@@ -2,7 +2,7 @@ import style from './Card.module.scss'
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
 import {PiCopyThin} from "react-icons/pi";
 import {SiVisa} from "react-icons/si";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ClipboardJS from 'clipboard';
 import {successToaster} from "../../../../Utility/ToasterActions/SuccessToaster.tsx";
 import {errorToaster} from "../../../../Utility/ToasterActions/ErrorToaster.tsx";
@@ -15,7 +15,10 @@ import {Button, PopupBody } from './Popup/popupStyles.ts';
 //     cardDetails: any
 // }
 function Card() {
-    const [anchor, setAnchor] = React.useState<null | HTMLElement>(null);
+    const [finishEditing , setFinish ] = useState<boolean>(false);
+    const [isEditing , setEditing] = useState<boolean>(false);
+    const [newNumberCard , setNewNumber] = useState<string>('')
+    const [anchor, setAnchor] = React.useState<null | HTMLElement | boolean>(null);
     const numberToCopy = '4441 1144 3155 3814'; // Замените на ваш реальный номер
     const open = Boolean(anchor);
     const id = open ? 'simple-popper' : undefined;
@@ -23,6 +26,7 @@ function Card() {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchor(anchor ? null : event.currentTarget);
     };
+
 
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -44,6 +48,11 @@ function Card() {
         };
     }, [numberToCopy]);
 
+    useEffect(() => {
+        setEditing(!isEditing)
+        setAnchor(false);
+    }, [finishEditing]);
+
     return (
         <div className={style.block}>
             <Toaster
@@ -58,7 +67,7 @@ function Card() {
                 <BasePopup id={id} open={open} anchor={anchor}>
                     <PopupBody>
                         <div className={style.popupItems}>
-                            <p className={style.popupItem}>
+                            <p onClick={() => setEditing(!isEditing)} className={style.popupItem}>
                                 Edit Card
                             </p>
                             <p className={style.popupItem}>
@@ -71,9 +80,10 @@ function Card() {
             <main className={style.mainCard}>
                 <p className={style.cardInfo}>Card number</p>
                 <div className={style.cardNumberBlock}>
-                    <p className={style.cardNumber}>**** **** **** 3814</p>
-                    <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>
-                        <PiCopyThin/></button>
+                    {isEditing ? <>
+                        <p className={style.cardNumber}>**** **** **** 3814</p>
+                    </> : <input value={newNumberCard} type={'number'} autoFocus={true} onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput} placeholder={'**** **** **** 3814'}></input>}
+                    <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>{!isEditing ? null : <PiCopyThin/>}</button>
                 </div>
             </main>
             <footer className={style.footerCard}>
@@ -82,6 +92,8 @@ function Card() {
                     <p className={style.ownerCard}>Kevin Gilbert</p>
                 </div>
             </footer>
+            {!isEditing ?
+                <div onClick={() => setFinish(!finishEditing)} className={style.saveBtn}>Save</div> : null}
         </div>
     )
 }
