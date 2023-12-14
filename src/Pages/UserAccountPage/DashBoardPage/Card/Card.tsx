@@ -27,7 +27,6 @@ function Card() {
         setAnchor(anchor ? null : event.currentTarget);
     };
 
-
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {
@@ -51,6 +50,7 @@ function Card() {
     useEffect(() => {
         setEditing(!isEditing)
         setAnchor(false);
+        successToaster('Card number successfully changed!');
     }, [finishEditing]);
 
     return (
@@ -65,7 +65,7 @@ function Card() {
                     <div className={style.actionCard}><HiOutlineDotsHorizontal/></div>
                 </Button>
                 <BasePopup id={id} open={open} anchor={anchor}>
-                    <PopupBody>
+                    <PopupBody onClick={() => setAnchor(false)}>
                         <div className={style.popupItems}>
                             <p onClick={() => setEditing(!isEditing)} className={style.popupItem}>
                                 Edit Card
