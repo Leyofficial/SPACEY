@@ -25,6 +25,7 @@
     "antd": "^5.11.0",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.1",
+    "clipboard": "^2.0.11",
     "formik": "^2.4.5",
     "gapi-script": "^1.2.0",
     "jsonwebtoken": "^9.0.2",

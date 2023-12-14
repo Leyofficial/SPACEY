@@ -168,3 +168,18 @@
   border-bottom: 1px solid #E4E7E9;
   margin-bottom: 20px;
 }
+
+.cardBlock {
+  margin: 1.5rem 0 ;
+  border-radius: 0.25rem;
+  border: 1px solid var(--Gray-100, #E4E7E9);
+  background: var(--Gray-00, #FFF);
+}
+.card {
+  display: flex;
+  gap: 1.5rem;
+}
+.cardTitle , .card {
+  border: 1px solid #E4E7E9;
+  padding: 0.925rem 1.5rem;
+}

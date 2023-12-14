@@ -13,6 +13,7 @@ import React, {useEffect, useState} from "react";
 import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
+import Card from "./Card/Card.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -119,6 +120,12 @@ function DashBoardPage() {
                     <h2 className={style.tableTitle}>Recent Order</h2>
                     <div className={style.table}>
                         <CustomizedTables array={tableInfo}/>
+                    </div>
+                </div>
+                <div className={style.cardBlock}>
+                    <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
+                    <div className={style.card}>
+                    <Card/>
                     </div>
                 </div>
                 <div className={style.historyBlock}>
