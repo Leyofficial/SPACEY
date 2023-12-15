@@ -3,9 +3,6 @@ import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import FormInfo from "./FormInfo/FormInfo.tsx";
 import {Avatar, Skeleton} from "@mui/material";
 import {OrderInfo} from "./OrderInfo/OrderInfo.tsx";
-import {MdOutlineRocket} from "react-icons/md";
-import {PiReceiptDuotone} from "react-icons/pi";
-import {BiPackage} from "react-icons/bi";
 import CustomizedTables, {ICustomTable} from "./CustomTable/CustomTable.tsx";
 import {ICategory} from "../../../types.ts";
 import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
@@ -17,10 +14,12 @@ import Card from "./Card/Card.tsx";
 import axios from "axios";
 import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
 import {CiCreditCard1} from "react-icons/ci";
+import {orderInfo} from "./orderInfo.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
 function DashBoardPage() {
+    const {user} = useAppSelector((state) => state.user);
     const [wholeInfo, setWhole] = useState<IWholeInfo | null | any>(null)
     const [items, setItems] = useState([]);
     const [page, setPage] = useState<number>(1);
@@ -30,31 +29,9 @@ function DashBoardPage() {
     const indexOfLastCourse = page * ITEMS_ON_SCREEN;
     const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
 
-    const {user} = useAppSelector((state) => state.user);
-
     const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
-    const orderInfo: IOrderInfo[] = [
-        {
-            text: 'Total Orders',
-            background: '#EAF6FE',
-            icon: <MdOutlineRocket size={'2rem'} color={'#2DA5F3'}/>,
-            numberOfOrders: 154
-        },
-        {
-            text: 'Pending Orders',
-            background: '#FFF3EB',
-            icon: <PiReceiptDuotone size={'2rem'} color={'#FA8232'}/>,
-            numberOfOrders: 5
-        },
-        {
-            text: 'Completed Orders',
-            background: '#EAF7E9',
-            icon: <BiPackage size={'2rem'} color={'#2DB324'}/>,
-            numberOfOrders: 51
-        }
-    ]
 
     useEffect(() => {
         if (!user._id) return
@@ -68,17 +45,20 @@ function DashBoardPage() {
 
     useEffect(() => {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
-            return {
-                orderId: item?.orderId || 'unknown',
-                status: 'In progress',
-                date: item?.date || 'unknown',
-                total: `$${item.products.map(item => item.price)} (${item.products.length} Product/s)`,
-                pathForLink: `/track-order/${item.orderId}`
-            }
-        })
-        setTableInfo(tableInfo)
+            const totalPrice = item.products.reduce((acc, product) => acc + product.price, 0);
+            const totalProducts = item.products.length;
 
+            return {
+                orderId: item.orderId || 'unknown',
+                status: 'In progress',
+                date: item.date || 'unknown',
+                total: `$${totalPrice} (${totalProducts} Product/s)`,
+                pathForLink: `/track-order/${item.orderId}`
+            };
+        }) || [];
+        setTableInfo(tableInfo);
     }, [wholeInfo]);
+
 
     useEffect(() => {
         const currentProducts = items.slice(indexOfFirstCourse, indexOfLastCourse);

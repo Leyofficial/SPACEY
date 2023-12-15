@@ -63,8 +63,8 @@ export default function CustomizedTables({array} : IOutsideTable) {
         const rowsData = [
             array.map((item : ICustomTable) => {
                 const date = new Date(item.date);
-                setLink(item.pathForLink)
-               return  createData(item.orderId , item.status.toUpperCase() , date , item.total , 'View Details' );
+                setLink(item.pathForLink);
+               return  createData(item.orderId , item.status.toUpperCase() , date , item.total, 'View Details' );
             })
         ];
         // @ts-ignore
