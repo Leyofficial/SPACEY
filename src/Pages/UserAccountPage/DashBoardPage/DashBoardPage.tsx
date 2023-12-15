@@ -2,7 +2,7 @@ import style from './DashBoardPage.module.scss'
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import FormInfo from "./FormInfo/FormInfo.tsx";
 import {Avatar, Skeleton} from "@mui/material";
-import {IOrderInfo, OrderInfo} from "./OrderInfo/OrderInfo.tsx";
+import {OrderInfo} from "./OrderInfo/OrderInfo.tsx";
 import {MdOutlineRocket} from "react-icons/md";
 import {PiReceiptDuotone} from "react-icons/pi";
 import {BiPackage} from "react-icons/bi";
@@ -15,53 +15,9 @@ import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import Card from "./Card/Card.tsx";
 import axios from "axios";
+import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
 
 const ITEMS_ON_SCREEN = 4;
-
-interface IWholeInfo {
-    address: {
-        city: string,
-        country: string,
-        region: string,
-        street: string,
-        zipCode: string,
-    }
-    email: string,
-    orderNotes: string,
-    phone: string,
-    userName: {
-        firstName: string,
-        lastName: string,
-        companyName: string,
-    },
-    date: string | Date,
-    isPayed: boolean,
-     cardDate: {
-        number: string
-        expiry: string
-        cvc: string
-        name: string
-    },
-    orderActivity: {
-        activity: string,
-        date: string,
-        isReady: boolean,
-        text: string,
-        _id: string
-    },
-    orderId: string,
-    paymentType: string,
-    products: IProducts[],
-    user: string,
-    _id: string
-}
-
-interface IProducts {
-    count: number,
-    idProduct: string,
-    price: number,
-    _id: string
-}
 
 function DashBoardPage() {
     const [wholeInfo, setWhole] = useState<IWholeInfo | null | any>(null)
@@ -218,7 +174,6 @@ function DashBoardPage() {
                         />
                     </section>
                 </div>
-
             </div> : null
     )
 }

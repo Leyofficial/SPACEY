@@ -56,7 +56,6 @@ function createData(
 }
 
 export default function CustomizedTables({array} : IOutsideTable) {
-    debugger
     const [link , setLink ] = useState('');
     const [rows , setRows] = useState<ICustomTable[] | null>([]);
     useEffect(() => {

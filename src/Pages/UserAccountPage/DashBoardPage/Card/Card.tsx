@@ -1,7 +1,7 @@
 import style from './Card.module.scss'
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
 import {PiCopyThin} from "react-icons/pi";
-import {SiVisa} from "react-icons/si";
+import {SiMastercard, SiVisa} from "react-icons/si";
 import React, {useEffect, useRef, useState} from "react";
 import ClipboardJS from 'clipboard';
 import {successToaster} from "../../../../Utility/ToasterActions/SuccessToaster.tsx";
@@ -9,18 +9,9 @@ import {errorToaster} from "../../../../Utility/ToasterActions/ErrorToaster.tsx"
 import {Toaster} from "react-hot-toast";
 import {Unstable_Popup as BasePopup} from '@mui/base/Unstable_Popup';
 import {Button, PopupBody } from './Popup/popupStyles.ts';
+import {ICard} from "../dashboardTypes.ts";
 
-interface ICard {
-    color? : string,
-    cardData: {
-        number: string
-        expiry: string
-        cvc: string
-        name: string
-    }
-}
 function Card({cardData} : ICard) {
-    debugger
     const [finishEditing , setFinish ] = useState<boolean>(false);
     const [isEditing , setEditing] = useState<boolean>(true);
     const [newNumberCard , setNewNumber] = useState<string>('')
@@ -95,7 +86,9 @@ function Card({cardData} : ICard) {
             </main>
             <footer className={style.footerCard}>
                 <div className={style.cardHolder}>
-                    <SiVisa fontSize={'2.5rem'}/>
+                    {cardData.number[0][1] == '44' ?
+                    <SiVisa fontSize={'2.5rem'}/> : <SiMastercard  fontSize={'2.5rem'} />}
+
                     <p className={style.ownerCard}>{cardData.name}</p>
                 </div>
             </footer>
