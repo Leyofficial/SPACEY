@@ -20,11 +20,10 @@ function Card({cardData} : ICard) {
     const open = Boolean(anchor);
     const id = open ? 'simple-popper' : undefined;
 
+    const buttonRef = useRef<HTMLButtonElement | null>(null);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchor(anchor ? null : event.currentTarget);
     };
-
-    const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     useEffect(() => {
         const clipboard = new ClipboardJS(buttonRef.current!, {
@@ -80,7 +79,7 @@ function Card({cardData} : ICard) {
                 <div className={style.cardNumberBlock}>
                     {isEditing ? <>
                         <p className={style.cardNumber}>{cardData.number}</p>
-                    </> : <input value={newNumberCard} type={'number'} autoFocus={true} onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput} placeholder={'**** **** **** 3814'}></input>}
+                    </> : <input value={newNumberCard} type={'number'} autoFocus={true} onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput} placeholder={cardData.number}></input>}
                     <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>{!isEditing ? null : <PiCopyThin/>}</button>
                 </div>
             </main>
@@ -88,7 +87,6 @@ function Card({cardData} : ICard) {
                 <div className={style.cardHolder}>
                     {cardData.number.startsWith('44') ?
                     <SiVisa fontSize={'2.5rem'}/> : <SiMastercard  fontSize={'2.5rem'} />}
-
                     <p className={style.ownerCard}>{cardData.name}</p>
                 </div>
             </footer>
