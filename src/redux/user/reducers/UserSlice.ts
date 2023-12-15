@@ -20,7 +20,7 @@ export interface IUserState {
     }
 }
 
-const initialState = {
+const initialState : IUserState = {
     user : {
         email : '' ,
         familyName : '',
@@ -45,7 +45,6 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state , action) => {
             state.user = action.payload;
-            console.log(state.user)
         },
     },
 });

@@ -16,7 +16,7 @@ import {Button, PopupBody } from './Popup/popupStyles.ts';
 // }
 function Card() {
     const [finishEditing , setFinish ] = useState<boolean>(false);
-    const [isEditing , setEditing] = useState<boolean>(false);
+    const [isEditing , setEditing] = useState<boolean>(true);
     const [newNumberCard , setNewNumber] = useState<string>('')
     const [anchor, setAnchor] = React.useState<null | HTMLElement | boolean>(null);
     const numberToCopy = '4441 1144 3155 3814'; // Замените на ваш реальный номер
@@ -48,6 +48,7 @@ function Card() {
     }, [numberToCopy]);
 
     useEffect(() => {
+        if (!finishEditing) return
         setEditing(!isEditing)
         setAnchor(false);
         successToaster('Card number successfully changed!');

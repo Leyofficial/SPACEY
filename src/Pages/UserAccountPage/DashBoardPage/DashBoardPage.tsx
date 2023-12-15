@@ -14,18 +14,61 @@ import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import Card from "./Card/Card.tsx";
+import axios from "axios";
 
 const ITEMS_ON_SCREEN = 4;
 
+interface IWholeInfo {
+    address: {
+        city: string,
+        country: string,
+        region: string,
+        street: string,
+        zipCode: string,
+    }
+    email: string,
+    orderNotes: string,
+    phone: string,
+    userName: {
+        firstName: string,
+        lastName: string,
+        companyName: string,
+    },
+    date: string,
+    isPayed: string,
+    orderActivity: {
+        activity: string,
+        date: string,
+        isReady: boolean,
+        text: string,
+        _id: string
+    },
+    orderId: string,
+    paymentType: string,
+    products: IProducts[],
+    user: string,
+    _id: string
+}
+
+interface IProducts {
+    count: number,
+    idProduct: string,
+    price: number,
+    _id: string
+}
+
 function DashBoardPage() {
-
-    const [items , setItems] = useState([]);
-
+    const [wholeInfo, setWhole] = useState<IWholeInfo | null | any>(null)
+    const [items, setItems] = useState([]);
     const [page, setPage] = useState<number>(1);
-    const [ currentProducts ,  setCurrentProducts] = useState([]);
+    const [tableInfo, setTableInfo] = useState<ICustomTable[] | null>(null)
+    const [currentProducts, setCurrentProducts] = useState([]);
+
     const indexOfLastCourse = page * ITEMS_ON_SCREEN;
     const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
+
     const {user} = useAppSelector((state) => state.user);
+
     const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
@@ -49,26 +92,37 @@ function DashBoardPage() {
             numberOfOrders: 51
         }
     ]
-    const tableInfo: ICustomTable[] = [
-        {
-            orderId: '#96459765',
-            status: 'In progress',
-            date: 'Dec 30, 2019 05:18',
-            total: '$1,500 (10 Products)',
-            pathForLink: '/'
-        }
-    ]
 
     useEffect(() => {
+        if (!user._id) return
+        axios.get(`https://spacey-server.vercel.app/processOrder/user/${user._id}`).then((res) => {
+            setWhole(res.data.foundOrders);
+            console.log(wholeInfo)
+        })
         getAllItems().then((res) => {
             setItems(res.data.categories);
         })
-    },[])
+    }, [user])
 
     useEffect(() => {
-        const currentProducts  = items.slice(indexOfFirstCourse, indexOfLastCourse);
+        const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
+            console.log(item)
+            return {
+                orderId: item?.orderId || 'unknown',
+                status: 'In progress',
+                date: item?.date || 'unknown',
+                total: `$${item.products.map(item => item.price)} (${item.products.length} Product/s)`,
+                pathForLink: '/'
+            }
+        })
+        setTableInfo(tableInfo)
+
+    }, [wholeInfo]);
+
+    useEffect(() => {
+        const currentProducts = items.slice(indexOfFirstCourse, indexOfLastCourse);
         setCurrentProducts(currentProducts);
-    }, [items , page]);
+    }, [items, page]);
 
     return (
         user ?
@@ -119,13 +173,14 @@ function DashBoardPage() {
                 <div className={style.tableBlock}>
                     <h2 className={style.tableTitle}>Recent Order</h2>
                     <div className={style.table}>
-                        <CustomizedTables array={tableInfo}/>
+                        {tableInfo ?
+                            < CustomizedTables array={tableInfo}/> : null}
                     </div>
                 </div>
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                    <Card/>
+                        <Card/>
                     </div>
                 </div>
                 <div className={style.historyBlock}>
@@ -135,24 +190,23 @@ function DashBoardPage() {
                     <div className={style.historyItems}>
                         {
                             currentProducts.length > 0 ?
-                            currentProducts.map((item: ICategory, index: number) => (
-                                <SmallDealItem
-                                    key={index}
-                                    item={item}
-                                ></SmallDealItem>
-                            )) :   <div className={style.skeletonBlock}>
+                                currentProducts.map((item: ICategory, index: number) => (
+                                    <SmallDealItem
+                                        key={index}
+                                        item={item}
+                                    ></SmallDealItem>
+                                )) : <div className={style.skeletonBlock}>
                                     {SkeletonSmallCall(ITEMS_ON_SCREEN)}
                                 </div>
                         }
                     </div>
                     <section className={style.pagination}>
-                    <CustomPagination
-                        callback={handleChange}
-                        page={page}
-                        count={Math.round((items.length + 1) / ITEMS_ON_SCREEN)}
-                    />
-                </section>
-
+                        <CustomPagination
+                            callback={handleChange}
+                            page={page}
+                            count={Math.round((items.length + 1) / ITEMS_ON_SCREEN)}
+                        />
+                    </section>
                 </div>
 
             </div> : null
