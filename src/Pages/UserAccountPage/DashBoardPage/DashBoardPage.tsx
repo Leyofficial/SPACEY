@@ -55,7 +55,7 @@ function DashBoardPage() {
                 total: `$${totalPrice} (${totalProducts} Product/s)`,
                 pathForLink: `/track-order/${item.orderId}`
             };
-        }) || [];
+        });
         setTableInfo(tableInfo);
     }, [wholeInfo]);
 

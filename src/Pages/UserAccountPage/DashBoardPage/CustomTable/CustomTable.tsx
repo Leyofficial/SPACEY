@@ -51,20 +51,19 @@ function createData(
     date: Date,
     total: number | string,
     action: string,
+    pathForLink : string
 ) {
-    return { orderId, status , date , total , action};
+    return { orderId, status , date , total , pathForLink , action};
 }
 
 export default function CustomizedTables({array} : IOutsideTable) {
-    const [link , setLink ] = useState('');
     const [rows , setRows] = useState<ICustomTable[] | null>([]);
     useEffect(() => {
         if (!array) return
         const rowsData = [
             array.map((item : ICustomTable) => {
                 const date = new Date(item.date);
-                setLink(item.pathForLink);
-               return  createData(item.orderId , item.status.toUpperCase() , date , item.total, 'View Details' );
+               return  createData(item.orderId , item.status.toUpperCase() , date , item.total, 'View Details' , item.pathForLink,);
             })
         ];
         // @ts-ignore
@@ -91,7 +90,7 @@ export default function CustomizedTables({array} : IOutsideTable) {
                             <StyledTableCell align="center">{CheckStatus(row.status)}</StyledTableCell>
                             <StyledTableCell align="center">{formatOrderDate(row.date)}</StyledTableCell>
                             <StyledTableCell align="center">{row.total}</StyledTableCell>
-                            <StyledTableCell align="center"><NavLink className={style.link} to={link}>
+                            <StyledTableCell align="center"><NavLink className={style.link} to={row.pathForLink}>
                                 <div className={style.linkBlock}>
                                     {row.action}
                                     <FaArrowRightLong color={'#2DA5F3'} />
