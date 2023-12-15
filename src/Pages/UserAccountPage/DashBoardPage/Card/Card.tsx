@@ -52,7 +52,7 @@ function Card({cardData} : ICard) {
     }, [finishEditing]);
 
     return (
-        <div className={style.block}>
+        <div className={style.block} style={cardData.number[1][2] == '44' ? {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #1B6392 0%, #124261 100%)'} : {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #248E1D 0%, #2DB224 100%)'}}>
             <Toaster
                 position="top-right"
                 reverseOrder={false}

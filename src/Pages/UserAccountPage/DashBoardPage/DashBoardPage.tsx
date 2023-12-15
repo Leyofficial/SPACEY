@@ -16,6 +16,7 @@ import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAdd
 import Card from "./Card/Card.tsx";
 import axios from "axios";
 import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
+import {CiCreditCard1} from "react-icons/ci";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -59,7 +60,6 @@ function DashBoardPage() {
         if (!user._id) return
         axios.get(`https://spacey-server.vercel.app/processOrder/user/${user._id}`).then((res) => {
             setWhole(res.data.foundOrders);
-            console.log(wholeInfo)
         })
         getAllItems().then((res) => {
             setItems(res.data.categories);
@@ -68,13 +68,12 @@ function DashBoardPage() {
 
     useEffect(() => {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
-            console.log(item)
             return {
                 orderId: item?.orderId || 'unknown',
                 status: 'In progress',
                 date: item?.date || 'unknown',
                 total: `$${item.products.map(item => item.price)} (${item.products.length} Product/s)`,
-                pathForLink: '/'
+                pathForLink: `/track-order/${item.orderId}`
             }
         })
         setTableInfo(tableInfo)
@@ -142,11 +141,14 @@ function DashBoardPage() {
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                        { wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
+                        {wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
                             if (item.isPayed) {
                                 return <Card cardData={item.cardDate}/>
                             }
-                        }) : null}
+                        }) : <div className={style.emptyCards}>
+                            <p className={style.noCards}>No cards :(</p>
+                            <CiCreditCard1 fontSize={'2.2rem'}/>
+                        </div>}
                     </div>
                 </div>
                 <div className={style.historyBlock}>

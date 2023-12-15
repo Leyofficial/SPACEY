@@ -45,7 +45,6 @@ export interface IProducts {
     _id: string
 }
 export interface ICard {
-    color? : string,
     cardData: {
         number: string
         expiry: string
