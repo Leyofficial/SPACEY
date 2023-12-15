@@ -10,16 +10,22 @@ import {Toaster} from "react-hot-toast";
 import {Unstable_Popup as BasePopup} from '@mui/base/Unstable_Popup';
 import {Button, PopupBody } from './Popup/popupStyles.ts';
 
-// interface ICard {
-//     color : string,
-//     cardDetails: any
-// }
-function Card() {
+interface ICard {
+    color? : string,
+    cardData: {
+        number: string
+        expiry: string
+        cvc: string
+        name: string
+    }
+}
+function Card({cardData} : ICard) {
+    debugger
     const [finishEditing , setFinish ] = useState<boolean>(false);
     const [isEditing , setEditing] = useState<boolean>(true);
     const [newNumberCard , setNewNumber] = useState<string>('')
     const [anchor, setAnchor] = React.useState<null | HTMLElement | boolean>(null);
-    const numberToCopy = '4441 1144 3155 3814'; // Замените на ваш реальный номер
+    const numberToCopy = cardData.number; // Замените на ваш реальный номер
     const open = Boolean(anchor);
     const id = open ? 'simple-popper' : undefined;
 
@@ -82,7 +88,7 @@ function Card() {
                 <p className={style.cardInfo}>Card number</p>
                 <div className={style.cardNumberBlock}>
                     {isEditing ? <>
-                        <p className={style.cardNumber}>**** **** **** 3814</p>
+                        <p className={style.cardNumber}>{cardData.number}</p>
                     </> : <input value={newNumberCard} type={'number'} autoFocus={true} onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput} placeholder={'**** **** **** 3814'}></input>}
                     <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>{!isEditing ? null : <PiCopyThin/>}</button>
                 </div>
@@ -90,7 +96,7 @@ function Card() {
             <footer className={style.footerCard}>
                 <div className={style.cardHolder}>
                     <SiVisa fontSize={'2.5rem'}/>
-                    <p className={style.ownerCard}>Kevin Gilbert</p>
+                    <p className={style.ownerCard}>{cardData.name}</p>
                 </div>
             </footer>
             {!isEditing ?

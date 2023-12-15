@@ -34,8 +34,14 @@ interface IWholeInfo {
         lastName: string,
         companyName: string,
     },
-    date: string,
-    isPayed: string,
+    date: string | Date,
+    isPayed: boolean,
+     cardDate: {
+        number: string
+        expiry: string
+        cvc: string
+        name: string
+    },
     orderActivity: {
         activity: string,
         date: string,
@@ -180,7 +186,11 @@ function DashBoardPage() {
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                        <Card/>
+                        { wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
+                            if (item.isPayed) {
+                                return <Card cardData={item.cardDate}/>
+                            }
+                        }) : null}
                     </div>
                 </div>
                 <div className={style.historyBlock}>
