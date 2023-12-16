@@ -18,12 +18,7 @@ export interface IWholeInfo {
     },
     date: string | Date,
     isPayed: boolean,
-    cardDate: {
-        number: string
-        expiry: string
-        cvc: string
-        name: string
-    },
+    cards: ICardWrapper[],
     orderActivity: {
         activity: string,
         date: string,
@@ -49,7 +44,8 @@ export interface ICard {
 }
 
 export interface ICardWrapper {
-    idCard: string;
+    _id? : string;
+    idCard? : string
     number: string
     expiry: string
     cvc: string

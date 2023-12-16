@@ -11,13 +11,16 @@ import {Unstable_Popup as BasePopup} from '@mui/base/Unstable_Popup';
 import {Button, PopupBody } from './Popup/popupStyles.ts';
 import {ICard} from "../dashboardTypes.ts";
 import axios from "axios";
-import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../../../redux/hooks/hooks.ts";
+import {setUser} from "../../../../redux/user/reducers/UserSlice.ts";
 
 function Card({cardData} : ICard) {
-    const {user} = useAppSelector((state) => state.user)
+    const {user} = useAppSelector((state) => state.user);
+    const dispatch = useAppDispatch();
     const [finishEditing , setFinish ] = useState<boolean>(false);
     const [isEditing , setEditing] = useState<boolean>(true);
-    const [newNumberCard , setNewNumber] = useState<string>('')
+    const [newNumberCard , setNewNumber] = useState<string>('');
+    const [newNameCard , setNewName] = useState<string>('');
     const [anchor, setAnchor] = React.useState<null | HTMLElement | boolean>(null);
     const numberToCopy = cardData.number; // Замените на ваш реальный номер
     const open = Boolean(anchor);
@@ -27,6 +30,16 @@ function Card({cardData} : ICard) {
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchor(anchor ? null : event.currentTarget);
     };
+
+    const deleteClick = () => {
+        axios.patch(`https://spacey-server.vercel.app/auth/card/delete/${user._id}` , {
+            idCard : cardData._id
+        }).then((res) => {
+            dispatch(setUser(res.data.updatedUser))
+        }).catch(() => {
+            errorToaster();
+        })
+    }
 
     useEffect(() => {
         const clipboard = new ClipboardJS(buttonRef.current!, {
@@ -48,18 +61,20 @@ function Card({cardData} : ICard) {
 
     useEffect(() => {
         if (!finishEditing) return
-        axios.patch(`https://spacey-server.vercel.app/auth/card/${user._id}` , {
-            paymentCard: {
+        axios.post(`https://spacey-server.vercel.app/auth/card/edit/${user._id}` , {
+            data : {
                 number: newNumberCard || cardData.number,
-                name: cardData.name,
+                name: newNameCard || cardData.name,
                 cvc: cardData.cvc,
                 expiry : cardData.cvc,
             },
             idCard : cardData.idCard
-        })
-        setEditing(!isEditing)
-        setAnchor(false);
-        successToaster('Card number successfully changed!');
+        }).then((res) => {
+            dispatch(setUser(res.data.updatedUser))
+            setEditing(!isEditing)
+            setAnchor(false);
+            successToaster('Card number successfully changed!');
+        }).catch(() => errorToaster())
     }, [finishEditing]);
 
     return (
@@ -79,7 +94,7 @@ function Card({cardData} : ICard) {
                             <p onClick={() => setEditing(!isEditing)} className={style.popupItem}>
                                 Edit Card
                             </p>
-                            <p className={style.popupItem}>
+                            <p onClick={() => deleteClick()} className={style.popupItem}>
                                 Delete Card
                             </p>
                         </div>
@@ -99,7 +114,7 @@ function Card({cardData} : ICard) {
                 <div className={style.cardHolder}>
                     {cardData.number.startsWith('44') ?
                     <SiVisa fontSize={'2.5rem'}/> : <SiMastercard  fontSize={'2.5rem'} />}
-                    <p className={style.ownerCard}>{cardData.name}</p>
+                    {isEditing ? <p className={style.ownerCard}>{cardData.name}</p> :  <input value={newNameCard} autoFocus={true} onChange={(e) => setNewName(e.target.value)} className={style.cardNameInput} placeholder={cardData.name}></input>}
                 </div>
             </footer>
             {!isEditing ?

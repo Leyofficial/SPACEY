@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import {ICardWrapper} from "../../../Pages/UserAccountPage/DashBoardPage/dashboardTypes.ts";
 
 export interface IUserState {
     user : {
@@ -16,7 +17,8 @@ export interface IUserState {
         randomNumberToUpdatePassword : string,
         role : string,
         picture : string
-        locale : string
+        locale : string,
+        cards : ICardWrapper[]
     }
 }
 
@@ -35,7 +37,14 @@ const initialState : IUserState = {
         randomNumberToUpdatePassword : '',
         role : '',
         picture : '',
-        locale : ''
+        locale : '',
+        cards : [{
+            name : '',
+            idCard : '',
+            number : '',
+            expiry : '',
+            cvc : '',
+        }]
     }
 } as IUserState
 
@@ -49,5 +58,5 @@ const userSlice = createSlice({
     },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser} = userSlice.actions;
 export default userSlice.reducer;

@@ -48,7 +48,6 @@ function DashBoardPage() {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
             const totalPrice = item.products.reduce((acc, product) => acc + product.price, 0);
             const totalProducts = item.products.length;
-
             return {
                 orderId: item.orderId || 'unknown',
                 status: 'In progress',
@@ -122,19 +121,19 @@ function DashBoardPage() {
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                        {/*{user ? user.cards.map((item : IWholeInfo) => {*/}
-                        {/*    const cardDate : ICardWrapper = {*/}
-                        {/*        number : item.number,*/}
-                        {/*        name : item.name,*/}
-                        {/*        cvc : item.cvc,*/}
-                        {/*        expiry: item.expiry*/  }
-                        {/*         idCard: item.idCard*/}
-                        {/*    }*/}
-                        {/*        return <Card cardData={cardDate}/>*/}
-                        {/*}) : <div className={style.emptyCards}>*/}
-                        {/*    <p className={style.noCards}>No cards :(</p>*/}
-                        {/*    <CiCreditCard1 fontSize={'2.2rem'}/>*/}
-                        {/*</div>}*/}
+                        {user ? user.cards?.map((item : ICardWrapper) => {
+                            const cardDate : ICardWrapper = {
+                                number : item.number,
+                                name : item.name,
+                                cvc : item.cvc,
+                                expiry: item.expiry,
+                                idCard: item._id
+                            }
+                                return <Card cardData={cardDate}/>
+                        }) : <div className={style.emptyCards}>
+                            <p className={style.noCards}>No cards :(</p>
+                            <CiCreditCard1 fontSize={'2.2rem'}/>
+                        </div>}
                     </div>
                 </div>
                 <div className={style.historyBlock}>

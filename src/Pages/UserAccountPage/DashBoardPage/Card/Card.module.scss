@@ -95,3 +95,15 @@
   border-radius: 0.125rem;
   border: 2px solid var(--Secondary-100, #D5EDFD);
 }
+.cardNameInput {
+  width: 5.5rem;
+    font-size: 1rem;
+    color: white;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    &::placeholder {
+      opacity: .5;
+      color: white;
+    }
+}
