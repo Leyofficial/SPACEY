@@ -10,8 +10,11 @@ import {Toaster} from "react-hot-toast";
 import {Unstable_Popup as BasePopup} from '@mui/base/Unstable_Popup';
 import {Button, PopupBody } from './Popup/popupStyles.ts';
 import {ICard} from "../dashboardTypes.ts";
+import axios from "axios";
+import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
 
 function Card({cardData} : ICard) {
+    const {user} = useAppSelector((state) => state.user)
     const [finishEditing , setFinish ] = useState<boolean>(false);
     const [isEditing , setEditing] = useState<boolean>(true);
     const [newNumberCard , setNewNumber] = useState<string>('')
@@ -45,6 +48,14 @@ function Card({cardData} : ICard) {
 
     useEffect(() => {
         if (!finishEditing) return
+        axios.patch(`https://spacey-server.vercel.app/auth/card/${user._id}` , {
+            paymentCard: {
+                number: newNumberCard || cardData.number,
+                name: cardData.name,
+                cvc: cardData.cvc,
+                expiry : cardData.cvc
+            }
+        })
         setEditing(!isEditing)
         setAnchor(false);
         successToaster('Card number successfully changed!');

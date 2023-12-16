@@ -36,14 +36,14 @@ import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAcc
 
 function App() {
     const token = localStorage.getItem('token');
-    const [getPermission , setPermissionReset] = useState(localStorage.getItem('token') || false);
-    const [permissionFromLogin , setPermissionLogin] = useState(false);
+    const [getPermission , setPermissionReset] = useState<boolean>(false);
+    const [permissionFromLogin , setPermissionLogin] = useState(token || false);
     const dispatch = useAppDispatch()
-
     useEffect(() => {
         if (!token) return
         axios.get(`https://spacey-server.vercel.app/auth/token/${token}`).then(res => {
             if (!res.data.user) return;
+            setPermissionReset(true)
             dispatch( setUser(res.data.user))
         })
     }, [token]);
@@ -54,11 +54,13 @@ function App() {
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
                     <Route path={'shop-grid'} element={<ShopGrid/>}/>
-                    <Route path={'payment-grid'} element={<PaymentPage/>}>
-                        <Route path={':idUser'} element={<Billing/>}></Route>
-                        <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
-                        <Route path={':idOrder/:idCard?/pay-card'} element={<PayCard/>}></Route>
-                        <Route path={'basket'} element={<ShoppingCart/>}></Route>
+                    <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
+                        <Route path={'payment-grid'} element={<PaymentPage/>}>
+                            <Route path={':idUser'} element={<Billing/>}></Route>
+                            <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
+                            <Route path={':idOrder/:idCard?/pay-card'} element={<PayCard/>}></Route>
+                            <Route path={'basket'} element={<ShoppingCart/>}></Route>
+                        </Route>
                     </Route>
                     <Route path={'/ComparePage'} element={<ComparePage/>}>
                         <Route index element={<Compare/>}/>
@@ -68,7 +70,7 @@ function App() {
                     <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
                     </Route>
-                    <Route element={<PrivateRoute to={'user-account/login'} isAuth={getPermission}/>}>
+                    <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
                         <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
                         </Route>
@@ -78,7 +80,7 @@ function App() {
                         <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
                             <Route path={'login/reset-password'} element={<ResetPassword callback={setPermissionReset}/>}/>
                         </Route>
-                        <Route path={'login'} element={<Login/>}/>
+                        <Route path={'login'} element={<Login callback={setPermissionLogin}/>}/>
                         <Route element={<PrivateRoute to={'login'} isAuth={permissionFromLogin}/>}>
                             {/*блок который нужно будет вводить числа с емайла */}
                         </Route>
@@ -86,8 +88,10 @@ function App() {
                         <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'help'} element={<HelpPage/>}></Route>
-                    <Route path={'/wish'} element={<WishPage/>}>
-                        <Route index  element={<Wish/>}></Route>
+                    <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
+                        <Route path={'/wish'} element={<WishPage/>}>
+                            <Route index  element={<Wish/>}></Route>
+                        </Route>
                     </Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>

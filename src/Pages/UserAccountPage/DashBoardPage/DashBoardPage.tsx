@@ -12,7 +12,7 @@ import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import Card from "./Card/Card.tsx";
 import axios from "axios";
-import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
+import {ICardWrapper, IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
 import {CiCreditCard1} from "react-icons/ci";
 import {orderInfo} from "./orderInfo.tsx";
 
@@ -122,14 +122,18 @@ function DashBoardPage() {
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                        {wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
-                            if (item.isPayed) {
-                                return <Card cardData={item.cardDate}/>
-                            }
-                        }) : <div className={style.emptyCards}>
-                            <p className={style.noCards}>No cards :(</p>
-                            <CiCreditCard1 fontSize={'2.2rem'}/>
-                        </div>}
+                        {/*{user ? user.cards.map((item : IWholeInfo) => {*/}
+                        {/*    const cardDate : ICardWrapper = {*/}
+                        {/*        number : item.number,*/}
+                        {/*        name : item.name,*/}
+                        {/*        cvc : item.cvc,*/}
+                        {/*        expiry: item.expiry*/}
+                        {/*    }*/}
+                        {/*        return <Card cardData={cardDate}/>*/}
+                        {/*}) : <div className={style.emptyCards}>*/}
+                        {/*    <p className={style.noCards}>No cards :(</p>*/}
+                        {/*    <CiCreditCard1 fontSize={'2.2rem'}/>*/}
+                        {/*</div>}*/}
                     </div>
                 </div>
                 <div className={style.historyBlock}>

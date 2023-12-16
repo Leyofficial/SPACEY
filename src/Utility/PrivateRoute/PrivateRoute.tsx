@@ -1,7 +1,7 @@
 import {Navigate, Outlet} from "react-router-dom";
 
 interface IPrivateRoute {
-    isAuth : boolean | null | string,
+    isAuth : boolean | string,
     to : string
 }
 function PrivateRoute({isAuth , to} : IPrivateRoute) {

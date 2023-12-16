@@ -22,8 +22,11 @@ interface MyForm {
     email: string,
     password: string
 }
+interface ILogin {
+    callback : (a : boolean) => void
+}
 
-function Login() {
+function Login({callback} : ILogin) {
     const dispatch = useAppDispatch()
     const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues = ['email', 'password'];
@@ -46,10 +49,10 @@ function Login() {
         const {sub , email } = userInfoGoogle;
         axios.get(`https://spacey-server.vercel.app/auth/google?email=${email}&googleToken=${sub}`).then((res) => {
             if (!res.data.foundUser) {
-
                 errorToaster('User not found')
                 return
             }
+            callback(true)
             successAction(res.data.foundUser.googleToken, navigate)
         }).catch((err) => {
             errorToaster(err || 'Something went wrong!');
@@ -64,6 +67,7 @@ function Login() {
                 dispatch(setUser(response.data.user))
                 reset();
                 successAction(response.data.user.userToken , navigate)
+                callback(true)
             })
             .catch((error) => {
                 failureAction(error , reset)

@@ -45,13 +45,16 @@ export interface IProducts {
     _id: string
 }
 export interface ICard {
-    cardData: {
-        number: string
-        expiry: string
-        cvc: string
-        name: string
-    }
+    cardData: ICardWrapper
 }
+
+export interface ICardWrapper {
+    number: string
+    expiry: string
+    cvc: string
+    name: string
+}
+
 export interface IOrderInfo {
     background : string,
     numberOfOrders : string | number,
