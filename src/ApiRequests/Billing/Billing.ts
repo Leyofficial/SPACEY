@@ -40,5 +40,5 @@ export const saveCard = async (idUser: string, paymentCard: ICardDate) => {
         cvc: paymentCard.cvc,
         expiry: paymentCard.expiry
     }
-    return await axios.patch(`https://spacey-server.vercel.app/auth/card/${idUser}`, data)
+    return await axios.patch(`https://spacey-server.vercel.app/auth/card/add/${idUser}`, data)
 }
