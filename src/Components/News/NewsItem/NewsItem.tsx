@@ -5,7 +5,7 @@ import {BsFillCalendarDateFill} from "react-icons/bs";
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
 import {INews} from "../newsTypes.ts";
 import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
-import {Skeleton} from "@mui/material";
+import CustomSkeleton from "../../../Utility/CustomSkeleton/CustomSkeleton.tsx";
 
 interface INewsItemProps {
     item: INews
@@ -21,7 +21,7 @@ const NewsItem = ({item}: INewsItemProps) => {
 
     return (
         <div className={style.item}>
-            {!image ? <Skeleton width={'100%'} height={'14rem'}/> : <img src={image ? image : ""} className={style.img} alt={'news'}/>}
+            <CustomSkeleton image={image} width={"100%"} height={"14rem"}> <img src={image ? image : ""} className={style.img} alt={'news'}/></CustomSkeleton>
             <div className={style.aboutNews}>
                 <p className={style.author}><FaUserTie color={'orange'}></FaUserTie>{item.author}</p>
                 <p className={style.date}><BsFillCalendarDateFill color={'orange'}/>{formattedDate}</p>

@@ -2,66 +2,16 @@ import style from './AboutUs.module.scss';
 import {IoCheckmarkDone} from "react-icons/io5";
 import imageAbout from '../../assets/background/aboutImage.png'
 import {Avatar} from "@mui/material";
-import member1 from '../../assets/img/team/member1.png'
-import member2 from '../../assets/img/team/image 324 (1).png'
-import member3 from '../../assets/img/team/image 324.png'
-import member4 from '../../assets/img/team/image 324 (2).png'
-import member5 from '../../assets/img/team/image 324 (3).png'
-import member6 from '../../assets/img/team/image 325 (1).png'
-import member7 from '../../assets/img/team/image 325 (2).png'
-import member8 from '../../assets/img/team/image 325.png'
 import bgMovie from '../../assets/background/bgMovie.jpg'
 import {FaPlay} from "react-icons/fa";
 import Subscribe from "../../Components/Footer/Subscribe/Subscribe.tsx";
 import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
-
 import {UseCustomQuery} from "../../ApiRequests/customQuery/customQuery.ts";
 import Footer from "../../Components/Footer/Footer.tsx";
+import {members} from "./aboutUs.ts";
 
 const AboutUs = () => {
     const {data} = UseCustomQuery("https://spacey-server.vercel.app/api");
-
-
-    const members = [{
-        avatar: member1,
-        title: "Kevin Gilbert",
-        post: "Chief Executive Officer"
-    }, {
-        avatar: member2,
-        title: "Ginny D. Ortiz",
-        post: "Head of Designer"
-    },
-        {
-            avatar: member3,
-            title: "Heather R. France",
-            post: "Assistant of CEO"
-        },
-        {
-            avatar: member4,
-            title: "Bonnie W. Epps",
-            post: "UX Designer"
-        },
-        {
-            avatar: member5,
-            title: "Sam S. Reece",
-            post: "Product Designer"
-        },
-        {
-            avatar: member6,
-            title: "Lowell P. Naccarato",
-            post: "Head of Development"
-        },
-        {
-            avatar: member7,
-            title: "Samuel K. Cummings",
-            post: "Design Engineer"
-        },
-        {
-            avatar: member8,
-            title: "Barbara P. Letson",
-            post: "UI Designer"
-        }
-    ]
 
     return (
         <article className={style.container}>
@@ -92,8 +42,6 @@ const AboutUs = () => {
                 <section className={style.team}>
                     <h1>Our core team member</h1>
                     <div className={style.wrapperMembers}>
-
-
                         {members.map((member: { avatar: string, title: string, post: string }, index: number) => <div
                             key={index} className={style.wrapperMember}>
                             <Avatar alt="Remy Sharp" src={member.avatar}/>

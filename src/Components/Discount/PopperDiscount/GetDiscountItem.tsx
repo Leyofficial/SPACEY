@@ -1,18 +1,20 @@
 import {UseCustomQuery} from "../../../ApiRequests/customQuery/customQuery.ts";
 import style from './GetDiscount.module.scss'
 import CustomBtn from "../../../Utility/CustomBtn/CustomBtn.tsx";
-import {Skeleton} from "@mui/material";
 import {IGetDiscountItemProps} from "../type.ts";
 import {useGetImage} from "../../../hooks/getImage/useGetImage.ts";
+import CustomSkeleton from "../../../Utility/CustomSkeleton/CustomSkeleton.tsx";
 
 const GetDiscountItem = ({idItem}: IGetDiscountItemProps) => {
 
     const {data} = UseCustomQuery(`https://spacey-server.vercel.app/api/${idItem}`)
-    const {image,isLoading} = useGetImage(data?.found?.product.images.mainImage)
+    const {image} = useGetImage(data?.found?.product.images.mainImage)
 
     return (
         <section className={style.container}>
-            {isLoading ? <Skeleton  variant="text" width={'100%'} height={161}></Skeleton> : <img src={image ? image : ""} alt={'photo'}/>}
+            <div className={style.imageItem}>
+                <CustomSkeleton image={image} width={200} height={161}><img src={image ? image : ""} alt={'photo'}/></CustomSkeleton>
+            </div>
             <p className={style.discount}>{data?.found?.product.percentageOfSale}% Discount</p>
 
             <div className={style.info}>Escape the noise,It`s time to hear the magic

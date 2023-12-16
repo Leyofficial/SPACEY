@@ -17,6 +17,9 @@ const Description = ({data}: IDescriptionProps) => {
                 <h3>Description</h3>
                 <p>{data?.product?.description}</p>
             </div>
+            <div>
+                <p className={style.lineBlock}></p>
+            </div>
             <div className={style.feature}>
                 <h3>Feature</h3>
                 <ul>

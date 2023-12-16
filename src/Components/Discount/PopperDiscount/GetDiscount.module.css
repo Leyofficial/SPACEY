@@ -2,6 +2,11 @@
   background: #F7E99E;
   width: 250px;
 }
+.container .imageItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .container img {
   width: 100%;
 }

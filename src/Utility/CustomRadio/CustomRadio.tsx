@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FormControlLabel, Radio } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
-import {useLocationCategory} from "../../hooks/category/useLocationCategory.ts";
+import {CustomLocationCategory} from "../../hooks/category/customLocationCategory.ts";
 import {useGetParams} from "../../hooks/params/getAllParams.ts";
 
 export interface ICustomRadio {
@@ -17,10 +17,10 @@ export function CustomRadio({ text, typeNavigate , price = [0 , 10000]}: ICustom
 
     const changeRadioHandler = () => {
         if (typeNavigate === "category") {
-            useLocationCategory("category" , text , navigate);
+            CustomLocationCategory("category" , text , navigate);
         } else if (typeNavigate === 'price') {
-            useLocationCategory("minPrice" , price[0] , navigate)
-            useLocationCategory("maxPrice" , price[1] , navigate)
+            CustomLocationCategory("minPrice" , price[0] , navigate)
+            CustomLocationCategory("maxPrice" , price[1] , navigate)
         }
     };
 

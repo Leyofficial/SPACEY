@@ -1,4 +1,3 @@
-
 import SingleTableProduct from "./SingleTableProduct/SingleTableProduct.tsx";
 import {IShoppingItems} from "../shoppingCartTypes.ts";
 import style from './TableProducts.module.scss'
@@ -26,9 +25,6 @@ export default function TableProducts({products,updateCart,isLoading}: ITablePro
                 {isLoading ? <MiniLoader></MiniLoader> : (products && products?.length > 0 ? products?.map((product:IShoppingItems, index:number) => (
                     <SingleTableProduct key={index} product={product} index={index} updateCart={updateCart}></SingleTableProduct>
                 )) : <Smile></Smile>)}
-                {/*{products && products?.length > 0 ? products?.map((product:IShoppingItems, index:number) => (*/}
-                {/*              <SingleTableProduct key={index} product={product} index={index} updateCart={updateCart}></SingleTableProduct>*/}
-                {/*           )) : <Smile></Smile>}*/}
             </div>
         </div>
         </>

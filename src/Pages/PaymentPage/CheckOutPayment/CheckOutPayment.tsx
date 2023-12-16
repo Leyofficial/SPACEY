@@ -6,12 +6,12 @@ import wrongImage from '../../../assets/img/dis.png'
 import {deleteOrder} from "../../../ApiRequests/Billing/Billing.ts";
 
 const CheckOutPayment = () => {
-    const {idOrder} = useParams()
-    const [isSucceedStatus] = useState(true)
+    const {idOrder} = useParams<string>()
+    const [isSucceedStatus] = useState<boolean>(true)
 
     useEffect(() => {
         if (isSucceedStatus) {
-            deleteOrder(idOrder).then(res => console.log(res)).catch(err => console.log(err))
+            deleteOrder(idOrder).catch(err => console.log(err))
         }
 
     }, [idOrder, isSucceedStatus])
