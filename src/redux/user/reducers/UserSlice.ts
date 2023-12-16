@@ -14,11 +14,13 @@ export interface IUserState {
         passwordResetExpires : string
         passwordResetToken : string,
         randomNumberToUpdatePassword : string,
-        role : string
+        role : string,
+        picture : string
+        locale : string
     }
 }
 
-const initialState = {
+const initialState : IUserState = {
     user : {
         email : '' ,
         familyName : '',
@@ -31,7 +33,9 @@ const initialState = {
         passwordResetExpires : '',
         passwordResetToken : '',
         randomNumberToUpdatePassword : '',
-        role : ''
+        role : '',
+        picture : '',
+        locale : ''
     }
 } as IUserState
 
@@ -41,7 +45,6 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state , action) => {
             state.user = action.payload;
-            console.log(state.user)
         },
     },
 });

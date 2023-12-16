@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { watch } from 'fs'
-// https://vitejs.dev/config/
+import {defineConfig} from "vite";
+import react from "@vitejs/plugin-react";
+import {watch} from "fs";
+
 export default defineConfig({
   plugins: [react(),
     {name:'watch-external',
-    configureServer(server){
-      const filesToWatch = []
+      configureServer(server){
+        const filesToWatch = []
 
-      const handleChange = () => server.ws.send({type:'full-reload'})
+        const handleChange = () => server.ws.send({type:'full-reload'})
 
-      for(const file of filesToWatch){
-        watch(file,handleChange)
-      }
-    }}
+        for(const file of filesToWatch){
+          watch(file,handleChange)
+        }
+      }}
   ],
-})
+});

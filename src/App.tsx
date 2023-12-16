@@ -15,13 +15,11 @@ import ForgetPassword from "./Pages/UserAccountPage/ForgetPasswordPage/ForgetPas
 import PrivateRoute from "./Utility/PrivateRoute/PrivateRoute.tsx";
 import ResetPassword from "./Pages/UserAccountPage/ResetPasswordPage/ResetPassword.tsx";
 import {useEffect, useState} from "react";
-// useEffect
 import ActiveTokenReset from "./Pages/UserAccountPage/ActiveToken/ActiveTokenReset.tsx";
 import FaqPage from "./Pages/FAQ-Page/FaqPage.tsx";
 import TrackOrder from "./Pages/TrackOrderPage/TrackOrder.tsx";
 import TrackOrderStatus from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrderStatus.tsx";
 import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrderWrapper/TrackOrderWrapper.tsx";
-
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
 import {useAppDispatch} from "./redux/hooks/hooks.ts";
@@ -32,8 +30,9 @@ import Compare from "./Pages/ComparePage/Compare.tsx";
 import  {setUser} from "./redux/user/reducers/UserSlice.ts";
 import WishPage from "./Routers/Wish/WishPage.tsx";
 import Wish from "./Pages/WishPage/Wish.tsx";
-// import ComparePage from "./Routers/ComparePage/ComparePage.tsx";
 import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
+import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.tsx";
+import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";
 
 function App() {
     const token = localStorage.getItem('token');
@@ -48,7 +47,6 @@ function App() {
             dispatch( setUser(res.data.user))
         })
     }, [token]);
-
 
     return (
         <>
@@ -69,6 +67,11 @@ function App() {
                     <Route path={'track-order'} element={<TrackOrder/>}/>
                     <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
+                    </Route>
+                    <Route element={<PrivateRoute to={'user-account/login'} isAuth={true}/>}>
+                        <Route path={'user-account'} element={<UserAccountProfile/>}>
+                        <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
+                        </Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>

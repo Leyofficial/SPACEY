@@ -4,11 +4,14 @@ import style from './PayCard.module.scss'
 import Card from "react-credit-cards";
 import '../card.scss'
 import {useNavigate, useParams} from "react-router-dom";
-import {Focused, payOrderHandler} from "./PayCardAssists.ts";
+import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import InputCard from "./InputCard/InputCard.tsx";
-
+import {payOrderHandler} from "./PayCardAssists.ts";
+import {saveCard} from "../../../ApiRequests/Billing/Billing.ts";
 
 const PayCard = () => {
+    type Focused = "name" | "number" | "expiry" | "cvc";
+    const {user} = useAppSelector(state => state.user)
     const navigate = useNavigate()
     const {idOrder,idCard} = useParams<string>()
     const [state, setState] = useState({
@@ -19,7 +22,9 @@ const PayCard = () => {
         focus: '' as Focused ,
     });
 
+
     const submitForm = (e:FormEvent<HTMLFormElement>) => {
+        saveCard(user?._id,state).catch(err => console.log(err))
         payOrderHandler({e,state,idCard,idOrder,navigate})
     }
     const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {

@@ -10,7 +10,6 @@ const clientId = '982859489612-1o67pno0bhgh0dtvblloucbqbpjptlf5.apps.googleuserc
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-
         <BrowserRouter>
             <Provider store={store}>
             <QueryClientProvider client={queryClient}>
