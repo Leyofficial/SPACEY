@@ -22,7 +22,7 @@ import TrackOrderStatus from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrder
 import TrackOrderWrapper from "./Pages/TrackOrderPage/TrackOrderStatus/TrackOrderWrapper/TrackOrderWrapper.tsx";
 import AboutUs from "./Pages/AboutUsPage/AboutUs.tsx";
 import HelpPage from "./Pages/HelpPage/HelpPage.tsx";
-import {useAppDispatch} from "./redux/hooks/hooks.ts";
+import {useAppDispatch, useAppSelector} from "./redux/hooks/hooks.ts";
 import axios from "axios";
 import PayCard from "./Pages/PaymentPage/PayCard/PayCard.tsx";
 import ComparePage from "./Routers/Compare/ComparePage.tsx";
@@ -35,6 +35,7 @@ import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.t
 import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";
 
 function App() {
+    const {user} = useAppSelector((state) => state.user)
     const token = localStorage.getItem('token');
     const [getPermission , setPermissionReset] = useState<boolean>(false);
     const [permissionFromLogin , setPermissionLogin] = useState(token || false);
@@ -46,7 +47,7 @@ function App() {
             setPermissionReset(true)
             dispatch( setUser(res.data.user))
         })
-    }, [token]);
+    }, [token || user]);
 
     return (
         <>
