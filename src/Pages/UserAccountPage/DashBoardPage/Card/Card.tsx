@@ -33,8 +33,9 @@ function Card({cardData} : ICard) {
 
     const deleteClick = () => {
         axios.patch(`https://spacey-server.vercel.app/auth/card/delete/${user._id}` , {
-            idCard : cardData._id
+            idCard : cardData.idCard
         }).then((res) => {
+            successToaster('Card deleted !')
             dispatch(setUser(res.data.updatedUser))
         }).catch(() => {
             errorToaster();
@@ -78,7 +79,7 @@ function Card({cardData} : ICard) {
     }, [finishEditing]);
 
     return (
-        <div className={style.block} style={cardData.number.startsWith('44') ? {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #1B6392 0%, #124261 100%)'} : {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #248E1D 0%, #2DB224 100%)'}}>
+        <div className={style.block} style={cardData.number.startsWith('4') ? {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #1B6392 0%, #124261 100%)'} : {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #248E1D 0%, #2DB224 100%)'}}>
             <Toaster
                 position="top-right"
                 reverseOrder={false}
@@ -118,7 +119,7 @@ function Card({cardData} : ICard) {
                 </div>
             </footer>
             {!isEditing ?
-                <div onClick={() => setFinish(!finishEditing)} className={style.saveBtn}>Save</div> : null}
+                <div onClick={() => setFinish(!finishEditing)} className={style.saveBtn}><p>Save</p></div> : null}
         </div>
     )
 }
