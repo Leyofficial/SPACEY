@@ -1,6 +1,6 @@
 import axios from "axios";
 import {IBillingFormValues, IProducts} from "../../Pages/PaymentPage/payment.types.ts";
-import {azAZ} from "@mui/material/locale";
+
 
 interface INewOrderData {
     paymentType: string | null,
