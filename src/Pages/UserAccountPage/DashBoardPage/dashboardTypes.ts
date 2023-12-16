@@ -49,6 +49,7 @@ export interface ICard {
 }
 
 export interface ICardWrapper {
+    idCard: string;
     number: string
     expiry: string
     cvc: string

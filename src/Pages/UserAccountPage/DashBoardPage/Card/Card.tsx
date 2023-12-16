@@ -53,8 +53,9 @@ function Card({cardData} : ICard) {
                 number: newNumberCard || cardData.number,
                 name: cardData.name,
                 cvc: cardData.cvc,
-                expiry : cardData.cvc
-            }
+                expiry : cardData.cvc,
+            },
+            idCard : cardData.idCard
         })
         setEditing(!isEditing)
         setAnchor(false);

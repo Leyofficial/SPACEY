@@ -127,7 +127,8 @@ function DashBoardPage() {
                         {/*        number : item.number,*/}
                         {/*        name : item.name,*/}
                         {/*        cvc : item.cvc,*/}
-                        {/*        expiry: item.expiry*/}
+                        {/*        expiry: item.expiry*/  }
+                        {/*         idCard: item.idCard*/}
                         {/*    }*/}
                         {/*        return <Card cardData={cardDate}/>*/}
                         {/*}) : <div className={style.emptyCards}>*/}
