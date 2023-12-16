@@ -1,6 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 html {
   box-sizing: border-box;
   font-size: 16px;
@@ -32,6 +29,11 @@ img {
   color: black !important;
   background: var(--gray-00, #FFF);
   border-bottom: 2px solid #FA8232;
+}
+
+.activeLinkSidebar {
+  color: white !important;
+  background-color: #FA8232;
 }
 
 .button {

@@ -4,11 +4,13 @@ import style from './PayCard.module.scss'
 import Card from "react-credit-cards";
 import '../card.scss'
 import {useNavigate, useParams} from "react-router-dom";
-import {updatePaymentStatus} from "../../../ApiRequests/Billing/Billing.ts";
+import {saveCard, updatePaymentStatus} from "../../../ApiRequests/Billing/Billing.ts";
+import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 
 
 const PayCard = () => {
     type Focused = "name" | "number" | "expiry" | "cvc";
+    const {user} = useAppSelector(state => state.user)
     const {idOrder,idCard} = useParams<string>()
     const [state, setState] = useState({
         number: '',
@@ -29,6 +31,7 @@ const PayCard = () => {
      }
      updatePaymentStatus(idCard,cardDate).then(res => {
          if(res.status === 200){
+             saveCard(user?._id,cardDate).catch(err => console.log(err))
              setTimeout(() => {
                  if(idCard){
                      navigate(`/payment-grid/check/${idOrder}`)

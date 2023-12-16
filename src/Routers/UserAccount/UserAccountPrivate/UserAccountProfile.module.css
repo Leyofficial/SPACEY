@@ -1,3 +1,12 @@
+.container {
+  width: 80%;
+  margin: 2.5rem auto 4.5rem;
+}
 
+.main {
+  align-items: flex-start;
+  display: flex;
+  gap: 2.5rem;
+}
 
 /*# sourceMappingURL=UserAccountProfile.module.css.map */
