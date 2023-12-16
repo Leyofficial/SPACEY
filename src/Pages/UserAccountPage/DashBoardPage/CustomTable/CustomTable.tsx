@@ -11,15 +11,16 @@ import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
 import {useEffect, useState} from "react";
 import {CheckStatus} from "../CheckStatus/CheckStatus.tsx";
+import {formatOrderDate} from "../../../../Utility/Date/formatOrderDate.ts";
 
 interface IOutsideTable {
-    array : ICustomTable[]
+    array : ICustomTable[] | null
 }
 export interface ICustomTable {
     action?: string;
     orderId: string,
     status : string,
-    date: string,
+    date: Date,
     total : number | string,
     pathForLink : string,
 }
@@ -46,22 +47,23 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 function createData(
     orderId: string,
-    status : string,
-    date: string,
-    total : number | string,
-    action : string,
+    status: string,
+    date: Date,
+    total: number | string,
+    action: string,
+    pathForLink : string
 ) {
-    return { orderId, status , date , total , action};
+    return { orderId, status , date , total , pathForLink , action};
 }
 
 export default function CustomizedTables({array} : IOutsideTable) {
-    const [link , setLink ] = useState('');
     const [rows , setRows] = useState<ICustomTable[] | null>([]);
     useEffect(() => {
+        if (!array) return
         const rowsData = [
             array.map((item : ICustomTable) => {
-                setLink(item.pathForLink)
-               return  createData(item.orderId , item.status.toUpperCase() ,item.date , item.total , 'View Details' );
+                const date = new Date(item.date);
+               return  createData(item.orderId , item.status.toUpperCase() , date , item.total, 'View Details' , item.pathForLink,);
             })
         ];
         // @ts-ignore
@@ -86,9 +88,9 @@ export default function CustomizedTables({array} : IOutsideTable) {
                                 {row.orderId}
                             </StyledTableCell>
                             <StyledTableCell align="center">{CheckStatus(row.status)}</StyledTableCell>
-                            <StyledTableCell align="center">{row.date}</StyledTableCell>
+                            <StyledTableCell align="center">{formatOrderDate(row.date)}</StyledTableCell>
                             <StyledTableCell align="center">{row.total}</StyledTableCell>
-                            <StyledTableCell align="center"><NavLink className={style.link} to={link}>
+                            <StyledTableCell align="center"><NavLink className={style.link} to={row.pathForLink}>
                                 <div className={style.linkBlock}>
                                     {row.action}
                                     <FaArrowRightLong color={'#2DA5F3'} />

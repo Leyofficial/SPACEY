@@ -183,3 +183,21 @@
   border: 1px solid #E4E7E9;
   padding: 0.925rem 1.5rem;
 }
+
+.noCards {
+  color: var(--gray-900, #191C1F);
+
+  /* Body/XL/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.emptyCards {
+  margin: 1rem 0;
+  display: flex;
+  gap: 10px;
+  text-align: center;
+  align-items: center;
+}

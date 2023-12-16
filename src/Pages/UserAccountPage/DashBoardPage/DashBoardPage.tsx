@@ -2,10 +2,7 @@ import style from './DashBoardPage.module.scss'
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import FormInfo from "./FormInfo/FormInfo.tsx";
 import {Avatar, Skeleton} from "@mui/material";
-import {IOrderInfo, OrderInfo} from "./OrderInfo/OrderInfo.tsx";
-import {MdOutlineRocket} from "react-icons/md";
-import {PiReceiptDuotone} from "react-icons/pi";
-import {BiPackage} from "react-icons/bi";
+import {OrderInfo} from "./OrderInfo/OrderInfo.tsx";
 import CustomizedTables, {ICustomTable} from "./CustomTable/CustomTable.tsx";
 import {ICategory} from "../../../types.ts";
 import SmallDealItem from "../../MainPage/Deals/SmallDeal/SmallDealItem.tsx";
@@ -14,61 +11,59 @@ import {getAllItems} from "../../../ApiRequests/Items/Items.ts";
 import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx";
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import Card from "./Card/Card.tsx";
+import axios from "axios";
+import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
+import {CiCreditCard1} from "react-icons/ci";
+import {orderInfo} from "./orderInfo.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
 function DashBoardPage() {
-
-    const [items , setItems] = useState([]);
-
+    const {user} = useAppSelector((state) => state.user);
+    const [wholeInfo, setWhole] = useState<IWholeInfo | null | any>(null)
+    const [items, setItems] = useState([]);
     const [page, setPage] = useState<number>(1);
-    const [ currentProducts ,  setCurrentProducts] = useState([]);
+    const [tableInfo, setTableInfo] = useState<ICustomTable[] | null>(null)
+    const [currentProducts, setCurrentProducts] = useState([]);
+
     const indexOfLastCourse = page * ITEMS_ON_SCREEN;
     const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
-    const {user} = useAppSelector((state) => state.user);
+
     const handleChange = (_event: React.ChangeEvent<unknown>, value: number) => {
         setPage(value);
     };
-    const orderInfo: IOrderInfo[] = [
-        {
-            text: 'Total Orders',
-            background: '#EAF6FE',
-            icon: <MdOutlineRocket size={'2rem'} color={'#2DA5F3'}/>,
-            numberOfOrders: 154
-        },
-        {
-            text: 'Pending Orders',
-            background: '#FFF3EB',
-            icon: <PiReceiptDuotone size={'2rem'} color={'#FA8232'}/>,
-            numberOfOrders: 5
-        },
-        {
-            text: 'Completed Orders',
-            background: '#EAF7E9',
-            icon: <BiPackage size={'2rem'} color={'#2DB324'}/>,
-            numberOfOrders: 51
-        }
-    ]
-    const tableInfo: ICustomTable[] = [
-        {
-            orderId: '#96459765',
-            status: 'In progress',
-            date: 'Dec 30, 2019 05:18',
-            total: '$1,500 (10 Products)',
-            pathForLink: '/'
-        }
-    ]
 
     useEffect(() => {
+        if (!user._id) return
+        axios.get(`https://spacey-server.vercel.app/processOrder/user/${user._id}`).then((res) => {
+            setWhole(res.data.foundOrders);
+        })
         getAllItems().then((res) => {
             setItems(res.data.categories);
         })
-    },[])
+    }, [user])
 
     useEffect(() => {
-        const currentProducts  = items.slice(indexOfFirstCourse, indexOfLastCourse);
+        const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
+            const totalPrice = item.products.reduce((acc, product) => acc + product.price, 0);
+            const totalProducts = item.products.length;
+
+            return {
+                orderId: item.orderId || 'unknown',
+                status: 'In progress',
+                date: item.date || 'unknown',
+                total: `$${totalPrice} (${totalProducts} Product/s)`,
+                pathForLink: `/track-order/${item.orderId}`
+            };
+        });
+        setTableInfo(tableInfo);
+    }, [wholeInfo]);
+
+
+    useEffect(() => {
+        const currentProducts = items.slice(indexOfFirstCourse, indexOfLastCourse);
         setCurrentProducts(currentProducts);
-    }, [items , page]);
+    }, [items, page]);
 
     return (
         user ?
@@ -119,13 +114,21 @@ function DashBoardPage() {
                 <div className={style.tableBlock}>
                     <h2 className={style.tableTitle}>Recent Order</h2>
                     <div className={style.table}>
-                        <CustomizedTables array={tableInfo}/>
+                        {tableInfo ?
+                            < CustomizedTables array={tableInfo}/> : null}
                     </div>
                 </div>
                 <div className={style.cardBlock}>
                     <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
                     <div className={style.card}>
-                    <Card/>
+                        {wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
+                            if (item.isPayed) {
+                                return <Card cardData={item.cardDate}/>
+                            }
+                        }) : <div className={style.emptyCards}>
+                            <p className={style.noCards}>No cards :(</p>
+                            <CiCreditCard1 fontSize={'2.2rem'}/>
+                        </div>}
                     </div>
                 </div>
                 <div className={style.historyBlock}>
@@ -135,26 +138,24 @@ function DashBoardPage() {
                     <div className={style.historyItems}>
                         {
                             currentProducts.length > 0 ?
-                            currentProducts.map((item: ICategory, index: number) => (
-                                <SmallDealItem
-                                    key={index}
-                                    item={item}
-                                ></SmallDealItem>
-                            )) :   <div className={style.skeletonBlock}>
+                                currentProducts.map((item: ICategory, index: number) => (
+                                    <SmallDealItem
+                                        key={index}
+                                        item={item}
+                                    ></SmallDealItem>
+                                )) : <div className={style.skeletonBlock}>
                                     {SkeletonSmallCall(ITEMS_ON_SCREEN)}
                                 </div>
                         }
                     </div>
                     <section className={style.pagination}>
-                    <CustomPagination
-                        callback={handleChange}
-                        page={page}
-                        count={Math.round((items.length + 1) / ITEMS_ON_SCREEN)}
-                    />
-                </section>
-
+                        <CustomPagination
+                            callback={handleChange}
+                            page={page}
+                            count={Math.round((items.length + 1) / ITEMS_ON_SCREEN)}
+                        />
+                    </section>
                 </div>
-
             </div> : null
     )
 }

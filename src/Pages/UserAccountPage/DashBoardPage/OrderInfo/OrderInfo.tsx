@@ -1,11 +1,6 @@
 import style from './OrderInfo.module.scss'
-import React from "react";
-export interface IOrderInfo {
-    background : string,
-    numberOfOrders : string | number,
-    icon : React.ReactNode,
-    text : string
-}
+import {IOrderInfo} from "../dashboardTypes.ts";
+
 
 export function OrderInfo({background , numberOfOrders , icon , text} : IOrderInfo) {
     return (
