@@ -34,11 +34,11 @@ export const deleteOrder = async (idOrder: string | undefined) => {
 }
 
 export const saveCard = async (idUser: string, paymentCard: ICardDate) => {
-    const data = {
+
+    return await axios.patch(`https://spacey-server.vercel.app/auth/card/add/${idUser}`, {
         number: paymentCard.number,
         name: paymentCard.name,
         cvc: paymentCard.cvc,
         expiry: paymentCard.expiry
-    }
-    return await axios.patch(`https://spacey-server.vercel.app/auth/card/add/${idUser}`, data)
+    })
 }
