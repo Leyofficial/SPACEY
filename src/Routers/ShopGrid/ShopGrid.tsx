@@ -2,6 +2,7 @@ import style from './ShopGrid.module.scss'
 import BreadCrumb from "../../Components/BreadCrumb/BreadCrumb.tsx";
 import Filter from "../../Pages/ShopGridPage/Filter/Filter.tsx";
 import Grid from "../../Pages/ShopGridPage/Grid/Grid.tsx";
+import Footer from "../../Components/Footer/Footer.tsx";
 
 function ShopGrid() {
     return (
@@ -18,8 +19,10 @@ function ShopGrid() {
                         <Grid/>
                     </section>
                 </div>
-
             </div>
+            <footer>
+                <Footer/>
+            </footer>
         </>
     )
 }

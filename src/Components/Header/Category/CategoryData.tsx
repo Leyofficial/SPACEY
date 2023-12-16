@@ -1,7 +1,8 @@
 import {CiLocationOn} from "react-icons/ci";
-import {PiArrowsCounterClockwiseFill, PiHeadphonesLight} from "react-icons/pi";
+import { PiHeadphonesLight} from "react-icons/pi";
 import {AiOutlineInfoCircle} from "react-icons/ai";
 import React from "react";
+import {LuLayoutDashboard} from "react-icons/lu";
 
 interface ICategory {
     path: string,
@@ -16,9 +17,9 @@ export const CategoryData: ICategory[] = [
         title: 'Track Order'
     },
     {
-        path: 'compare',
-        icon: <PiArrowsCounterClockwiseFill color={'#5F6C72'}/>,
-        title: 'Compare'
+        path: '/user-account/dashboard',
+        icon: <LuLayoutDashboard  color={'#5F6C72'}/>,
+        title: 'Dashboard'
     },
     {
         path: 'support',

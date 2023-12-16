@@ -63,12 +63,21 @@
 }
 
 .wrapperButton {
+  border-radius: 2px;
+  transition: .4s ease;
   background-color: #EBC80C;
   display: inline-flex;
   padding: 0 1.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+}
+.link {
+  color: black;
+}
+.wrapperButton:hover {
+  border-radius: 12px;
+  gap: 1rem;
 }
 .shopNow {
   color: var(--Gray-900, #191C1F);
