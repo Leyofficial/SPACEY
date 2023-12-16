@@ -35,6 +35,7 @@ function DashBoardPage() {
 
     useEffect(() => {
         if (!user._id) return
+        console.log(user)
         axios.get(`https://spacey-server.vercel.app/processOrder/user/${user._id}`).then((res) => {
             setWhole(res.data.foundOrders);
         })

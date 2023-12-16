@@ -36,7 +36,7 @@ import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAcc
 
 function App() {
     const token = localStorage.getItem('token');
-    const [getPermission , setPermissionReset] = useState(false);
+    const [getPermission , setPermissionReset] = useState(localStorage.getItem('token') || false);
     const [permissionFromLogin , setPermissionLogin] = useState(false);
     const dispatch = useAppDispatch()
 
@@ -68,7 +68,7 @@ function App() {
                     <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
                     </Route>
-                    <Route element={<PrivateRoute to={'user-account/login'} isAuth={true}/>}>
+                    <Route element={<PrivateRoute to={'user-account/login'} isAuth={getPermission}/>}>
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
                         <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
                         </Route>
