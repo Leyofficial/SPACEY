@@ -58,8 +58,9 @@ function App() {
                 <Route path={'/'} element={<Layout/>}>
                     <Route index element={<HomePage/>}/>
                     <Route path={'shop-grid'} element={<ShopGrid/>}/>
+                    {/*Private route allowed form*/}
                     <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
-                        <Route path={'verify/:id'} element={<VerifyEmailPage/>}>
+                        <Route path={'/verify/:id'} element={<VerifyEmailPage/>}>
                             <Route index element={<VerifyEmail/>}/>
                         </Route>
                         <Route path={'payment-grid'} element={<PaymentPage/>}>
@@ -67,6 +68,13 @@ function App() {
                             <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>
                             <Route path={':idOrder/:idCard?/pay-card'} element={<PayCard/>}></Route>
                             <Route path={'basket'} element={<ShoppingCart/>}></Route>
+                        </Route>
+                        <Route path={'user-account'} element={<UserAccountProfile/>}>
+                            <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
+                            <Route path={'/user-account/dashboard/addCard'} element={<AddCard/>}/>
+                        </Route>
+                        <Route path={'/wish'} element={<WishPage/>}>
+                            <Route index  element={<Wish/>}></Route>
                         </Route>
                     </Route>
                     <Route path={'/ComparePage'} element={<ComparePage/>}>
@@ -77,30 +85,16 @@ function App() {
                     <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
                     </Route>
-                    <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
-                        <Route path={'user-account'} element={<UserAccountProfile/>}>
-                        <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
-                            <Route path={'/user-account/dashboard/addCard'} element={<AddCard/>}/>
-                        </Route>
-                    </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>
                         <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
-                        <Route element={<PrivateRoute to={'login'} isAuth={getPermission}/>}>
+                        <Route element={<PrivateRoute to={'/user-account/login'} isAuth={getPermission}/>}>
                             <Route path={'login/reset-password'} element={<ResetPassword callback={setPermissionReset}/>}/>
                         </Route>
                         <Route path={'login'} element={<Login callback={setPermissionLogin}/>}/>
-                        <Route element={<PrivateRoute to={'login'} isAuth={permissionFromLogin}/>}>
-                            {/*блок который нужно будет вводить числа с емайла */}
-                        </Route>
                         <Route path={'sign-up'} element={<SignUp callback={setPermissionLogin}/>}/>
                         <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
                     <Route path={'help'} element={<HelpPage/>}></Route>
-                    <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
-                        <Route path={'/wish'} element={<WishPage/>}>
-                            <Route index  element={<Wish/>}></Route>
-                        </Route>
-                    </Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
                     <Route path={'/about'} element={<AboutUs/>}></Route>

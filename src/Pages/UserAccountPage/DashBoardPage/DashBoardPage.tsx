@@ -130,7 +130,8 @@ function DashBoardPage() {
                         </NavLink>
                     </h3>
                     <div className={style.card}>
-                        {user ? user.cards?.map((item : ICardWrapper) => {
+                        {user && user.cards.length > 0 ? user.cards.map((item : ICardWrapper) => {
+                            if (item.number == '') return
                             const cardDate : ICardWrapper = {
                                 number : item.number,
                                 name : item.name,

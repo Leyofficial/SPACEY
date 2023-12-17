@@ -6,7 +6,7 @@ import Footer from "../../Components/Footer/Footer.tsx";
 function VerifyEmail() {
     const {user} = useAppSelector((state) => state.user)
     return (
-        user && user.emailVerified ?
+        user && !user.emailVerified ?
             <>
                 <header className={style.header}>
                     <div className={style.breadCrumb}>
