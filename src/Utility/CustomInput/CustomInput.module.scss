@@ -1,0 +1,10 @@
+.wrapperInput{
+  margin: 10px 0;
+  width: 100%;
+  input{
+    border-radius: 2px;
+    border: 1px solid var(--Gray-100, #E4E7E9);
+    background: var(--Gray-00, #FFF);
+    padding: 10px;
+  }
+}

@@ -22,7 +22,7 @@ function UserAccountProfile() {
             <header className={style.container}>
                 <main className={style.main}>
                     <MiniSideBar tabItems={tabItems} />
-                    <section>
+                    <section className={style.section}>
                         <Outlet/>
                     </section>
                 </main>

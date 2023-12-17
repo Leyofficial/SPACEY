@@ -33,6 +33,7 @@ import Wish from "./Pages/WishPage/Wish.tsx";
 import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.tsx";
 import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";
+import UserSetting from "./Pages/UserAccountPage/UserSetting/UserSetting.tsx";
 
 function App() {
     const token = localStorage.getItem('token');
@@ -71,6 +72,7 @@ function App() {
                     <Route element={<PrivateRoute to={'user-account/login'} isAuth={true}/>}>
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
                         <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
+                            <Route path={'/user-account/setting'} element={<UserSetting/>}></Route>
                         </Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>

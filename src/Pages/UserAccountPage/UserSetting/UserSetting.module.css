@@ -1,0 +1,20 @@
+.setting {
+  width: 100%;
+}
+.setting .main {
+  display: flex;
+  padding: 24px;
+  gap: 100px;
+  width: 100%;
+}
+.setting .main .avatar img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.setting .info {
+  width: 100%;
+}
+
+/*# sourceMappingURL=UserSetting.module.css.map */
