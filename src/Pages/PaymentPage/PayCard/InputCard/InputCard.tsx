@@ -7,7 +7,7 @@ interface IInputCardProps {
     value: string | number,
     changeHandler:(arg:React.ChangeEvent<HTMLInputElement>) => void,
     focusHandler: (arg:React.FocusEvent<HTMLInputElement>) => void,
-    maxLength:number
+    maxLength: number
 }
 
 const InputCard = ({type, name, placeholder, value, changeHandler, focusHandler, maxLength}:IInputCardProps) => {
@@ -21,7 +21,6 @@ const InputCard = ({type, name, placeholder, value, changeHandler, focusHandler,
                 onChange={changeHandler}
                 onFocus={focusHandler}
                 maxLength={maxLength}
-
             />
         </>
     );

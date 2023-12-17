@@ -33,6 +33,7 @@ import Wish from "./Pages/WishPage/Wish.tsx";
 import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.tsx";
 import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";
+import {AddCard} from "./Pages/UserAccountPage/DashBoardPage/Card/AddCard/AddCard.tsx";
 
 function App() {
     const {user} = useAppSelector((state) => state.user)
@@ -74,6 +75,7 @@ function App() {
                     <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
                         <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
+                            <Route path={'/user-account/dashboard/addCard'} element={<AddCard/>}/>
                         </Route>
                     </Route>
                     <Route path={'user-account'} element={<UserAccount/>}>

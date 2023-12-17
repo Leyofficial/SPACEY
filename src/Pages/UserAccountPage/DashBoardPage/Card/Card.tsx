@@ -1,7 +1,7 @@
 import style from './Card.module.scss'
 import {HiOutlineDotsHorizontal} from "react-icons/hi";
 import {PiCopyThin} from "react-icons/pi";
-import {SiMastercard, SiVisa} from "react-icons/si";
+import {SiVisa} from "react-icons/si";
 import React, {useEffect, useRef, useState} from "react";
 import ClipboardJS from 'clipboard';
 import {successToaster} from "../../../../Utility/ToasterActions/SuccessToaster.tsx";
@@ -79,7 +79,7 @@ function Card({cardData} : ICard) {
     }, [finishEditing]);
 
     return (
-        <div className={style.block} style={cardData.number.startsWith('4') ? {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #1B6392 0%, #124261 100%)'} : {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #248E1D 0%, #2DB224 100%)'}}>
+        <div className={style.block} style={cardData.number.startsWith('4') ? {background : 'radial-gradient(236.15% 138.52% at 0% 0%, #1B6392 0%, #124261 100%)' , color : 'white'} : {background : 'linear-gradient(25deg, #fbfbfb, #e8e9e5)' , color : '#151515'}}>
             <Toaster
                 position="top-right"
                 reverseOrder={false}
@@ -87,7 +87,7 @@ function Card({cardData} : ICard) {
             <header className={style.headerCard}>
                 <p className={style.totalAmount}>$95, 400.00 USD</p>
                 <Button aria-describedby={id} type="button" onClick={handleClick}>
-                    <div className={style.actionCard}><HiOutlineDotsHorizontal/></div>
+                    <div className={style.actionCard}><HiOutlineDotsHorizontal color={cardData.number.startsWith('4') ? 'white' : '#151515'}/></div>
                 </Button>
                 <BasePopup id={id} open={open} anchor={anchor}>
                     <PopupBody onClick={() => setAnchor(false)}>
@@ -108,13 +108,17 @@ function Card({cardData} : ICard) {
                     {isEditing ? <>
                         <p className={style.cardNumber}>{cardData.number}</p>
                     </> : <input value={newNumberCard} type={'number'} autoFocus={true} onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput} placeholder={cardData.number}></input>}
-                    <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>{!isEditing ? null : <PiCopyThin/>}</button>
+                    <button ref={buttonRef} data-clipboard-text={numberToCopy} className={style.actionCard}>{!isEditing ? null : <PiCopyThin color={cardData.number.startsWith('4') ? 'white' : '#151515'}/>}</button>
                 </div>
             </main>
             <footer className={style.footerCard}>
                 <div className={style.cardHolder}>
-                    {cardData.number.startsWith('44') ?
-                    <SiVisa fontSize={'2.5rem'}/> : <SiMastercard  fontSize={'2.5rem'} />}
+                    {cardData.number.startsWith('4') ?
+                    <SiVisa fontSize={'3.8rem'}/> : <div className={style.masterCard}><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
+                            <path fill="#ff9800" d="M32 10A14 14 0 1 0 32 38A14 14 0 1 0 32 10Z"></path><path fill="#d50000" d="M16 10A14 14 0 1 0 16 38A14 14 0 1 0 16 10Z"></path><path fill="#ff3d00" d="M18,24c0,4.755,2.376,8.95,6,11.48c3.624-2.53,6-6.725,6-11.48s-2.376-8.95-6-11.48 C20.376,15.05,18,19.245,18,24z"></path>
+                        </svg>
+                            <p className={style.textMasterCard}>mastercard</p>
+                        </div>}
                     {isEditing ? <p className={style.ownerCard}>{cardData.name}</p> :  <input value={newNameCard} autoFocus={true} onChange={(e) => setNewName(e.target.value)} className={style.cardNameInput} placeholder={cardData.name}></input>}
                 </div>
             </footer>

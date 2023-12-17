@@ -15,6 +15,8 @@ import axios from "axios";
 import {ICardWrapper, IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
 import {CiCreditCard1} from "react-icons/ci";
 import {orderInfo} from "./orderInfo.tsx";
+import {NavLink} from "react-router-dom";
+import {FaArrowRightLong} from "react-icons/fa6";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -118,7 +120,13 @@ function DashBoardPage() {
                     </div>
                 </div>
                 <div className={style.cardBlock}>
-                    <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
+                    <h3 className={`${style.tableTitle} ${style.cardTitle}`}>
+                        <p>Payment Option</p>
+                        <NavLink className={style.addCard} to={'/user-account/dashboard/addCard'}>
+                            <p>Add Card</p>
+                            <FaArrowRightLong />
+                        </NavLink>
+                    </h3>
                     <div className={style.card}>
                         {user ? user.cards?.map((item : ICardWrapper) => {
                             const cardDate : ICardWrapper = {
