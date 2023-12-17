@@ -4929,6 +4929,11 @@ react-icons@^4.11.0:
   resolved "https://registry.npmjs.org/react-icons/-/react-icons-4.11.0.tgz"
   integrity sha512-V+4khzYcE5EBk/BvcuYRq6V/osf11ODUM2J8hg2FDSswRrGvqiYUYPRy4OdrWaQOBj4NcpJfmHZLNaD+VH0TyA==
 
+react-input-code@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/react-input-code/-/react-input-code-1.0.10.tgz#4d215af82925d3ffa72d4a10ff1726385c60b2b6"
+  integrity sha512-SVJpnqTrJUA+CyCM5rJYpis23JOAmhfedg16U0rryR2WHGeiOCB8Jo0SpBV63E53WwXeX4E5eM6p1YjJwUvqhQ==
+
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
