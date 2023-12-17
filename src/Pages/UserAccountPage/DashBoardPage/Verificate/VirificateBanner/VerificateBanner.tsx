@@ -8,7 +8,7 @@ function VerificateBanner() {
     const [isClicked, setClicked] = useState<boolean>(false)
     const {user} = useAppSelector((state) => state.user);
     return (
-        user.emailVerified &&  !isClicked ?  <div className={style.block}>
+        !user.emailVerified &&  !isClicked ?  <div className={style.block}>
         <div className={style.wrapperBlock}>
             <div className={style.textBlock}>
                 <h2 className={style.title}>
