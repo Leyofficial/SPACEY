@@ -5,6 +5,7 @@ export interface IUserState {
     user : {
         _id : string,
         email : string ,
+        emailVerified : boolean,
         familyName : string ,
         givenName : string ,
         isConfirm : boolean ,

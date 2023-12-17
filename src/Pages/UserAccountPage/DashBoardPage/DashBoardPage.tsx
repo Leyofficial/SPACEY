@@ -17,6 +17,7 @@ import {CiCreditCard1} from "react-icons/ci";
 import {orderInfo} from "./orderInfo.tsx";
 import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
+import VerificateBanner from "./Verificate/VerificateBanner.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -69,6 +70,7 @@ function DashBoardPage() {
     return (
         user ?
             <div className={style.container}>
+                <VerificateBanner/>
                 <div className={style.headerBlock}>
                     <h2 className={style.title}>Hello , {user.givenName}</h2>
                     <p className={style.guideText}>
