@@ -34,6 +34,8 @@ import ShoppingCart from "./Pages/PaymentPage/ShoppingCart/ShoppingCart.tsx";
 import DashBoardPage from "./Pages/UserAccountPage/DashBoardPage/DashBoardPage.tsx";
 import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAccountProfile.tsx";
 import {AddCard} from "./Pages/UserAccountPage/DashBoardPage/Card/AddCard/AddCard.tsx";
+import VerifyEmailPage from "./Routers/VerifyEmail/VerifyEmailPage.tsx";
+import VerifyEmail from "./Pages/VerifyEmailPage/VerifyEmail.tsx";
 
 function App() {
     const {user} = useAppSelector((state) => state.user)
@@ -57,6 +59,9 @@ function App() {
                     <Route index element={<HomePage/>}/>
                     <Route path={'shop-grid'} element={<ShopGrid/>}/>
                     <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
+                        <Route path={'verify/:id'} element={<VerifyEmailPage/>}>
+                            <Route index element={<VerifyEmail/>}/>
+                        </Route>
                         <Route path={'payment-grid'} element={<PaymentPage/>}>
                             <Route path={':idUser'} element={<Billing/>}></Route>
                             <Route path={'check/:idOrder'} element={<CheckOutPayment/>}></Route>

@@ -17,7 +17,7 @@ import {CiCreditCard1} from "react-icons/ci";
 import {orderInfo} from "./orderInfo.tsx";
 import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
-import VerificateBanner from "./Verificate/VerificateBanner.tsx";
+import VerificateBanner from "./Verificate/VirificateBanner/VerificateBanner.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
