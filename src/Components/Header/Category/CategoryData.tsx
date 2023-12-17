@@ -29,9 +29,9 @@ export const CategoryData: ICategory[] = [
         title: 'Dashboard'
     },
     {
-        path: 'support',
+        path: '/about',
         icon: <PiHeadphonesLight color={'#5F6C72'}/>,
-        title: 'Customer Support'
+        title: 'About us'
     },
     {
         path: 'help',
