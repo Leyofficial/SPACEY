@@ -70,7 +70,7 @@ function DashBoardPage() {
     return (
         user ?
             <div className={style.container}>
-                <VerificateBanner/>
+                {!user.emailVerified ? <VerificateBanner/> : null}
                 <div className={style.headerBlock}>
                     <h2 className={style.title}>Hello , {user.givenName}</h2>
                     <p className={style.guideText}>
