@@ -90,15 +90,18 @@ function App() {
                     <Route path={'/track-order/:orderId'} element={<TrackOrderStatus/>}>
                         <Route index element={<TrackOrderWrapper/>}/>
                     </Route>
-                    <Route path={'user-account'} element={<UserAccount/>}>
-                        <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
-                        <Route element={<PrivateRoute to={'/user-account/login'} isAuth={getPermission}/>}>
-                            <Route path={'login/reset-password'} element={<ResetPassword callback={setPermissionReset}/>}/>
+                    <Route element={<PrivateRoute to={'/user-account/dashboard'} isAuth={!permissionFromLogin}/>}>
+                        <Route path={'user-account'} element={<UserAccount/>}>
+                            <Route path={'reset-password/active/:token'} element={<ActiveTokenReset callback={setPermissionReset}/>}></Route>
+                            <Route element={<PrivateRoute to={'/user-account/login'} isAuth={getPermission}/>}>
+                                <Route path={'login/reset-password'} element={<ResetPassword callback={setPermissionReset}/>}/>
+                            </Route>
+                            <Route path={'login'} element={<Login callback={setPermissionLogin}/>}/>
+                            <Route path={'sign-up'} element={<SignUp callback={setPermissionLogin}/>}/>
+                            <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                         </Route>
-                        <Route path={'login'} element={<Login callback={setPermissionLogin}/>}/>
-                        <Route path={'sign-up'} element={<SignUp callback={setPermissionLogin}/>}/>
-                        <Route path={'login/forget-password'} element={<ForgetPassword />}/>
                     </Route>
+
                     <Route path={'help'} element={<HelpPage/>}></Route>
                     <Route path={'*'} element={<NotFound/>}/>
                     <Route path={'/product/:productId'} element={<ProductDetail/>}></Route>
