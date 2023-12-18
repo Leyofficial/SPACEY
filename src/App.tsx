@@ -36,6 +36,8 @@ import UserAccountProfile from "./Routers/UserAccount/UserAccountPrivate/UserAcc
 import {AddCard} from "./Pages/UserAccountPage/DashBoardPage/Card/AddCard/AddCard.tsx";
 import VerifyEmailPage from "./Routers/VerifyEmail/VerifyEmailPage.tsx";
 import VerifyEmail from "./Pages/VerifyEmailPage/VerifyEmail.tsx";
+import CongratulationsPage from "./Routers/Congratulations/CongratulationsPage.tsx";
+import Congratulations from "./Pages/Congratulations/Congratulations.tsx";
 
 function App() {
     const {user} = useAppSelector((state) => state.user)
@@ -62,6 +64,9 @@ function App() {
                     <Route element={<PrivateRoute to={'/user-account/login'} isAuth={permissionFromLogin}/>}>
                         <Route path={'/verify/:id'} element={<VerifyEmailPage/>}>
                             <Route index element={<VerifyEmail/>}/>
+                        </Route>
+                        <Route path={'/congratulations'} element={<CongratulationsPage/>}>
+                            <Route index element={<Congratulations/>}/>
                         </Route>
                         <Route path={'payment-grid'} element={<PaymentPage/>}>
                             <Route path={':idUser'} element={<Billing/>}></Route>
