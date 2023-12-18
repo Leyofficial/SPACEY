@@ -110,13 +110,14 @@ function Card({cardData}: ICard) {
                 <p className={style.cardInfo}>Card number</p>
                 <div className={style.cardNumberBlock}>
                     {isEditing ? <>
-                        <p className={style.cardNumber}>{cardData.number}</p>
-                    </> : <input value={newNumberCard} type={'number'} autoFocus={true}
+                        <p className={style.cardNumber} style={cardData.number.startsWith('4') ?  {color : 'white'} : {color : '#151515'}}>{cardData.number}</p>
+                    </> : <input  style={cardData.number.startsWith('4') ? {color : 'white'} : {color : '#151515'}} value={newNumberCard} type={'number'} autoFocus={true}
                                  onChange={(e) => setNewNumber(e.target.value)} className={style.cardNumberInput}
                                  placeholder={cardData.number}></input>}
                     <button ref={buttonRef} data-clipboard-text={numberToCopy}
                             className={style.actionCard}>{!isEditing ? null :
-                        <PiCopyThin color={cardData.number.startsWith('4') ? 'white' : '#151515'}/>}</button>
+                        <PiCopyThin color={cardData.number.startsWith('4') ? 'white' : '#151515'}/>}
+                    </button>
                 </div>
             </main>
             <footer className={style.footerCard}>
@@ -133,12 +134,12 @@ function Card({cardData}: ICard) {
                             <p className={style.textMasterCard}>mastercard</p>
                         </div>}
                     {isEditing ? <p className={style.ownerCard}>{cardData.name}</p> :
-                        <input value={newNameCard} autoFocus={true} onChange={(e) => setNewName(e.target.value)}
+                        <input style={cardData.number.startsWith('4') ?  {color : 'white'} : {color : '#151515'}} value={newNameCard} onChange={(e) => setNewName(e.target.value)}
                                className={style.cardNameInput} placeholder={cardData.name}></input>}
                 </div>
             </footer>
             {!isEditing ?
-                <div onClick={() => setFinish(!finishEditing)} className={style.saveBtn}><p>Save</p></div> : null}
+                <div onClick={() => setFinish(!finishEditing)} className={style.saveBtn}>Save</div> : null}
         </div>
     )
 }

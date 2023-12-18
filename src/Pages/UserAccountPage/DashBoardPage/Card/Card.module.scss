@@ -73,13 +73,11 @@
 }
 .cardNumberInput {
   font-size: 1rem;
-  color: white;
   background-color: transparent;
   border: none;
   outline: none;
   &::placeholder {
     opacity: .5;
-    color: white;
   }
 }
 .saveBtn {
@@ -96,13 +94,11 @@
 .cardNameInput {
   width: 5.5rem;
     font-size: 1rem;
-    color: white;
     background-color: transparent;
     border: none;
     outline: none;
     &::placeholder {
       opacity: .5;
-      color: white;
     }
 }
 .masterCard {
