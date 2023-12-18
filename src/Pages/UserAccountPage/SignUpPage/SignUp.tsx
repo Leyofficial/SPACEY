@@ -56,7 +56,7 @@ function SignUp({callback} : ICallbackAccount) {
             sub: sub,
             email: email
         }).then(res => {
-            successAction(res.data.createdAccount.googleToken , navigate , callback)
+            successAction(res.data.createdAccount.googleToken , navigate , '/congratulations' , callback)
         }).catch(error => {
             failureAction(error , reset)
         })
@@ -78,7 +78,7 @@ function SignUp({callback} : ICallbackAccount) {
             })
             .then((response) => {
                dispatch(setUser(response.data.newUser));
-               successAction(response.data.newUser.userToken , navigate ,  callback)
+               successAction(response.data.newUser.userToken , navigate , '/congratulations',  callback)
             })
             .catch((error) => {
                failureAction(error , reset)

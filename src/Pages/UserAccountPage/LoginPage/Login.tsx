@@ -52,8 +52,7 @@ function Login({callback} : ILogin) {
                 errorToaster('User not found')
                 return
             }
-            callback(true)
-            successAction(res.data.foundUser.googleToken, navigate)
+            successAction(res.data.foundUser.googleToken,navigate , '/user-account/dashboard' , callback)
         }).catch((err) => {
             errorToaster(err || 'Something went wrong!');
         })
@@ -66,8 +65,7 @@ function Login({callback} : ILogin) {
             .then((response) => {
                 dispatch(setUser(response.data.user))
                 reset();
-                successAction(response.data.user.userToken , navigate)
-                callback(true)
+                successAction(response.data.user.userToken , navigate , '/' , callback)
             })
             .catch((error) => {
                 failureAction(error , reset)
