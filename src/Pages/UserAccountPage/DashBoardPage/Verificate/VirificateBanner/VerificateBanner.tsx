@@ -3,6 +3,7 @@ import {useState} from "react";
 import {useAppSelector} from "../../../../../redux/hooks/hooks.ts";
 import {NavLink} from "react-router-dom";
 import {MdCancel} from "react-icons/md";
+import {PiSealWarningBold} from "react-icons/pi";
 
 function VerificateBanner() {
     const [isClicked, setClicked] = useState<boolean>(false)
@@ -12,7 +13,8 @@ function VerificateBanner() {
         <div className={style.wrapperBlock}>
             <div className={style.textBlock}>
                 <h2 className={style.title}>
-                    Your email has not been verified, to get it click <NavLink to={'/verify/' + user._id}>here.</NavLink>
+                    <PiSealWarningBold fontSize={'1.30rem'}/>
+                    <p>Your email has not been verified, to get it click <NavLink to={'/verify/' + user._id}>here.</NavLink></p>
                 </h2>
             </div>
             <div onClick={() => setClicked(true)} className={style.btn}>

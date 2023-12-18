@@ -7,6 +7,9 @@
 }
 
 .title {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: 1rem;
   font-family: MarkForMC-Bold,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
   a {
