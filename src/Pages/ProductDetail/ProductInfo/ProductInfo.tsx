@@ -14,6 +14,9 @@ import {getColorElement} from "../getColorElement.tsx";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
 import {Toaster} from "react-hot-toast";
 import SkeletonProductDetail from "../SkeletonProductDetail/SkeletonProductDetail.tsx";
+import {useAddToWish} from "../../../hooks/wish/useAddToWish.ts";
+import {successToaster} from "../../../Utility/ToasterActions/SuccessToaster.tsx";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 
 const ProductInfo = ({product}: IProductInfoProps) => {
@@ -35,6 +38,14 @@ const ProductInfo = ({product}: IProductInfoProps) => {
       }
       const userId = user?._id
       addCartItem({data, setProcess, userId})
+  }
+
+  const addToWishItem = () => {
+        useAddToWish(user._id ,product._id).then((res) => {
+            successToaster(res.data.message)
+        }).catch((err) => {
+            errorToaster(err.response.data.message)
+        })
   }
 
     return (
@@ -95,7 +106,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                     </section>
 
                     <section className={style.servicesWrapper}>
-                        <p><CiHeart/>Add to Wishlist</p>
+                        <p onClick={() => addToWishItem()}><CiHeart/>Add to Wishlist</p>
                         <p><MdOutlineChangeCircle/>Add to Compare</p>
                     </section>
 
