@@ -1,0 +1,51 @@
+.block {
+  margin-left: 10rem;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+  box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.12);
+}
+.topBlock {
+  padding: 32px;
+  color: white;
+  background-color: #cb0909;
+}
+.wrapperBlock {
+  padding: 10px  32px;
+  margin: 25px auto 25px;
+  width: 100%;
+  text-align: center;
+}
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem ;
+}
+.title {
+  margin:0.55rem auto;
+  width: 70%;
+  color: var(--gray-900, #191C1F);
+
+  /* Body/XL/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.75rem; /* 140% */
+}
+.logoutBtn {
+  width: 7rem;
+  transition: 0.4s linear;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  gap: 12px;
+  border-radius: 3px;
+  background-color: transparent;
+  border: #3a3838 1px solid;
+  text-transform: uppercase;
+}

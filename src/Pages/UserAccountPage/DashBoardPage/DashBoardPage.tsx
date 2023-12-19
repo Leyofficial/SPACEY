@@ -44,7 +44,7 @@ function DashBoardPage() {
         getAllItems().then((res) => {
             setItems(res.data.categories);
         })
-    }, [user])
+    }, [])
 
     useEffect(() => {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
@@ -82,7 +82,7 @@ function DashBoardPage() {
                     <FormInfo text={'Account Info'}>
                         <div className={style.avatarBlock}>
                             <div className={style.avatar}>
-                                {user.picture ? <Avatar alt="Remy Sharp" src={user?.picture}/> : <Avatar/>}
+                                {user.picture ? <Avatar  src={user.picture}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
                                 <h2>{user.givenName ? user.givenName + ' ' + user.familyName :

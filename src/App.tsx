@@ -38,6 +38,7 @@ import VerifyEmailPage from "./Routers/VerifyEmail/VerifyEmailPage.tsx";
 import VerifyEmail from "./Pages/VerifyEmailPage/VerifyEmail.tsx";
 import CongratulationsPage from "./Routers/Congratulations/CongratulationsPage.tsx";
 import Congratulations from "./Pages/Congratulations/Congratulations.tsx";
+import Logout from "./Pages/UserAccountPage/DashBoardPage/Logout/Logout.tsx";
 
 function App() {
     const {user} = useAppSelector((state) => state.user)
@@ -77,6 +78,7 @@ function App() {
                         <Route path={'user-account'} element={<UserAccountProfile/>}>
                             <Route path={'/user-account/dashboard'} element={<DashBoardPage/>}/>
                             <Route path={'/user-account/dashboard/addCard'} element={<AddCard/>}/>
+                            <Route path={'/user-account/logout'} element={<Logout callback={setPermissionLogin}/>}/>
                         </Route>
                         <Route path={'/wish'} element={<WishPage/>}>
                             <Route index  element={<Wish/>}></Route>
