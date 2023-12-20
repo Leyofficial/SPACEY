@@ -15,7 +15,7 @@ interface IMyDropzone {
 }
 
 const MyDropzone = ({image, user, isLoading}:IMyDropzone) => {
-
+console.log(image)
     const [activeDropImage, setActiveDropImage] = useState(null)
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -28,6 +28,7 @@ const MyDropzone = ({image, user, isLoading}:IMyDropzone) => {
                 const data = new FormData()
                 data.append('file', file)
                 setAvatar(data).then(res => {
+                    console.log(res)
                     if (res.status === 200) {
                         saveAvatar(res.data.file.id, user?._id).then(res => console.log(res)).catch(err => console.log(err))
                     }
