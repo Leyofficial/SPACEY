@@ -1,32 +1,33 @@
 import {createSlice} from '@reduxjs/toolkit'
 
+export interface IUser{
+    _id: string,
+    email: string,
+    familyName: string,
+    givenName: string,
+    isConfirm: boolean,
+    isGoogleAccount: boolean,
+    name: string,
+    password: string,
+    passwordChangedAt: string,
+    passwordResetExpires: string
+    passwordResetToken: string,
+    randomNumberToUpdatePassword: string,
+    role: string,
+    picture: string
+    locale: string
+    displayName: string,
+    address: {
+        country: string,
+        zipCode: string | number,
+        city: string
+    },
+    fullyName:string,
+    phone:number | string
+}
 
 export interface IUserState {
-    user: {
-        _id: string,
-        email: string,
-        familyName: string,
-        givenName: string,
-        isConfirm: boolean,
-        isGoogleAccount: boolean,
-        name: string,
-        password: string,
-        passwordChangedAt: string,
-        passwordResetExpires: string
-        passwordResetToken: string,
-        randomNumberToUpdatePassword: string,
-        role: string,
-        picture: string
-        locale: string
-        displayName: string,
-        address: {
-            country: string,
-            zipCode: string | number,
-            city: string
-        },
-        fullyName:string,
-        phone:number | string
-    },
+    user: IUser
 
 }
 

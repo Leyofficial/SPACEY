@@ -10,15 +10,25 @@ import {
     IUserState
 } from "../../../../redux/user/reducers/UserSlice.ts";
 import {editUser} from "../../../../ApiRequests/User/User.ts";
+import {Toaster} from "react-hot-toast";
+import {successToaster} from "../../../../Utility/ToasterActions/SuccessToaster.tsx";
 
 const UserInfo = ({user}:IUserState) => {
 
     const saveInfoHandler = () => {
-        editUser({user:user}).then(res => console.log(res))
+        editUser({user:user}).then(res => {
+            if(res.status === 200){
+                successToaster('Your changes have been saved')
+            }
+        })
     }
 
     return (
         <>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <div className={style.userInfo}>
                 <div className={style.firstPart}>
                     <CustomInput placeholder={'Kevin'} label={'Display name'} value={user.givenName} callback={changeGivenName}></CustomInput>
