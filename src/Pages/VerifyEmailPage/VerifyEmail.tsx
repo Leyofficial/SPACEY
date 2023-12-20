@@ -1,6 +1,6 @@
 import style from './VerifyEmail.module.scss'
 import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import InputCode from 'react-input-code';
 import './VerifyCode.scss'
 import axios from "axios";
@@ -10,6 +10,18 @@ import {errorToaster} from "../../Utility/ToasterActions/ErrorToaster.tsx";
 function VerifyEmail() {
     const {user} = useAppSelector((state) => state.user);
     const [code, setCode] = useState('');
+
+    useEffect(() => {
+        if (!user) return;
+        axios.post('https://spacey-server.vercel.app/auth/confirmEmall' , {
+            email : user.email
+        }).then((res) => {
+            console.log(res)
+            successToaster(res.data.message);
+        }).catch((err) => {
+            console.log(err)
+        });
+    }, []);
 
     function handleClick() {
         axios.patch('https://spacey-server.vercel.app/auth/confirmEmall' , {
