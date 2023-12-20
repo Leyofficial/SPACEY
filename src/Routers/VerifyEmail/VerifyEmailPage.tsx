@@ -14,8 +14,11 @@ function VerifyEmail() {
             email : user.email
         }).then((res) => {
             successToaster(res.data.message);
+        }).catch((err) => {
+            console.log(err)
         });
     }, []);
+
     return (
         user && !user.emailVerified ?
             <>

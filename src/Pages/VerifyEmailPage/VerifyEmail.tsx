@@ -3,8 +3,27 @@ import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
 import {useState} from "react";
 import InputCode from 'react-input-code';
 import './VerifyCode.scss'
+import axios from "axios";
+import {useAppSelector} from "../../redux/hooks/hooks.ts";
+import {successToaster} from "../../Utility/ToasterActions/SuccessToaster.tsx";
+import {errorToaster} from "../../Utility/ToasterActions/ErrorToaster.tsx";
 function VerifyEmail() {
+    const {user} = useAppSelector((state) => state.user);
     const [code, setCode] = useState('');
+
+    function handleClick() {
+        axios.patch('https://spacey-server.vercel.app/auth/confirmEmall' , {
+            email : user.email,
+            codeToConfirm : [...code]
+        }).then((res) => {
+            console.log(res);
+            successToaster(res.data.message);
+        }).catch((err) => {
+            console.log(err);
+            errorToaster(err.data.response.message);
+        })
+    }
+
     const handleChange = (value: string) => {
         // Обновляем состояние кода при изменении
         setCode(value);
@@ -27,7 +46,7 @@ function VerifyEmail() {
                             autoFocus={true}
                         />
                     </div>
-                    <div className={style.btn}>
+                    <div onClick={handleClick} className={style.btn}>
                         <CustomBtn blockWidth={'100%'} text={'verify me'}/>
                     </div>
                 </div>
