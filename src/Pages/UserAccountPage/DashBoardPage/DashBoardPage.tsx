@@ -44,7 +44,7 @@ function DashBoardPage() {
         getAllItems().then((res) => {
             setItems(res.data.categories);
         })
-    }, [])
+    }, [user])
 
     useEffect(() => {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
@@ -70,7 +70,7 @@ function DashBoardPage() {
     return (
         user ?
             <div className={style.container}>
-                {!user.emailVerified ? <VerificateBanner/> : null}
+                {!user.isConfirm ? <VerificateBanner/> : null}
                 <div className={style.headerBlock}>
                     <h2 className={style.title}>Hello , {user.givenName}</h2>
                     <p className={style.guideText}>

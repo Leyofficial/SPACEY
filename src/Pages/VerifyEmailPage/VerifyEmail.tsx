@@ -1,7 +1,6 @@
 import style from './VerifyEmail.module.scss'
 import CustomBtn from "../../Utility/CustomBtn/CustomBtn.tsx";
 import {useEffect, useState} from "react";
-// import InputCode from 'react-input-code';
 import './VerifyCode.scss'
 import axios from "axios";
 import {useAppSelector} from "../../redux/hooks/hooks.ts";
@@ -15,7 +14,7 @@ function VerifyEmail() {
     const [code, setCode] = useState('');
 
     useEffect(() => {
-        if (!user || !user.email) return;
+        if (!user.email) return;
         axios.post('https://spacey-server.vercel.app/auth/confirmEmail' , {
             email : user?.email
         }).then((res) => {
@@ -23,7 +22,7 @@ function VerifyEmail() {
         }).catch((err) => {
             errorToaster(err.response.data.message)
         });
-    }, []);
+    }, [user]);
 
     function handleClick() {
         axios.patch('https://spacey-server.vercel.app/auth/confirmEmail' , {
@@ -53,18 +52,12 @@ function VerifyEmail() {
             <div className={style.wrapperBlock}>
                 <div className={style.textBlock}>
                     <h2 className={style.title}>Verify Your Email Address</h2>
-                    <p className={style.subtitle}>We will send you an email within 5 minutes</p>
+                    <p className={style.subtitle}>We will send you an email within 2 minutes , if email still didn`t arrived check spam! </p>
                 </div>
                 <div className={style.actionBlock}>
                     <h2 className={style.actionInfo}>Verification Code</h2>
                     <div className={style.codeFromEmail}>
-                        {/*<InputCode*/}
-                        {/*    onChange={handleChange} // Обработчик изменения кода*/}
-                        {/*    value={code} // Текущее значение кода*/}
-                        {/*    nItems={6} type={'text'}*/}
-                        {/*    autoFocus={true}*/}
-                        {/*/>*/}
-                        <input type="text" onChange={(e) => handleChange(e.target.value)} value={code}/>
+                        <input className={style.input} type="text" onChange={(e) => handleChange(e.target.value)} value={code}/>
                     </div>
                     <div onClick={handleClick} className={style.btn}>
                         <CustomBtn blockWidth={'100%'} text={'verify me'}/>
