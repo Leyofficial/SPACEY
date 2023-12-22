@@ -1,5 +1,5 @@
 .container {
-  width: 90%;
+  max-width: 90%;
   margin: 0 auto;
 }
 
@@ -7,6 +7,9 @@
   display: flex;
   margin-top: 28px;
   margin-bottom: 33px;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
 }
 
 .title {
@@ -49,6 +52,10 @@
   gap: 10px;
   margin: 50px auto;
   margin-bottom: 72px;
+}
+
+.leftBlock {
+  width: 100%;
 }
 
 /*# sourceMappingURL=MainPage.module.css.map */

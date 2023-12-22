@@ -1,11 +1,14 @@
 .container {
-    width: 90%;
+    max-width: 90%;
     margin: 0 auto;
 }
 .block {
   display: flex;
   margin-top: 28px;
   margin-bottom: 33px;
+  justify-content: space-between;
+  gap:10px;
+  width: 100%;
 }
 .title {
   margin-top: 72px;
@@ -46,3 +49,7 @@
   margin: 50px auto;
   margin-bottom: 72px;
 }
+.leftBlock{
+  width: 100%;
+}
+

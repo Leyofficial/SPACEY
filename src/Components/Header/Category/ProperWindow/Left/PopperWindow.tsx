@@ -57,7 +57,7 @@ function PopperWindow({refHandler}:{refHandler:React.RefObject<HTMLDivElement>})
                 </div>
                 <div className={style.rightBlock}>
                     <ul className={style.list}>
-                        <li onMouseEnter={() => setHoverBrand('All')}>All</li>
+                        {/*<li onMouseEnter={() => setHoverBrand('All')}>All</li>*/}
                         {brands?.map(brand => <li className={hoverBrand === brand ? style.activeHover : ""}
                                                   onMouseEnter={() => setHoverBrand(brand)}>{brand}</li>)}
                     </ul>

@@ -3,6 +3,7 @@
 }
 .items {
   display: flex;
+  justify-content: space-between;
 }
 .title {
   color: var(--gray-900, #191C1F);
