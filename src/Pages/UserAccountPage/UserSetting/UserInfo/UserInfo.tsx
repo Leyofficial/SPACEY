@@ -41,7 +41,7 @@ const UserInfo = ({user}:IUserState) => {
 
                     <CustomInput name={'country'} placeholder={'Bangladesh'} label={'Country/Region'} value={user.address.country} callback={changeCountry}></CustomInput>
                     <div className={style.btn}>
-                        <CustomBtn text={"save changes"} callback={saveInfoHandler}></CustomBtn>
+                        <CustomBtn blockWidth={'100%'} text={"save changes"} callback={saveInfoHandler}></CustomBtn>
                     </div>
 
                 </div>
