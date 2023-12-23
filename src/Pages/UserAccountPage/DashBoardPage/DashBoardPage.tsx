@@ -12,9 +12,12 @@ import {CustomPagination} from "../../../Utility/Pagination/CustomPagination.tsx
 import {SkeletonSmallCall} from "../../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 import Card from "./Card/Card.tsx";
 import axios from "axios";
-import {IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
+import {ICardWrapper, IOrderInfo, IWholeInfo} from "./dashboardTypes.ts";
 import {CiCreditCard1} from "react-icons/ci";
 import {orderInfo} from "./orderInfo.tsx";
+import {NavLink} from "react-router-dom";
+import {FaArrowRightLong} from "react-icons/fa6";
+import VerificateBanner from "./Verificate/VirificateBanner/VerificateBanner.tsx";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -47,7 +50,6 @@ function DashBoardPage() {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
             const totalPrice = item.products.reduce((acc, product) => acc + product.price, 0);
             const totalProducts = item.products.length;
-
             return {
                 orderId: item.orderId || 'unknown',
                 status: 'In progress',
@@ -68,6 +70,7 @@ function DashBoardPage() {
     return (
         user ?
             <div className={style.container}>
+                {!user.isConfirm ? <VerificateBanner/> : null}
                 <div className={style.headerBlock}>
                     <h2 className={style.title}>Hello , {user.givenName}</h2>
                     <p className={style.guideText}>
@@ -79,7 +82,7 @@ function DashBoardPage() {
                     <FormInfo text={'Account Info'}>
                         <div className={style.avatarBlock}>
                             <div className={style.avatar}>
-                                {user.picture ? <Avatar alt="Remy Sharp" src={user?.picture}/> : <Avatar/>}
+                                {user.picture ? <Avatar  src={user.picture}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
                                 <h2>{user.givenName ? user.givenName + ' ' + user.familyName :
@@ -119,12 +122,24 @@ function DashBoardPage() {
                     </div>
                 </div>
                 <div className={style.cardBlock}>
-                    <h3 className={`${style.tableTitle} ${style.cardTitle}`}>Payment Option</h3>
+                    <h3 className={`${style.tableTitle} ${style.cardTitle}`}>
+                        <p>Payment Option</p>
+                        <NavLink className={style.addCard} to={'/user-account/dashboard/addCard'}>
+                            <p>Add Card</p>
+                            <FaArrowRightLong />
+                        </NavLink>
+                    </h3>
                     <div className={style.card}>
-                        {wholeInfo ? wholeInfo.map((item : IWholeInfo) => {
-                            if (item.isPayed) {
-                                return <Card cardData={item.cardDate}/>
+                        {user && user.cards.length > 0 ? user.cards.map((item : ICardWrapper) => {
+                            if (item.number == '') return
+                            const cardDate : ICardWrapper = {
+                                number : item.number,
+                                name : item.name,
+                                cvc : item.cvc,
+                                expiry: item.expiry,
+                                idCard: item._id
                             }
+                                return <Card cardData={cardDate}/>
                         }) : <div className={style.emptyCards}>
                             <p className={style.noCards}>No cards :(</p>
                             <CiCreditCard1 fontSize={'2.2rem'}/>

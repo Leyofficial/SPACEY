@@ -33,8 +33,8 @@ function Header() {
     }
     return (
         <div className={style.container}>
-            {setBackground()}
             <div className={style.wrapper}>
+                {setBackground()}
                 <div className={style.topBlock}>
                     <nav className={style.nav}>
                         <p className={style.welcome}>Welcome to Spacey online eCommerce store. </p>

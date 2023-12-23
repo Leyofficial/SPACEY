@@ -1,52 +1,64 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import {ICardWrapper} from "../../../Pages/UserAccountPage/DashBoardPage/dashboardTypes.ts";
 
-export interface IUser{
-    _id: string,
-    email: string,
-    familyName: string,
-    givenName: string,
-    isConfirm: boolean,
-    isGoogleAccount: boolean,
-    name: string,
-    password: string,
-    passwordChangedAt: string,
-    passwordResetExpires: string
-    passwordResetToken: string,
-    randomNumberToUpdatePassword: string,
-    role: string,
-    picture: string
-    locale: string
-    displayName: string,
-    address: {
-        country: string,
-        zipCode: string | number,
-        city: string
-    },
-    fullyName:string,
-    phone:number | string
+export interface IUser {
+    user : {
+        _id : string,
+        email : string ,
+        emailVerified : boolean,
+        familyName : string ,
+        givenName : string ,
+        isConfirm : boolean ,
+        isGoogleAccount : boolean,
+        name : string,
+        password : string,
+        passwordChangedAt : string,
+        passwordResetExpires : string
+        passwordResetToken : string,
+        randomNumberToUpdatePassword : string,
+        role : string,
+        picture : string
+        locale : string,
+        cards : ICardWrapper[]
+        displayName: string,
+        address: {
+            country: string,
+            zipCode: string | number,
+            city: string
+        },
+        fullyName:string,
+        phone:number | string
+    }
 }
+
 
 export interface IUserState {
     user: IUser
 
 }
-
-const initialState: IUserState = {
-    user: {
-        email: '',
-        familyName: '',
-        givenName: '',
-        isConfirm: false,
-        isGoogleAccount: false,
-        name: '',
-        password: '',
-        passwordChangedAt: '',
-        passwordResetExpires: '',
-        passwordResetToken: '',
-        randomNumberToUpdatePassword: '',
-        role: '',
-        picture: '',
-        locale: '',
+const initialState : IUser = {
+    user : {
+        email : '' ,
+        familyName : '',
+        givenName : '',
+        isConfirm : false,
+        isGoogleAccount : false,
+        name : '',
+        password : '',
+        passwordChangedAt : '',
+        passwordResetExpires : '',
+        passwordResetToken : '',
+        randomNumberToUpdatePassword : '',
+        role : '',
+        picture : '',
+        locale : '',
+        cards : [{
+            name : '',
+            idCard : '',
+            number : '',
+            expiry : '',
+            cvc : '',
+        }],
         displayName: "",
         address: {
             country: "",
@@ -55,14 +67,15 @@ const initialState: IUserState = {
         },
         phone:"",
         fullyName:""
+
     }
-} as IUserState
+} as IUser
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUser: (state, action) => {
+        setUser: (state , action) => {
             state.user = action.payload;
         },
         changeCountry: (state, action) => {
@@ -90,8 +103,11 @@ const userSlice = createSlice({
         changePhone:(state,action) => {
             state.user.phone = action.payload
         },
+        logoutUser : () => {
+            return initialState
+        }
     },
 });
 
-export const {setUser,changeCountry,changeCity,changeEmail,changeFullName,changeGivenName,changeDisplayName,changePhone,changeZipCode} = userSlice.actions;
+export const { setUser,changeCountry,changeCity,changeEmail,changeFullName,changeGivenName,changeDisplayName,changePhone,changeZipCode , logoutUser} = userSlice.actions;
 export default userSlice.reducer;

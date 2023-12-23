@@ -35,7 +35,7 @@ const CardTotals = ({totalData}:ICardTotalItems ) => {
                 </div>
 
                 <div className={style.btn}>
-                    <CustomBtn disable={!totalData} path={totalData ? `/payment-grid/${user?._id}` : '#'} text={'proceed to checkout'}></CustomBtn>
+                    <CustomBtn blockWidth={'18rem'} disable={!totalData} path={totalData ? `/payment-grid/${user?._id}` : '#'} text={'proceed to checkout'}></CustomBtn>
                 </div>
             </div>
 

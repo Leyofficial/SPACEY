@@ -1,0 +1,16 @@
+.codes-container {
+  display: flex;
+ gap: 0.75rem;
+  justify-content: center;
+}
+
+.code-item {
+  text-align: center;
+  font-size: 2rem;
+  border: #3a3838 1px solid;
+  border-radius: 0.65rem;
+  outline-color: #1B6392;
+  width: 4rem;
+  height: 4rem;
+  margin-right: 5px; /* Adjust the margin between inputs */
+}

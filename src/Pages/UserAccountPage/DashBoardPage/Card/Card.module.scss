@@ -18,10 +18,9 @@
   cursor: pointer;
 }
 .mainCard {
-  margin: 1.2rem 0;
+  margin: 1rem 0;
 }
 .cardInfo {
-  color: var(--Gray-00, #FFF);
 
   /* Label/05 */
   font-family: Public Sans sans-serif;
@@ -34,7 +33,6 @@
   margin-bottom: 0.5rem;
 }
 .cardNumber {
-  color: var(--Gray-White, #FFF);
 
   /* Body/XL/400 */
   font-family: Public Sans sans-serif;
@@ -75,13 +73,11 @@
 }
 .cardNumberInput {
   font-size: 1rem;
-  color: white;
   background-color: transparent;
   border: none;
   outline: none;
   &::placeholder {
     opacity: .5;
-    color: white;
   }
 }
 .saveBtn {
@@ -94,4 +90,23 @@
   padding: 0.5rem 1rem;
   border-radius: 0.125rem;
   border: 2px solid var(--Secondary-100, #D5EDFD);
+}
+.cardNameInput {
+  width: 5.5rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    &::placeholder {
+      opacity: .5;
+    }
+}
+.masterCard {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.textMasterCard {
+  font-size: 12px;
+  font-family: MarkForMC-Bold,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;
 }

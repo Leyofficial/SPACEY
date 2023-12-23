@@ -5,7 +5,7 @@ const DashboardBtn = () => {
     return (
         <>
             <div className={style.btn}>
-                <NavLink to={'/dashboard'}>
+                <NavLink to={'/user-account/dashboard'}>
                     <LuLayoutDashboard /> GO TO DASHBOARD
                 </NavLink>
             </div>

@@ -176,10 +176,17 @@
   background: var(--Gray-00, #FFF);
 }
 .card {
+  flex-wrap: wrap;
   display: flex;
   gap: 1.5rem;
 }
-.cardTitle , .card {
+.cardTitle {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #E4E7E9;
+  padding: 0.925rem 1.5rem;
+}
+.card {
   border: 1px solid #E4E7E9;
   padding: 0.925rem 1.5rem;
 }
@@ -199,5 +206,11 @@
   display: flex;
   gap: 10px;
   text-align: center;
+  align-items: center;
+}
+.addCard {
+  color: #FA8232;
+  display: flex;
+  gap: 0.5rem;
   align-items: center;
 }
