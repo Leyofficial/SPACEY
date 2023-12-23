@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom";
 function VerifyEmail() {
     const navigate = useNavigate();
     const {user} = useAppSelector((state) => state.user);
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState<string>('');
 
     useEffect(() => {
         if (!user.email) return;
@@ -39,7 +39,6 @@ function VerifyEmail() {
     }
 
     const handleChange = (value: string) => {
-        // Обновляем состояние кода при изменении
         setCode(value);
     };
 
