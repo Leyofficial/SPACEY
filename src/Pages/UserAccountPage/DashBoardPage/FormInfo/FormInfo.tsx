@@ -16,7 +16,7 @@ function FormInfo({ text, children }: { text: string; children: React.ReactNode 
                     {children}
                 </main>
                 {/*Link to Vova`s component*/}
-                <NavLink to={'/'} className={style.button}>
+                <NavLink to={'/user-account/setting'} className={style.button}>
                     Edit Account
                 </NavLink>
             </div>
