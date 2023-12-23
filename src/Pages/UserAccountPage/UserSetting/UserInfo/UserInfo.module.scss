@@ -1,6 +1,6 @@
 .userInfo {
   display: flex;
-  gap: 30px;
+  gap: 2.5rem;
   width: 100%;
 
   .btn {
@@ -16,9 +16,24 @@
     }
   }
   .firstPart{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
     width: 50%;
   }
-  .secondPart{
+  .wrapperAddress {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    width: 50%;
+  }
+  .secondPart {
+    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     width: 50%;
   }
 }

@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import {ICardWrapper} from "../../../Pages/UserAccountPage/DashBoardPage/dashboardTypes.ts";
 
 export interface IUser {
-    user : {
         _id : string,
         email : string ,
         emailVerified : boolean,
@@ -28,15 +27,14 @@ export interface IUser {
         },
         fullyName:string,
         phone:number | string
-    }
 }
 
 
 export interface IUserState {
-    user: IUser
+    user : IUser
 
 }
-const initialState : IUser = {
+const initialState : IUserState = {
     user : {
         email : '' ,
         familyName : '',
@@ -69,7 +67,7 @@ const initialState : IUser = {
         fullyName:""
 
     }
-} as IUser
+} as IUserState
 
 const userSlice = createSlice({
     name: 'user',

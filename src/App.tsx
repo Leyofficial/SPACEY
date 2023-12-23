@@ -41,7 +41,7 @@ import Congratulations from "./Pages/Congratulations/Congratulations.tsx";
 import Logout from "./Pages/UserAccountPage/DashBoardPage/Logout/Logout.tsx";
 import UserSetting from "./Pages/UserAccountPage/UserSetting/UserSetting.tsx";
 
-function App() {
+export function App() {
     const {user} = useAppSelector((state) => state.user)
     const token = localStorage.getItem('token');
     const [getPermission, setPermissionReset] = useState<boolean>(false);
@@ -115,5 +115,3 @@ function App() {
         </>
     )
 }
-
-export default App

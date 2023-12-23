@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const setAvatar = (data) => {
+export const setAvatar = (data: FormData) => {
     return axios.post(`https://spacey-server.vercel.app/uploads`,data,{
         headers:{
             'content-type':'multipart/form-data'

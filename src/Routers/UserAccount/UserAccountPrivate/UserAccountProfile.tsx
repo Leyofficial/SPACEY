@@ -10,7 +10,7 @@ function UserAccountProfile() {
     
     const tabItems : ICustomTabItem[] = [
         {text : 'Dashboard' , path : '/user-account/dashboard' , icon : <GoStack size={'1.25rem'}/> },
-        {text : 'Settings' , path : '/user-account/settings' , icon : <GoGear size={'1.25rem'} />},
+        {text : 'Settings' , path : '/user-account/setting' , icon : <GoGear size={'1.25rem'} />},
         {text : 'Log out' , path : '/user-account/logout' , icon : <GoSignOut  size={'1.25rem'}/>},
     ]
 

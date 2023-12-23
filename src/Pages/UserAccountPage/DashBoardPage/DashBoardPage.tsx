@@ -18,6 +18,7 @@ import {orderInfo} from "./orderInfo.tsx";
 import {NavLink} from "react-router-dom";
 import {FaArrowRightLong} from "react-icons/fa6";
 import VerificateBanner from "./Verificate/VirificateBanner/VerificateBanner.tsx";
+import {getImageFromServer} from "../../../ApiRequests/uploads/getImage.ts";
 
 const ITEMS_ON_SCREEN = 4;
 
@@ -28,7 +29,8 @@ function DashBoardPage() {
     const [page, setPage] = useState<number>(1);
     const [tableInfo, setTableInfo] = useState<ICustomTable[] | null>(null)
     const [currentProducts, setCurrentProducts] = useState([]);
-
+    const [imageFromServer , setImage] = useState<unknown | any>(null)
+    const [loading , setIsLoading] = useState<boolean>();
     const indexOfLastCourse = page * ITEMS_ON_SCREEN;
     const indexOfFirstCourse = indexOfLastCourse - ITEMS_ON_SCREEN;
 
@@ -44,7 +46,9 @@ function DashBoardPage() {
         getAllItems().then((res) => {
             setItems(res.data.categories);
         })
+        getImageFromServer(user.picture, setImage, setIsLoading);
     }, [user])
+
 
     useEffect(() => {
         const tableInfo = wholeInfo?.map((item: IWholeInfo) => {
@@ -82,7 +86,7 @@ function DashBoardPage() {
                     <FormInfo text={'Account Info'}>
                         <div className={style.avatarBlock}>
                             <div className={style.avatar}>
-                                {user.picture ? <Avatar  src={user.picture}/> : <Avatar/>}
+                                {imageFromServer && !loading ? <Avatar  src={imageFromServer}/> : <Avatar/>}
                             </div>
                             <div className={style.avatarText}>
                                 <h2>{user.givenName ? user.givenName + ' ' + user.familyName :
