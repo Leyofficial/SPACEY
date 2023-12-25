@@ -1,12 +1,13 @@
 .container{
   display: flex;
-  //justify-content: space-between;
   max-width: 400px;
   align-items: center;
-  //height: 100%;
-  border: 1px solid #E4E7E9;
   margin-bottom: 5px;
   padding: 15px;
+  color: black !important;
+  &:hover{
+    transform: scale(1.05);
+  }
   .wrapperImage{
     img{
      width: 100px !important;
@@ -26,4 +27,7 @@
       color: #2DA5F3;
     }
   }
+}
+.link{
+
 }

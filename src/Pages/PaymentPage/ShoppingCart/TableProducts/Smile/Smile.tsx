@@ -3,6 +3,7 @@ import './Smile.css'
 const Smile = () => {
     return (
         <>
+            <div className='smileWrapper'>
             <div className={'smile'}>
                 <fieldset className="ui-mood">
                     <label aria-label="happy" className={'happy'}>
@@ -10,9 +11,9 @@ const Smile = () => {
                     </label>
                 </fieldset>
             </div>
-
             <div>
                 <p className={'empty'}>Basket is empty...</p>
+            </div>
             </div>
         </>
     );

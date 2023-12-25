@@ -1,16 +1,10 @@
 import style from './CardTotals.module.scss';
 import CustomBtn from "../../../../Utility/CustomBtn/CustomBtn.tsx";
 import {useEffect, useState} from "react";
-import {IShoppingItems} from "../shoppingCartTypes.ts";
+import {ICardTotalItems} from "../shoppingCartTypes.ts";
 import {useAppSelector} from "../../../../redux/hooks/hooks.ts";
 
 
-interface  ICardTotalItems{
-
-       totalData:IShoppingItems[] | null,
-
-
-}
 const CardTotals = ({totalData}:ICardTotalItems ) => {
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const {user} = useAppSelector(state => state.user)
@@ -41,7 +35,7 @@ const CardTotals = ({totalData}:ICardTotalItems ) => {
                 </div>
 
                 <div className={style.btn}>
-                    <CustomBtn disable={!totalData} path={totalData ? `/payment-grid/${user?._id}` : '#'} text={'proceed to checkout'}></CustomBtn>
+                    <CustomBtn blockWidth={'18rem'} disable={!totalData} path={totalData ? `/payment-grid/${user?._id}` : '#'} text={'proceed to checkout'}></CustomBtn>
                 </div>
             </div>
 

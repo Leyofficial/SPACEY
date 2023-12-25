@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  border: 1px solid rgba(95, 108, 114, 0.22);
-  padding:40px;
+  //border: 1px solid rgba(95, 108, 114, 0.22);
+  padding:20px;
   border-radius: 3px;
+  gap:10px;
 
   h3 {
     margin-bottom: 15px;
@@ -13,7 +14,7 @@
   }
 
   .wrapperDescription {
-    width: 576px;
+    width: 40%;
 
     h3 {
     }
@@ -24,6 +25,7 @@
   }
 
   .feature {
+    width: 25%;
     ul {
       display: flex;
       flex-direction: column;
@@ -43,7 +45,7 @@
   }
 
   .shipping {
-
+width: 30%;
     .shippingItems {
       display: flex;
       flex-direction: column;

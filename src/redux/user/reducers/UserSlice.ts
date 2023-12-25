@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
+import {ICardWrapper} from "../../../Pages/UserAccountPage/DashBoardPage/dashboardTypes.ts";
 
-export interface IUserState {
-    user : {
+export interface IUser {
         _id : string,
         email : string ,
+        emailVerified : boolean,
         familyName : string ,
         givenName : string ,
         isConfirm : boolean ,
@@ -14,11 +15,26 @@ export interface IUserState {
         passwordResetExpires : string
         passwordResetToken : string,
         randomNumberToUpdatePassword : string,
-        role : string
-    }
+        role : string,
+        picture : string
+        locale : string,
+        cards : ICardWrapper[]
+        displayName: string,
+        address: {
+            country: string,
+            zipCode: string | number,
+            city: string
+        },
+        fullyName:string,
+        phone:number | string
 }
 
-const initialState = {
+
+export interface IUserState {
+    user : IUser
+
+}
+const initialState : IUserState = {
     user : {
         email : '' ,
         familyName : '',
@@ -31,7 +47,25 @@ const initialState = {
         passwordResetExpires : '',
         passwordResetToken : '',
         randomNumberToUpdatePassword : '',
-        role : ''
+        role : '',
+        picture : '',
+        locale : '',
+        cards : [{
+            name : '',
+            idCard : '',
+            number : '',
+            expiry : '',
+            cvc : '',
+        }],
+        displayName: "",
+        address: {
+            country: "",
+            zipCode: "",
+            city: ""
+        },
+        phone:"",
+        fullyName:""
+
     }
 } as IUserState
 
@@ -41,10 +75,37 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state , action) => {
             state.user = action.payload;
-            console.log(state.user)
         },
+        changeCountry: (state, action) => {
+            state.user.address.country = action.payload
+
+        },
+        changeCity: (state, action) => {
+            state.user.address.city = action.payload
+        },
+        changeZipCode:(state,action) => {
+            state.user.address.zipCode = action.payload
+        },
+        changeDisplayName:(state,action) => {
+            state.user.displayName = action.payload
+        },
+        changeEmail:(state,action) => {
+            state.user.email = action.payload
+        },
+        changeGivenName:(state,action) => {
+            state.user.givenName = action.payload
+        },
+        changeFullName:(state,action) => {
+            state.user.fullyName = action.payload
+        },
+        changePhone:(state,action) => {
+            state.user.phone = action.payload
+        },
+        logoutUser : () => {
+            return initialState
+        }
     },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser,changeCountry,changeCity,changeEmail,changeFullName,changeGivenName,changeDisplayName,changePhone,changeZipCode , logoutUser} = userSlice.actions;
 export default userSlice.reducer;

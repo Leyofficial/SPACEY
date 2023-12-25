@@ -16,7 +16,7 @@ const ShowStatus = ({subtitle, title, image}: IShowStatusProps) => {
             <p className={style.subtitle}>{subtitle}</p>
             <div className={style.wrapperBtns}>
                 <DashboardBtn></DashboardBtn>
-                <CustomBtn text={'VIEW ORDER'}></CustomBtn>
+                <CustomBtn text={'VIEW ORDER'} path={'/track-order'}></CustomBtn>
             </div>
         </div>
     );

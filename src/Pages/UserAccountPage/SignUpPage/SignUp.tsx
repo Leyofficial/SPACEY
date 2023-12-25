@@ -16,6 +16,8 @@ import {useEffect, useState} from "react";
 import {successAction} from "../utitlity/successAction.ts";
 import {failureAction} from "../utitlity/failureAction.ts";
 import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
+import {useAppDispatch} from "../../../redux/hooks/hooks.ts";
+import {setUser} from "../../../redux/user/reducers/UserSlice.ts";
 
 interface MyForm {
     name: string,
@@ -25,11 +27,11 @@ interface MyForm {
 }
 
 function SignUp({callback} : ICallbackAccount) {
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const [userInfoGoogle, setUserInfoGoogle] = useState<null | any>(null);
     const defaultValues  = ['name' , 'email' , 'password' , 'repeatPassword'];
     const {register , handleSubmit , reset , errors} = useFormRegister(defaultValues);
-
     const googleLogin = useGoogleLogin({
         onSuccess: async tokenResponse => {
             const userInfo = await axios.get('https://www.googleapis.com/oauth2/v3/userinfo', {
@@ -54,7 +56,7 @@ function SignUp({callback} : ICallbackAccount) {
             sub: sub,
             email: email
         }).then(res => {
-            successAction(res.data.createdAccount.googleToken , navigate , callback)
+            successAction(res.data.createdAccount.googleToken , navigate , '/congratulations' , callback)
         }).catch(error => {
             failureAction(error , reset)
         })
@@ -69,13 +71,14 @@ function SignUp({callback} : ICallbackAccount) {
         }
         axios
             .post('https://spacey-server.vercel.app/auth' , {
-                name : data.name,
+                givenName : data.name,
                 email : data.email,
                 password : data.password,
                 passwordConfirm : data.repeatPassword,
             })
             .then((response) => {
-               successAction(response.data.token , navigate ,  callback)
+               dispatch(setUser(response.data.newUser));
+               successAction(response.data.newUser.userToken , navigate , '/congratulations',  callback)
             })
             .catch((error) => {
                failureAction(error , reset)

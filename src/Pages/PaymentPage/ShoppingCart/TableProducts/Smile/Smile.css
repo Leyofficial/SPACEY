@@ -1,3 +1,6 @@
+.smileWrapper{
+
+}
 .smile{
     text-align: center;
     margin: 20px 0;
@@ -8,6 +11,7 @@
     margin: 50px 0;
     font-size: 20px;
     letter-spacing: 1px;
+    margin-left: 30px;
 }
 .ui-mood {
    display: flex;
@@ -15,12 +19,6 @@
     justify-content: center;
     width: 100%;
     all: unset;
-
-    /*display: grid;*/
-    /*gap: .33em;*/
-    /*grid-template-columns: repeat(4, 1fr);*/
-
-
 & input {
       appearance: none;
       border-radius: 50%;

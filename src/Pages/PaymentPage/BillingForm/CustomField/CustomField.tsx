@@ -6,8 +6,6 @@ export interface IFieldProps{
     htmlFor:string,
     placeholder?:string,
     id:string,
-    countries?:[any] | null,
-    dataToMap?:string | any,
     isTextArea?:string,
     typeField?:string,
     validate? :(arg:string) => void,
@@ -19,7 +17,8 @@ const CustomField = ({title,htmlFor,placeholder = "",id,isTextArea,typeField,val
        <>
            <div style={{width:`100%`,display:'flex',flexDirection:'column',margin:'20px 0'}}>
                <label htmlFor={htmlFor}>{title}</label>
-               <Field validate={validate ? validate : null} type={typeField} required={required} component={isTextArea ? isTextArea : null} style={{width:`100%`,outline:'none'}} id={id} name={htmlFor} placeholder={placeholder}></Field>
+               <Field validate={validate ? validate : null} type={typeField} required={required} component={isTextArea ?
+                   isTextArea : null} style={{width:`100%`,outline:'none'}} id={id} name={htmlFor} placeholder={placeholder}></Field>
            </div>
 
        </>

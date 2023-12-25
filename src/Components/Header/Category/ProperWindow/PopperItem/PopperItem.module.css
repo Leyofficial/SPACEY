@@ -2,9 +2,12 @@
   display: flex;
   max-width: 400px;
   align-items: center;
-  border: 1px solid #E4E7E9;
   margin-bottom: 5px;
   padding: 15px;
+  color: black !important;
+}
+.container:hover {
+  transform: scale(1.05);
 }
 .container .wrapperImage img {
   width: 100px !important;

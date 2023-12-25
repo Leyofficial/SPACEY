@@ -9,7 +9,7 @@ interface CountAddToCardProps{
 const CountAddToCard = ({count, decrease, increase}:CountAddToCardProps) => {
     return (
         <div className={style.count} style={{width:`40%`}}>
-            <FiMinus onClick={decrease}/>
+            <FiMinus onClick={decrease} style={count === 1 ? {color:"grey"} : {color:"black"}}/>
             <p>{count < 10 && count !== 0 ? "0" + count : count }</p>
             <FiPlus onClick={increase}/>
         </div>

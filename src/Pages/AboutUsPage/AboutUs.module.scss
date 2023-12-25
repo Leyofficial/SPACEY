@@ -1,4 +1,6 @@
 .container {
+  width: 80%;
+  margin:  0 auto;
   .main {
     max-width: 1400px;
     margin: 50px auto;
@@ -87,17 +89,19 @@
       }
 
       .wrapperMembers {
+        justify-content: center;
         display: flex;
         flex-wrap: wrap;
-        gap: 15px;
+        gap: 5rem;
         max-width: 90%;
         margin: 0 auto;
 
+
         .wrapperMember {
+          border: 1px #FA8232  solid !important ;
           display: flex;
           align-items: center;
           padding: 25px;
-          border: 1px solid rgba(128, 128, 128, 0.22);
           border-radius: 3px;
           gap: 15px;
 
@@ -180,6 +184,7 @@
   }
 }
 .productsWrapper{
+  width: 90%;
   max-width: 1400px;
   margin: 0 auto;
 }

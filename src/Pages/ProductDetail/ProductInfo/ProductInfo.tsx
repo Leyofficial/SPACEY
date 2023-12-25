@@ -1,8 +1,7 @@
 import style from './ProductInfo.module.scss'
-import {IProductInfoProps} from "../productDetail.ts";
+import {addCartItem, IProductInfoProps} from "../productDetail.ts";
 import {getRatingIcons} from "../../../Utility/Rating/getRating.tsx";
 import CustomSelect from "../../../Utility/CustomSelect/CustomSelect.tsx";
-import {Skeleton} from "@mui/material";
 import CountAddToCard from "../../../Utility/CountAddToCard/CountAddToCard.tsx";
 import {useState} from "react";
 import {CustomBtnCart} from "../../../Utility/CustomBtn/CustomBtn.tsx";
@@ -12,9 +11,12 @@ import payment1 from '../../../assets/img/payment/image 322.png'
 import payment2 from '../../../assets/img/payment/image 323.png'
 import payment3 from '../../../assets/img/payment/image 321.png'
 import {getColorElement} from "../getColorElement.tsx";
-import {addBasketItem} from "../../../ApiRequests/Items/basketItems.ts";
 import {useAppSelector} from "../../../redux/hooks/hooks.ts";
-import toast, {Toaster} from "react-hot-toast";
+import {Toaster} from "react-hot-toast";
+import SkeletonProductDetail from "../SkeletonProductDetail/SkeletonProductDetail.tsx";
+import {useAddToWish} from "../../../hooks/wish/useAddToWish.ts";
+import {successToaster} from "../../../Utility/ToasterActions/SuccessToaster.tsx";
+import {errorToaster} from "../../../Utility/ToasterActions/ErrorToaster.tsx";
 
 
 const ProductInfo = ({product}: IProductInfoProps) => {
@@ -25,32 +27,26 @@ const ProductInfo = ({product}: IProductInfoProps) => {
         setCountAddProduct(countAddProduct + 1)
     }
     const decreaseProduct = () => {
-        if (countAddProduct !== 0)
+        if (countAddProduct > 1)
             setCountAddProduct(countAddProduct - 1)
     }
+  const addCartItemHandler = () => {
+      const data: { idProduct: string, count: number, price: number | string } = {
+          idProduct: product._id,
+          count: countAddProduct,
+          price: product.product.price
+      }
+      const userId = user?._id
+      addCartItem({data, setProcess, userId})
+  }
 
-    const addCartItemHandler = () => {
-        const data: { idProduct: string, count: number, price: number | string } = {
-            idProduct: product._id,
-            count: countAddProduct,
-            price: product.product.price
-        }
-        addBasketItem(user?._id, data,setProcess).then(res => {
-            if(res.status === 200) {
-                toast.success('The product was added to your cart')
-                setTimeout(() => {
-                    setProcess(false)
-                },500)
-
-            }else if (res.status === 201) {
-                toast.error('This product is already in your cart')
-                setTimeout(() => {
-
-                    setProcess(false)
-                },500)
-            }
+  const addToWishItem = () => {
+        useAddToWish(user._id ,product._id).then((res) => {
+            successToaster(res.data.message)
+        }).catch((err) => {
+            errorToaster(err.response.data.message)
         })
-    }
+  }
 
     return (
         <article className={style.product}>
@@ -58,7 +54,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                 position="top-right"
                 reverseOrder={false}
             />
-            {!product ? <Skeleton></Skeleton> : <>
+            {!product ? <SkeletonProductDetail></SkeletonProductDetail> : <>
                 <header className={style.header}>
 
                     <section className={style.titleWrapper}>
@@ -110,7 +106,7 @@ const ProductInfo = ({product}: IProductInfoProps) => {
                     </section>
 
                     <section className={style.servicesWrapper}>
-                        <p><CiHeart/>Add to Wishlist</p>
+                        <p onClick={() => addToWishItem()}><CiHeart/>Add to Wishlist</p>
                         <p><MdOutlineChangeCircle/>Add to Compare</p>
                     </section>
 

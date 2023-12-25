@@ -10,7 +10,7 @@ const Billing = () => {
 
     return (
         <div className={style.billing}>
-            <BillingForm products={data?.foundOrders?.products} idOrder={data?.foundOrders._id}></BillingForm>
+            <BillingForm products={data?.foundOrders?.products} idOrder={data?.foundOrders?._id}></BillingForm>
         </div>
     );
 };

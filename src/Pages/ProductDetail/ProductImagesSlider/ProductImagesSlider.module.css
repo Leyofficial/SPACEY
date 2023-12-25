@@ -21,10 +21,13 @@
 .items {
   display: flex;
   align-items: center;
-  gap: 5px;
-  max-width: 70%;
+  gap: 35px;
+  max-width: 100%;
   width: 100%;
   margin: 0 auto;
+}
+.items div {
+  gap: 30px;
 }
 
 .arrows {
@@ -51,6 +54,10 @@
 
 .mySwiper {
   display: flex !important;
+}
+
+.swiper-slide {
+  width: 22%;
 }
 
 /*# sourceMappingURL=ProductImagesSlider.module.css.map */
