@@ -39,7 +39,7 @@ function DashBoardPage() {
     };
 
     useEffect(() => {
-        if (!user._id) return
+        if (!user || !user._id) return
         axios.get(`https://spacey-server.vercel.app/processOrder/user/${user._id}`).then((res) => {
             setWhole(res.data.foundOrders);
         })
@@ -47,6 +47,7 @@ function DashBoardPage() {
             setItems(res.data.categories);
         })
         getImageFromServer(user.picture, setImage, setIsLoading);
+        console.log(user)
     }, [user])
 
 
