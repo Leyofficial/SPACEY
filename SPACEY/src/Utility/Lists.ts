@@ -1,1 +1,0 @@
-export  const popularTags = ['Phone','MSI Laptops','iPhone','Computer','Macbook','Samsung','TV',"Microphone",'HP Laptops','Oppo','Headphone']

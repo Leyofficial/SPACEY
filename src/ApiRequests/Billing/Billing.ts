@@ -1,44 +1,53 @@
 import axios from "axios";
-import {IBillingFormValues, IProducts} from "../../Pages/PaymentPage/payment.types.ts";
-
+import {
+  IBillingFormValues,
+  IProducts,
+} from "../../Pages/PaymentPage/payment.types.ts";
 
 interface INewOrderData {
-    paymentType: string | null,
-    date: Date,
-    dataBilling: IBillingFormValues,
-    products: IProducts[],
-    user: string,
-    orderId: string
+  paymentType: string | null;
+  date: Date;
+  dataBilling: IBillingFormValues;
+  products: IProducts[];
+  user: string;
+  orderId: string;
 }
 
 export interface ICardDate {
-
-    number: string,
-    expiry: Date | string,
-    cvc: string | number,
-    name: string
-
-
+  number: string;
+  expiry: Date | string;
+  cvc: string | number;
+  name: string;
 }
 
 export const createNewOrder = async (data: INewOrderData) => {
-    return await axios.post(`https://spacey-server.vercel.app/processOrder`, {
-        ...data
-    })
-}
-export const updatePaymentStatus = async (idOrderProcessing: string | undefined, cardDate: ICardDate) => {
-    return await axios.patch(`https://spacey-server.vercel.app/processOrder/${idOrderProcessing}`, {cardDate})
-}
+  return await axios.post(`https://spacey-server-two.vercel.app/processOrder`, {
+    ...data,
+  });
+};
+export const updatePaymentStatus = async (
+  idOrderProcessing: string | undefined,
+  cardDate: ICardDate
+) => {
+  return await axios.patch(
+    `https://spacey-server-two.vercel.app/processOrder/${idOrderProcessing}`,
+    { cardDate }
+  );
+};
 export const deleteOrder = async (idOrder: string | undefined) => {
-    return await axios.post(`https://spacey-server.vercel.app/orders/delete/${idOrder}`)
-}
+  return await axios.post(
+    `https://spacey-server-two.vercel.app/orders/delete/${idOrder}`
+  );
+};
 
 export const saveCard = async (idUser: string, paymentCard: ICardDate) => {
-
-    return await axios.patch(`https://spacey-server.vercel.app/auth/card/add/${idUser}`, {
-        number: paymentCard.number,
-        name: paymentCard.name,
-        cvc: paymentCard.cvc,
-        expiry: paymentCard.expiry
-    })
-}
+  return await axios.patch(
+    `https://spacey-server-two.vercel.app/auth/card/add/${idUser}`,
+    {
+      number: paymentCard.number,
+      name: paymentCard.name,
+      cvc: paymentCard.cvc,
+      expiry: paymentCard.expiry,
+    }
+  );
+};
