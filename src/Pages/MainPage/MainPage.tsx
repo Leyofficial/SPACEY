@@ -14,7 +14,6 @@ import Banner from "../../Components/Banner/Banner.tsx";
 import Acessories from "./ComputerAcessories/Acessories.tsx";
 import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
 import { SkeletonSmallCall } from "../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
-import React from "react";
 
 function MainPage() {
   const { isLoading, data } = UseCustomQuery(
