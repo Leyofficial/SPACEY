@@ -1,0 +1,36 @@
+.containerCard {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+
+.card {
+  width: 30rem; /* Set the desired width for the Card */
+}
+
+form {
+  flex: 1; /* Make the form take the remaining space */
+  padding-left: 20px; /* Add some left padding to create space between the Card and the form */
+}
+
+.btn {
+  button {
+    cursor: pointer;
+    padding: 0.75rem 1.75rem;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.225rem;
+    background: var(--Primary-500, #FA8232);
+  }
+}
+
+.wrapperBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}

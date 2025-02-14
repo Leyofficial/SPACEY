@@ -1,0 +1,49 @@
+.blockWrapper {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  padding: 20px;
+}
+.blockWrapper div svg {
+  font-size: 30px;
+}
+.blockWrapper div p {
+  color: var(--gray-900, #191C1F);
+  text-align: center;
+  font-family: Public Sans;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 20px;
+}
+
+.container {
+  width: 100%;
+}
+
+.paymentTitle {
+  border-radius: 4px;
+  background: var(--gray-00, #FFF);
+  border-bottom: 1px solid var(--gray-100, #E4E7E9);
+  padding: 20px;
+  height: 100%;
+}
+
+.line {
+  display: block;
+  width: 1px;
+  height: 150px;
+  background: #E4E7E9;
+}
+
+/*# sourceMappingURL=CustomRadio.module.css.map */

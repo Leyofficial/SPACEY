@@ -1,0 +1,58 @@
+.skeletonBlock {
+  padding: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray-50, #F2F4F5);
+  width: 95%;
+  border-radius: 6px;
+  margin-bottom: 50px;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  padding: 56px;
+  width: 81%;
+  gap: 20px;
+  height: 22rem;
+  border-radius: 6px;
+  background: var(--gray-50, #F2F4F5);
+  margin-bottom: 50px;
+}
+
+.textBlock {
+  margin-top: 125px;
+}
+
+.title {
+  color: var(--gray-900, #191C1F);
+  margin-bottom: 16px;
+  /* Display/03 */
+  font-family: Public Sans sans-serif;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 56px; /* 116.667% */
+}
+
+.photoBlock {
+  display: flex;
+  position: relative;
+}
+.photoBlock img {
+  object-fit: cover;
+}
+
+.price {
+  top: 0;
+  right: 0;
+  font-size: 20px;
+  position: absolute;
+  color: white;
+  padding: 4ch 3.6ch;
+  border-radius: 100%;
+  background: var(--secondary-500, #2DA5F3);
+}
+
+/*# sourceMappingURL=BigAdd.module.css.map */

@@ -1,0 +1,32 @@
+.wrapperInput {
+  margin: 10px 0;
+  width: 100%;
+}
+
+.label {
+  color: var(--Gray-900, #191C1F);
+
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem; /* 142.857% */
+}
+
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input {
+  padding: 15px;
+  height: 2rem;
+  width: 22rem;
+  align-self: stretch;
+  border-radius: 0.125rem;
+  border: 1px solid var(--Gray-100, #E4E7E9);
+  background: var(--Gray-00, #FFF);
+  outline: none;
+}

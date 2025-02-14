@@ -1,0 +1,47 @@
+.block {
+  margin: 10px 0;
+  text-decoration: none;
+  color: #191C1F;
+  width: 17rem;
+  border-radius: 3px;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+  align-items: center;
+  padding: 12px 20px;
+  display: flex;
+  gap: 12px;
+}
+
+.imgBLock img {
+  width: 80px;
+  height: 80px;
+}
+
+.titleWrapper {
+  color: var(--gray-900, #191C1F);
+  margin-bottom: 8px;
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.price {
+  color: var(--secondary-500, #2DA5F3);
+  /* Body/Small/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+}
+
+.img {
+  width: 80px;
+  object-fit: cover;
+  height: 80px;
+}
+
+/*# sourceMappingURL=ActualItemState.module.css.map */

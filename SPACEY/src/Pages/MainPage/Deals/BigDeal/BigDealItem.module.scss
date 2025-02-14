@@ -1,0 +1,107 @@
+.block {
+  position: relative;
+  padding: 24px;
+  width: 100%;
+  max-width: 32.5rem;
+  flex-shrink: 0;
+  border: 1px solid var(--gray-100, #E4E7E9);
+  background: var(--gray-00, #FFF);
+}
+.skeletonType {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 11;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+.image {
+  flex-shrink: 0;
+  text-align: center;
+  width: 100%;
+  object-fit: contain;
+  height: 268px;
+  margin-bottom: 15px;
+}
+
+.buttons {
+  text-align: center;
+  width: 100%;
+  bottom: 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.title {
+  margin-top: 10px;
+  width: 100%;
+  color: var(--gray-900, #191C1F);
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  margin-bottom: 15px;
+}
+
+.description {
+  position: relative;
+  color: var(--gray-600, #5F6C72);
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  height: 100px;
+  width: 100%;
+  overflow: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.imgSkeleton {
+  margin-bottom: 20px;
+}
+.priceBlock {
+  display: flex;
+  gap: 5px;
+}
+.oldPrice {
+  color: var(--gray-400, #929FA5);
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  text-decoration: line-through;
+}
+.newPrice {
+  color: var(--secondary-500, #2DA5F3);
+  /* Body/Small/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px; /* 142.857% */
+}
+.ratingBlock {
+  margin-bottom: 5px;
+  //display: flex;
+  //align-items: center;
+  ////gap: 10px;
+}
+.numRating {
+  color: var(--gray-500, #77878F);
+  /* Body/Small/400 */
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+.cart{
+  width: 100%;
+}

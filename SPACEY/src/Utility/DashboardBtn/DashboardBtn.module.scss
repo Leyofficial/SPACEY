@@ -1,0 +1,16 @@
+.btn{
+  transition: 0.4s linear;
+  a{
+    text-decoration: none;
+    color: #FA8232;
+    border: 1px solid rgba(250, 130, 50, 0.48);
+    padding:14px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &:hover{
+    transform: scale(1.05);
+  }
+}

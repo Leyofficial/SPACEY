@@ -1,0 +1,18 @@
+.block {
+  gap: 6px;
+  display: flex;
+  font-family: Public Sans sans-serif;
+  font-size: 14px;
+  line-height: 20px; /* 142.857% */
+  font-style: normal;
+  font-weight: 400;
+}
+.block p {
+  color: #5F6C72;
+}
+.block a {
+  color: #2DA5F3;
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=Allready.module.css.map */

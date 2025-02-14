@@ -1,0 +1,49 @@
+.container {
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 50px 0;
+}
+
+.footer {
+  background-color: #191C1F;
+
+}
+
+.logo {
+  h1 {
+    color: white;
+  }
+
+  .supportWrapper {
+    margin: 15px 0;
+
+    .titleSupport {
+      color: #5F6C72;
+      font-size: 14px;
+    }
+
+    li {
+      color: white;
+      font-size: 15px;
+      letter-spacing: 0.7px;
+    }
+  }
+
+  .addressWrapper {
+    color: #5F6C72;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    margin: 15px 0;
+  }
+
+  .email {
+    color: white;
+    letter-spacing: 0.7px;
+  }
+}

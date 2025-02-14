@@ -1,0 +1,22 @@
+.item {
+  cursor: pointer;
+  margin: 5px 0;
+  //padding: 15px;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+
+  img {
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    object-fit: contain;
+
+    &:hover {
+      opacity: 0.8;
+      transition: 0.3s;
+      transform: scale(1.1);
+    }
+
+  }
+}

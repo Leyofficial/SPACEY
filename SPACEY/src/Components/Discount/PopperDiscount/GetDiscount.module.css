@@ -1,0 +1,57 @@
+.container {
+  background: #F7E99E;
+  width: 250px;
+}
+.container .imageItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container img {
+  width: 100%;
+}
+.container .info {
+  font-size: 16px;
+  color: #475156;
+  padding: 20px;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  line-height: 25px;
+}
+.container .info span {
+  margin: 0 auto;
+  width: 100%;
+  display: block;
+  max-width: 194px;
+  overflow: hidden;
+  max-height: 20px;
+  color: #2DA5F3;
+}
+.container .discount {
+  font-family: Public Sans sans-serif;
+  text-align: center;
+  color: #191C1F;
+  font-size: 28px;
+  font-weight: bold;
+}
+.container .price {
+  font-size: 14px;
+  color: #475156;
+  text-align: center;
+}
+.container .price span {
+  padding: 5px;
+  background: white;
+  color: #191C1F;
+  font-weight: bold;
+  font-size: 16px;
+}
+.container .btn {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*# sourceMappingURL=GetDiscount.module.css.map */

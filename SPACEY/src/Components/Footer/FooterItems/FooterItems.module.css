@@ -1,0 +1,28 @@
+.container h4 {
+  color: white;
+  margin-bottom: 10px;
+}
+.container ul {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.container ul a {
+  padding: 5px;
+  color: #5F6C72;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.container ul a:hover {
+  color: white;
+}
+.container ul a:hover span {
+  display: block;
+  width: 30px;
+  height: 1px;
+  background-color: #EBC80C !important;
+  margin-right: 5px;
+}
+
+/*# sourceMappingURL=FooterItems.module.css.map */

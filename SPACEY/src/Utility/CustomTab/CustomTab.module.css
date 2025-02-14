@@ -1,0 +1,18 @@
+.block {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px 0;
+  text-align: center;
+  text-decoration: none;
+  /* Body/XL/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px; /* 140% */
+}
+.block a {
+  color: var(--gray-500, #77878F);
+}
+
+/*# sourceMappingURL=CustomTab.module.css.map */

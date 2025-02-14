@@ -1,0 +1,39 @@
+.block {
+  height: 14.5rem;
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  padding: 40px 40px 40px 32px;
+  justify-content: center;
+  border-radius: 6px;
+  background: var(--gray-50, #F2F4F5);
+}
+.imgBlock {
+  width: 160px;
+  height: 160px;
+  object-fit: fill;
+  img{
+    max-width: 160px;
+    max-height: 160px;
+  }
+}
+
+.title {
+  color: var(--gray-900, #191C1F);
+  /* Heading/03 */
+  font-family: Public Sans sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+.price {
+  color: var(--secondary-500, #2DA5F3);
+  /* Body/Large/600 */
+  font-family: Public Sans sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  margin-bottom: 20px;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+}
