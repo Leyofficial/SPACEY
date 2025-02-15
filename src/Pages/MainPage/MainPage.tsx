@@ -11,7 +11,7 @@ import ProductCarouselItem from "../../Utility/Carousel/Carousel.tsx";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Banner from "../../Components/Banner/Banner.tsx";
-import Acessories from "./ComputerAcessories/Acessories.tsx";
+// import Acessories from "./ComputerAcessories/Acessories.tsx";
 import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
 import { SkeletonSmallCall } from "../HeaderPage/Addvertation/SmallAdd/SmallAddSkeleton.tsx";
 
@@ -70,7 +70,7 @@ function MainPage() {
         </div>
       </div>
       <div className={style.carousel}>
-        <p className={style.title}>Shop with Categories</p>
+        <p className={style.title}>Shop by brands</p>
         <div className={style.carouselItems}>
           <Slider {...settings}>
             {filteredCategories.map((item, index) => {
@@ -87,9 +87,9 @@ function MainPage() {
         <Banner item={filteredCategories[0]} />
         <Banner item={filteredCategories[1]} />
       </div>
-      <div className={style.acessroies}>
+      {/* <div className={style.acessroies}>
         <Acessories />
-      </div>
+      </div> */}
       <div className={style.smallStatus}>
         <StatusProducts items={wholeDate} />
       </div>

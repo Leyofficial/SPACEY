@@ -40,36 +40,36 @@ function Addvertation() {
             {" "}
             {!isLoading && items ? (
               <BigAdd
-                item={items[20]}
+                item={items[0]}
                 idItem={data ? data.categories[0]._id : null}
               />
             ) : (
               <BigAddSkeleton />
             )}{" "}
           </SwiperSlide>
-          {/* <SwiperSlide>
+          <SwiperSlide>
             {" "}
             {!isLoading && items ? (
               <BigAdd
-                item={items[22]}
-                idItem={data ? data.categories[22]._id : null}
+                item={items[4]}
+                idItem={data ? data.categories[4]._id : null}
               />
             ) : (
               <BigAddSkeleton />
             )}{" "}
-          </SwiperSlide> */}
+          </SwiperSlide>
         </Swiper>
         <div className={style.rightBlock}>
           {!isLoading && data ? (
-            <SmallAdd item={items[0]} idItem={data.categories[0]._id} />
+            <SmallAdd item={items[3]} idItem={data.categories[3]._id} />
           ) : (
             <SmallAddSkeleton />
           )}
-          {/* {!isLoading && data ? (
-            <SmallAdd item={items[12]} idItem={data.categories[12]._id} />
+          {!isLoading && data ? (
+            <SmallAdd item={items[2]} idItem={data.categories[2]._id} />
           ) : (
             <SmallAddSkeleton />
-          )} */}
+          )}
         </div>
       </div>
     </div>

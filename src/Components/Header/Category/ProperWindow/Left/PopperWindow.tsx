@@ -5,7 +5,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { UseCustomQuery } from "../../../../../ApiRequests/customQuery/customQuery.ts";
 import PopperItem from "../PopperItem/PopperItem.tsx";
-import GetDiscountItem from "../../../../Discount/PopperDiscount/GetDiscountItem.tsx";
+// import GetDiscountItem from "../../../../Discount/PopperDiscount/GetDiscountItem.tsx";
 import { ICategory } from "../../../../../types.ts";
 import { useUniqueCategory } from "../../../../../hooks/category/useUniqueCategory.ts";
 import { CustomLocationCategory } from "../../../../../hooks/category/customLocationCategory.ts";
@@ -96,9 +96,9 @@ function PopperWindow({
                   ))
               : null}
           </div>
-          <GetDiscountItem
-            idItem={"654c8b0d3db7ae35800ccc40"}
-          ></GetDiscountItem>
+          {/* <GetDiscountItem
+            idItem={"67b08aac412619000c61696c"}
+          ></GetDiscountItem> */}
         </div>
       </div>
     </div>

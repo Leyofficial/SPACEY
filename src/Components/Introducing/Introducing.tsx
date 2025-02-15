@@ -17,7 +17,7 @@ const Introducing = () => {
       <IntroItem
         typeItem={"blue"}
         title={"INTRODUCING NEW"}
-        item={data ? data?.foundProduct[1] : null}
+        item={data ? data?.foundProduct[2] : null}
       ></IntroItem>
     </section>
   );
