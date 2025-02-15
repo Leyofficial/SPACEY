@@ -9,7 +9,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const ProductImagesSlider = ({ images }: IProductImagesSliderProps) => {
-  console.log(images);
   const [indexOfMainImage, setIndexOfMainImage] = useState<number>(0);
 
   const allImages = images?.mainImage

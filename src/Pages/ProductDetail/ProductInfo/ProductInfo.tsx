@@ -48,8 +48,6 @@ const ProductInfo = ({ product }: IProductInfoProps) => {
       });
   };
 
-  console.log(product);
-
   return (
     <article className={style.product}>
       <Toaster position="top-right" reverseOrder={false} />
