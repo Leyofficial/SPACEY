@@ -47,7 +47,7 @@ function Addvertation() {
               <BigAddSkeleton />
             )}{" "}
           </SwiperSlide>
-          <SwiperSlide>
+          {/* <SwiperSlide>
             {" "}
             {!isLoading && items ? (
               <BigAdd
@@ -57,7 +57,7 @@ function Addvertation() {
             ) : (
               <BigAddSkeleton />
             )}{" "}
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
         <div className={style.rightBlock}>
           {!isLoading && data ? (
@@ -65,11 +65,11 @@ function Addvertation() {
           ) : (
             <SmallAddSkeleton />
           )}
-          {!isLoading && data ? (
+          {/* {!isLoading && data ? (
             <SmallAdd item={items[12]} idItem={data.categories[12]._id} />
           ) : (
             <SmallAddSkeleton />
-          )}
+          )} */}
         </div>
       </div>
     </div>
