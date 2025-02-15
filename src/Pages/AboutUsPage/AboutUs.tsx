@@ -5,14 +5,10 @@ import { Avatar } from "@mui/material";
 import bgMovie from "../../assets/background/bgMovie.jpg";
 import { FaPlay } from "react-icons/fa";
 import Subscribe from "../../Components/Footer/Subscribe/Subscribe.tsx";
-import StatusProducts from "../../Components/StatusProducts/StatusProducts.tsx";
-import { UseCustomQuery } from "../../ApiRequests/customQuery/customQuery.ts";
 import Footer from "../../Components/Footer/Footer.tsx";
 import { members } from "./aboutUs.ts";
 
 const AboutUs = () => {
-  const { data } = UseCustomQuery("https://spacey-server-two.vercel.app/api");
-
   return (
     <>
       <article className={style.container}>
@@ -95,12 +91,8 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className={style.productsWrapper}>
-        <StatusProducts items={data?.categories}></StatusProducts>
-      </section>
-
       <footer>
-        <Subscribe></Subscribe>
+        <Subscribe />
         <Footer />
       </footer>
     </>
